@@ -24,6 +24,12 @@ We’re a team of three funny, talkative, and cheerful individuals: Naruth Kongu
 
 - Slack application: [uwfoodappproject.slack.com](uwfoodappproject.slack.com)
 
+## Installation
+
+```
+git clone https://github.com/naruthk/mobile-uw-food-app.git
+```
+
 ## Project Files
 
 - Google Doc: [Pitch Deck](https://docs.google.com/presentation/d/1MVVqnKYfs7XXRjwEztFYqFT89grxo69O_V0npmqn-4U/edit#slide=id.g2891f1afb5_0_83)
@@ -38,12 +44,11 @@ We’re a team of three funny, talkative, and cheerful individuals: Naruth Kongu
 
 #### Restaurants.JSON
 
-Each restaurant data has an array of *key*, *value* pairs:
+`appData.restaurants` *json object* contains arrays of *key*, *value* pairs:
 
 | Type | Type | Description |
 | ---- | ---- | ------ |
 |  id  |  Number `integer` | The unique id of the restaurant. We use it to look up other values such as reviews. |
-| modifiedDate | Text `string` | The date that this JSON file has been modified |
 | name | Text `string` | Name of the restaurant |
 | description | Text `string` | Short / long description of the restaurant. Copied directly from the HFS website |
 | locationName | Text `string` | Short name of the location |
@@ -51,9 +56,9 @@ Each restaurant data has an array of *key*, *value* pairs:
 | mapCoordinates | Array `double` | Latitude and longitude data |
 | category | Array `string` | Categories of the restaurant |
 | averageRating | Number `double` | Rating for this restaurant |
-| hours | | Operation hours from Monday until Sunday |
-| popularHours | | Popular hours from Monday until Sunday |
-| contactInformation | | Name, phone number, website, and email address |
+| hours | - | Operation hours from Monday until Sunday |
+| popularHours | - | Popular hours from Monday until Sunday |
+| contactInformation | - | Name, phone number, website, and email address |
 
 ```json
 {
