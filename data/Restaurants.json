@@ -24,15 +24,7 @@
           "sat": "9 am - 8 pm",
           "sun": "11 am - 7 pm"
         },
-        "popularHours": {
-          "mon": "7 am - 10 pm",
-          "tues": "7 am - 10 pm",
-          "wed": "7 am - 10 pm",
-          "thurs": "7 am - 10 pm",
-          "fri": "7 am - 10 pm",
-          "sat": "9 am - 8 pm",
-          "sun": "11 am - 7 pm"
-        },
+        "popularHours": {},
         "contactInformation": {
           "name": "Torin Munro",
           "phone": "206-221-4598",
