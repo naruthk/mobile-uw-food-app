@@ -1,6 +1,8 @@
 # UW Food App
 
-An application that lets students and faculties at the University of Washington view all the dining options on campus. 
+An application that lets students and faculties at the University of Washington view all the dining options on campus.
+
+<!--
 
 ## Our Inspiration
 
@@ -13,3 +15,91 @@ While OneBusAway allows us to find bus routes and wait times at each bus stop, w
 ## Developers
 
 We’re a team of three funny, talkative, and cheerful individuals: Naruth Kongurai, Demi Tu, and Thipok Cholsaipant.
+
+---- -->
+
+## Development
+
+### Libraries
+
+- Firebase (Authentication, Database)
+- CocoaPods (Package Manager)
+
+### JSON
+
+#### Restaurants.JSON
+
+```json
+{
+  "dataName": "restaurants",
+  "modifiedDate": "11/21/17",
+  "appData": {
+    "restaurants": [
+      {
+        "id": 1,
+        "name": "Dawg Bites",
+        "locationName": "Intramural Activities Building (IMA)",
+        "fullAddress": "",
+        "mapCoordinates": [47.653491, -122.301684],
+        "category": ["expresso"],
+        "averageRating": 4.0,
+        "hours": {
+          "mon": "7 am - 10 pm",
+          "tues": "7 am - 10 pm",
+          "wed": "7 am - 10 pm",
+          "thurs": "7 am - 10 pm",
+          "fri": "7 am - 10 pm",
+          "sat": "9 am - 8 pm",
+          "sun": "11 am - 7 pm"
+        },
+        "popularHours": {
+
+        },
+        "menu": {
+          "Chocolate Latte": {
+            "price": 5.05,
+            "foodCategory": "drinks"
+          }
+        },
+        "contactInformation": {
+          "name": "",
+          "phone": "",
+          "email": ""
+        }
+      }
+    ]
+  }
+}
+```
+
+#### Reviews.JSON
+
+For development purposes, we will only be using mock-up data.
+
+```json
+{
+  "dataName": "reviews",
+  "modifiedDate": "11/21/17",
+  "appData": {
+    "reviews": [
+      {
+        "restaurantID": 1,
+        "comments": [
+          {
+            "reviewID": 134543534,
+            "user": 3405323424,
+            "comment": "Great, fast place to grab some drinks!",
+            "rating": 4.5
+          },
+          {
+            "reviewID": 143121534,
+            "user": 556623424,
+            "comment": "Delicious",
+            "rating": 4.0
+          }
+        ]
+      }
+    ]
+  }
+}
+```
