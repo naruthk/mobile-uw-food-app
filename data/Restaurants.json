@@ -1,0 +1,137 @@
+{
+  "dataName": "restaurants",
+  "modifiedDate": "11/21/17",
+  "appData": {
+    "restaurants": [
+      {
+        "id": 1,
+        "name": "Dawg Bites",
+        "description": "Dawg Bites, a smoothie bar located inside the Intramural Activities Building (IMA) on Montlake Boulevard, is a great place to get refreshed after a workout. Choose from a large selection of fresh grab-and-go salads and sandwiches, cold drinks, espresso, and of course, Freshëns blended fruit smoothies.",
+        "locationName": "Intramural Activities Building (IMA)",
+        "fullAddress": "Intramural Activities Building, Seattle, WA 98195",
+        "mapCoordinates": [
+          47.653491,
+          -122.301684
+        ],
+        "category": ["espresso"],
+        "averageRating": 0.0,
+        "hours": {
+          "mon": "7 am - 10 pm",
+          "tues": "7 am - 10 pm",
+          "wed": "7 am - 10 pm",
+          "thurs": "7 am - 10 pm",
+          "fri": "7 am - 10 pm",
+          "sat": "9 am - 8 pm",
+          "sun": "11 am - 7 pm"
+        },
+        "popularHours": {
+          "mon": "7 am - 10 pm",
+          "tues": "7 am - 10 pm",
+          "wed": "7 am - 10 pm",
+          "thurs": "7 am - 10 pm",
+          "fri": "7 am - 10 pm",
+          "sat": "9 am - 8 pm",
+          "sun": "11 am - 7 pm"
+        },
+        "contactInformation": {
+          "name": "Torin Munro",
+          "phone": "206-221-4598",
+          "website": "https://www.hfs.washington.edu/dining/Default.aspx?id=336",
+          "email": "torinm@uw.edu"
+        }
+      },
+      {
+        "id": 2,
+        "name": "H-bar",
+        "locationName": "Physics-Astronomy Building",
+        "fullAddress": "Physics-Astronomy Building, Seattle, WA 98195",
+        "mapCoordinates": [
+          47.653261,
+          -122.311701
+        ],
+        "category": [
+          "espresso"
+        ],
+        "averageRating": 0.0,
+        "hours": {
+          "mon": "7 am - 10 pm",
+          "tues": "7 am - 10 pm",
+          "wed": "7 am - 10 pm",
+          "thurs": "7 am - 10 pm",
+          "fri": "7 am - 10 pm",
+          "sat": "9 am - 8 pm",
+          "sun": "11 am - 7 pm"
+        },
+        "popularHours": {},
+        "contactInformation": {
+          "name": "",
+          "phone": "",
+          "website": "",
+          "email": ""
+        }
+      },
+      {
+        "id": 3,
+        "name": "Husky Grind at District Market",
+        "description": "District Market is a neighborhood market with fresh produce, meats and seafood, groceries, breads and baked goods, a full-service deli with chef-prepared side dishes, salads and entrées, and a rotating menu of hot foods ready to take home and eat. District Market also includes Husky Grind, a full café with espresso and desserts, and both indoor seating and a convenient walk-up window for street access.",
+        "locationName": "District Market, Alder Hall",
+        "fullAddress": "1315 NE Campus Pkwy, Seattle, WA 98105",
+        "mapCoordinates": [
+          47.655855,
+          -122.313793
+        ],
+        "category": [
+          "espresso"
+        ],
+        "averageRating": 0.0,
+        "hours": {
+          "mon": "7 am - 12 am",
+          "tues": "7 am - 12 am",
+          "wed": "7 am - 12 am",
+          "thurs": "7 am - 12 am",
+          "fri": "7 am - 12 am",
+          "sat": "9 am - 12 am",
+          "sun": "9 am - 12 am"
+        },
+        "popularHours": {},
+        "contactInformation": {
+          "name": "Heidi Antush",
+          "phone": "206-221-7796",
+          "website": "https://www.hfs.washington.edu/districtmarket/",
+          "email": "bowerh@uw.edu"
+        }
+      },
+      {
+        "id": 4,
+        "name": "Husky Grind at Mercer Court",
+        "description": "Husky Grind is about more than providing a quality cup of coffee. We develop our flavor profiles by small-batch roasting on campus, and the rest of our beans are prepared locally by Seven Coffee Roasters. Origin cards let you know exactly where our beans come from including the country, farm, exporter and certifications. Single-origin practices follow the traditions of specialty brewers, letting you experience the character and subtleties in a particular region's crop. So drop in and warm up at your friendly neighborhood Husky Grind. Husky Grind also partners with design and agricultural programs on campus for coffee-related special events and seminars. You'll find Husky Grind coffee at Husky Grind Café in Mercer Court as well as District Market in Alder Hall and Parnassus in the Art Building.",
+        "locationName": "Mercer Court",
+        "fullAddress": "3925 Adams Ln NE, Seattle, WA 98105",
+        "mapCoordinates": [
+          47.654726,
+          -122.317157
+        ],
+        "category": [
+          "espresso"
+        ],
+        "averageRating": 0.0,
+        "hours": {
+          "mon": "7 am - 10 pm",
+          "tues": "7 am - 10 pm",
+          "wed": "7 am - 10 pm",
+          "thurs": "7 am - 10 pm",
+          "fri": "7 am - 10 pm",
+          "sat": "9 am - 10 pm",
+          "sun": "9 am - 10 pm"
+        },
+        "popularHours": {},
+        "contactInformation": {
+          "name": "Joseph Maurey",
+          "phone": "206-616-5168",
+          "website": "https://www.hfs.washington.edu/huskygrind/",
+          "email": ""
+        }
+      }
+    ]
+  }
+}

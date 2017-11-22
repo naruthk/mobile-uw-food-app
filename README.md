@@ -48,7 +48,7 @@ We’re a team of three funny, talkative, and cheerful individuals: Naruth Kongu
         "id": 1,
         "name": "Dawg Bites",
         "locationName": "Intramural Activities Building (IMA)",
-        "fullAddress": "",
+        "fullAddress": "Intramural Activities Building, Seattle, WA 98195",
         "mapCoordinates": [47.653491, -122.301684],
         "category": ["expresso"],
         "averageRating": 4.0,
@@ -62,19 +62,42 @@ We’re a team of three funny, talkative, and cheerful individuals: Naruth Kongu
           "sun": "11 am - 7 pm"
         },
         "popularHours": {
-
-        },
-        "menu": {
-          "Chocolate Latte": {
-            "price": 5.05,
-            "foodCategory": "drinks"
-          }
+          "mon": "7 am - 10 pm",
+          "tues": "7 am - 10 pm",
+          "wed": "7 am - 10 pm",
+          "thurs": "7 am - 10 pm",
+          "fri": "7 am - 10 pm",
+          "sat": "9 am - 8 pm",
+          "sun": "11 am - 7 pm"
         },
         "contactInformation": {
           "name": "",
           "phone": "",
           "email": ""
         }
+      }
+    ]
+  }
+}
+```
+
+#### Menu.JSON
+
+```json
+{
+  "dataName": "menus",
+  "modifiedDate": "11/21/17",
+  "appData": {
+    "reviews": [
+      {
+        "restaurantID": 1,
+        "menus": [
+          {
+            "name": "Chocolate Latte",
+            "price": 5.05,
+            "foodCategory": "drinks"
+          }
+        ]
       }
     ]
   }
