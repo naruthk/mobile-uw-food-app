@@ -20,29 +20,29 @@ We’re a team of three funny, talkative, and cheerful individuals: Naruth Kongu
 
 ## Development
 
-## Chat
+### Chat
 
 - Slack application: [uwfoodappproject.slack.com](uwfoodappproject.slack.com)
 
-## Installation
+### Installation
 
 ```
 git clone https://github.com/naruthk/mobile-uw-food-app.git
 ```
 
-## Project Files
+### Project Files
 
 - Google Doc: [Pitch Deck](https://docs.google.com/presentation/d/1MVVqnKYfs7XXRjwEztFYqFT89grxo69O_V0npmqn-4U/edit#slide=id.g2891f1afb5_0_83)
 - Google Slide: [Pitch Presentation](https://docs.google.com/document/d/1E4Wk3MKEe6RLPMeRxuAHHm1br9HlJo3zwEEgsLuBOeQ)
 
-### Libraries
+#### Libraries
 
 - Firebase (Authentication, Database) - [https://console.firebase.google.com/u/0/project/uwfoodapp/overview](https://console.firebase.google.com/u/0/project/uwfoodapp/overview)
 - CocoaPods (Package Manager)
 
-### JSON
+#### JSON
 
-#### Restaurants.JSON
+##### Restaurants.JSON
 
 `appData.restaurants` *json object* contains arrays of *key*, *value* pairs:
 
@@ -102,7 +102,7 @@ git clone https://github.com/naruthk/mobile-uw-food-app.git
 
 View actual `Restaurants.json` data file [here](data/Restaurants.json).
 
-#### Menu.JSON
+##### Menu.JSON
 
 ```json
 {
@@ -125,7 +125,7 @@ View actual `Restaurants.json` data file [here](data/Restaurants.json).
 }
 ```
 
-#### Reviews.JSON
+##### Reviews.JSON
 
 For development purposes, we will only be using mock-up data.
 
@@ -156,3 +156,7 @@ For development purposes, we will only be using mock-up data.
   }
 }
 ```
+
+## License
+
+2017 MIT License
