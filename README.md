@@ -22,21 +22,37 @@ We’re a team of three funny, talkative, and cheerful individuals: Naruth Kongu
 
 ## Chat
 
-[uwfoodappproject.slack.com](uwfoodappproject.slack.com)
+- Slack application: [uwfoodappproject.slack.com](uwfoodappproject.slack.com)
 
 ## Project Files
 
-- [Google Doc Pitch Deck](https://docs.google.com/presentation/d/1MVVqnKYfs7XXRjwEztFYqFT89grxo69O_V0npmqn-4U/edit#slide=id.g2891f1afb5_0_83)
-- [Google Slide Pitch Deck](https://docs.google.com/document/d/1E4Wk3MKEe6RLPMeRxuAHHm1br9HlJo3zwEEgsLuBOeQ)
+- Google Doc: [Pitch Deck](https://docs.google.com/presentation/d/1MVVqnKYfs7XXRjwEztFYqFT89grxo69O_V0npmqn-4U/edit#slide=id.g2891f1afb5_0_83)
+- Google Slide [Pitch Presentation](https://docs.google.com/document/d/1E4Wk3MKEe6RLPMeRxuAHHm1br9HlJo3zwEEgsLuBOeQ)
 
 ### Libraries
 
-- Firebase (Authentication, Database)
+- Firebase (Authentication, Database) - [https://console.firebase.google.com/u/0/project/uwfoodapp/overview](https://console.firebase.google.com/u/0/project/uwfoodapp/overview)
 - CocoaPods (Package Manager)
 
 ### JSON
 
 #### Restaurants.JSON
+
+Each restaurant data has an array of *key*, *value* pairs:
+
+| Type | Type | Description |
+| ---- | ---- | ------ |
+|  id  |  Number `integer` | The unique id of the restaurant. We use it to look up other values such as reviews. |
+| name | Text `string` | Name of the restaurant |
+| description | Text `string` | Short / long description of the restaurant. Copied directly from the HFS website |
+| locationName | Text `string` | Short name of the location |
+| fullAddress | Text `string` | Full address (with city, state, and zip code) |
+| mapCoordinates | Array `double` | Latitude and longitude data |
+| category | Array `string` | Categories of the restaurant |
+| averageRating | Number `double` | Rating for this restaurant |
+| hours | | Operation hours from Monday until Sunday |
+| popularHours | | Popular hours from Monday until Sunday |
+| contactInformation | | Name, phone number, website, and email address |
 
 ```json
 {
@@ -47,11 +63,15 @@ We’re a team of three funny, talkative, and cheerful individuals: Naruth Kongu
       {
         "id": 1,
         "name": "Dawg Bites",
+        "description": "Dawg Bites, a smoothie bar located inside the Intramural Activities Building (IMA) on Montlake Boulevard, is a great place to get refreshed after a workout. Choose from a large selection of fresh grab-and-go salads and sandwiches, cold drinks, espresso, and of course, Freshëns blended fruit smoothies.",
         "locationName": "Intramural Activities Building (IMA)",
         "fullAddress": "Intramural Activities Building, Seattle, WA 98195",
-        "mapCoordinates": [47.653491, -122.301684],
-        "category": ["expresso"],
-        "averageRating": 4.0,
+        "mapCoordinates": [
+          47.653491,
+          -122.301684
+        ],
+        "category": ["espresso"],
+        "averageRating": 0.0,
         "hours": {
           "mon": "7 am - 10 pm",
           "tues": "7 am - 10 pm",
@@ -61,25 +81,20 @@ We’re a team of three funny, talkative, and cheerful individuals: Naruth Kongu
           "sat": "9 am - 8 pm",
           "sun": "11 am - 7 pm"
         },
-        "popularHours": {
-          "mon": "7 am - 10 pm",
-          "tues": "7 am - 10 pm",
-          "wed": "7 am - 10 pm",
-          "thurs": "7 am - 10 pm",
-          "fri": "7 am - 10 pm",
-          "sat": "9 am - 8 pm",
-          "sun": "11 am - 7 pm"
-        },
+        "popularHours": {},
         "contactInformation": {
-          "name": "",
-          "phone": "",
-          "email": ""
+          "name": "Torin Munro",
+          "phone": "206-221-4598",
+          "website": "https://www.hfs.washington.edu/dining/Default.aspx?id=336",
+          "email": "torinm@uw.edu"
         }
       }
     ]
   }
 }
 ```
+
+View actual `Restaurants.json` data file [here](data/Restaurants.json).
 
 #### Menu.JSON
 
