@@ -27,7 +27,7 @@ We’re a team of three funny, talkative, and cheerful individuals: Naruth Kongu
 ## Project Files
 
 - Google Doc: [Pitch Deck](https://docs.google.com/presentation/d/1MVVqnKYfs7XXRjwEztFYqFT89grxo69O_V0npmqn-4U/edit#slide=id.g2891f1afb5_0_83)
-- Google Slide [Pitch Presentation](https://docs.google.com/document/d/1E4Wk3MKEe6RLPMeRxuAHHm1br9HlJo3zwEEgsLuBOeQ)
+- Google Slide: [Pitch Presentation](https://docs.google.com/document/d/1E4Wk3MKEe6RLPMeRxuAHHm1br9HlJo3zwEEgsLuBOeQ)
 
 ### Libraries
 
@@ -43,6 +43,7 @@ Each restaurant data has an array of *key*, *value* pairs:
 | Type | Type | Description |
 | ---- | ---- | ------ |
 |  id  |  Number `integer` | The unique id of the restaurant. We use it to look up other values such as reviews. |
+| modifiedDate | Text `string` | The date that this JSON file has been modified |
 | name | Text `string` | Name of the restaurant |
 | description | Text `string` | Short / long description of the restaurant. Copied directly from the HFS website |
 | locationName | Text `string` | Short name of the location |
