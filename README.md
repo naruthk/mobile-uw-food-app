@@ -18,31 +18,51 @@ We’re a team of three funny, talkative, and cheerful individuals: Naruth Kongu
 
 ---- -->
 
+## Project Pitch Documents
+
+- Google Doc: [Pitch Deck](https://docs.google.com/presentation/d/1MVVqnKYfs7XXRjwEztFYqFT89grxo69O_V0npmqn-4U/edit#slide=id.g2891f1afb5_0_83)
+- Google Slide: [Pitch Presentation](https://docs.google.com/document/d/1E4Wk3MKEe6RLPMeRxuAHHm1br9HlJo3zwEEgsLuBOeQ)
+
+----
+
 ## Development
 
 ### Chat
 
 - Slack application: [uwfoodappproject.slack.com](uwfoodappproject.slack.com)
 
+### Requirements
+
+We will need CocoaPods installed in order for the UW Food App to work. So if you don't have CocoaPods installed in your computer, run the following commands in Terminal:
+
+```text
+sudo gem install cocoapods
+pod setup --verbose
+```
+
+Note: Running `pod setup --verbose` might take a long time. But you will only have to do it once only (unless we've updated any libraries).
+
 ### Installation
 
-```
+```text
 git clone https://github.com/naruthk/mobile-uw-food-app.git
+pod install
 ```
 
-### Project Files
-
-- Google Doc: [Pitch Deck](https://docs.google.com/presentation/d/1MVVqnKYfs7XXRjwEztFYqFT89grxo69O_V0npmqn-4U/edit#slide=id.g2891f1afb5_0_83)
-- Google Slide: [Pitch Presentation](https://docs.google.com/document/d/1E4Wk3MKEe6RLPMeRxuAHHm1br9HlJo3zwEEgsLuBOeQ)
-
-#### Libraries
+### Libraries
 
 - Firebase (Authentication, Database) - [https://console.firebase.google.com/u/0/project/uwfoodapp/overview](https://console.firebase.google.com/u/0/project/uwfoodapp/overview)
-- CocoaPods (Package Manager)
+- CocoaPods (Package Manager) - 1.3.1
+- SwiftyJSON
+- Alamofire
 
-#### JSON
+----
 
-##### Restaurants.JSON
+## Database Documentation
+
+### JSON
+
+#### Restaurants.JSON
 
 `appData.restaurants` *json object* contains arrays of *key*, *value* pairs:
 
@@ -102,7 +122,9 @@ git clone https://github.com/naruthk/mobile-uw-food-app.git
 
 View actual `Restaurants.json` data file [here](data/Restaurants.json).
 
-##### Menu.JSON
+----
+
+#### Menu.JSON
 
 ```json
 {
@@ -125,7 +147,9 @@ View actual `Restaurants.json` data file [here](data/Restaurants.json).
 }
 ```
 
-##### Reviews.JSON
+----
+
+#### Reviews.JSON
 
 For development purposes, we will only be using mock-up data.
 
@@ -156,6 +180,8 @@ For development purposes, we will only be using mock-up data.
   }
 }
 ```
+
+----
 
 ## License
 
