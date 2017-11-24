@@ -35,15 +35,14 @@
       {
         "id": 2,
         "name": "H-bar",
+        "description": "-",
         "locationName": "Physics-Astronomy Building",
         "fullAddress": "Physics-Astronomy Building, Seattle, WA 98195",
         "mapCoordinates": [
           47.653261,
           -122.311701
         ],
-        "category": [
-          "espresso"
-        ],
+        "category": ["espresso"],
         "averageRating": 0.0,
         "hours": {
           "mon": "7 am - 10 pm",
@@ -56,10 +55,10 @@
         },
         "popularHours": {},
         "contactInformation": {
-          "name": "",
-          "phone": "",
-          "website": "",
-          "email": ""
+          "name": "-",
+          "phone": "-",
+          "website": "-",
+          "email": "-"
         }
       },
       {
@@ -72,9 +71,7 @@
           47.655855,
           -122.313793
         ],
-        "category": [
-          "espresso"
-        ],
+        "category": ["espresso"],
         "averageRating": 0.0,
         "hours": {
           "mon": "7 am - 12 am",
@@ -103,9 +100,7 @@
           47.654726,
           -122.317157
         ],
-        "category": [
-          "espresso"
-        ],
+        "category": ["espresso"],
         "averageRating": 0.0,
         "hours": {
           "mon": "7 am - 10 pm",
@@ -121,7 +116,7 @@
           "name": "Joseph Maurey",
           "phone": "206-616-5168",
           "website": "https://www.hfs.washington.edu/huskygrind/",
-          "email": ""
+          "email": "-"
         }
       }
     ]

@@ -133,7 +133,7 @@ View actual `Restaurants.json` data file [here](data/Restaurants.json).
   "dataName": "menus",
   "modifiedDate": "11/21/17",
   "appData": {
-    "reviews": [
+    "menus": [
       {
         "restaurantID": 1,
         "menus": [
