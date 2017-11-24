@@ -4,7 +4,7 @@
   "appData": {
     "restaurants": [
       {
-        "id": 1,
+        "restaurantID": "1",
         "name": "Dawg Bites",
         "description": "Dawg Bites, a smoothie bar located inside the Intramural Activities Building (IMA) on Montlake Boulevard, is a great place to get refreshed after a workout. Choose from a large selection of fresh grab-and-go salads and sandwiches, cold drinks, espresso, and of course, Freshëns blended fruit smoothies.",
         "locationName": "Intramural Activities Building (IMA)",
@@ -33,7 +33,7 @@
         }
       },
       {
-        "id": 2,
+        "restaurantID": "2",
         "name": "H-bar",
         "description": "-",
         "locationName": "Physics-Astronomy Building",
@@ -62,7 +62,7 @@
         }
       },
       {
-        "id": 3,
+        "restaurantID": "3",
         "name": "Husky Grind at District Market",
         "description": "District Market is a neighborhood market with fresh produce, meats and seafood, groceries, breads and baked goods, a full-service deli with chef-prepared side dishes, salads and entrées, and a rotating menu of hot foods ready to take home and eat. District Market also includes Husky Grind, a full café with espresso and desserts, and both indoor seating and a convenient walk-up window for street access.",
         "locationName": "District Market, Alder Hall",
@@ -91,7 +91,7 @@
         }
       },
       {
-        "id": 4,
+        "restaurantID": "4",
         "name": "Husky Grind at Mercer Court",
         "description": "Husky Grind is about more than providing a quality cup of coffee. We develop our flavor profiles by small-batch roasting on campus, and the rest of our beans are prepared locally by Seven Coffee Roasters. Origin cards let you know exactly where our beans come from including the country, farm, exporter and certifications. Single-origin practices follow the traditions of specialty brewers, letting you experience the character and subtleties in a particular region's crop. So drop in and warm up at your friendly neighborhood Husky Grind. Husky Grind also partners with design and agricultural programs on campus for coffee-related special events and seminars. You'll find Husky Grind coffee at Husky Grind Café in Mercer Court as well as District Market in Alder Hall and Parnassus in the Art Building.",
         "locationName": "Mercer Court",

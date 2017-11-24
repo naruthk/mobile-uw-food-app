@@ -22,7 +22,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     // INSTANCE VARIABLES
     let locationManager = CLLocationManager()
-    var restaurantsData = [Restaurant]()
+    var restaurantsData = [String:Restaurant]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,13 +93,14 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     func updateRestaurantsData(json : JSON) {
         let results = json["appData"]["restaurants"]
         for currentRestaurant in results.arrayValue {
-            let restaurantID = currentRestaurant["id"].int
+            
+            let restaurantID = currentRestaurant["restaurantID"].string
             let name = currentRestaurant["name"].string
             let description = currentRestaurant["description"].string
             let locationName = currentRestaurant["locationName"].string
             let fullAddress = currentRestaurant["fullAddress"].string
             let mapCoordinates = [currentRestaurant["mapCoordinates"][0].float, currentRestaurant["mapCoordinates"][1].float] as! [Float]
-            var category = currentRestaurant["category"].string
+            let category = currentRestaurant["category"].string
             let averageRating = currentRestaurant["averageRating"].double
             let hourMon = currentRestaurant["hours"]["mon"].string
             let hourTues = currentRestaurant["hours"]["tues"].string
@@ -123,8 +124,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
             let contact_phone = currentRestaurant["contactInformation"]["phone"].string
             let contact_website = currentRestaurant["contactInformation"]["website"].string
             
-            let menus = [Food(name : "", price : 0.0, category : "")]
-            
+            // TODO: Find out how far this current restaurant is from the user.
             let relativeDistanceFromUserCurrentLocation = "-"
             let relativeDurationFromUserCurrentLocation = "-"
 
@@ -142,11 +142,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
                 contact_email: contact_email!,
                 contact_phone: contact_phone!,
                 contact_website: contact_website!,
-                menus: menus,
                 relativeDistanceFromUserCurrentLocation: relativeDistanceFromUserCurrentLocation,
                 relativeDurationFromUserCurrentLocation: relativeDurationFromUserCurrentLocation)
             
-            restaurantsData.append(restaurant)
+            // Our restaurantsData dictionary contain the restaurantID as key, and restaurant object as value
+            restaurantsData[restaurantID!] = restaurant
         }
     }
 

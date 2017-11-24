@@ -10,7 +10,7 @@ import Foundation
 
 class Restaurant {
     
-    var restaurantID : Int
+    var restaurantID : String
     var name : String
     var description : String
     var locationName : String
@@ -24,16 +24,13 @@ class Restaurant {
     var contact_phone : String
     var contact_website : String
     
-    // Each restaurant may or may not have a menu of food available
-    var menus : [Food]?
-    
     // Using Google Map Distance Matrix API, we can also instantiate the distance
     // from the user's current location to this particular restaurant's location
     var relativeDistanceFromUserCurrentLocation : String    // Example value: 6.5 mi
     var relativeDurationFromUserCurrentLocation : String    // Example value: 2 hours 7 mins
     
     init(
-        restaurantID : Int,
+        restaurantID : String,
         name: String,
         description: String,
         locationName: String,
@@ -46,7 +43,6 @@ class Restaurant {
         contact_email: String,
         contact_phone: String,
         contact_website: String,
-        menus: [Food],
         relativeDistanceFromUserCurrentLocation : String,
         relativeDurationFromUserCurrentLocation : String) {
         self.restaurantID = restaurantID
@@ -62,9 +58,6 @@ class Restaurant {
         self.contact_email = contact_email
         self.contact_phone = contact_phone
         self.contact_website = contact_website
-        
-        // Each restaurant may or may not have a menu of food available
-        self.menus = menus
         
         // Relative distance and walking time
         self.relativeDistanceFromUserCurrentLocation = relativeDistanceFromUserCurrentLocation

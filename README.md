@@ -70,7 +70,7 @@ Now to start developing the app, open the file **`UW Food App.xcworkspace`**.
 
 | Type | Type | Description |
 | ---- | ---- | ------ |
-|  id  |  Number `integer` | The unique id of the restaurant. We use it to look up other values such as reviews. |
+|  id  |  Text `string` | The unique id of the restaurant. We use it to look up other values such as reviews and menus. |
 | name | Text `string` | Name of the restaurant |
 | description | Text `string` | Short / long description of the restaurant. Copied directly from the HFS website |
 | locationName | Text `string` | Short name of the location |
@@ -89,7 +89,7 @@ Now to start developing the app, open the file **`UW Food App.xcworkspace`**.
   "appData": {
     "restaurants": [
       {
-        "id": 1,
+        "restaurantID": "1",
         "name": "Dawg Bites",
         "description": "Dawg Bites, a smoothie bar located inside the Intramural Activities Building (IMA) on Montlake Boulevard, is a great place to get refreshed after a workout. Choose from a large selection of fresh grab-and-go salads and sandwiches, cold drinks, espresso, and of course, Freshëns blended fruit smoothies.",
         "locationName": "Intramural Activities Building (IMA)",
@@ -135,7 +135,7 @@ View actual `Restaurants.json` data file [here](data/Restaurants.json).
   "appData": {
     "menus": [
       {
-        "restaurantID": 1,
+        "restaurantID": "1",
         "menus": [
           {
             "name": "Chocolate Latte",
@@ -162,17 +162,17 @@ For development purposes, we will only be using mock-up data.
   "appData": {
     "reviews": [
       {
-        "restaurantID": 1,
+        "restaurantID": "1",
         "comments": [
           {
-            "reviewID": 134543534,
-            "user": 3405323424,
+            "reviewID": "134543534",
+            "user": "3405323424",
             "comment": "Great, fast place to grab some drinks!",
             "rating": 4.5
           },
           {
-            "reviewID": 143121534,
-            "user": 556623424,
+            "reviewID": "143121534",
+            "user": "556623424",
             "comment": "Delicious",
             "rating": 4.0
           }
