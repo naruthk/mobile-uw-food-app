@@ -23,13 +23,13 @@ We’re a team of three funny, talkative, and cheerful individuals: Naruth Kongu
 - Google Doc: [Pitch Deck](https://docs.google.com/presentation/d/1MVVqnKYfs7XXRjwEztFYqFT89grxo69O_V0npmqn-4U/edit#slide=id.g2891f1afb5_0_83)
 - Google Slide: [Pitch Presentation](https://docs.google.com/document/d/1E4Wk3MKEe6RLPMeRxuAHHm1br9HlJo3zwEEgsLuBOeQ)
 
-----
-
-## Development
-
 ### Chat
 
 - Slack application: [uwfoodappproject.slack.com](uwfoodappproject.slack.com)
+
+----
+
+## Development
 
 ### Requirements
 
@@ -49,7 +49,9 @@ git clone https://github.com/naruthk/mobile-uw-food-app.git
 pod install
 ```
 
-### Libraries
+Now to start developing the app, open the file **`UW Food App.xcworkspace`**.
+
+### Libraries We're Using
 
 - Firebase (Authentication, Database) - [https://console.firebase.google.com/u/0/project/uwfoodapp/overview](https://console.firebase.google.com/u/0/project/uwfoodapp/overview)
 - CocoaPods (Package Manager) - 1.3.1
