@@ -76,7 +76,7 @@ Now to start developing the app, open the file **`UW Food App.xcworkspace`**.
 | locationName | Text `string` | Short name of the location |
 | fullAddress | Text `string` | Full address (with city, state, and zip code) |
 | mapCoordinates | Array `double` | Latitude and longitude data |
-| category | Array `string` | Categories of the restaurant |
+| category | Text `string` | Category of the restaurant |
 | averageRating | Number `double` | Rating for this restaurant |
 | hours | - | Operation hours from Monday until Sunday |
 | popularHours | - | Popular hours from Monday until Sunday |
@@ -98,7 +98,7 @@ Now to start developing the app, open the file **`UW Food App.xcworkspace`**.
           47.653491,
           -122.301684
         ],
-        "category": ["espresso"],
+        "category": "espresso",
         "averageRating": 0.0,
         "hours": {
           "mon": "7 am - 10 pm",

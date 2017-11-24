@@ -13,7 +13,7 @@
           47.653491,
           -122.301684
         ],
-        "category": ["espresso"],
+        "category": "espresso",
         "averageRating": 0.0,
         "hours": {
           "mon": "7 am - 10 pm",
@@ -42,7 +42,7 @@
           47.653261,
           -122.311701
         ],
-        "category": ["espresso"],
+        "category": "espresso",
         "averageRating": 0.0,
         "hours": {
           "mon": "7 am - 10 pm",
@@ -71,7 +71,7 @@
           47.655855,
           -122.313793
         ],
-        "category": ["espresso"],
+        "category": "espresso",
         "averageRating": 0.0,
         "hours": {
           "mon": "7 am - 12 am",
@@ -100,7 +100,7 @@
           47.654726,
           -122.317157
         ],
-        "category": ["espresso"],
+        "category": "espresso",
         "averageRating": 0.0,
         "hours": {
           "mon": "7 am - 10 pm",

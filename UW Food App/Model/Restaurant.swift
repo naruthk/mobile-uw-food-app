@@ -16,7 +16,7 @@ class Restaurant {
     var locationName : String
     var fullAddress : String
     var mapCoordinates : [Float]
-    var category : [String]
+    var category : String
     var averageRating : Double
     var hours : [[String:String]]
     var contact_name : String
@@ -39,7 +39,7 @@ class Restaurant {
         locationName: String,
         fullAddress: String,
         mapCoordinates: [Float],
-        category: [String],
+        category: String,
         averageRating: Double,
         hours: [[String:String]],
         contact_name: String,

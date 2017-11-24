@@ -99,14 +99,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
             let locationName = currentRestaurant["locationName"].string
             let fullAddress = currentRestaurant["fullAddress"].string
             let mapCoordinates = [currentRestaurant["mapCoordinates"][0].float, currentRestaurant["mapCoordinates"][1].float] as! [Float]
-            
-            var categories: [String] = [] as! [String]
-            
-            // TODO: Implement Category
-//            for category in currentRestaurant["category"] {
-//                categories.append(currentRestaurant["category"][category])
-//                print(category)
-//            }
+            var category = currentRestaurant["category"].string
             let averageRating = currentRestaurant["averageRating"].double
             let hourMon = currentRestaurant["hours"]["mon"].string
             let hourTues = currentRestaurant["hours"]["tues"].string
@@ -142,7 +135,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
                 locationName: locationName!,
                 fullAddress: fullAddress!,
                 mapCoordinates: mapCoordinates,
-                category: categories,
+                category: category!,
                 averageRating: averageRating!,
                 hours: hours,
                 contact_name: contact_name!,
