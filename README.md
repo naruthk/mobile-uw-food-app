@@ -2,6 +2,31 @@
 
 An application that lets students and faculties at the University of Washington view all the dining options on campus.
 
+The current project is under development.
+
+## Table of Content
+
+<!-- TOC -->
+
+- [UW Food App](#uw-food-app)
+  - [Table of Content](#table-of-content)
+  - [Project Pitch Documents](#project-pitch-documents)
+    - [Chat](#chat)
+  - [Development](#development)
+    - [Requirements](#requirements)
+    - [Installation](#installation)
+    - [Libraries We're Using](#libraries-were-using)
+  - [Database Documentation](#database-documentation)
+    - [JSON](#json)
+      - [Restaurants.JSON](#restaurantsjson)
+      - [Menu.JSON](#menujson)
+      - [Reviews.JSON](#reviewsjson)
+  - [License](#license)
+
+<!-- /TOC -->
+
+----
+
 <!--
 
 ## Our Inspiration
@@ -63,6 +88,18 @@ Now to start developing the app, open the file **`UW Food App.xcworkspace`**.
 ## Database Documentation
 
 ### JSON
+
+There are three JSON files that the app retrieves data from.
+
+- Restaurants.JSON
+- Menus.JSON
+- Reviews.JSON
+
+In every JSON file, there is a shared `restaurantID` for each restaurant, meaning that even though there are 3 seperate JSON files, we can still easily lookup basic information (such as contact information, description), menu, and reviews of a single restaurant by using the unique `restaurantID`.
+
+When adding data to the JSON files, make sure that the `restaurantID` for each restaurant is the same in all 3 JSON files.
+
+All files are currently hosted on my website: [http://naruthk.com/api/mobile-uw-food-app/data/Restaurants.json](http://naruthk.com/api/mobile-uw-food-app/data/Restaurants.json). Alternatively, they are available for viewing inside this Github repository's [data](/data) folder.
 
 #### Restaurants.JSON
 
