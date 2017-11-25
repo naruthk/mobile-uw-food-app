@@ -10,14 +10,16 @@ import Foundation
 
 class Restaurant {
     
+    public var description: String { return "Restaurant: \(restaurantID) \(name) \(restaurantDescription) \(locationName) \(fullAddress) \(mapCoordinates) \(category) \(averageRating) \(hours) \(relativeDistanceFromUserCurrentLocation) \(relativeDurationFromUserCurrentLocation) \(contact_name) \(contact_email) \(contact_phone) \(contact_website)" }
+    
     var restaurantID : String
     var name : String
-    var description : String
+    var restaurantDescription : String
     var locationName : String
     var fullAddress : String
-    var mapCoordinates : [Float]
+    var mapCoordinates : [String]
     var category : String
-    var averageRating : Double
+    var averageRating : String
     var hours : [[String:String]]
     var contact_name : String
     var contact_email : String
@@ -26,18 +28,18 @@ class Restaurant {
     
     // Using Google Map Distance Matrix API, we can also instantiate the distance
     // from the user's current location to this particular restaurant's location
-    var relativeDistanceFromUserCurrentLocation : String    // Example value: 6.5 mi
-    var relativeDurationFromUserCurrentLocation : String    // Example value: 2 hours 7 mins
+    var relativeDistanceFromUserCurrentLocation : String = ""    // Example value: 6.5 mi
+    var relativeDurationFromUserCurrentLocation : String = ""    // Example value: 2 hours 7 mins
     
     init(
         restaurantID : String,
         name: String,
-        description: String,
+        restaurantDescription: String,
         locationName: String,
         fullAddress: String,
-        mapCoordinates: [Float],
+        mapCoordinates: [String],
         category: String,
-        averageRating: Double,
+        averageRating: String,
         hours: [[String:String]],
         contact_name: String,
         contact_email: String,
@@ -47,7 +49,7 @@ class Restaurant {
         relativeDurationFromUserCurrentLocation : String) {
         self.restaurantID = restaurantID
         self.name = name
-        self.description = description
+        self.restaurantDescription = restaurantDescription
         self.locationName = locationName
         self.fullAddress = fullAddress
         self.mapCoordinates = mapCoordinates
@@ -63,4 +65,10 @@ class Restaurant {
         self.relativeDistanceFromUserCurrentLocation = relativeDistanceFromUserCurrentLocation
         self.relativeDurationFromUserCurrentLocation = relativeDurationFromUserCurrentLocation
     }
+    
+    func updateRelativeDistancesAndDuration(newDistance: String, newDuration: String) {
+        self.relativeDistanceFromUserCurrentLocation = newDistance
+        self.relativeDurationFromUserCurrentLocation = newDuration
+    }
+    
 }

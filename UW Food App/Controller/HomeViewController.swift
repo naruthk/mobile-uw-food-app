@@ -23,11 +23,15 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     // INSTANCE VARIABLES
     let locationManager = CLLocationManager()
     var restaurantsData = [String:Restaurant]()
+    var userOriginsLocation = ""
+    var locationDurationText = ""
+    var locationDistanceText = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initializeLocationManager()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,6 +55,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     // also appends each Restaurant object to the global "restaurantsData" List.
     func initializeRestaurantsData(url: String, userOriginsLocation: String) {
         
+        print("DEBUG: Initializing Restaurants Data")
+            
         // Retrieve Restaurants.JSON Data using Alamo
         Alamofire.request(url, method: .get).responseJSON { response in
             if response.result.isSuccess {
@@ -60,96 +66,132 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
                 
             } else {
                 print("Error \(String(describing: response.result.error))")
-                // TODO: Alert the user that the connection is offline
+                // TODO: - Alert the user that the connection is offline
                 
             }
         }
-        
-        
-        
-        
-//        let parameters : [String: String] = [
-//            "origins" : userOriginsLocation,
-//            "destinations" : "",
-//            "mode" : "walking",
-//            "key": GOOGLE_MAP_DISTANCE_MATRIX_API_KEY]
-//
-//        Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
-//            response in
-//            if response.result.isSuccess {
-//                // TODO #2: For each restaurant's latitude and longtitude coordinates,
-//                // set parameter "destinations" in variable "params"
-//
-//                // TODO #3: Add each restaurant to the "restaurantsData" list
-//            } else {
-//
-//            }
-//        }
-        
     }
     
     // This method looks up information of each restaurant inside the JSON object and append each restaurant
     // data to the global list.
     func updateRestaurantsData(json : JSON) {
         let results = json["appData"]["restaurants"]
+        
+        print("DEBUG: Length of results: \(results.count)")
+        
         for currentRestaurant in results.arrayValue {
-            
+            let restaurantObject = fetchCurrentRestaurantData(currentRestaurant: currentRestaurant)
             let restaurantID = currentRestaurant["restaurantID"].string
-            let name = currentRestaurant["name"].string
-            let description = currentRestaurant["description"].string
-            let locationName = currentRestaurant["locationName"].string
-            let fullAddress = currentRestaurant["fullAddress"].string
-            let mapCoordinates = [currentRestaurant["mapCoordinates"][0].float, currentRestaurant["mapCoordinates"][1].float] as! [Float]
-            let category = currentRestaurant["category"].string
-            let averageRating = currentRestaurant["averageRating"].double
-            let hourMon = currentRestaurant["hours"]["mon"].string
-            let hourTues = currentRestaurant["hours"]["tues"].string
-            let hourWed = currentRestaurant["hours"]["wed"].string
-            let hourThurs = currentRestaurant["hours"]["thurs"].string
-            let hourFri = currentRestaurant["hours"]["fri"].string
-            let hourSat = currentRestaurant["hours"]["sat"].string
-            let hourSun = currentRestaurant["hours"]["sun"].string
-            
-            var hours: [[String:String]] = []
-            hours.append(["mon": hourMon!])
-            hours.append(["tues": hourTues!])
-            hours.append(["wed": hourWed!])
-            hours.append(["thurs": hourThurs!])
-            hours.append(["fri": hourFri!])
-            hours.append(["sat": hourSat!])
-            hours.append(["sun": hourSun!])
-
-            let contact_name = currentRestaurant["contactInformation"]["name"].string
-            let contact_email = currentRestaurant["contactInformation"]["email"].string
-            let contact_phone = currentRestaurant["contactInformation"]["phone"].string
-            let contact_website = currentRestaurant["contactInformation"]["website"].string
-            
-            // TODO: Find out how far this current restaurant is from the user.
-            let relativeDistanceFromUserCurrentLocation = "-"
-            let relativeDurationFromUserCurrentLocation = "-"
-
-            let restaurant = Restaurant(
-                restaurantID: restaurantID!,
-                name: name!,
-                description: description!,
-                locationName: locationName!,
-                fullAddress: fullAddress!,
-                mapCoordinates: mapCoordinates,
-                category: category!,
-                averageRating: averageRating!,
-                hours: hours,
-                contact_name: contact_name!,
-                contact_email: contact_email!,
-                contact_phone: contact_phone!,
-                contact_website: contact_website!,
-                relativeDistanceFromUserCurrentLocation: relativeDistanceFromUserCurrentLocation,
-                relativeDurationFromUserCurrentLocation: relativeDurationFromUserCurrentLocation)
-            
-            // Our restaurantsData dictionary contain the restaurantID as key, and restaurant object as value
-            restaurantsData[restaurantID!] = restaurant
+            restaurantsData[restaurantID!] = restaurantObject
         }
     }
+    
+    func fetchCurrentRestaurantData(currentRestaurant: JSON) -> Restaurant {
+        
+        print("DEBUG: Fetching Current Restaurant Data")
+        
+        let restaurantID = currentRestaurant["restaurantID"].string
+        let name = currentRestaurant["name"].string
+        let restaurantDescription = currentRestaurant["description"].string
+        let locationName = currentRestaurant["locationName"].string
+        let fullAddress = currentRestaurant["fullAddress"].string
+        let category = currentRestaurant["category"].string
+        let averageRating = currentRestaurant["averageRating"].string
+        let contact_name = currentRestaurant["contactInformation"]["name"].string
+        let contact_email = currentRestaurant["contactInformation"]["email"].string
+        let contact_phone = currentRestaurant["contactInformation"]["phone"].string
+        let contact_website = currentRestaurant["contactInformation"]["website"].string
+        let hourMon = currentRestaurant["hours"]["mon"].string
+        let hourTues = currentRestaurant["hours"]["tues"].string
+        let hourWed = currentRestaurant["hours"]["wed"].string
+        let hourThurs = currentRestaurant["hours"]["thurs"].string
+        let hourFri = currentRestaurant["hours"]["fri"].string
+        let hourSat = currentRestaurant["hours"]["sat"].string
+        let hourSun = currentRestaurant["hours"]["sun"].string
+        var hours: [[String:String]] = []
+        hours.append(["mon": hourMon!])
+        hours.append(["tues": hourTues!])
+        hours.append(["wed": hourWed!])
+        hours.append(["thurs": hourThurs!])
+        hours.append(["fri": hourFri!])
+        hours.append(["sat": hourSat!])
+        hours.append(["sun": hourSun!])
+    
+        // Map Coordinates
+        let latitude = "\(currentRestaurant["mapCoordinates"]["latitude"].string ?? "")"
+        let longitude = "\(currentRestaurant["mapCoordinates"]["longitude"].string ?? "")"
+        let mapCoordinates = [latitude, longitude] as [String]
+        
+        print("DEBUG: Current restaurant's coordinates are \(mapCoordinates)")
+        
+        // Find out how far this current restaurant is from the user.
+        fetchAndAddRelativeDistancesToCurrentRestaurant(currentRestaurantID: restaurantID!, destinationLatitude: latitude, destinationLongitude: longitude)
+        
+        print("DEBUG: Finish fetching current restaurant data")
+        
+        return Restaurant(
+            restaurantID: restaurantID!,
+            name: name!,
+            restaurantDescription: restaurantDescription!,
+            locationName: locationName!,
+            fullAddress: fullAddress!,
+            mapCoordinates: mapCoordinates,
+            category: category!,
+            averageRating: averageRating!,
+            hours: hours,
+            contact_name: contact_name!,
+            contact_email: contact_email!,
+            contact_phone: contact_phone!,
+            contact_website: contact_website!,
+            relativeDistanceFromUserCurrentLocation: "-",
+            relativeDurationFromUserCurrentLocation: "-")
+    }
+    
+    func fetchAndAddRelativeDistancesToCurrentRestaurant(currentRestaurantID: String, destinationLatitude: String, destinationLongitude: String) {
+        
+        print("DEBUG: Getting relative distances from the user's current location")
+        
+        let parameters : [String: String] = [
+            "origins" : userOriginsLocation,
+            "destinations" : "\(destinationLatitude),\(destinationLongitude)",
+            "mode" : "walking",
+            "key": GOOGLE_MAP_DISTANCE_MATRIX_API_KEY]
 
+        Alamofire.request(GOOGLE_MAP_DISTANCE_URL, method: .get, parameters: parameters).responseJSON { response in
+            if response.result.isSuccess {
+                
+                print("DEBUG: Obtaining data from Google Map API")
+                
+                let result : JSON = JSON(response.result.value!)
+                for currentElement in result["rows"][0]["elements"].arrayValue {
+                    
+                    let status = currentElement["status"].string
+                    
+                    print("DEBUG: Digging inside currentElement's JSON")
+                    print("DEBUG: API status - \(status ?? "")")
+
+                    if (status == "OK") {
+                        
+                        print("DEBUG: Updating current restaurant object with new relative distancea and duration")
+                        
+                        let locationDistance = "\(currentElement["distance"]["text"].string ?? "")"
+                        let locationDuration = "\(currentElement["duration"]["text"].string ?? "")"
+                        self.restaurantsData[currentRestaurantID]?.updateRelativeDistancesAndDuration(newDistance: locationDistance, newDuration: locationDuration)
+                    } else {
+                        self.locationDistanceText = "-"
+                        self.locationDurationText = "-"
+                    }
+                }
+            } else {
+                print("Error \(String(describing: response.result.error))")
+                // TODO: - Alert the user that the connection is offline
+                
+            }
+            print("DEBUG: Done obtaining data from Google Map API")
+            print("DEBUG: Data for Restaurant ID \(currentRestaurantID): \(self.restaurantsData[currentRestaurantID]?.description ?? "")")
+            print("DEBUG: End Alomafire session")
+        }
+    }
     
     //MARK: - Location Manager Delegate Methods
     /***************************************************************/
@@ -160,27 +202,21 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         let location = locations[locations.count - 1]
         if location.horizontalAccuracy > 0 {
             locationManager.stopUpdatingLocation()
-            locationManager.delegate = nil  // We want to retrieve the data only once!
-            
-            // 1. Get user's current location
+            locationManager.delegate = nil
             let latitude = String(location.coordinate.latitude)
             let longitude = String(location.coordinate.longitude)
-            print("User's current location is at latitude = \(latitude), longitude = \(longitude)")
+            userOriginsLocation = "\(latitude),\(longitude)"
             
-            let userOriginsLocation = "\(latitude),\(longitude)"
+            print("DEBUG: Current user location: \(userOriginsLocation)")
             
-            // 2. Setup each restaurant's data (including calculating the distances between
-            // the user's current location and each near-by restaurant)
             initializeRestaurantsData(url: DATA_RESTAURANTS_URL, userOriginsLocation: userOriginsLocation)
-
-            
         }
     }
     
     // Report an error if we cannot find the user's location
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error);
-        // TODO: Show some alert to the user
+        // TODO: - Show some alert to the user
         
     }
 

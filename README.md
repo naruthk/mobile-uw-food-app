@@ -101,7 +101,7 @@ All files are currently hosted on my website: [http://naruthk.com/api/mobile-uw-
 
 #### Restaurants.JSON
 
-`appData.restaurants` *json object* contains arrays of *key*, *value* pairs:
+View actual `Restaurants.json` data file [here](data/Restaurants.json).
 
 | Type | Type | Description |
 | ---- | ---- | ------ |
@@ -110,54 +110,12 @@ All files are currently hosted on my website: [http://naruthk.com/api/mobile-uw-
 | description | Text `string` | Short / long description of the restaurant. Copied directly from the HFS website |
 | locationName | Text `string` | Short name of the location |
 | fullAddress | Text `string` | Full address (with city, state, and zip code) |
-| mapCoordinates | Array `double` | Latitude and longitude data |
+| mapCoordinates | Array `string` | Latitude and longitude data |
 | category | Text `string` | Category of the restaurant |
-| averageRating | Number `double` | Rating for this restaurant |
-| hours | - | Operation hours from Monday until Sunday |
-| popularHours | - | Popular hours from Monday until Sunday |
-| contactInformation | - | Name, phone number, website, and email address |
-
-```json
-{
-  "dataName": "restaurants",
-  "modifiedDate": "11/21/17",
-  "appData": {
-    "restaurants": [
-      {
-        "restaurantID": "1",
-        "name": "Dawg Bites",
-        "description": "Dawg Bites, a smoothie bar located inside the Intramural Activities Building (IMA) on Montlake Boulevard, is a great place to get refreshed after a workout. Choose from a large selection of fresh grab-and-go salads and sandwiches, cold drinks, espresso, and of course, Freshëns blended fruit smoothies.",
-        "locationName": "Intramural Activities Building (IMA)",
-        "fullAddress": "Intramural Activities Building, Seattle, WA 98195",
-        "mapCoordinates": [
-          47.653491,
-          -122.301684
-        ],
-        "category": "espresso",
-        "averageRating": 0.0,
-        "hours": {
-          "mon": "7 am - 10 pm",
-          "tues": "7 am - 10 pm",
-          "wed": "7 am - 10 pm",
-          "thurs": "7 am - 10 pm",
-          "fri": "7 am - 10 pm",
-          "sat": "9 am - 8 pm",
-          "sun": "11 am - 7 pm"
-        },
-        "popularHours": {},
-        "contactInformation": {
-          "name": "Torin Munro",
-          "phone": "206-221-4598",
-          "website": "https://www.hfs.washington.edu/dining/Default.aspx?id=336",
-          "email": "torinm@uw.edu"
-        }
-      }
-    ]
-  }
-}
-```
-
-View actual `Restaurants.json` data file [here](data/Restaurants.json).
+| averageRating | Text `string` | Rating for this restaurant |
+| hours | Dictionary `string:string` | Operation hours from Monday until Sunday |
+| popularHours | Dictionary `string:string` | Popular hours from Monday until Sunday |
+| contactInformation | Dictionary `string:string` | Name, phone number, website, and email address |
 
 ----
 
@@ -174,7 +132,7 @@ View actual `Restaurants.json` data file [here](data/Restaurants.json).
         "food": [
           {
             "name": "Chocolate Latte",
-            "price": 5.05,
+            "price": "5.05",
             "foodCategory": "drinks"
           }
         ]
@@ -203,13 +161,13 @@ For development purposes, we will only be using mock-up data.
             "reviewID": "134543534",
             "user": "3405323424",
             "comment": "Great, fast place to grab some drinks!",
-            "rating": 4.5
+            "rating": "4.5"
           },
           {
             "reviewID": "143121534",
             "user": "556623424",
             "comment": "Delicious",
-            "rating": 4.0
+            "rating": "4.0"
           }
         ]
       }
