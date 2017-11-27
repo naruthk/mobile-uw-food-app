@@ -9,6 +9,7 @@
 import UIKit
 import ChameleonFramework
 import Font_Awesome_Swift
+import Cosmos
 
 class MasterDetailViewController: UIViewController {
 
@@ -34,6 +35,11 @@ class MasterDetailViewController: UIViewController {
     @IBOutlet weak var restaurantShortInformationLabel: UILabel!
     @IBOutlet weak var addToFavoriteButton: UIButton!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var ratingPanel: CosmosView!
+    @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var callButton: UIButton!
+    @IBOutlet weak var mapsButton: UIButton!
+    @IBOutlet weak var websiteButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +49,10 @@ class MasterDetailViewController: UIViewController {
         addToFavoriteButton.setFAIcon(icon: .FABookmarkO, iconSize: 25, forState: .normal)
         
         populateHeader()
+        
+        populateRating()
+        
+        populateButtons()
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,21 +78,29 @@ class MasterDetailViewController: UIViewController {
         }
     }
     
+    func populateRating() {
+        ratingPanel.rating = Double(userData.averageRating)!
+        ratingPanel.settings.updateOnTouch = false
+        ratingPanel.settings.starMargin = 2
+        ratingPanel.settings.filledColor = UIColor.flatGray()
+        ratingPanel.settings.emptyBorderColor = UIColor.flatGray()
+        ratingPanel.settings.filledBorderColor = UIColor.flatGray()
+        ratingPanel.text = "\(userData.averageRating)"
+    }
+    
+    func populateButtons() {
+        menuButton.setFAIcon(icon: .FABook, iconSize: 40, forState: .normal)
+        callButton.setFAIcon(icon: .FAPhone, iconSize: 40, forState: .normal)
+        mapsButton.setFAIcon(icon: .FAMap, iconSize: 40, forState: .normal)
+        websiteButton.setFAIcon(icon: .FALink, iconSize: 40, forState: .normal)
+    }
+    
     @IBAction func backToDiscoveryButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addToFavoriteButton(_ sender: Any) {
     }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

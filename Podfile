@@ -18,6 +18,7 @@ target 'UW Food App' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'Font-Awesome-Swift'
+  pod 'Cosmos', '~> 12.0'
 
   target 'UW Food AppTests' do
     inherit! :search_paths
