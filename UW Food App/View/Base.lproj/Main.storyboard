@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EDk-vY-O57">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JOk-f4-LQK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,35 +10,160 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Map View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--My Food View Controller-->
+        <scene sceneID="6TA-2y-wXh">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="HomeViewController">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-509" y="14"/>
-        </scene>
-        <!--Home View Controller-->
-        <scene sceneID="tTo-N0-N1P">
-            <objects>
-                <viewController id="EDk-vY-O57" customClass="HomeViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="clN-vD-7No">
+                <viewController id="CtB-41-fKg" customClass="MyFoodViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R6W-G2-1Kt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="CwH-Sw-MTI"/>
+                        <viewLayoutGuide key="safeArea" id="qCr-2Q-kca"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aOH-75-BqZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rAj-k5-hli" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1218" y="14"/>
+            <point key="canvasLocation" x="204" y="14"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="5Xd-BY-xjZ">
+            <objects>
+                <viewController title="Search" id="vuB-ko-gZS" customClass="SearchViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Aag-q6-1zV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="JY7-Pg-vDq"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="YfV-hn-3yI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M4l-Ta-Sct" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2910" y="472"/>
+        </scene>
+        <!--Discover-->
+        <scene sceneID="0la-dO-a0h">
+            <objects>
+                <viewController title="Discover" id="uW0-UY-tUd" customClass="DiscoverViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="f89-zC-aAN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V8h-5e-aVD">
+                                <rect key="frame" x="16" y="36" width="343" height="54"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sample-UserIcon" translatesAutoresizingMaskIntoConstraints="NO" id="6aw-xK-Eax">
+                                        <rect key="frame" x="305" y="22" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="Erv-zn-5ZI"/>
+                                            <constraint firstAttribute="height" constant="30" id="eyy-6n-2sQ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tuesday, June 6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cG-gX-tfP">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="18"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xhp-Xg-0NQ">
+                                        <rect key="frame" x="0.0" y="22" width="98" height="32"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Xhp-Xg-0NQ" firstAttribute="leading" secondItem="V8h-5e-aVD" secondAttribute="leading" id="4cL-IL-qMS"/>
+                                    <constraint firstItem="9cG-gX-tfP" firstAttribute="top" secondItem="V8h-5e-aVD" secondAttribute="top" id="8kA-Rr-42a"/>
+                                    <constraint firstAttribute="bottom" secondItem="6aw-xK-Eax" secondAttribute="bottom" constant="2" id="QtO-Tm-Sdl"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xhp-Xg-0NQ" secondAttribute="bottom" id="YIY-TU-YZq"/>
+                                    <constraint firstItem="9cG-gX-tfP" firstAttribute="leading" secondItem="V8h-5e-aVD" secondAttribute="leading" id="afI-XB-VO6"/>
+                                    <constraint firstItem="6aw-xK-Eax" firstAttribute="top" secondItem="9cG-gX-tfP" secondAttribute="bottom" constant="4" id="coe-bD-vnq"/>
+                                    <constraint firstItem="6aw-xK-Eax" firstAttribute="top" secondItem="9cG-gX-tfP" secondAttribute="bottom" constant="4" id="e7P-bm-Hbu"/>
+                                    <constraint firstItem="Xhp-Xg-0NQ" firstAttribute="top" secondItem="9cG-gX-tfP" secondAttribute="bottom" constant="4" id="heN-Cn-3d1"/>
+                                    <constraint firstAttribute="trailing" secondItem="6aw-xK-Eax" secondAttribute="trailing" constant="8" id="jYn-NQ-JWt"/>
+                                    <constraint firstAttribute="trailing" secondItem="9cG-gX-tfP" secondAttribute="trailing" id="miF-yx-LYy"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etr-Ql-oad" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="106" width="375" height="512"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="etr-Ql-oad" firstAttribute="top" secondItem="V8h-5e-aVD" secondAttribute="bottom" constant="16" id="MM4-vw-grN"/>
+                            <constraint firstItem="etr-Ql-oad" firstAttribute="leading" secondItem="YVE-X9-LDi" secondAttribute="leading" id="SXE-6C-lf8"/>
+                            <constraint firstItem="V8h-5e-aVD" firstAttribute="leading" secondItem="YVE-X9-LDi" secondAttribute="leading" constant="16" id="aXw-et-o2Y"/>
+                            <constraint firstItem="YVE-X9-LDi" firstAttribute="bottom" secondItem="etr-Ql-oad" secondAttribute="bottom" id="b88-07-8CC"/>
+                            <constraint firstItem="V8h-5e-aVD" firstAttribute="top" secondItem="YVE-X9-LDi" secondAttribute="top" constant="16" id="go3-A4-4mb"/>
+                            <constraint firstItem="YVE-X9-LDi" firstAttribute="trailing" secondItem="etr-Ql-oad" secondAttribute="trailing" id="jkl-dM-lus"/>
+                            <constraint firstItem="YVE-X9-LDi" firstAttribute="trailing" secondItem="V8h-5e-aVD" secondAttribute="trailing" constant="16" id="s2R-4j-9Vd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YVE-X9-LDi"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Discover" image="Sample-LocationIcon" id="lRu-s7-a9f"/>
+                    <connections>
+                        <outlet property="googleMaps" destination="etr-Ql-oad" id="PiC-TB-IZC"/>
+                        <outlet property="todayDateLabel" destination="9cG-gX-tfP" id="UuI-P4-fRa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rEy-fg-0co" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2911.1999999999998" y="-191.1544227886057"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="1qZ-Vq-joM">
+            <objects>
+                <tabBarController id="JOk-f4-LQK" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GzM-8Q-GcA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="uW0-UY-tUd" kind="relationship" relationship="viewControllers" id="P0f-fe-9ap"/>
+                        <segue destination="vuB-ko-gZS" kind="relationship" relationship="viewControllers" id="ELG-dy-Yba"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RZ0-DD-CdC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3794" y="149"/>
+        </scene>
+        <!--Master Detail View Controller-->
+        <scene sceneID="ueU-s3-ECu">
+            <objects>
+                <viewController id="JWO-Wk-PDE" customClass="MasterDetailViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="do9-sZ-tHr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="GkZ-ps-5iP"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OGa-eT-YYu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1218" y="725"/>
+        </scene>
+        <!--Authentication View Controller-->
+        <scene sceneID="xSC-dS-7OP">
+            <objects>
+                <viewController id="WWb-uR-pg9" customClass="AuthenticationViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9jG-kx-LOu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ZEI-Qm-DzD"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gOT-xM-KMN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-510" y="725"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Sample-LocationIcon" width="29" height="29"/>
+        <image name="Sample-UserIcon" width="29" height="29"/>
+    </resources>
 </document>

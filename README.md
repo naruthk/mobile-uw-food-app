@@ -82,6 +82,9 @@ You must open **`UW Food App.xcworkspace`** in order to start developing the app
 - CocoaPods (Package Manager) - 1.3.1
 - SwiftyJSON
 - Alamofire
+- SwiftyDrop
+- SVProgressHUD
+
 
 ### Testing
 

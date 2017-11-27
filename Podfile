@@ -9,6 +9,14 @@ target 'UW Food App' do
 
   pod 'SwiftyJSON'
   pod 'Alamofire'
+  pod 'SwiftyDrop', '~>4.0'
+  pod 'ChameleonFramework'
+  pod 'Firebase'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'SVProgressHUD'
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
 
   target 'UW Food AppTests' do
     inherit! :search_paths
