@@ -10,6 +10,7 @@ import UIKit
 import ChameleonFramework
 import Font_Awesome_Swift
 import Cosmos
+import SwiftyDrop
 
 class MasterDetailViewController: UIViewController {
 
@@ -29,6 +30,10 @@ class MasterDetailViewController: UIViewController {
         contact_website: "-",
         relativeDistanceFromUserCurrentLocation: "-",
         relativeDurationFromUserCurrentLocation: "-")
+    
+    var informationSections : [InformationSection] = []
+    
+    var videos: [String] = ["Feee", "eee", "eeee", "eee"]
     
     @IBOutlet weak var topHeroView: UIView!
     @IBOutlet weak var restaurantTitleLabel: UILabel!
@@ -53,6 +58,8 @@ class MasterDetailViewController: UIViewController {
         populateRating()
         
         populateButtons()
+        
+        print(informationSections.count)
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,7 +107,33 @@ class MasterDetailViewController: UIViewController {
     }
     
     @IBAction func addToFavoriteButton(_ sender: Any) {
+    
     }
-
+    
+    @IBAction func callPhoneNumber(_ sender: Any) {
+        let call = userData.contact_phone
+        if !call.isEmpty {
+            let url = URL(string: "tel://\(call)")
+            UIApplication.shared.open(url!)
+        }
+    }
+    
+    @IBAction func openMap(_ sender: Any) {
+        let restaurantID = userData.restaurantID
+        let url = "https://www.google.com/maps/dir/?api=1&destination=WA&destination_place_id=\(restaurantID)&travelmode=walking"
+        UIApplication.shared.openURL(URL(string: url)!)
+    }
+    
+    @IBAction func openWebsite(_ sender: Any) {
+        let website = userData.contact_website
+        if website != "-" && !website.isEmpty {
+            let url = URL(string: website)
+            UIApplication.shared.open(url!)
+        } else {
+            Drop.down("This restaurant has no website.", state: .warning)
+        }
+    }
+    
+    
 
 }

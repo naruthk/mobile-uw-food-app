@@ -170,8 +170,14 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
     
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         let currentRestaurant = marker as GMSMarker
+        let userData = currentRestaurant.userData as! Restaurant
         let myVC = storyboard?.instantiateViewController(withIdentifier: "MasterDetail") as! MasterDetailViewController
-        myVC.userData = currentRestaurant.userData as! Restaurant
+        myVC.userData = userData
+        myVC.informationSections = [
+            InformationSection(type: "Hours", data: [userData.hours["sun"]!]),
+            InformationSection(type: "Location", data: [userData.fullAddress]),
+            InformationSection(type: "Payment", data: ["Husky Card", "Credit Card"]),
+        ]
         self.present(myVC, animated: true, completion: nil)
     }
 
