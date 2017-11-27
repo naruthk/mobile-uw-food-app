@@ -19,6 +19,7 @@ The current project is under development.
     - [Libraries We're Using](#libraries-were-using)
     - [Testing](#testing)
   - [Documentation](#documentation)
+    - [Obtaining Place ID](#obtaining-place-id)
     - [JSON](#json)
       - [Restaurants.JSON](#restaurantsjson)
       - [Menu.JSON](#menujson)
@@ -78,35 +79,39 @@ You must open **`UW Food App.xcworkspace`** in order to start developing the app
 
 ### Libraries We're Using
 
-- Firebase (Authentication, Database) - [https://console.firebase.google.com/u/0/project/uwfoodapp/overview](https://console.firebase.google.com/u/0/project/uwfoodapp/overview)
-- CocoaPods (Package Manager) - 1.3.1
-- SwiftyJSON
 - Alamofire
-- SwiftyDrop
-- SVProgressHUD
+- CocoaPods
+- Firebase - [https://console.firebase.google.com/u/0/project/uwfoodapp/overview](https://console.firebase.google.com/u/0/project/uwfoodapp/overview)
+- Font-Awesome-Swift
 - GoogleMaps
 - GooglePlaces
-- Font-Awesome-Swift
+- SwiftyJSON
+- SwiftyDrop
+- SVProgressHUD
 
 ### Testing
 
-Unit testings to be written at a later point.
+Coming soon.
 
 ----
 
 ## Documentation
 
+### Obtaining Place ID
+
+Google offers a way to retrieve the unique `PlaceID` for each restaurant on UW campus by using this website from the url - [https://developers.google.com/places/place-id](https://developers.google.com/places/place-id).
+
+Each `PlaceID` has reference to lots of information, including a restaurant's ratings, hours, and website information. More information can be found here [https://developers.google.com/places/ios-api/reference/interface_g_m_s_place](https://developers.google.com/places/ios-api/reference/interface_g_m_s_place)
+
 ### JSON
 
-There are three JSON files that the app retrieves data from.
+There are 3 JSON files that the app retrieves data from.
 
 - Restaurants.JSON
 - Menus.JSON
 - Reviews.JSON
 
-All files are currently hosted on my website: [http://naruthk.com/api/mobile-uw-food-app/data/Restaurants.json](http://naruthk.com/api/mobile-uw-food-app/data/Restaurants.json). Alternatively, they are available for viewing inside this Github repository's [data](/data) folder.
-
-Eventually, we will need to migrate all of our data to Firebase, so that information can be retrieved and updated and can be reflected in the application immediately.
+All files are currently hosted on my website: [http://naruthk.com/api/mobile-uw-food-app/data/Restaurants.json](http://naruthk.com/api/mobile-uw-food-app/data/Restaurants.json). Alternatively, they are available for viewing inside this Github repository's [data](/data) folder. We will soon be migrating our data to Firebase, so that information can be retrieved and updated and can be reflected in the application immediately.
 
 In every JSON file, there is a shared `restaurantID` for each restaurant, meaning that even though there are 3 seperate JSON files, we can still easily lookup basic information (such as contact information, description), menu, and reviews of a single restaurant by using the unique `restaurantID`.
 
@@ -118,14 +123,13 @@ View actual `Restaurants.json` data file [here](data/Restaurants.json).
 
 | Type | Type | Description |
 | ---- | ---- | ------ |
-|  id  |  Text `string` | The unique id of the restaurant. We use it to look up other values such as reviews and menus. |
+|  id  |  Text `string` | The unique id of the restaurant obtained from Google Map API ([Link](https://developers.google.com/places/place-id)) |
 | name | Text `string` | Name of the restaurant |
 | description | Text `string` | Short / long description of the restaurant. Copied directly from the HFS website |
 | locationName | Text `string` | Short name of the location |
 | fullAddress | Text `string` | Full address (with city, state, and zip code) |
 | mapCoordinates | Array `string` | Latitude and longitude data |
 | category | Text `string` | Category of the restaurant |
-| averageRating | Text `string` | Rating for this restaurant |
 | hours | Dictionary `string:string` | Operation hours from Monday until Sunday |
 | popularHours * | Dictionary `string:string` | Popular hours from Monday until Sunday |
 | contactInformation | Dictionary `string:string` | Name, phone number, website, and email address |
@@ -143,7 +147,7 @@ Note: *`*` Popular hours are mocked data.*
   "appData": {
     "menus": [
       {
-        "restaurantID": "1",
+        "restaurantID": "ChIJ8SgXBJMUkFQRQM4LYe2jMSQ",
         "food": [
           {
             "name": "Chocolate Latte",
@@ -170,7 +174,7 @@ For development purposes, we will only be using mock-up data.
   "appData": {
     "reviews": [
       {
-        "restaurantID": "1",
+        "restaurantID": "ChIJ8SgXBJMUkFQRQM4LYe2jMSQ",
         "comments": [
           {
             "reviewID": "134543534",
@@ -195,4 +199,4 @@ For development purposes, we will only be using mock-up data.
 
 ## License
 
-2017 MIT License
+2017 MIT License. UW Food App. Developed by [Naruth Kongurai](http://www.naruthk.com), Demi Tu, and Thipok Cholsaipant.

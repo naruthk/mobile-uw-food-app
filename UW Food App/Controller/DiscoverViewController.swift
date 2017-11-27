@@ -13,6 +13,7 @@ import SwiftyJSON
 import SwiftyDrop
 import ChameleonFramework
 import GoogleMaps
+import GooglePlaces
 
 class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
@@ -26,6 +27,7 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
     // INSTANCE VARIABLES
     let locationManager = CLLocationManager()
     var restaurantsData = [String:Restaurant]()
+    var searchHistories = [Restaurant]()
     var defaultLocation = [47.656059, -122.305047] // UW
     var userOriginalLocationParam = [Double]()
     var userOriginsLocation = ""
@@ -90,7 +92,6 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
             , let locationName = currentRestaurant["locationName"].string
             , let fullAddress = currentRestaurant["fullAddress"].string
             , let category = currentRestaurant["category"].string
-            , let averageRating = currentRestaurant["averageRating"].string
             , let latitude = currentRestaurant["mapCoordinates"]["latitude"].string
             , let longitude = currentRestaurant["mapCoordinates"]["longitude"].string
             , let contact_name = currentRestaurant["contactInformation"]["name"].string
@@ -115,6 +116,22 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
             hours["sun"] = hourSun
             
             let mapCoordinates = [latitude, longitude]
+            let averageRating = String(0.0)
+            
+            let placesClient = GMSPlacesClient.shared()
+            placesClient.lookUpPlaceID(restaurantID, callback: { (place, error) -> Void in
+                if let error = error {
+                    print("lookup place id query error: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let place = place else {
+                    print("No place details for \(restaurantID)")
+                    return
+                }
+                
+                self.restaurantsData[restaurantID]?.updateRating(newRating: "\(place.rating)")
+            })
             
             let restaurant = Restaurant(
                 restaurantID: restaurantID,
@@ -133,7 +150,8 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
                 relativeDistanceFromUserCurrentLocation: "-",
                 relativeDurationFromUserCurrentLocation: "-")
             
-            createAMarker(userData: restaurant, latitude: Double(latitude)!, longitude: Double(longitude)!, title: name, snippet: locationName)
+            let snippet = String(category).capitalized
+            createAMarker(userData: restaurant, latitude: Double(latitude)!, longitude: Double(longitude)!, title: name, snippet: snippet)
 
             self.restaurantsData[restaurantID] = restaurant
         }

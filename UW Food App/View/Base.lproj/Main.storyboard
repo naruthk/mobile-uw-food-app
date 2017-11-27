@@ -10,21 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--My Food View Controller-->
-        <scene sceneID="6TA-2y-wXh">
-            <objects>
-                <viewController id="CtB-41-fKg" customClass="MyFoodViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="R6W-G2-1Kt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="qCr-2Q-kca"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rAj-k5-hli" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="204" y="14"/>
-        </scene>
         <!--Search-->
         <scene sceneID="5Xd-BY-xjZ">
             <objects>
@@ -32,14 +17,75 @@
                     <view key="view" contentMode="scaleToFill" id="Aag-q6-1zV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L8J-V6-zev">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="172"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oke-aC-eEG">
+                                        <rect key="frame" x="16" y="69" width="79" height="32"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Food &amp; Restaurant" translatesAutoresizingMaskIntoConstraints="NO" id="ea6-Jg-sx4">
+                                        <rect key="frame" x="0.0" y="116" width="375" height="56"/>
+                                        <color key="barTintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <scopeButtonTitles>
+                                            <string>Title</string>
+                                            <string>Title</string>
+                                        </scopeButtonTitles>
+                                    </searchBar>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ea6-Jg-sx4" firstAttribute="leading" secondItem="L8J-V6-zev" secondAttribute="leading" id="BFS-a4-3hS"/>
+                                    <constraint firstAttribute="bottom" secondItem="ea6-Jg-sx4" secondAttribute="bottom" id="GdV-pd-tFg"/>
+                                    <constraint firstItem="oke-aC-eEG" firstAttribute="top" secondItem="L8J-V6-zev" secondAttribute="top" constant="69" id="NDS-na-buq"/>
+                                    <constraint firstItem="ea6-Jg-sx4" firstAttribute="top" secondItem="oke-aC-eEG" secondAttribute="bottom" constant="15" id="ZSm-6H-Gg6"/>
+                                    <constraint firstAttribute="trailing" secondItem="ea6-Jg-sx4" secondAttribute="trailing" id="iAR-iI-mPr"/>
+                                    <constraint firstItem="ea6-Jg-sx4" firstAttribute="top" secondItem="oke-aC-eEG" secondAttribute="bottom" constant="15" id="lhV-lT-eAj"/>
+                                    <constraint firstAttribute="height" constant="172" id="r4s-R4-1U0"/>
+                                    <constraint firstItem="oke-aC-eEG" firstAttribute="leading" secondItem="L8J-V6-zev" secondAttribute="leading" constant="16" id="vVo-yV-nbD"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFw-ec-cr5">
+                                <rect key="frame" x="0.0" y="188" width="375" height="430"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thr-cN-swU">
+                                        <rect key="frame" x="16" y="0.0" width="56" height="21"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="thr-cN-swU" firstAttribute="leading" secondItem="bFw-ec-cr5" secondAttribute="leading" constant="16" id="jWQ-1V-KVD"/>
+                                    <constraint firstItem="thr-cN-swU" firstAttribute="top" secondItem="bFw-ec-cr5" secondAttribute="top" id="nIz-YT-peY"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bFw-ec-cr5" firstAttribute="leading" secondItem="JY7-Pg-vDq" secondAttribute="leading" id="5Ny-WD-3xw"/>
+                            <constraint firstItem="bFw-ec-cr5" firstAttribute="top" secondItem="L8J-V6-zev" secondAttribute="bottom" constant="16" id="7lJ-mv-46l"/>
+                            <constraint firstItem="L8J-V6-zev" firstAttribute="top" secondItem="Aag-q6-1zV" secondAttribute="top" id="9M8-NM-O3a"/>
+                            <constraint firstItem="L8J-V6-zev" firstAttribute="trailing" secondItem="JY7-Pg-vDq" secondAttribute="trailing" id="Dtw-jO-hzI"/>
+                            <constraint firstItem="L8J-V6-zev" firstAttribute="leading" secondItem="JY7-Pg-vDq" secondAttribute="leading" id="T3D-Qy-129"/>
+                            <constraint firstItem="JY7-Pg-vDq" firstAttribute="bottom" secondItem="bFw-ec-cr5" secondAttribute="bottom" id="bjd-7T-CVl"/>
+                            <constraint firstItem="JY7-Pg-vDq" firstAttribute="trailing" secondItem="bFw-ec-cr5" secondAttribute="trailing" id="x8G-o0-nUp"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="JY7-Pg-vDq"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="YfV-hn-3yI"/>
+                    <connections>
+                        <outlet property="searchBar" destination="ea6-Jg-sx4" id="G6Q-Ub-fEi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4l-Ta-Sct" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2910" y="472"/>
+            <point key="canvasLocation" x="-2911.1999999999998" y="471.8140929535233"/>
         </scene>
         <!--Discover-->
         <scene sceneID="0la-dO-a0h">
@@ -240,10 +286,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ZEI-Qm-DzD"/>
                     </view>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="lNG-z5-UMA" id="Epi-R8-iaq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOT-xM-KMN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="lNG-z5-UMA">
+                    <connections>
+                        <outlet property="delegate" destination="WWb-uR-pg9" id="hVd-SM-XhQ"/>
+                        <outlet property="searchContentsController" destination="WWb-uR-pg9" id="fWY-Ge-buM"/>
+                        <outlet property="searchResultsDataSource" destination="WWb-uR-pg9" id="zso-8a-Rd5"/>
+                        <outlet property="searchResultsDelegate" destination="WWb-uR-pg9" id="Ag5-lC-wEa"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-510" y="725"/>
+            <point key="canvasLocation" x="-2031" y="631"/>
         </scene>
     </scenes>
     <resources>

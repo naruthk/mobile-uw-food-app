@@ -38,7 +38,8 @@ class MasterDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        topHeroView.backgroundColor = UIColor.randomFlat()
+        setHeaderBackground()
+
         addToFavoriteButton.setFAIcon(icon: .FABookmarkO, iconSize: 25, forState: .normal)
         
         populateHeader()
@@ -46,6 +47,10 @@ class MasterDetailViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func setHeaderBackground() {
+        topHeroView.backgroundColor = UIColor.flatPurpleColorDark()
     }
     
     func populateHeader() {
@@ -64,8 +69,7 @@ class MasterDetailViewController: UIViewController {
     }
     
     @IBAction func backToDiscoveryButton(_ sender: Any) {
-        let myVC = storyboard?.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-        self.present(myVC, animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addToFavoriteButton(_ sender: Any) {

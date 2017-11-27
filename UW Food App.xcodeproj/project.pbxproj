@@ -19,7 +19,6 @@
 		8B3763BD1FC806BA00D45B87 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763BC1FC806BA00D45B87 /* Restaurant.swift */; };
 		8B3763C11FC809A400D45B87 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763C01FC809A400D45B87 /* Food.swift */; };
 		8B3763C31FC89B4100D45B87 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763C21FC89B4100D45B87 /* Menu.swift */; };
-		8B3763C51FCB549500D45B87 /* MyFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763C41FCB549500D45B87 /* MyFoodViewController.swift */; };
 		8B3763C71FCB54E600D45B87 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763C61FCB54E600D45B87 /* AuthenticationViewController.swift */; };
 		8B3763C91FCB597200D45B87 /* MasterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763C81FCB597200D45B87 /* MasterDetailViewController.swift */; };
 		8B3763CB1FCB688000D45B87 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B3763CA1FCB687F00D45B87 /* GoogleService-Info.plist */; };
@@ -65,7 +64,6 @@
 		8B3763BC1FC806BA00D45B87 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		8B3763C01FC809A400D45B87 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		8B3763C21FC89B4100D45B87 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
-		8B3763C41FCB549500D45B87 /* MyFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFoodViewController.swift; sourceTree = "<group>"; };
 		8B3763C61FCB54E600D45B87 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		8B3763C81FCB597200D45B87 /* MasterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterDetailViewController.swift; sourceTree = "<group>"; };
 		8B3763CA1FCB687F00D45B87 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 				8B3763C61FCB54E600D45B87 /* AuthenticationViewController.swift */,
 				8B37638B1FC7DCF500D45B87 /* DiscoverViewController.swift */,
 				8B3763BA1FC7FD3100D45B87 /* SearchViewController.swift */,
-				8B3763C41FCB549500D45B87 /* MyFoodViewController.swift */,
 				8B3763C81FCB597200D45B87 /* MasterDetailViewController.swift */,
 			);
 			path = Controller;
@@ -537,7 +534,6 @@
 				8B3763C91FCB597200D45B87 /* MasterDetailViewController.swift in Sources */,
 				8B3763BB1FC7FD3100D45B87 /* SearchViewController.swift in Sources */,
 				8B37638A1FC7DCF500D45B87 /* AppDelegate.swift in Sources */,
-				8B3763C51FCB549500D45B87 /* MyFoodViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

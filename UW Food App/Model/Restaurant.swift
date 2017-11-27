@@ -19,7 +19,7 @@ class Restaurant {
     var fullAddress : String
     var mapCoordinates : [String]
     var category : String
-    var averageRating : String
+    var averageRating : String = "-"
     var hours : [String:String]
     var contact_name : String
     var contact_email : String
@@ -69,6 +69,10 @@ class Restaurant {
     func updateRelativeDistancesAndDuration(newDistance: String, newDuration: String) {
         self.relativeDistanceFromUserCurrentLocation = newDistance
         self.relativeDurationFromUserCurrentLocation = newDuration
+    }
+    
+    func updateRating(newRating: String) {
+        self.averageRating = newRating
     }
     
 }
