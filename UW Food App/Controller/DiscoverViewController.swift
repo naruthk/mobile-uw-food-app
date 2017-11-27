@@ -14,10 +14,6 @@ import SwiftyDrop
 import ChameleonFramework
 import GoogleMaps
 
-protocol SelectedPinDelegate {
-    func userSelectedADroppedPin(restaurant: Restaurant)
-}
-
 class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
     // CONSTANTS
@@ -28,7 +24,6 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
     let GOOGLE_MAP_DISTANCE_URL = "https://maps.googleapis.com/maps/api/distancematrix/json"
     
     // INSTANCE VARIABLES
-    var delegate : SelectedPinDelegate?
     let locationManager = CLLocationManager()
     var restaurantsData = [String:Restaurant]()
     var defaultLocation = [47.656059, -122.305047] // UW
@@ -56,7 +51,7 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
         self.googleMaps.settings.compassButton = true
         self.googleMaps.settings.zoomGestures = true
         
-//        initializeRestaurantsData()
+        initializeRestaurantsData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,7 +66,8 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
         todayDateLabel.text = String(convertedDate)
     }
     
-    // Initializes the View by fetching and populating view with each restaurant's data
+    // Initializes the View by fetching and populating the map (marking a pin)
+    // with each restaurant's data
     func initializeRestaurantsData() {
         Alamofire.request(DATA_RESTAURANTS_URL, method: .get).responseJSON { response in
             if response.result.isSuccess {
@@ -109,14 +105,14 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
             , let hourSat = currentRestaurant["hours"]["sat"].string
             , let hourSun = currentRestaurant["hours"]["sun"].string {
             
-            var hours: [[String:String]] = []
-            hours.append(["mon": hourMon])
-            hours.append(["tues": hourTues])
-            hours.append(["wed": hourWed])
-            hours.append(["thurs": hourThurs])
-            hours.append(["fri": hourFri])
-            hours.append(["sat": hourSat])
-            hours.append(["sun": hourSun])
+            var hours: [String:String] = [:]
+            hours["mon"] = hourMon
+            hours["tues"] = hourTues
+            hours["wed"] = hourWed
+            hours["thurs"] = hourThurs
+            hours["fri"] = hourFri
+            hours["sat"] = hourSat
+            hours["sun"] = hourSun
             
             let mapCoordinates = [latitude, longitude]
             
@@ -136,10 +132,31 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
                 contact_website: contact_website,
                 relativeDistanceFromUserCurrentLocation: "-",
                 relativeDurationFromUserCurrentLocation: "-")
+            
+            createAMarker(userData: restaurant, latitude: Double(latitude)!, longitude: Double(longitude)!, title: name, snippet: locationName)
 
             self.restaurantsData[restaurantID] = restaurant
         }
     }
+    
+    func createAMarker(userData: Restaurant, latitude: Double, longitude: Double, title: String, snippet: String) {
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        marker.title = title
+        marker.snippet = snippet
+        marker.userData = userData as Any
+        marker.map = googleMaps
+    }
+    
+    // MARK: - GMSMapViewDelegate
+    
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        let currentRestaurant = marker as GMSMarker
+        let myVC = storyboard?.instantiateViewController(withIdentifier: "MasterDetail") as! MasterDetailViewController
+        myVC.userData = currentRestaurant.userData as! Restaurant
+        self.present(myVC, animated: true, completion: nil)
+    }
+
     
     // LocationManager finds out where the user's location is. It asks for the user's permission
     // to get access to the phone's GPS system. Once permission is given, it looks up the current
@@ -151,6 +168,8 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
+    
+    // MARK: - CLLocation Delagate
 
     // Determines how far away the user is from nearby restaurants (as specified
     // by our Restaurants.JSON data) in terms of walking distance.

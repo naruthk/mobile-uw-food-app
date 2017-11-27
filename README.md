@@ -84,7 +84,9 @@ You must open **`UW Food App.xcworkspace`** in order to start developing the app
 - Alamofire
 - SwiftyDrop
 - SVProgressHUD
-
+- GoogleMaps
+- GooglePlaces
+- Font-Awesome-Swift
 
 ### Testing
 

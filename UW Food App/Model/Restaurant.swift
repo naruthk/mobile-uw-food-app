@@ -20,7 +20,7 @@ class Restaurant {
     var mapCoordinates : [String]
     var category : String
     var averageRating : String
-    var hours : [[String:String]]
+    var hours : [String:String]
     var contact_name : String
     var contact_email : String
     var contact_phone : String
@@ -40,7 +40,7 @@ class Restaurant {
         mapCoordinates: [String],
         category: String,
         averageRating: String,
-        hours: [[String:String]],
+        hours: [String:String],
         contact_name: String,
         contact_email: String,
         contact_phone: String,

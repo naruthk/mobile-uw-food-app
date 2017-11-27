@@ -17,6 +17,7 @@ target 'UW Food App' do
   pod 'SVProgressHUD'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'Font-Awesome-Swift'
 
   target 'UW Food AppTests' do
     inherit! :search_paths

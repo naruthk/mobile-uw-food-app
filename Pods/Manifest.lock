@@ -30,6 +30,7 @@ PODS:
     - FirebaseCore (~> 4.0)
     - leveldb-library (~> 1.18)
   - FirebaseInstanceID (2.0.6)
+  - Font-Awesome-Swift (1.7.1)
   - GoogleMaps (2.5.0):
     - GoogleMaps/Maps (= 2.5.0)
   - GoogleMaps/Base (2.5.0)
@@ -64,6 +65,7 @@ DEPENDENCIES:
   - Firebase
   - Firebase/Auth
   - Firebase/Database
+  - Font-Awesome-Swift
   - GoogleMaps
   - GooglePlaces
   - SVProgressHUD
@@ -79,6 +81,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 2a946ece8fbe3ce1fdeeb55324f273caade22df9
   FirebaseDatabase: 2e6e8e110b93b9a6e7aac71774c769a363035cb1
   FirebaseInstanceID: 24958382a1011bba5aaff37e334e7a650b9118f5
+  Font-Awesome-Swift: 5d950362121533489b2f6ac42e0e29db37fd970e
   GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
   GooglePlaces: dd70d9d71ea1c7944846afe67de3712c99b30a77
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
@@ -89,6 +92,6 @@ SPEC CHECKSUMS:
   SwiftyDrop: a497afbcf50f7882ac7637c8308baf07c5ed15e6
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: ebb23fdbcc066305d0aace104cede5c4bb7a0fab
+PODFILE CHECKSUM: b51d341dfe61c50198a2fed96caf40a77a57d443
 
 COCOAPODS: 1.3.1
