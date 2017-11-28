@@ -12,7 +12,7 @@ import Font_Awesome_Swift
 import Cosmos
 import SwiftyDrop
 
-class MasterDetailViewController: UIViewController {
+class MasterDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate {
 
     var userData : Restaurant = Restaurant(
         restaurantID: "-",
@@ -32,8 +32,7 @@ class MasterDetailViewController: UIViewController {
         relativeDurationFromUserCurrentLocation: "-")
     
     var informationSections : [InformationSection] = []
-    
-    var videos: [String] = ["Feee", "eee", "eeee", "eee"]
+    let colorForOverall : UIColor = UIColor.flatPurpleColorDark()
     
     @IBOutlet weak var topHeroView: UIView!
     @IBOutlet weak var restaurantTitleLabel: UILabel!
@@ -45,29 +44,31 @@ class MasterDetailViewController: UIViewController {
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var mapsButton: UIButton!
     @IBOutlet weak var websiteButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setStatusBarColor()
         setHeaderBackground()
-
         addToFavoriteButton.setFAIcon(icon: .FABookmarkO, iconSize: 25, forState: .normal)
-        
         populateHeader()
-        
         populateRating()
-        
         populateButtons()
-        
-        print(informationSections.count)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    func setStatusBarColor() {
+        let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
+        let statusBarColor = colorForOverall
+        statusBarView.backgroundColor = statusBarColor
+        view.addSubview(statusBarView)
+    }
+    
     func setHeaderBackground() {
-        topHeroView.backgroundColor = UIColor.flatPurpleColorDark()
+        topHeroView.backgroundColor = colorForOverall
     }
     
     func populateHeader() {
@@ -112,28 +113,77 @@ class MasterDetailViewController: UIViewController {
     
     @IBAction func callPhoneNumber(_ sender: Any) {
         let call = userData.contact_phone
-        if !call.isEmpty {
+        if !call.isEmpty && call != "-" {
             let url = URL(string: "tel://\(call)")
             UIApplication.shared.open(url!)
+        } else {
+            Drop.down("Unable to retrieve phone number.", state: .warning)
         }
     }
     
     @IBAction func openMap(_ sender: Any) {
         let restaurantID = userData.restaurantID
-        let url = "https://www.google.com/maps/dir/?api=1&destination=WA&destination_place_id=\(restaurantID)&travelmode=walking"
-        UIApplication.shared.openURL(URL(string: url)!)
+        if !restaurantID.isEmpty && restaurantID.count < 3 {
+            let url = "https://www.google.com/maps/dir/?api=1&destination=WA&destination_place_id=\(restaurantID)&travelmode=walking"
+            UIApplication.shared.openURL(URL(string: url)!)
+        } else {
+            Drop.down("Unable to retrieve map data", state: .warning)
+        }
     }
     
     @IBAction func openWebsite(_ sender: Any) {
         let website = userData.contact_website
-        if website != "-" && !website.isEmpty {
+        if !website.isEmpty && website != "-" {
             let url = URL(string: website)
             UIApplication.shared.open(url!)
         } else {
-            Drop.down("This restaurant has no website.", state: .warning)
+            Drop.down("Unable to retrieve website.", state: .warning)
         }
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return informationSections.count
+    }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return informationSections[section].data.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (informationSections[indexPath.section].expanded) {
+            return 44
+        } else {
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = ExpandableHeaderView()
+        header.customInit(title: informationSections[section].type, section: section, delegate: self)
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
+        cell.detailTextLabel?.text = informationSections[indexPath.section].data[indexPath.row]
+        return cell
+    }
+    
+    func toggleSection(header: ExpandableHeaderView, section: Int) {
+        informationSections[section].expanded = !informationSections[section].expanded
+        tableView.beginUpdates()
+        for i in 0 ..< informationSections[section].data.count {
+            tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
+        }
+        tableView.endUpdates()
+    }
 
 }

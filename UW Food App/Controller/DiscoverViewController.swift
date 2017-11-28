@@ -174,9 +174,24 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
         let myVC = storyboard?.instantiateViewController(withIdentifier: "MasterDetail") as! MasterDetailViewController
         myVC.userData = userData
         myVC.informationSections = [
-            InformationSection(type: "Hours", data: [userData.hours["sun"]!]),
-            InformationSection(type: "Location", data: [userData.fullAddress]),
-            InformationSection(type: "Payment", data: ["Husky Card", "Credit Card"]),
+            InformationSection(type: "Hours",
+                               data: [
+                                userData.hours["sun"]!,
+                                userData.hours["mon"]!,
+                                userData.hours["tues"]!,
+                                userData.hours["wed"]!,
+                                userData.hours["thurs"]!,
+                                userData.hours["fri"]!,
+                                userData.hours["sat"]!
+                                ],
+                               expanded: false),
+            InformationSection(type: "Location",
+                               data: [
+                                userData.relativeDistanceFromUserCurrentLocation,
+                                userData.relativeDurationFromUserCurrentLocation,
+                                userData.fullAddress],
+                               expanded: false),
+            InformationSection(type: "Payment", data: ["Husky Card", "Credit Card"], expanded: false),
         ]
         self.present(myVC, animated: true, completion: nil)
     }
@@ -186,7 +201,6 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
     // to get access to the phone's GPS system. Once permission is given, it looks up the current
     // location (best accuracy location) -- note that this drains the battery!
     func initializeLocationManager() {
-        print("DEBUG: START => Looking up current location")
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -207,14 +221,12 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
             let latitude = String(location.coordinate.latitude)
             let longitude = String(location.coordinate.longitude)
             userOriginsLocation = "\(latitude),\(longitude)"
-            print("DEBUG: Current location: \(userOriginsLocation)")
-//            setRelativeDistancesForEachRestaurant(userOriginsLocation: userOriginsLocation)
+            setRelativeDistancesForEachRestaurant(userOriginsLocation: userOriginsLocation)
         }
     }
     
     func setRelativeDistancesForEachRestaurant(userOriginsLocation: String) {
         for restaurant in restaurantsData.values {
-            print("DEBUG: Setting values for restaurant ID \(restaurant.restaurantID)")
             let restaurantID = restaurant.restaurantID
             let latitude = restaurant.mapCoordinates[0]
             let longitude = restaurant.mapCoordinates[1]
@@ -226,7 +238,6 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
             
             Alamofire.request(GOOGLE_MAP_DISTANCE_URL, method: .get, parameters: parameters).responseJSON { response in
                 if response.result.isSuccess {
-                    print("DEBUG: START => Obtaining data from Google Map Distance API")
                     let result : JSON = JSON(response.result.value!)
                     for currentElement in result["rows"][0]["elements"].arrayValue {
                         let status = currentElement["status"].string
@@ -244,7 +255,7 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
                     }
                 } else {
                     print("Error \(String(describing: response.result.error))")
-                    Drop.down("Unable to check distances.", state: .warning)
+//                    Drop.down("Unable to check distances.", state: .warning)
                 }
                 print("DEBUG: DATA => Data for Restaurant ID \(restaurantID): \(self.restaurantsData[restaurantID]?.description ?? "")")
                 print("DEBUG: COMPLETED => End Alomafire session")
