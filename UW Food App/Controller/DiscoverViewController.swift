@@ -150,8 +150,17 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
                 relativeDistanceFromUserCurrentLocation: "-",
                 relativeDurationFromUserCurrentLocation: "-")
             
-            let snippet = String(category).capitalized
-            createAMarker(userData: restaurant, latitude: Double(latitude)!, longitude: Double(longitude)!, title: name, snippet: snippet)
+            let todayDate = Date()
+            let calendar = Calendar.current
+            let day = calendar.component(.weekday, from: todayDate)
+            let dayValues = ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"]
+            let snippet = String(category).capitalized + ", \(hours[dayValues[day]] ?? "")"
+            createAMarker(
+                userData: restaurant,
+                latitude: Double(latitude)!,
+                longitude: Double(longitude)!,
+                title: name,
+                snippet: snippet)
 
             self.restaurantsData[restaurantID] = restaurant
         }
@@ -175,7 +184,10 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
         myVC.userData = userData
         myVC.informationSections = [
             InformationSection(type: "Hours",
-                               data: [
+                               dataTitles: [
+                                "Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"
+                                ],
+                               dataDetails: [
                                 userData.hours["sun"]!,
                                 userData.hours["mon"]!,
                                 userData.hours["tues"]!,
@@ -184,14 +196,22 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
                                 userData.hours["fri"]!,
                                 userData.hours["sat"]!
                                 ],
-                               expanded: false),
+                               expanded: true),
             InformationSection(type: "Location",
-                               data: [
+                               dataTitles: [
+                                "Address", "Distance", "Duration"
+                                ],
+                               dataDetails: [
+                                userData.locationName,
                                 userData.relativeDistanceFromUserCurrentLocation,
-                                userData.relativeDurationFromUserCurrentLocation,
-                                userData.fullAddress],
+                                userData.relativeDurationFromUserCurrentLocation
+                                ],
                                expanded: false),
-            InformationSection(type: "Payment", data: ["Husky Card", "Credit Card"], expanded: false),
+            InformationSection(type: "Payment",
+                               dataTitles: [
+                                "UW-Only", "Cards"
+                                ],
+                               dataDetails: ["Husky Card", "Debit, Credit (Visa, MasterCard)"], expanded: false),
         ]
         self.present(myVC, animated: true, completion: nil)
     }

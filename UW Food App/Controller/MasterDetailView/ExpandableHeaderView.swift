@@ -30,8 +30,9 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
         delegate?.toggleSection(header: self, section: cell.section)
     }
     
-    func customInit(title: String, section: Int, delegate: ExpandableHeaderViewDelegate) {
-        self.textLabel?.text = title
+    func customInit(leftText: String, rightText: String, section: Int, delegate: ExpandableHeaderViewDelegate) {
+        self.textLabel?.text = leftText
+        self.detailTextLabel?.text = rightText
         self.section = section
         self.delegate = delegate
     }

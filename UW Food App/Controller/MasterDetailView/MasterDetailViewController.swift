@@ -48,9 +48,9 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTableViewFunctionalities()
         setStatusBarColor()
-        setHeaderBackground()
-        addToFavoriteButton.setFAIcon(icon: .FABookmarkO, iconSize: 25, forState: .normal)
+        setHeader()
         populateHeader()
         populateRating()
         populateButtons()
@@ -60,6 +60,12 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
         super.didReceiveMemoryWarning()
     }
     
+    func setTableViewFunctionalities() {
+        tableView.separatorStyle = .none
+        tableView.bounces = false
+        tableView.alwaysBounceVertical = false
+    }
+    
     func setStatusBarColor() {
         let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
         let statusBarColor = colorForOverall
@@ -67,8 +73,9 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
         view.addSubview(statusBarView)
     }
     
-    func setHeaderBackground() {
+    func setHeader() {
         topHeroView.backgroundColor = colorForOverall
+        addToFavoriteButton.setFAIcon(icon: .FABookmarkO, iconSize: 25, forState: .normal)
     }
     
     func populateHeader() {
@@ -123,7 +130,7 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func openMap(_ sender: Any) {
         let restaurantID = userData.restaurantID
-        if !restaurantID.isEmpty && restaurantID.count < 3 {
+        if !restaurantID.isEmpty && restaurantID.count > 3 {
             let url = "https://www.google.com/maps/dir/?api=1&destination=WA&destination_place_id=\(restaurantID)&travelmode=walking"
             UIApplication.shared.openURL(URL(string: url)!)
         } else {
@@ -146,7 +153,7 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return informationSections[section].data.count
+        return informationSections[section].dataDetails.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -155,7 +162,7 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (informationSections[indexPath.section].expanded) {
-            return 44
+            return 30
         } else {
             return 0
         }
@@ -167,20 +174,26 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = ExpandableHeaderView()
-        header.customInit(title: informationSections[section].type, section: section, delegate: self)
+        header.customInit(
+            leftText: informationSections[section].type,
+            rightText: informationSections[section].type,
+            section: section,
+            delegate: self)
         return header
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
-        cell.detailTextLabel?.text = informationSections[indexPath.section].data[indexPath.row]
+        cell.textLabel?.text = informationSections[indexPath.section].dataTitles[indexPath.row]
+        cell.textLabel?.adjustsFontSizeToFitWidth = true
+        cell.detailTextLabel?.text = informationSections[indexPath.section].dataDetails[indexPath.row]
         return cell
     }
     
     func toggleSection(header: ExpandableHeaderView, section: Int) {
         informationSections[section].expanded = !informationSections[section].expanded
         tableView.beginUpdates()
-        for i in 0 ..< informationSections[section].data.count {
+        for i in 0 ..< informationSections[section].dataDetails.count {
             tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
         }
         tableView.endUpdates()
