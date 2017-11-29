@@ -29,10 +29,10 @@ class RegisterViewController: UIViewController {
     
     @IBAction func registerButtonPressed(_ sender: Any) {
         if (emailTextField.text?.isEmpty)! {
-            Drop.down("Email cannot be blank.", state: .error)
+            Drop.down("Please specify a valid email address.", state: .error)
             return
         } else if (passwordTextField.text?.isEmpty)! {
-            Drop.down("Password cannot be empty.", state: .error)
+            Drop.down("Please specify a proper password.", state: .error)
             return
         }
         
@@ -40,7 +40,7 @@ class RegisterViewController: UIViewController {
             (user, error) in
             
             if error != nil {
-                print(error)
+                print(error ?? "")
                 Drop.down("Unable to register. Please try again.", state: .error)
             } else {
                 

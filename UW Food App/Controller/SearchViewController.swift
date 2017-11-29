@@ -23,6 +23,12 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
     
     var searchHistory : [String] = []       // Array of IDs of each restaurant
     
+    override func viewDidAppear(_ animated: Bool) {
+        searchController?.isActive = true
+        searchController?.searchBar.becomeFirstResponder()
+        searchController?.searchBar.placeholder = "Restaurants"
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

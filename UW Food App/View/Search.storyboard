@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="RLj-T3-DMu">
+            <objects>
+                <navigationController storyboardIdentifier="SearchController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UMM-hH-tnX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="search" id="YfV-hn-3yI"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="GEN-q8-zrN">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vuB-ko-gZS" kind="relationship" relationship="rootViewController" id="kcd-Tl-gQj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tJj-bh-AkZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2279" y="-809"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="5Xd-BY-xjZ">
+            <objects>
+                <viewController storyboardIdentifier="Search" title="Search" id="vuB-ko-gZS" customClass="SearchViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Aag-q6-1zV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lightbulb" translatesAutoresizingMaskIntoConstraints="NO" id="n5z-PV-Obz">
+                                <rect key="frame" x="123.5" y="166" width="128" height="128"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on the search bar at the top to look up restaurants" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAA-9A-DhN">
+                                <rect key="frame" x="62.5" y="334" width="250" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="a8F-dd-Wbk"/>
+                                    <constraint firstAttribute="height" constant="50" id="feU-Mp-CIl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="n5z-PV-Obz" firstAttribute="top" secondItem="JY7-Pg-vDq" secondAttribute="top" constant="50" id="FrD-h6-YHK"/>
+                            <constraint firstItem="UAA-9A-DhN" firstAttribute="centerX" secondItem="Aag-q6-1zV" secondAttribute="centerX" id="RjO-y7-T6r"/>
+                            <constraint firstItem="n5z-PV-Obz" firstAttribute="centerX" secondItem="Aag-q6-1zV" secondAttribute="centerX" id="Zbp-iP-get"/>
+                            <constraint firstItem="UAA-9A-DhN" firstAttribute="top" secondItem="n5z-PV-Obz" secondAttribute="bottom" constant="40" id="ubh-li-FTn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JY7-Pg-vDq"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search" id="vvk-6d-PF6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M4l-Ta-Sct" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1487" y="-809"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Lightbulb" width="128" height="128"/>
+    </resources>
+</document>

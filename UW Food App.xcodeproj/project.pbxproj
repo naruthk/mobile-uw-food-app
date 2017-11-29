@@ -21,10 +21,14 @@
 		8B3763C31FC89B4100D45B87 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763C21FC89B4100D45B87 /* Menu.swift */; };
 		8B3763C71FCB54E600D45B87 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763C61FCB54E600D45B87 /* AuthenticationViewController.swift */; };
 		8B3763C91FCB597200D45B87 /* MasterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763C81FCB597200D45B87 /* MasterDetailViewController.swift */; };
+		8B6AACF51FCF3E6C00085A1A /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B6AACF41FCF3E6C00085A1A /* Discover.storyboard */; };
+		8B6AACF81FCF6FD200085A1A /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AACF71FCF6FD200085A1A /* FavoritesViewController.swift */; };
 		8B891FAF1FCE485200D8DF37 /* InformationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B891FAE1FCE485200D8DF37 /* InformationSection.swift */; };
 		8B891FB11FCE9F8400D8DF37 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B891FB01FCE9F8400D8DF37 /* RegisterViewController.swift */; };
 		8B891FB31FCEAD8600D8DF37 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B891FB21FCEAD8600D8DF37 /* AccountViewController.swift */; };
 		8B891FB51FCEBEDB00D8DF37 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B891FB41FCEBEDB00D8DF37 /* LoginViewController.swift */; };
+		8B891FB71FCF262D00D8DF37 /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B891FB61FCF262D00D8DF37 /* Favorites.storyboard */; };
+		8B891FB91FCF37A800D8DF37 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B891FB81FCF37A800D8DF37 /* Search.storyboard */; };
 		8BC707841FCD4E16004E52B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BC707831FCD4E16004E52B1 /* GoogleService-Info.plist */; };
 		8BC707861FCD60C9004E52B1 /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC707851FCD60C9004E52B1 /* ExpandableHeaderView.swift */; };
 		F16440F0F1AD36BA1B29AA88 /* Pods_UW_Food_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BCE3ED0D79E4F72C8C0958 /* Pods_UW_Food_AppTests.framework */; };
@@ -71,10 +75,14 @@
 		8B3763C21FC89B4100D45B87 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		8B3763C61FCB54E600D45B87 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		8B3763C81FCB597200D45B87 /* MasterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterDetailViewController.swift; sourceTree = "<group>"; };
+		8B6AACF41FCF3E6C00085A1A /* Discover.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
+		8B6AACF71FCF6FD200085A1A /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		8B891FAE1FCE485200D8DF37 /* InformationSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationSection.swift; sourceTree = "<group>"; };
 		8B891FB01FCE9F8400D8DF37 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		8B891FB21FCEAD8600D8DF37 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		8B891FB41FCEBEDB00D8DF37 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8B891FB61FCF262D00D8DF37 /* Favorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
+		8B891FB81FCF37A800D8DF37 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		8BC707831FCD4E16004E52B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8BC707851FCD60C9004E52B1 /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
 		8C0CDA14EF59F8C1F7589198 /* Pods-UW Food AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Food AppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UW Food AppUITests/Pods-UW Food AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -180,8 +188,11 @@
 		8B3763B81FC7DD9E00D45B87 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8B37638D1FC7DCF500D45B87 /* Main.storyboard */,
 				8B3763921FC7DCF500D45B87 /* LaunchScreen.storyboard */,
+				8B37638D1FC7DCF500D45B87 /* Main.storyboard */,
+				8B6AACF41FCF3E6C00085A1A /* Discover.storyboard */,
+				8B891FB81FCF37A800D8DF37 /* Search.storyboard */,
+				8B891FB61FCF262D00D8DF37 /* Favorites.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -196,6 +207,7 @@
 				8B891FB01FCE9F8400D8DF37 /* RegisterViewController.swift */,
 				8B891FB21FCEAD8600D8DF37 /* AccountViewController.swift */,
 				8B891FB41FCEBEDB00D8DF37 /* LoginViewController.swift */,
+				8B6AACF71FCF6FD200085A1A /* FavoritesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -351,7 +363,10 @@
 			files = (
 				8B3763941FC7DCF500D45B87 /* LaunchScreen.storyboard in Resources */,
 				8BC707841FCD4E16004E52B1 /* GoogleService-Info.plist in Resources */,
+				8B891FB71FCF262D00D8DF37 /* Favorites.storyboard in Resources */,
 				8B3763911FC7DCF500D45B87 /* Assets.xcassets in Resources */,
+				8B891FB91FCF37A800D8DF37 /* Search.storyboard in Resources */,
+				8B6AACF51FCF3E6C00085A1A /* Discover.storyboard in Resources */,
 				8B37638F1FC7DCF500D45B87 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,7 +449,6 @@
 				"${BUILT_PRODUCTS_DIR}/Font-Awesome-Swift/Font_Awesome_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyDrop/SwiftyDrop.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -448,7 +462,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Font_Awesome_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyDrop.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -553,6 +566,7 @@
 			files = (
 				8B3763C31FC89B4100D45B87 /* Menu.swift in Sources */,
 				8B891FB11FCE9F8400D8DF37 /* RegisterViewController.swift in Sources */,
+				8B6AACF81FCF6FD200085A1A /* FavoritesViewController.swift in Sources */,
 				8B891FB31FCEAD8600D8DF37 /* AccountViewController.swift in Sources */,
 				8B3763BD1FC806BA00D45B87 /* Restaurant.swift in Sources */,
 				8B37638C1FC7DCF500D45B87 /* DiscoverViewController.swift in Sources */,

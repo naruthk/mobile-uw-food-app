@@ -129,12 +129,16 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func openMap(_ sender: Any) {
+        let errorMessage = "Unable to retrieve map data"
         let restaurantID = userData.restaurantID
         if !restaurantID.isEmpty && restaurantID.count > 3 {
-            let url = "https://www.google.com/maps/dir/?api=1&destination=WA&destination_place_id=\(restaurantID)&travelmode=walking"
-            UIApplication.shared.openURL(URL(string: url)!)
+            guard let url = URL(string: "https://www.google.com/maps/dir/?api=1&destination=WA&destination_place_id=\(restaurantID)&travelmode=walking") else {
+                Drop.down(errorMessage, state: .warning)
+                return
+            }
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         } else {
-            Drop.down("Unable to retrieve map data", state: .warning)
+            Drop.down(errorMessage, state: .warning)
         }
     }
     

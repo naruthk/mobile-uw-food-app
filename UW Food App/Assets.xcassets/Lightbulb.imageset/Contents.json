@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "location_marker.png",
+      "filename" : "idea.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "idea-256.png",
       "scale" : "2x"
     },
     {
