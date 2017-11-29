@@ -253,7 +253,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="736" height="30"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D0L-4R-axj" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="0.0" y="0.0" width="365.5" height="30"/>
+                                                            <rect key="frame" x="0.0" y="5" width="365.5" height="20"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
