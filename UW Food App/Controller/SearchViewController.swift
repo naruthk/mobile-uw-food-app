@@ -9,30 +9,42 @@
 import UIKit
 import CoreLocation
 import GooglePlaces
+import SwiftyDrop
 
-class SearchViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate {
+class SearchViewController: UIViewController, CLLocationManagerDelegate {
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    var resultsViewController: GMSAutocompleteResultsViewController?
+    var searchController: UISearchController?
+    var resultView: UITextView?
     
     var userOriginalLocationParam : [Double] = []
     let locationManager = CLLocationManager()
     let autocompleteController = GMSAutocompleteViewController()
     
+    var searchHistory : [String] = []       // Array of IDs of each restaurant
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         initializeLocationManager()
         
-        searchBar.delegate = self
-    
         let filter = GMSAutocompleteFilter()
         filter.type = .establishment
         filter.country = "usa"
         
-        // TODO: - Implement Recent Searches
+        resultsViewController = GMSAutocompleteResultsViewController()
+        resultsViewController?.delegate = self
+        
+        searchController = UISearchController(searchResultsController: resultsViewController)
+        searchController?.searchResultsUpdater = resultsViewController
+        searchController?.searchBar.sizeToFit()
+        navigationItem.titleView = searchController?.searchBar
+        definesPresentationContext = true
+        searchController?.hidesNavigationBarDuringPresentation = false
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    func setUpSeachHistoriesList() {
+        
     }
     
     func initializeLocationManager() {
@@ -70,32 +82,69 @@ class SearchViewController: UIViewController, UISearchBarDelegate, CLLocationMan
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        autocompleteController.delegate = self
         autocompleteController.autocompleteBounds = getCoordinateBounds(latitude: userOriginalLocationParam[0], longitude: userOriginalLocationParam[1])
-        present(autocompleteController, animated: true, completion: nil)
-    }
-
-    func setUpSeachHistoriesList() {
-
     }
     
 }
 
-extension SearchViewController: GMSAutocompleteViewControllerDelegate {
-    
-    // Handle the user's selection.
-    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        dismiss(animated: true, completion: nil)
+extension SearchViewController: GMSAutocompleteResultsViewControllerDelegate {
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+                           didAutocompleteWith place: GMSPlace) {
+        searchController?.isActive = false
+        
+        searchHistory.append("\(place.placeID)")
+         // TODO: Keep the history after the user closes the app
+        print("\(place.placeID)")
+        
+        if let val = restaurantsData[place.placeID] {
+            openMasterDetailViewScreen(val: val)
+        } else {
+            Drop.down("Cannot retrieve information for this restaurant", state: .error)
+        }
     }
     
-    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+    func openMasterDetailViewScreen(val: Restaurant) {
+//        let userData = val
+//        let myVC = storyboard?.instantiateViewController(withIdentifier: "MasterDetail") as! MasterDetailViewController
+//        myVC.userData = userData
+//        myVC.informationSections = [
+//            InformationSection(type: "Hours",
+//                               dataTitles: [
+//                                "Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"
+//                ],
+//                               dataDetails: [
+//                                userData.hours["sun"]!,
+//                                userData.hours["mon"]!,
+//                                userData.hours["tues"]!,
+//                                userData.hours["wed"]!,
+//                                userData.hours["thurs"]!,
+//                                userData.hours["fri"]!,
+//                                userData.hours["sat"]!
+//                ],
+//                               expanded: true),
+//            InformationSection(type: "Location",
+//                               dataTitles: [
+//                                "Address", "Distance", "Duration"
+//                ],
+//                               dataDetails: [
+//                                userData.locationName,
+//                                userData.relativeDistanceFromUserCurrentLocation,
+//                                userData.relativeDurationFromUserCurrentLocation
+//                ],
+//                               expanded: false),
+//            InformationSection(type: "Payment",
+//                               dataTitles: [
+//                                "UW-Only", "Cards"
+//                ],
+//                               dataDetails: ["Husky Card", "Debit, Credit (Visa, MasterCard)"], expanded: false),
+//        ]
+//        self.present(myVC, animated: true, completion: nil)
+    }
+    
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+                           didFailAutocompleteWithError error: Error){
         // TODO: handle the error.
         print("Error: ", error.localizedDescription)
-    }
-    
-    // User canceled the operation.
-    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        dismiss(animated: true, completion: nil)
     }
     
     // Turn the network activity indicator on and off again.
@@ -106,5 +155,4 @@ extension SearchViewController: GMSAutocompleteViewControllerDelegate {
     func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
-    
 }

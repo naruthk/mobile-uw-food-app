@@ -16,6 +16,9 @@ import GoogleMaps
 import GooglePlaces
 import Font_Awesome_Swift
 
+// Global !!
+var restaurantsData = [String:Restaurant]()
+
 class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
     // CONSTANTS
@@ -27,7 +30,6 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
     
     // INSTANCE VARIABLES
     let locationManager = CLLocationManager()
-    var restaurantsData = [String:Restaurant]()
     var searchHistories = [Restaurant]()
     var defaultLocation = [47.656059, -122.305047] // UW
     var userOriginalLocationParam = [Double]()
@@ -37,7 +39,7 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
     var lastAddedMarker = GMSMarker()
     
     @IBOutlet weak var googleMaps: GMSMapView!
-    @IBOutlet weak var todayDateLabel: UILabel!
+    @IBOutlet weak var dateLabelAsButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
     
     override func viewDidLoad() {
@@ -59,7 +61,8 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE, MMMM dd"
         let convertedDate = dateFormatter.string(from: currentDate)
-        todayDateLabel.text = String(convertedDate)
+        dateLabelAsButton.setTitle(String(convertedDate), for: .normal)
+        dateLabelAsButton.tintColor = UIColor.flatGray()
     }
     
     func setGoogleMapFunctionalities() {
@@ -139,7 +142,7 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
                     return
                 }
                 
-                self.restaurantsData[restaurantID]?.updateRating(newRating: "\(place.rating)")
+                restaurantsData[restaurantID]?.updateRating(newRating: "\(place.rating)")
             })
             
             let restaurant = Restaurant(
@@ -171,7 +174,7 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
                 title: name,
                 snippet: snippet)
 
-            self.restaurantsData[restaurantID] = restaurant
+            restaurantsData[restaurantID] = restaurant
         }
     }
     
@@ -276,7 +279,7 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
                             print("DEBUG: PROGRESS => Updating current restaurant object with new relative distancea and duration")
                             let locationDistance = "\(currentElement["distance"]["text"].string ?? "")"
                             let locationDuration = "\(currentElement["duration"]["text"].string ?? "")"
-                            self.restaurantsData[restaurantID]?.updateRelativeDistancesAndDuration(newDistance: locationDistance, newDuration: locationDuration)
+                            restaurantsData[restaurantID]?.updateRelativeDistancesAndDuration(newDistance: locationDistance, newDuration: locationDuration)
                             print("DEBUG: END => Restaurant ID \(restaurantID) has been updated")
                         } else {
                             self.locationDistanceText = "-"
@@ -287,7 +290,7 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
                     print("Error \(String(describing: response.result.error))")
 //                    Drop.down("Unable to check distances.", state: .warning)
                 }
-                print("DEBUG: DATA => Data for Restaurant ID \(restaurantID): \(self.restaurantsData[restaurantID]?.description ?? "")")
+                print("DEBUG: DATA => Data for Restaurant ID \(restaurantID): \(restaurantsData[restaurantID]?.description ?? "")")
                 print("DEBUG: COMPLETED => End Alomafire session")
             }
         }
