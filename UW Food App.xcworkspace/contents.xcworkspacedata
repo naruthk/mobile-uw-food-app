@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/naruthkongurai/Documents/2017 Projects/mobile-uw-food-app/UW Food App/Controller/MasterDetailView/InformationSection.swift">
+   </FileRef>
+   <FileRef
       location = "group:UW Food App.xcodeproj">
    </FileRef>
    <FileRef

@@ -21,9 +21,9 @@
 		8B3763C31FC89B4100D45B87 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763C21FC89B4100D45B87 /* Menu.swift */; };
 		8B3763C71FCB54E600D45B87 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763C61FCB54E600D45B87 /* AuthenticationViewController.swift */; };
 		8B3763C91FCB597200D45B87 /* MasterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763C81FCB597200D45B87 /* MasterDetailViewController.swift */; };
-		8BC707801FCCBB93004E52B1 /* InformationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7077F1FCCBB93004E52B1 /* InformationSection.swift */; };
 		8BC707841FCD4E16004E52B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BC707831FCD4E16004E52B1 /* GoogleService-Info.plist */; };
 		8BC707861FCD60C9004E52B1 /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC707851FCD60C9004E52B1 /* ExpandableHeaderView.swift */; };
+		8BC707881FCE46E1004E52B1 /* InformationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC707871FCE46E1004E52B1 /* InformationSection.swift */; };
 		F16440F0F1AD36BA1B29AA88 /* Pods_UW_Food_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BCE3ED0D79E4F72C8C0958 /* Pods_UW_Food_AppTests.framework */; };
 		FB135285B3AA9B5D53E5BDE4 /* Pods_UW_Food_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC6DD828121998B49E6A377 /* Pods_UW_Food_App.framework */; };
 /* End PBXBuildFile section */
@@ -68,9 +68,9 @@
 		8B3763C21FC89B4100D45B87 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		8B3763C61FCB54E600D45B87 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		8B3763C81FCB597200D45B87 /* MasterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterDetailViewController.swift; sourceTree = "<group>"; };
-		8BC7077F1FCCBB93004E52B1 /* InformationSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InformationSection.swift; path = ../../../../../../.Trash/InformationSection.swift; sourceTree = "<group>"; };
 		8BC707831FCD4E16004E52B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8BC707851FCD60C9004E52B1 /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
+		8BC707871FCE46E1004E52B1 /* InformationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InformationSection.swift; path = "/Users/naruthkongurai/Documents/2017 Projects/mobile-uw-food-app/UW Food App/Controller/MasterDetailView/InformationSection.swift"; sourceTree = "<absolute>"; };
 		8C0CDA14EF59F8C1F7589198 /* Pods-UW Food AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Food AppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UW Food AppUITests/Pods-UW Food AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9DC6DD828121998B49E6A377 /* Pods_UW_Food_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UW_Food_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADDAC0C25CAEF78245B24262 /* Pods-UW Food AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Food AppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UW Food AppUITests/Pods-UW Food AppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -195,7 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				8B3763C81FCB597200D45B87 /* MasterDetailViewController.swift */,
-				8BC7077F1FCCBB93004E52B1 /* InformationSection.swift */,
+				8BC707871FCE46E1004E52B1 /* InformationSection.swift */,
 				8BC707851FCD60C9004E52B1 /* ExpandableHeaderView.swift */,
 			);
 			path = MasterDetailView;
@@ -543,12 +543,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B3763C31FC89B4100D45B87 /* Menu.swift in Sources */,
-				8BC707801FCCBB93004E52B1 /* InformationSection.swift in Sources */,
 				8B3763BD1FC806BA00D45B87 /* Restaurant.swift in Sources */,
 				8B37638C1FC7DCF500D45B87 /* DiscoverViewController.swift in Sources */,
 				8B3763C11FC809A400D45B87 /* Food.swift in Sources */,
 				8B3763C71FCB54E600D45B87 /* AuthenticationViewController.swift in Sources */,
 				8B3763C91FCB597200D45B87 /* MasterDetailViewController.swift in Sources */,
+				8BC707881FCE46E1004E52B1 /* InformationSection.swift in Sources */,
 				8BC707861FCD60C9004E52B1 /* ExpandableHeaderView.swift in Sources */,
 				8B3763BB1FC7FD3100D45B87 /* SearchViewController.swift in Sources */,
 				8B37638A1FC7DCF500D45B87 /* AppDelegate.swift in Sources */,
