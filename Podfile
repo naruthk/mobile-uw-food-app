@@ -1,6 +1,6 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
-platform :ios, '11.0'cl
+platform :ios, '11.0'
 
 target 'UW Food App' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -19,6 +19,7 @@ target 'UW Food App' do
   pod 'Font-Awesome-Swift'
   pod 'Cosmos', '~> 12.0'
   pod 'ChameleonFramework'
+  pod 'DeckTransition', '~> 1.0'
 
   target 'UW Food AppTests' do
     inherit! :search_paths
