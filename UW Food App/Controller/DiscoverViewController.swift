@@ -14,6 +14,7 @@ import SwiftyDrop
 import ChameleonFramework
 import GoogleMaps
 import GooglePlaces
+import Font_Awesome_Swift
 
 class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
@@ -33,26 +34,19 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
     var userOriginsLocation = ""
     var locationDurationText = ""
     var locationDistanceText = ""
+    var lastAddedMarker = GMSMarker()
     
     @IBOutlet weak var googleMaps: GMSMapView!
     @IBOutlet weak var todayDateLabel: UILabel!
+    @IBOutlet weak var searchButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        searchButton.setFAIcon(icon: .FASearch, iconSize: 25, forState: .normal)
+        searchButton.setFATitleColor(color: UIColor.flatGray())
         initializeLocationManager()
-        
         getTodayDate()
-
-        let camera = GMSCameraPosition.camera(withLatitude: defaultLocation[0], longitude: defaultLocation[1], zoom: 15.0)
-        
-        self.googleMaps.camera = camera
-        self.googleMaps.delegate = self
-        self.googleMaps?.isMyLocationEnabled = true
-        self.googleMaps.settings.myLocationButton = true
-        self.googleMaps.settings.compassButton = true
-        self.googleMaps.settings.zoomGestures = true
-        
+        setGoogleMapFunctionalities()
         initializeRestaurantsData()
     }
 
@@ -66,6 +60,21 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
         dateFormatter.dateFormat = "EEEE, MMMM dd"
         let convertedDate = dateFormatter.string(from: currentDate)
         todayDateLabel.text = String(convertedDate)
+    }
+    
+    func setGoogleMapFunctionalities() {
+        let camera = GMSCameraPosition.camera(withLatitude: defaultLocation[0], longitude: defaultLocation[1], zoom: 14.0)
+        
+        self.googleMaps.camera = camera
+        self.googleMaps.delegate = self
+        self.googleMaps?.isMyLocationEnabled = true
+        self.googleMaps.settings.myLocationButton = true
+        self.googleMaps.settings.compassButton = true
+        self.googleMaps.settings.zoomGestures = true
+    }
+
+    @IBAction func searchButtonClicked(_ sender: Any) {
+        self.tabBarController?.selectedIndex = 1;   // Search tab is the index #1
     }
     
     // Initializes the View by fetching and populating the map (marking a pin)
@@ -173,6 +182,7 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
         marker.snippet = snippet
         marker.userData = userData as Any
         marker.map = googleMaps
+        self.googleMaps.selectedMarker = marker
     }
     
     // MARK: - GMSMapViewDelegate

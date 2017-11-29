@@ -7,15 +7,26 @@
 //
 
 import UIKit
+import CoreLocation
 import GooglePlaces
 
-class SearchViewController: UIViewController, UISearchBarDelegate {
+class SearchViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
+    var userOriginalLocationParam : [Double] = []
+    let locationManager = CLLocationManager()
+    let autocompleteController = GMSAutocompleteViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeLocationManager()
+        
         searchBar.delegate = self
+    
+        let filter = GMSAutocompleteFilter()
+        filter.type = .establishment
+        filter.country = "usa"
         
         // TODO: - Implement Recent Searches
     }
@@ -24,9 +35,43 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         super.didReceiveMemoryWarning()
     }
     
+    func initializeLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations[locations.count - 1]
+        if location.horizontalAccuracy > 0 {
+            locationManager.stopUpdatingLocation()
+            locationManager.delegate = nil
+            let latitude = Double(location.coordinate.latitude)
+            let longitude = Double(location.coordinate.longitude)
+            userOriginalLocationParam.append(latitude)
+            userOriginalLocationParam.append(longitude)
+        }
+    }
+    
+    func getCoordinateBounds(latitude: CLLocationDegrees,
+                             longitude: CLLocationDegrees,
+                             distance: Double = 0.0001) -> GMSCoordinateBounds {
+        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let northEast = CLLocationCoordinate2D(latitude: center.latitude + distance, longitude: center.longitude + distance)
+        let southWest = CLLocationCoordinate2D(latitude: center.latitude - distance, longitude: center.longitude - distance)
+        return GMSCoordinateBounds(coordinate: northEast,
+                                   coordinate: southWest)
+    }
+    
+    func updateCoordinateBoundsOnAutoCompleteController() {
+        autocompleteController.viewWillAppear(true)
+        autocompleteController.viewDidAppear(true)
+    }
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
+        autocompleteController.autocompleteBounds = getCoordinateBounds(latitude: userOriginalLocationParam[0], longitude: userOriginalLocationParam[1])
         present(autocompleteController, animated: true, completion: nil)
     }
 
@@ -40,7 +85,6 @@ extension SearchViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        print("Place ID: \(place.placeID) - \(place.name)")
         dismiss(animated: true, completion: nil)
     }
     
