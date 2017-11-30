@@ -11,19 +11,23 @@ The current project is under development.
     - [Our Inspiration](#our-inspiration)
     - [Why Developed It](#why-developed-it)
     - [Developers](#developers)
-    - [Project Pitch Documents](#project-pitch-documents)
+    - [INFO 449 Project Pitch Documents](#info-449-project-pitch-documents)
   - [Development](#development)
     - [Chat](#chat)
+    - [Firebase Console](#firebase-console)
     - [Requirements](#requirements)
     - [Installation](#installation)
     - [Libraries We're Using](#libraries-were-using)
-    - [Testing](#testing)
   - [Documentation](#documentation)
     - [Obtaining Place ID](#obtaining-place-id)
     - [JSON](#json)
+      - [Components](#components)
+      - [Storage](#storage)
+      - [Shared Component](#shared-component)
       - [Restaurants.JSON](#restaurantsjson)
       - [Menu.JSON](#menujson)
       - [Reviews.JSON](#reviewsjson)
+  - [Contact](#contact)
   - [License](#license)
 
 <!-- /TOC -->
@@ -42,9 +46,9 @@ While OneBusAway allows us to find bus routes and wait times at each bus stop, w
 
 ### Developers
 
-We’re a team of three funny, talkative, and cheerful individuals: [Naruth Kongurai](http://www.naruthk.com), Demi Tu, and Thipok Cholsaipant.
+[Naruth Kongurai](http://www.naruthk.com), Demi Tu, and Thipok Cholsaipant.
 
-### Project Pitch Documents
+### INFO 449 Project Pitch Documents
 
 - Google Doc: [Pitch Deck](https://docs.google.com/presentation/d/1MVVqnKYfs7XXRjwEztFYqFT89grxo69O_V0npmqn-4U/edit#slide=id.g2891f1afb5_0_83)
 - Google Slide: [Pitch Presentation](https://docs.google.com/document/d/1E4Wk3MKEe6RLPMeRxuAHHm1br9HlJo3zwEEgsLuBOeQ)
@@ -56,6 +60,10 @@ We’re a team of three funny, talkative, and cheerful individuals: [Naruth Kong
 ### Chat
 
 - Slack: [uwfoodappproject.slack.com](uwfoodappproject.slack.com)
+
+### Firebase Console
+
+- Console  - [https://console.firebase.google.com/u/0/project/uwfoodapp/overview](https://console.firebase.google.com/u/0/project/uwfoodapp/overview)
 
 ### Requirements
 
@@ -79,19 +87,16 @@ You must open **`UW Food App.xcworkspace`** in order to start developing the app
 
 ### Libraries We're Using
 
+With CocoaPods as the package dependency manager, we install these libraries:
+
 - Alamofire
-- CocoaPods
-- Firebase - [https://console.firebase.google.com/u/0/project/uwfoodapp/overview](https://console.firebase.google.com/u/0/project/uwfoodapp/overview)
+- ChameleonFramework
+- Firebase
 - Font-Awesome-Swift
 - GoogleMaps
 - GooglePlaces
 - SwiftyJSON
 - SwiftyDrop
-- SVProgressHUD
-
-### Testing
-
-Coming soon.
 
 ----
 
@@ -105,23 +110,27 @@ Each `PlaceID` has reference to lots of information, including a restaurant's ra
 
 ### JSON
 
+#### Components
+
 There are 3 JSON files that the app retrieves data from.
 
 - Restaurants.JSON
 - Menus.JSON
 - Reviews.JSON
 
-All files are currently hosted on my website: [http://naruthk.com/api/mobile-uw-food-app/data/Restaurants.json](http://naruthk.com/api/mobile-uw-food-app/data/Restaurants.json). Alternatively, they are available for viewing inside this Github repository's [data](/data) folder. We will soon be migrating our data to Firebase, so that information can be retrieved and updated and can be reflected in the application immediately.
+#### Storage
 
-In every JSON file, there is a shared `restaurantID` for each restaurant, meaning that even though there are 3 seperate JSON files, we can still easily lookup basic information (such as contact information, description), menu, and reviews of a single restaurant by using the unique `restaurantID`.
+Aside from storing inside the Firebase database, the data is also backup on this Github repository's [data](/data) folder. 
+
+#### Shared Component
+
+In every JSON file, there is a shared **`restaurantID`** for each restaurant, meaning that even though there are 3 seperate JSON files, we can still easily lookup basic information (such as contact information, description), menu, and reviews of a single restaurant by using the unique `restaurantID`.
 
 When adding data to the JSON files, make sure that the `restaurantID` for each restaurant is the same in all 3 JSON files.
 
 #### Restaurants.JSON
 
-View actual `Restaurants.json` data file [here](data/Restaurants.json).
-
-| Type | Type | Description |
+| Type | Type | Explaination |
 | ---- | ---- | ------ |
 |  id  |  Text `string` | The unique id of the restaurant obtained from Google Map API ([Link](https://developers.google.com/places/place-id)) |
 | name | Text `string` | Name of the restaurant |
@@ -165,8 +174,6 @@ Note: *`*` Popular hours are mocked data.*
 
 #### Reviews.JSON
 
-For development purposes, we will only be using mock-up data.
-
 ```json
 {
   "dataName": "reviews",
@@ -194,6 +201,12 @@ For development purposes, we will only be using mock-up data.
   }
 }
 ```
+
+----
+
+## Contact
+
+Submit a pull request / send an email to [contact@naruthk.com](mailto:contact@naruthk.com) for any issues.
 
 ----
 
