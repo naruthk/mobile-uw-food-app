@@ -8,15 +8,25 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--FavoriteController-->
+        <!--AccountController-->
         <scene sceneID="any-h2-3EY">
             <objects>
-                <viewControllerPlaceholder storyboardName="Favorites" referencedIdentifier="FavoriteController" id="mHe-Ah-FnQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="S8o-0c-6GB"/>
+                <viewControllerPlaceholder storyboardName="Account" referencedIdentifier="AccountController" id="mHe-Ah-FnQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Account" id="S8o-0c-6GB"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JuL-bd-h9o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3365" y="45"/>
+            <point key="canvasLocation" x="-3095" y="-82"/>
+        </scene>
+        <!--FavoritesController-->
+        <scene sceneID="8YP-AK-tFu">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Favorites" referencedIdentifier="FavoritesController" id="9Wv-CJ-2aF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="Ywt-mp-hYc"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jKn-Hg-Z07" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3094" y="-129"/>
         </scene>
         <!--DiscoverController-->
         <scene sceneID="ufF-2R-dCL">
@@ -26,7 +36,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dJq-P5-goE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3363" y="-288"/>
+            <point key="canvasLocation" x="-3096" y="-231"/>
         </scene>
         <!--SearchController-->
         <scene sceneID="plY-Kd-noN">
@@ -36,7 +46,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4N-w7-ePV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3369" y="-121"/>
+            <point key="canvasLocation" x="-3105" y="-180"/>
         </scene>
         <!--Main Controller-->
         <scene sceneID="1qZ-Vq-joM">
@@ -50,6 +60,7 @@
                     <connections>
                         <segue destination="2IX-gt-x4M" kind="relationship" relationship="viewControllers" id="kzI-Gl-vca"/>
                         <segue destination="e69-3I-cgn" kind="relationship" relationship="viewControllers" id="BGJ-dL-rHV"/>
+                        <segue destination="9Wv-CJ-2aF" kind="relationship" relationship="viewControllers" id="eha-1s-Zxp"/>
                         <segue destination="mHe-Ah-FnQ" kind="relationship" relationship="viewControllers" id="PfW-bA-iyU"/>
                     </connections>
                 </tabBarController>

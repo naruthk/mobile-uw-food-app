@@ -1,27 +1,42 @@
-
-//  LoginViewController.swift
+//
+//  AccountViewController.swift
 //  UW Food App
 //
 //  Created by Naruth Kongurai on 11/29/17.
 //  Copyright © 2017 iSchool. All rights reserved.
-
+//
 
 import UIKit
+import Firebase
+import SwiftyDrop
 
-class LoginViewController: UIViewController {
+class AccountViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.navigationItem.setHidesBackButton(true, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    @IBAction func logoutButtonPressed(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            Drop.down("You've signed out.", state: .success)
+        } catch {
+            print("Error logging out")
+            Drop.down("An unknown error unoccurred", state: .error)
+        }
+        
+        guard (navigationController?.popToRootViewController(animated: true)) != nil
+            else {
+                print("No viewcontrollers to pop.")
+                return
+        }
+    }
     /*
     // MARK: - Navigation
 
@@ -33,4 +48,3 @@ class LoginViewController: UIViewController {
     */
 
 }
-

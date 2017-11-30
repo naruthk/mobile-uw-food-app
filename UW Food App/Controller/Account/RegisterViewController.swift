@@ -44,11 +44,7 @@ class RegisterViewController: UIViewController {
                 Drop.down("Unable to register. Please try again.", state: .error)
             } else {
                 
-                if let favoritesViewController = UIStoryboard(name: "Favorites", bundle: nil).instantiateViewController(withIdentifier: "Favorites") as? FavoritesViewController {
-                    if let navigator = self.navigationController {
-                        navigator.pushViewController(favoritesViewController, animated: true)
-                    }
-                }
+                self.performSegue(withIdentifier: "goToAccount", sender: self)
                 
                 self.emailTextField.clearsOnBeginEditing = true
                 self.passwordTextField.clearsOnBeginEditing = true

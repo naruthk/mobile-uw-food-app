@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import SwiftyDrop
 
-class FavoritesViewController: UIViewController {
+class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
