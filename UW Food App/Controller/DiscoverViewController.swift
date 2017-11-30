@@ -38,6 +38,7 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
     var locationDurationText = ""
     var locationDistanceText = ""
     var lastAddedMarker = GMSMarker()
+    var userData = Restaurant(restaurantID: "", name: "", restaurantDescription: "", locationName: "", fullAddress: "", mapCoordinates: [""], category: "", averageRating: "", hours: ["" : ""], contact_name: "", contact_email: "", contact_phone: "", contact_website: "", relativeDistanceFromUserCurrentLocation: "", relativeDurationFromUserCurrentLocation: "")
     
     @IBOutlet weak var googleMaps: GMSMapView!
     @IBOutlet weak var dateLabelAsButton: UIButton!
@@ -68,7 +69,6 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
     
     func setGoogleMapFunctionalities() {
         let camera = GMSCameraPosition.camera(withLatitude: defaultLocation[0], longitude: defaultLocation[1], zoom: 14.0)
-        
         self.googleMaps.camera = camera
         self.googleMaps.delegate = self
         self.googleMaps?.isMyLocationEnabled = true
@@ -133,16 +133,12 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
             
             let placesClient = GMSPlacesClient.shared()
             placesClient.lookUpPlaceID(restaurantID, callback: { (place, error) -> Void in
-                if let error = error {
-                    print("lookup place id query error: \(error.localizedDescription)")
+                guard let error = error else {
                     return
                 }
-                
                 guard let place = place else {
-                    print("No place details for \(restaurantID)")
                     return
                 }
-                
                 restaurantsData[restaurantID]?.updateRating(newRating: "\(place.rating)")
             })
             
@@ -193,41 +189,47 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
     
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         let currentRestaurant = marker as GMSMarker
-        let userData = currentRestaurant.userData as! Restaurant
-        let myVC = storyboard?.instantiateViewController(withIdentifier: "MasterDetail") as! MasterDetailViewController
-        myVC.userData = userData
-        myVC.informationSections = [
-            InformationSection(type: "Hours",
-                               dataTitles: [
-                                "Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"
-                                ],
-                               dataDetails: [
-                                userData.hours["sun"]!,
-                                userData.hours["mon"]!,
-                                userData.hours["tues"]!,
-                                userData.hours["wed"]!,
-                                userData.hours["thurs"]!,
-                                userData.hours["fri"]!,
-                                userData.hours["sat"]!
-                                ],
-                               expanded: true),
-            InformationSection(type: "Location",
-                               dataTitles: [
-                                "Address", "Distance", "Duration"
-                                ],
-                               dataDetails: [
-                                userData.locationName,
-                                userData.relativeDistanceFromUserCurrentLocation,
-                                userData.relativeDurationFromUserCurrentLocation
-                                ],
-                               expanded: false),
-            InformationSection(type: "Payment",
-                               dataTitles: [
-                                "UW-Only", "Cards"
-                                ],
-                               dataDetails: ["Husky Card", "Debit, Credit (Visa, MasterCard)"], expanded: false),
-        ]
-        self.present(myVC, animated: true, completion: nil)
+        userData = currentRestaurant.userData as! Restaurant
+        self.performSegue(withIdentifier: "goToDetail", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToDetail" {
+            if let myVC = segue.destination as? MasterDetailViewController {
+                myVC.userData = self.userData
+                myVC.informationSections = [
+                    InformationSection(type: "Hours",
+                                       dataTitles: [
+                                        "Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"
+                        ],
+                                       dataDetails: [
+                                        userData.hours["sun"]!,
+                                        userData.hours["mon"]!,
+                                        userData.hours["tues"]!,
+                                        userData.hours["wed"]!,
+                                        userData.hours["thurs"]!,
+                                        userData.hours["fri"]!,
+                                        userData.hours["sat"]!
+                        ],
+                                       expanded: true),
+                    InformationSection(type: "Location",
+                                       dataTitles: [
+                                        "Address", "Distance", "Duration"
+                        ],
+                                       dataDetails: [
+                                        userData.locationName,
+                                        userData.relativeDistanceFromUserCurrentLocation,
+                                        userData.relativeDurationFromUserCurrentLocation
+                        ],
+                                       expanded: false),
+                    InformationSection(type: "Payment",
+                                       dataTitles: [
+                                        "UW-Only", "Cards"
+                        ],
+                                       dataDetails: ["Husky Card", "Debit, Credit (Visa, MasterCard)"], expanded: false),
+                ]
+            }
+        }
     }
 
     
@@ -275,13 +277,10 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
                     let result : JSON = JSON(response.result.value!)
                     for currentElement in result["rows"][0]["elements"].arrayValue {
                         let status = currentElement["status"].string
-                        print("DEBUG: CHECK => API status - \(status ?? "")")
                         if (status == "OK") {
-                            print("DEBUG: PROGRESS => Updating current restaurant object with new relative distancea and duration")
                             let locationDistance = "\(currentElement["distance"]["text"].string ?? "")"
                             let locationDuration = "\(currentElement["duration"]["text"].string ?? "")"
                             restaurantsData[restaurantID]?.updateRelativeDistancesAndDuration(newDistance: locationDistance, newDuration: locationDuration)
-                            print("DEBUG: END => Restaurant ID \(restaurantID) has been updated")
                         } else {
                             self.locationDistanceText = "-"
                             self.locationDurationText = "-"
@@ -289,10 +288,7 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
                     }
                 } else {
                     print("Error \(String(describing: response.result.error))")
-//                    Drop.down("Unable to check distances.", state: .warning)
                 }
-                print("DEBUG: DATA => Data for Restaurant ID \(restaurantID): \(restaurantsData[restaurantID]?.description ?? "")")
-                print("DEBUG: COMPLETED => End Alomafire session")
             }
         }
     }

@@ -20,10 +20,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZPR-sy-a6K">
                                 <rect key="frame" x="0.0" y="116" width="375" height="502"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="SMr-3T-TQI" id="RiC-Fh-RzY"/>
-                                    <outlet property="delegate" destination="SMr-3T-TQI" id="6JH-a7-I3M"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -36,6 +32,9 @@
                         <viewLayoutGuide key="safeArea" id="ytd-Ax-xKj"/>
                     </view>
                     <navigationItem key="navigationItem" title="Favorites" id="soY-cj-YJh"/>
+                    <connections>
+                        <outlet property="tableView" destination="ZPR-sy-a6K" id="Dbo-1R-bih"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rAB-vN-kda" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

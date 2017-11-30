@@ -23,7 +23,13 @@
           "sat": "9 am - 8 pm",
           "sun": "11 am - 7 pm"
         },
-        "popularHours": {},
+        "menu": [
+          {
+            "name": "Chocolate Latte",
+            "price": "5.05",
+            "foodCategory": "drinks"
+          }
+        ],
         "contactInformation": {
           "name": "Torin Munro",
           "phone": "206-221-4598",
@@ -51,6 +57,13 @@
           "sat": "9 am - 8 pm",
           "sun": "11 am - 7 pm"
         },
+        "menu": [
+          {
+            "name": "Chocolate Latte",
+            "price": "5.05",
+            "foodCategory": "drinks"
+          }
+        ],
         "popularHours": {},
         "contactInformation": {
           "name": "-",
@@ -79,6 +92,13 @@
           "sat": "9 am - 12 am",
           "sun": "9 am - 12 am"
         },
+        "menu": [
+          {
+            "name": "Chocolate Latte",
+            "price": "5.05",
+            "foodCategory": "drinks"
+          }
+        ],
         "popularHours": {},
         "contactInformation": {
           "name": "Heidi Antush",
@@ -107,6 +127,13 @@
           "sat": "9 am - 10 pm",
           "sun": "9 am - 10 pm"
         },
+        "menu": [
+          {
+            "name": "Chocolate Latte",
+            "price": "5.05",
+            "foodCategory": "drinks"
+          }
+        ],
         "popularHours": {},
         "contactInformation": {
           "name": "Joseph Maurey",

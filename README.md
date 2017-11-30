@@ -21,12 +21,7 @@ The current project is under development.
   - [Documentation](#documentation)
     - [Obtaining Place ID](#obtaining-place-id)
     - [JSON](#json)
-      - [Components](#components)
-      - [Storage](#storage)
-      - [Shared Component](#shared-component)
-      - [Restaurants.JSON](#restaurantsjson)
-      - [Menu.JSON](#menujson)
-      - [Reviews.JSON](#reviewsjson)
+      - [Structure for "Reviews"](#structure-for-reviews)
   - [Contact](#contact)
   - [License](#license)
 
@@ -108,27 +103,9 @@ Google offers a way to retrieve the unique `PlaceID` for each restaurant on UW c
 
 Each `PlaceID` has reference to lots of information, including a restaurant's ratings, hours, and website information. More information can be found here [https://developers.google.com/places/ios-api/reference/interface_g_m_s_place](https://developers.google.com/places/ios-api/reference/interface_g_m_s_place)
 
+The `PlaceID` is what is stored as the value for the key `restaurantID`.
+
 ### JSON
-
-#### Components
-
-There are 3 JSON files that the app retrieves data from.
-
-- Restaurants.JSON
-- Menus.JSON
-- Reviews.JSON
-
-#### Storage
-
-Aside from storing inside the Firebase database, the data is also backup on this Github repository's [data](/data) folder. 
-
-#### Shared Component
-
-In every JSON file, there is a shared **`restaurantID`** for each restaurant, meaning that even though there are 3 seperate JSON files, we can still easily lookup basic information (such as contact information, description), menu, and reviews of a single restaurant by using the unique `restaurantID`.
-
-When adding data to the JSON files, make sure that the `restaurantID` for each restaurant is the same in all 3 JSON files.
-
-#### Restaurants.JSON
 
 | Type | Type | Explaination |
 | ---- | ---- | ------ |
@@ -140,65 +117,29 @@ When adding data to the JSON files, make sure that the `restaurantID` for each r
 | mapCoordinates | Array `string` | Latitude and longitude data |
 | category | Text `string` | Category of the restaurant |
 | hours | Dictionary `string:string` | Operation hours from Monday until Sunday |
-| popularHours * | Dictionary `string:string` | Popular hours from Monday until Sunday |
+| menu | Dictionary `string:string` | All the food items for this particular restaurant
 | contactInformation | Dictionary `string:string` | Name, phone number, website, and email address |
 
-Note: *`*` Popular hours are mocked data.*
-
 ----
 
-#### Menu.JSON
+#### Structure for "Reviews"
 
 ```json
 {
-  "dataName": "menus",
-  "modifiedDate": "11/21/17",
-  "appData": {
-    "menus": [
-      {
-        "restaurantID": "ChIJ8SgXBJMUkFQRQM4LYe2jMSQ",
-        "food": [
-          {
-            "name": "Chocolate Latte",
-            "price": "5.05",
-            "foodCategory": "drinks"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-----
-
-#### Reviews.JSON
-
-```json
-{
-  "dataName": "reviews",
-  "modifiedDate": "11/21/17",
-  "appData": {
-    "reviews": [
-      {
-        "restaurantID": "ChIJ8SgXBJMUkFQRQM4LYe2jMSQ",
-        "comments": [
-          {
-            "reviewID": "134543534",
-            "user": "3405323424",
-            "comment": "Great, fast place to grab some drinks!",
-            "rating": "4.5"
-          },
-          {
-            "reviewID": "143121534",
-            "user": "556623424",
-            "comment": "Delicious",
-            "rating": "4.0"
-          }
-        ]
-      }
-    ]
-  }
+  "comments": [
+    {
+      "reviewID": "134543534",
+      "user": "3405323424",
+      "comment": "Great, fast place to grab some drinks!",
+      "rating": "4.5"
+    },
+    {
+      "reviewID": "143121534",
+      "user": "556623424",
+      "comment": "Delicious",
+      "rating": "4.0"
+    }
+  ]
 }
 ```
 

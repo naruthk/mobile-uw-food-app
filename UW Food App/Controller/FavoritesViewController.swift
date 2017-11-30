@@ -10,11 +10,13 @@ import UIKit
 import Firebase
 import SwiftyDrop
 
-class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FavoritesViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // TODO:
         // 1. If the user has not logged in, then the Right button should display "Login". Vice versa.
         // 2. If the user has already logged in, then the Left button should be hidden.
