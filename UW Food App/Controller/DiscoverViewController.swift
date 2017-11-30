@@ -18,6 +18,7 @@ import Font_Awesome_Swift
 
 // Global !!
 var restaurantsData = [String:Restaurant]()
+var favoritesItem = [Restaurant]()
 
 class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 

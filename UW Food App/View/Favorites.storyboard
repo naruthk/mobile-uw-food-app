@@ -95,7 +95,7 @@
         <!--Favorites-->
         <scene sceneID="4d9-sQ-AZg">
             <objects>
-                <viewController storyboardIdentifier="Account" title="Favorites" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cAe-Xg-YuI" customClass="FavoritesViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Favorites" title="Favorites" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cAe-Xg-YuI" customClass="FavoritesViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2WS-Bd-CQq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

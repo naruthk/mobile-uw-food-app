@@ -19,7 +19,6 @@ target 'UW Food App' do
   pod 'Font-Awesome-Swift'
   pod 'Cosmos', '~> 12.0'
   pod 'ChameleonFramework'
-  pod 'DeckTransition', '~> 1.0'
 
   target 'UW Food AppTests' do
     inherit! :search_paths

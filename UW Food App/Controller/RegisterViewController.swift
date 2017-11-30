@@ -44,9 +44,9 @@ class RegisterViewController: UIViewController {
                 Drop.down("Unable to register. Please try again.", state: .error)
             } else {
                 
-                if let accountViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Account") as? AccountViewController {
+                if let favoritesViewController = UIStoryboard(name: "Favorites", bundle: nil).instantiateViewController(withIdentifier: "Favorites") as? FavoritesViewController {
                     if let navigator = self.navigationController {
-                        navigator.pushViewController(accountViewController, animated: true)
+                        navigator.pushViewController(favoritesViewController, animated: true)
                     }
                 }
                 
