@@ -18,6 +18,8 @@ target 'UW Food App' do
   pod 'GooglePlaces'
   pod 'Font-Awesome-Swift'
   pod 'Cosmos', '~> 12.0'
+  pod 'Pulley'
+  pod 'Cards', '~> 1.3'
   pod 'ChameleonFramework'
 
   target 'UW Food AppTests' do

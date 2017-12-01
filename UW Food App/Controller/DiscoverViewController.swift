@@ -37,9 +37,16 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
     var locationDistanceText = ""
     var lastAddedMarker = GMSMarker()
     var userData = Restaurant(restaurantID: "", name: "", restaurantDescription: "", locationName: "", fullAddress: "", mapCoordinates: [""], category: "", averageRating: "", hours: ["" : ""], contact_name: "", contact_email: "", contact_phone: "", contact_website: "", relativeDistanceFromUserCurrentLocation: "", relativeDurationFromUserCurrentLocation: "")
+    var mapsPadding:UIEdgeInsets {
+        get {
+            return googleMaps.padding
+        }
+        set(newPadding) {
+            googleMaps.padding = newPadding
+        }
+    }
     
     @IBOutlet weak var googleMaps: GMSMapView!
-    @IBOutlet weak var dateLabelAsButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
     
     override func viewDidLoad() {
@@ -47,7 +54,6 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
         searchButton.setFAIcon(icon: .FASearch, iconSize: 25, forState: .normal)
         searchButton.setFATitleColor(color: UIColor.flatGray())
         initializeLocationManager()
-        getTodayDate()
         setGoogleMapFunctionalities()
         retrieveRestaurantsData()
     }
@@ -56,28 +62,19 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
         super.didReceiveMemoryWarning()
     }
     
-    func getTodayDate() {
-        let currentDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE, MMMM dd"
-        let convertedDate = dateFormatter.string(from: currentDate)
-        dateLabelAsButton.setTitle(String(convertedDate), for: .normal)
-        dateLabelAsButton.tintColor = UIColor.flatGray()
-    }
-    
     func setGoogleMapFunctionalities() {
         let camera = GMSCameraPosition.camera(withLatitude: defaultLocation[0], longitude: defaultLocation[1], zoom: 14.0)
         self.googleMaps.camera = camera
         self.googleMaps.delegate = self
         self.googleMaps?.isMyLocationEnabled = true
-        self.googleMaps.settings.myLocationButton = true
+        self.googleMaps.settings.myLocationButton = false
         self.googleMaps.settings.compassButton = true
         self.googleMaps.settings.zoomGestures = true
     }
 
-    @IBAction func searchButtonClicked(_ sender: Any) {
-        self.tabBarController?.selectedIndex = 1;   // Search tab is the index #1
-    }
+//    @IBAction func searchButtonClicked(_ sender: Any) {
+//        self.tabBarController?.selectedIndex = 1;   // Search tab is the index #1
+//    }
     
     func retrieveRestaurantsData() {
         let restaurantsDB = Database.database().reference().child("restaurants")

@@ -5,6 +5,8 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,11 +21,11 @@
             <objects>
                 <viewController storyboardIdentifier="Discover" title="Discover" id="uW0-UY-tUd" customClass="DiscoverViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f89-zC-aAN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etr-Ql-oad" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -59,7 +61,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="dateLabelAsButton" destination="ewM-B8-pVi" id="Evi-Fv-UF3"/>
                         <outlet property="googleMaps" destination="etr-Ql-oad" id="PiC-TB-IZC"/>
                         <outlet property="searchButton" destination="E8C-ju-Eud" id="ynR-kX-FEG"/>
                         <segue destination="JWO-Wk-PDE" kind="show" identifier="goToDetail" id="xzX-Ks-b6u"/>
@@ -67,18 +68,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rEy-fg-0co" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3189" y="-123"/>
+            <point key="canvasLocation" x="-2785" y="-305"/>
         </scene>
         <!--Master Detail View Controller-->
         <scene sceneID="ueU-s3-ECu">
             <objects>
                 <viewController storyboardIdentifier="MasterDetail" modalPresentationStyle="currentContext" id="JWO-Wk-PDE" customClass="MasterDetailViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="do9-sZ-tHr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oyp-72-v6W">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="DyX-Ix-ggI">
@@ -280,7 +281,7 @@
                                         <rect key="frame" x="0.0" y="345" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TF0-8T-5Qm" id="eYH-wC-yaO">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gEK-SF-TO6">
@@ -337,7 +338,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OGa-eT-YYu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2348" y="-125.4872563718141"/>
+            <point key="canvasLocation" x="-2058" y="-125"/>
         </scene>
         <!--DiscoverController-->
         <scene sceneID="nbo-O2-F2m">
@@ -351,12 +352,138 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="uW0-UY-tUd" kind="relationship" relationship="rootViewController" id="Rwe-fS-Cre"/>
+                        <segue destination="1NT-Q8-wtf" kind="relationship" relationship="rootViewController" id="3JF-oJ-SxF"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TMk-EG-I4y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3924" y="-124"/>
+        </scene>
+        <!--Discover-->
+        <scene sceneID="cLd-IS-3EA">
+            <objects>
+                <viewController title="Discover" id="1NT-Q8-wtf" customClass="DiscoverPulleyViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AGd-cM-ccQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2z-Nc-3R1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
+                                <connections>
+                                    <segue destination="uW0-UY-tUd" kind="embed" id="WcE-nJ-dqw"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OzI-g3-Zco">
+                                <rect key="frame" x="0.0" y="309" width="375" height="309"/>
+                                <connections>
+                                    <segue destination="AtK-Fj-UGt" kind="embed" id="XCc-FH-skt"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="top" secondItem="f2z-Nc-3R1" secondAttribute="top" id="DHF-uk-72N"/>
+                            <constraint firstItem="a5V-zQ-4w3" firstAttribute="trailing" secondItem="f2z-Nc-3R1" secondAttribute="trailing" id="Ins-E0-alv"/>
+                            <constraint firstItem="OzI-g3-Zco" firstAttribute="leading" secondItem="a5V-zQ-4w3" secondAttribute="leading" id="NfQ-WK-XZ7"/>
+                            <constraint firstItem="OzI-g3-Zco" firstAttribute="height" secondItem="f2z-Nc-3R1" secondAttribute="height" id="R2C-qV-Tgc"/>
+                            <constraint firstItem="a5V-zQ-4w3" firstAttribute="trailing" secondItem="OzI-g3-Zco" secondAttribute="trailing" id="XiS-Bz-NtV"/>
+                            <constraint firstItem="OzI-g3-Zco" firstAttribute="top" secondItem="f2z-Nc-3R1" secondAttribute="bottom" id="gQO-hc-hAk"/>
+                            <constraint firstItem="f2z-Nc-3R1" firstAttribute="leading" secondItem="a5V-zQ-4w3" secondAttribute="leading" id="l2O-y2-OHr"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="OzI-g3-Zco" secondAttribute="bottom" id="m9B-80-Esz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="a5V-zQ-4w3"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Discover" id="hFv-sW-iPJ">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="iLn-Ov-hEi">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9S4-IE-SqU">
+                                <rect key="frame" x="16" y="7" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" id="BIc-uK-y5e">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Yfp-L8-XuO">
+                                    <rect key="frame" x="313" y="7" width="46" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Button"/>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="1Pq-lZ-fat">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YZV-Rb-9mk">
+                                    <rect key="frame" x="259" y="7" width="46" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Button"/>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="cardView" destination="OzI-g3-Zco" id="sRd-dO-Hv0"/>
+                        <outlet property="drawerContentContainerView" destination="OzI-g3-Zco" id="uFe-xc-AB2"/>
+                        <outlet property="mapView" destination="f2z-Nc-3R1" id="Bnz-aJ-ol9"/>
+                        <outlet property="primaryContentContainerView" destination="f2z-Nc-3R1" id="SN4-Oi-2ah"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4KI-Xg-dCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3449" y="-128"/>
+        </scene>
+        <!--Discover Card View Controller-->
+        <scene sceneID="wuO-xG-QQv">
+            <objects>
+                <viewController id="AtK-Fj-UGt" customClass="DiscoverCardViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" id="kSu-ay-Oxw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="q3m-Ma-ZVj">
+                            <size key="itemSize" width="300" height="300"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="LocationCardCell" id="J1w-HS-hbI">
+                                <rect key="frame" x="37.5" y="0.0" width="300" height="300"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dkG-lo-FUU" customClass="Card" customModule="Cards">
+                                            <rect key="frame" x="15" y="15" width="270" height="270"/>
+                                        </view>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="dkG-lo-FUU" secondAttribute="trailing" constant="15" id="9sW-K6-SHZ"/>
+                                    <constraint firstItem="dkG-lo-FUU" firstAttribute="leading" secondItem="J1w-HS-hbI" secondAttribute="leading" constant="15" id="VHT-2O-jsh"/>
+                                    <constraint firstAttribute="bottom" secondItem="dkG-lo-FUU" secondAttribute="bottom" constant="15" id="WoT-2a-sBK"/>
+                                    <constraint firstItem="dkG-lo-FUU" firstAttribute="top" secondItem="J1w-HS-hbI" secondAttribute="top" constant="15" id="ZL1-me-hPC"/>
+                                </constraints>
+                            </collectionViewCell>
+                        </cells>
+                    </collectionView>
+                    <value key="contentSizeForViewInPopover" type="size" width="375" height="309"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VOj-mG-N8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2750" y="170"/>
         </scene>
     </scenes>
     <resources>
