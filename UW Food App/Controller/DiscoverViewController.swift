@@ -50,7 +50,6 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
         getTodayDate()
         setGoogleMapFunctionalities()
         retrieveRestaurantsData()
-//        initializeRestaurantsData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,6 +89,7 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
                 let locationName = dictionary["locationName"] as! String
                 let fullAddress = dictionary["fullAddress"] as! String
                 let category = dictionary["category"] as! String
+                let averageRating = dictionary["averageRating"] as! String
                 let latitude = dictionary["mapCoordinates"]!["latitude"] as! String
                 let longitude = dictionary["mapCoordinates"]!["longitude"] as! String
                 let contact_name = dictionary["contactInformation"]!["name"] as! String
@@ -103,7 +103,6 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
                 let hourFri = dictionary["hours"]!["fri"] as! String
                 let hourSat = dictionary["hours"]!["sat"] as! String
                 let hourSun = dictionary["hours"]!["sun"] as! String
-        
                 var hours: [String:String] = [:]
                 hours["mon"] = hourMon
                 hours["tues"] = hourTues
@@ -112,20 +111,22 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
                 hours["fri"] = hourFri
                 hours["sat"] = hourSat
                 hours["sun"] = hourSun
-    
                 let mapCoordinates = [latitude, longitude]
-                let averageRating = String(0.0)
     
-                let placesClient = GMSPlacesClient.shared()
-                placesClient.lookUpPlaceID(restaurantID, callback: { (place, error) -> Void in
-                    guard error != nil else {
-                        return
-                    }
-                    guard let place = place else {
-                        return
-                    }
-                    restaurantsData[restaurantID]?.updateRating(newRating: "\(place.rating)")
-                })
+                // MARK: - WE WILL MOVE THIS SOMEWHERE ELSE BECAUSE THE APP SHOULD HAVE THE RATING BEFOREHAND.
+//                let placesClient = GMSPlacesClient.shared()
+//                placesClient.lookUpPlaceID(restaurantID, callback: { (place, error) -> Void in
+//                    guard error != nil else {
+//                        return
+//                    }
+//                    guard let place = place else {
+//                        return
+//                    }
+//                    let restaurantDatabaseReference = Database.database().reference().child("restaurants/\(restaurantID)")
+//                    print(restaurantDatabaseReference.value(forKey: "averageRating"))
+//                    restaurantDatabaseReference.setValue(["averageRating":"\(place.rating)"])
+//                    restaurantsData[restaurantID]?.updateRating(newRating: "\(place.rating)")
+//                })
     
                 let restaurant = Restaurant(
                     restaurantID: restaurantID,
@@ -143,7 +144,6 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
                     contact_website: contact_website,
                     relativeDistanceFromUserCurrentLocation: "-",
                     relativeDurationFromUserCurrentLocation: "-")
-    
                 let todayDate = Date()
                 let calendar = Calendar.current
                 let day = calendar.component(.weekday, from: todayDate)
@@ -155,10 +155,12 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
                     longitude: Double(longitude)!,
                     title: name,
                     snippet: snippet)
-    
                 restaurantsData[restaurantID] = restaurant
             }
-        })
+        }) { (error) in
+            print("Error retrieving values")
+            Drop.down("Please check your Internet connection.", state: .error)
+        }
     }
     
 //    // Initializes the View by fetching and populating the map (marking a pin)
@@ -337,7 +339,6 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
             let latitude = String(location.coordinate.latitude)
             let longitude = String(location.coordinate.longitude)
             userOriginsLocation = "\(latitude),\(longitude)"
-            print(userOriginsLocation)
             setRelativeDistancesForEachRestaurant(userOriginsLocation: userOriginsLocation)
         }
     }
@@ -360,6 +361,7 @@ class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationMa
                     for currentElement in result["rows"][0]["elements"].arrayValue {
                         let status = currentElement["status"].string
                         if (status == "OK") {
+                            print("Status = \(status)")
                             let locationDistance = "\(currentElement["distance"]["text"].string ?? "")"
                             let locationDuration = "\(currentElement["duration"]["text"].string ?? "")"
                             restaurantsData[restaurantID]?.updateRelativeDistancesAndDuration(newDistance: locationDistance, newDuration: locationDuration)
