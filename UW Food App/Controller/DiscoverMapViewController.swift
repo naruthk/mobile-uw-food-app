@@ -21,7 +21,7 @@ import Firebase
 var restaurantsData = [String:Restaurant]()
 var favoritesItem = [Restaurant]()
 
-class DiscoverViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
+class DiscoverMapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
     // KEYS
     let GOOGLE_MAP_DISTANCE_MATRIX_API_KEY = "AIzaSyBCAhnvEa3vyHYp0A_mowFiqzjishhP-xQ"

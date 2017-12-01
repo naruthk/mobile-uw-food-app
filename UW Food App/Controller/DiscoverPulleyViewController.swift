@@ -14,7 +14,7 @@ class DiscoverPulleyViewController: PulleyViewController {
     @IBOutlet var mapView: UIView!
     @IBOutlet var cardView: UICollectionView!
     
-    var mapViewController: DiscoverViewController!
+    var mapViewController: DiscoverMapViewController!
     var cardViewController: DiscoverCardViewController!
     
     var initialPadding:UIEdgeInsets!
@@ -31,7 +31,7 @@ class DiscoverPulleyViewController: PulleyViewController {
         super.backgroundDimmingColor = .clear
         super.backgroundDimmingOpacity = CGFloat(0)
         super.drawerBackgroundVisualEffectView = nil
-        mapViewController = childViewControllers.first as? DiscoverViewController
+        mapViewController = childViewControllers.first as? DiscoverMapViewController
         cardViewController = childViewControllers.last as? DiscoverCardViewController
         
     }

@@ -15,7 +15,7 @@
 		1840B67C1FD13B5F00DFE84E /* MasterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B65D1FD13B5F00DFE84E /* MasterDetailViewController.swift */; };
 		1840B67D1FD13B5F00DFE84E /* InformationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B65E1FD13B5F00DFE84E /* InformationSection.swift */; };
 		1840B67E1FD13B5F00DFE84E /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B65F1FD13B5F00DFE84E /* ExpandableHeaderView.swift */; };
-		1840B67F1FD13B5F00DFE84E /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6601FD13B5F00DFE84E /* DiscoverViewController.swift */; };
+		1840B67F1FD13B5F00DFE84E /* DiscoverMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6601FD13B5F00DFE84E /* DiscoverMapViewController.swift */; };
 		1840B6801FD13B5F00DFE84E /* DiscoverPulleyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6611FD13B5F00DFE84E /* DiscoverPulleyViewController.swift */; };
 		1840B6821FD13B5F00DFE84E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6641FD13B5F00DFE84E /* LoginViewController.swift */; };
 		1840B6831FD13B5F00DFE84E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6651FD13B5F00DFE84E /* AccountViewController.swift */; };
@@ -65,7 +65,7 @@
 		1840B65D1FD13B5F00DFE84E /* MasterDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterDetailViewController.swift; sourceTree = "<group>"; };
 		1840B65E1FD13B5F00DFE84E /* InformationSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationSection.swift; sourceTree = "<group>"; };
 		1840B65F1FD13B5F00DFE84E /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
-		1840B6601FD13B5F00DFE84E /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		1840B6601FD13B5F00DFE84E /* DiscoverMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverMapViewController.swift; sourceTree = "<group>"; };
 		1840B6611FD13B5F00DFE84E /* DiscoverPulleyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverPulleyViewController.swift; sourceTree = "<group>"; };
 		1840B6641FD13B5F00DFE84E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1840B6651FD13B5F00DFE84E /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 				1840B65A1FD13B5F00DFE84E /* FavoritesViewController.swift */,
 				1840B65B1FD13B5F00DFE84E /* DiscoverCardViewController.swift */,
 				1840B65C1FD13B5F00DFE84E /* Master Detail */,
-				1840B6601FD13B5F00DFE84E /* DiscoverViewController.swift */,
+				1840B6601FD13B5F00DFE84E /* DiscoverMapViewController.swift */,
 				1840B6611FD13B5F00DFE84E /* DiscoverPulleyViewController.swift */,
 				1840B6631FD13B5F00DFE84E /* Account */,
 			);
@@ -592,7 +592,7 @@
 				1840B6861FD13B5F00DFE84E /* Menu.swift in Sources */,
 				1840B6841FD13B5F00DFE84E /* RegisterViewController.swift in Sources */,
 				1840B6871FD13B5F00DFE84E /* Restaurant.swift in Sources */,
-				1840B67F1FD13B5F00DFE84E /* DiscoverViewController.swift in Sources */,
+				1840B67F1FD13B5F00DFE84E /* DiscoverMapViewController.swift in Sources */,
 				1840B67D1FD13B5F00DFE84E /* InformationSection.swift in Sources */,
 				1840B68F1FD13B5F00DFE84E /* AppDelegate.swift in Sources */,
 				1840B6791FD13B5F00DFE84E /* SearchViewController.swift in Sources */,
