@@ -8,11 +8,14 @@
 
 import UIKit
 import Pulley
+import GoogleMaps
 
 class DiscoverPulleyViewController: PulleyViewController {
     
     @IBOutlet var mapView: UIView!
     @IBOutlet var cardView: UICollectionView!
+    @IBOutlet weak var dateLabelAsUIBarButtonItem: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
     
     var mapViewController: DiscoverMapViewController!
     var cardViewController: DiscoverCardViewController!
@@ -21,6 +24,18 @@ class DiscoverPulleyViewController: PulleyViewController {
     var userData:Restaurant! {
         didSet {
         }
+    }
+    
+    
+    @IBAction func goToMyLocation(_ sender: Any) {
+        if let location = mapViewController.locationManager.location {
+            let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 15)
+            mapViewController.googleMaps.camera = camera
+        }
+    }
+    
+    @IBAction func searchButtonClicked(_ sender: Any) {
+        self.tabBarController?.selectedIndex = 1;   // Search tab is the index #1
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,9 +53,8 @@ class DiscoverPulleyViewController: PulleyViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let _ = super.collapsedDrawerHeight(bottomSafeArea: CGFloat(300))
         // Do any additional setup after loading the view.
-                getTodayDate()
+        getTodayDate()
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,8 +67,7 @@ class DiscoverPulleyViewController: PulleyViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE, MMMM dd"
         let convertedDate = dateFormatter.string(from: currentDate)
-//        dateLabelAsButton.setTitle(String(convertedDate), for: .normal)
-//        dateLabelAsButton.tintColor = UIColor.flatGray()
+        dateLabelAsUIBarButtonItem.setTitle(convertedDate, for: .normal)
     }
     
     /*
