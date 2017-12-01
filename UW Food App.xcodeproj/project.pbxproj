@@ -23,9 +23,16 @@
 		8B3763BD1FC806BA00D45B87 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763BC1FC806BA00D45B87 /* Restaurant.swift */; };
 		8B3763C11FC809A400D45B87 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763C01FC809A400D45B87 /* Food.swift */; };
 		8B3763C31FC89B4100D45B87 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763C21FC89B4100D45B87 /* Menu.swift */; };
-		8B3763C71FCB54E600D45B87 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763C61FCB54E600D45B87 /* AuthenticationViewController.swift */; };
 		8B3763C91FCB597200D45B87 /* MasterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763C81FCB597200D45B87 /* MasterDetailViewController.swift */; };
+		8B6AACF51FCF3E6C00085A1A /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B6AACF41FCF3E6C00085A1A /* Discover.storyboard */; };
+		8B6AACF81FCF6FD200085A1A /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AACF71FCF6FD200085A1A /* FavoritesViewController.swift */; };
+		8B6AACFA1FCFF7E600085A1A /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B6AACF91FCFF7E600085A1A /* Favorites.storyboard */; };
 		8B891FAF1FCE485200D8DF37 /* InformationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B891FAE1FCE485200D8DF37 /* InformationSection.swift */; };
+		8B891FB11FCE9F8400D8DF37 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B891FB01FCE9F8400D8DF37 /* RegisterViewController.swift */; };
+		8B891FB31FCEAD8600D8DF37 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B891FB21FCEAD8600D8DF37 /* AccountViewController.swift */; };
+		8B891FB51FCEBEDB00D8DF37 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B891FB41FCEBEDB00D8DF37 /* LoginViewController.swift */; };
+		8B891FB71FCF262D00D8DF37 /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B891FB61FCF262D00D8DF37 /* Account.storyboard */; };
+		8B891FB91FCF37A800D8DF37 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B891FB81FCF37A800D8DF37 /* Search.storyboard */; };
 		8BC707841FCD4E16004E52B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BC707831FCD4E16004E52B1 /* GoogleService-Info.plist */; };
 		8BC707861FCD60C9004E52B1 /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC707851FCD60C9004E52B1 /* ExpandableHeaderView.swift */; };
 /* End PBXBuildFile section */
@@ -75,9 +82,16 @@
 		8B3763BC1FC806BA00D45B87 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		8B3763C01FC809A400D45B87 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		8B3763C21FC89B4100D45B87 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
-		8B3763C61FCB54E600D45B87 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		8B3763C81FCB597200D45B87 /* MasterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterDetailViewController.swift; sourceTree = "<group>"; };
+		8B6AACF41FCF3E6C00085A1A /* Discover.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
+		8B6AACF71FCF6FD200085A1A /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		8B6AACF91FCFF7E600085A1A /* Favorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
 		8B891FAE1FCE485200D8DF37 /* InformationSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationSection.swift; sourceTree = "<group>"; };
+		8B891FB01FCE9F8400D8DF37 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		8B891FB21FCEAD8600D8DF37 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		8B891FB41FCEBEDB00D8DF37 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8B891FB61FCF262D00D8DF37 /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
+		8B891FB81FCF37A800D8DF37 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		8BC707831FCD4E16004E52B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8BC707851FCD60C9004E52B1 /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
 		C99A0E70DA8B6AC732A5EE67 /* Pods-UW Food AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Food AppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UW Food AppTests/Pods-UW Food AppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -222,6 +236,12 @@
 		8B3763B81FC7DD9E00D45B87 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8B3763921FC7DCF500D45B87 /* LaunchScreen.storyboard */,
+				8B37638D1FC7DCF500D45B87 /* Main.storyboard */,
+				8B6AACF41FCF3E6C00085A1A /* Discover.storyboard */,
+				8B891FB81FCF37A800D8DF37 /* Search.storyboard */,
+				8B891FB61FCF262D00D8DF37 /* Account.storyboard */,
+				8B6AACF91FCFF7E600085A1A /* Favorites.storyboard */,
 				185950991FD11C89000B0B93 /* Card Views */,
 				185950951FD09F02000B0B93 /* Custom Layouts */,
 				1859508E1FCE6F1E000B0B93 /* Custom Views */,
@@ -234,24 +254,38 @@
 		8B3763B91FC7DDA600D45B87 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8B6AACFB1FD004ED00085A1A /* Account */,
+				8BC707781FCCA804004E52B1 /* Master Detail */,
+				8B37638B1FC7DCF500D45B87 /* DiscoverViewController.swift */,
 				8BC707781FCCA804004E52B1 /* MasterDetailView */,
 				8B3763C61FCB54E600D45B87 /* AuthenticationViewController.swift */,
 				8B37638B1FC7DCF500D45B87 /* DiscoverMapViewController.swift */,
 				185950931FCE8310000B0B93 /* DiscoverCardViewController.swift */,
 				8B3763BA1FC7FD3100D45B87 /* SearchViewController.swift */,
+				8B6AACF71FCF6FD200085A1A /* FavoritesViewController.swift */,
 				1859508F1FCE711A000B0B93 /* DiscoverPulleyViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		8BC707781FCCA804004E52B1 /* MasterDetailView */ = {
+		8B6AACFB1FD004ED00085A1A /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				8B891FB21FCEAD8600D8DF37 /* AccountViewController.swift */,
+				8B891FB01FCE9F8400D8DF37 /* RegisterViewController.swift */,
+				8B891FB41FCEBEDB00D8DF37 /* LoginViewController.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		8BC707781FCCA804004E52B1 /* Master Detail */ = {
 			isa = PBXGroup;
 			children = (
 				8B891FAE1FCE485200D8DF37 /* InformationSection.swift */,
 				8B3763C81FCB597200D45B87 /* MasterDetailViewController.swift */,
 				8BC707851FCD60C9004E52B1 /* ExpandableHeaderView.swift */,
 			);
-			path = MasterDetailView;
+			path = "Master Detail";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,7 +406,12 @@
 			files = (
 				8B3763941FC7DCF500D45B87 /* LaunchScreen.storyboard in Resources */,
 				8BC707841FCD4E16004E52B1 /* GoogleService-Info.plist in Resources */,
+				8B891FB71FCF262D00D8DF37 /* Account.storyboard in Resources */,
 				8B3763911FC7DCF500D45B87 /* Assets.xcassets in Resources */,
+				8B891FB91FCF37A800D8DF37 /* Search.storyboard in Resources */,
+				8B6AACF51FCF3E6C00085A1A /* Discover.storyboard in Resources */,
+				8B6AACFA1FCFF7E600085A1A /* Favorites.storyboard in Resources */,
+				8B37638F1FC7DCF500D45B87 /* Main.storyboard in Resources */,
 				1859508C1FCE49B4000B0B93 /* Temp.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -579,16 +618,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B3763C31FC89B4100D45B87 /* Menu.swift in Sources */,
+				8B891FB11FCE9F8400D8DF37 /* RegisterViewController.swift in Sources */,
+				8B6AACF81FCF6FD200085A1A /* FavoritesViewController.swift in Sources */,
+				8B891FB31FCEAD8600D8DF37 /* AccountViewController.swift in Sources */,
 				8B3763BD1FC806BA00D45B87 /* Restaurant.swift in Sources */,
 				185950941FCE8310000B0B93 /* DiscoverCardViewController.swift in Sources */,
 				8B37638C1FC7DCF500D45B87 /* DiscoverMapViewController.swift in Sources */,
 				8B3763C11FC809A400D45B87 /* Food.swift in Sources */,
-				8B3763C71FCB54E600D45B87 /* AuthenticationViewController.swift in Sources */,
 				8B3763C91FCB597200D45B87 /* MasterDetailViewController.swift in Sources */,
 				8B891FAF1FCE485200D8DF37 /* InformationSection.swift in Sources */,
 				8BC707861FCD60C9004E52B1 /* ExpandableHeaderView.swift in Sources */,
 				185950901FCE711A000B0B93 /* DiscoverPulleyViewController.swift in Sources */,
 				8B3763BB1FC7FD3100D45B87 /* SearchViewController.swift in Sources */,
+				8B891FB51FCEBEDB00D8DF37 /* LoginViewController.swift in Sources */,
 				8B37638A1FC7DCF500D45B87 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -752,6 +794,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 96CLFU9L83;
 				INFOPLIST_FILE = "UW Food App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.info449.UW-Food-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -768,6 +811,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96CLFU9L83;
 				INFOPLIST_FILE = "UW Food App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.info449.UW-Food-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";

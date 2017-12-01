@@ -669,6 +669,7 @@ SOFTWARE.</string>
 		</dict>
 		<dict>
 			<key>FooterText</key>
+<<<<<<< HEAD
 			<string>The MIT License (MIT)
 
 Copyright (c) 2014-present patrick piemonte (http://patrickpiemonte.com/)
@@ -748,6 +749,8 @@ A different license may apply to other resources included in this package, inclu
 		</dict>
 		<dict>
 			<key>FooterText</key>
+=======
+>>>>>>> master
 			<string>The MIT License (MIT)
 
 Copyright (c) 2015 Morita Naoki

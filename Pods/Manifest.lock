@@ -58,9 +58,12 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+<<<<<<< HEAD
   - Player (0.8.4)
   - Pulley (2.1.0)
   - SVProgressHUD (2.2.2)
+=======
+>>>>>>> master
   - SwiftyDrop (4.0.2)
   - SwiftyJSON (4.0.0)
 
@@ -75,8 +78,11 @@ DEPENDENCIES:
   - Font-Awesome-Swift
   - GoogleMaps
   - GooglePlaces
+<<<<<<< HEAD
   - Pulley
   - SVProgressHUD
+=======
+>>>>>>> master
   - SwiftyDrop (~> 4.0)
   - SwiftyJSON
 
@@ -98,6 +104,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
   leveldb-library: 4f9eedf84ab46b4fa3b7893bf30714b2a1a74022
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+<<<<<<< HEAD
   Player: e45514e9e5fb8ff18f50eb2ba6f84dac9b6a0024
   Pulley: 7abf04a13c0d4681b3c21a4b4bb0bc83612899ae
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
@@ -105,5 +112,11 @@ SPEC CHECKSUMS:
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
 PODFILE CHECKSUM: 4b23e7a5cfcbbfbc58afb6dfb7863f6a59f80552
+=======
+  SwiftyDrop: a497afbcf50f7882ac7637c8308baf07c5ed15e6
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+
+PODFILE CHECKSUM: 860512bbeaff33a134215ca0790220af36c12425
+>>>>>>> master
 
 COCOAPODS: 1.3.1

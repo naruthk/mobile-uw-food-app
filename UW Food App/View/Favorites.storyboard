@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Favorites-->
+        <scene sceneID="aTJ-Kx-MPg">
+            <objects>
+                <viewController storyboardIdentifier="Favorites" title="Favorites" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SMr-3T-TQI" customClass="FavoritesViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3oD-D3-EVb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZPR-sy-a6K">
+                                <rect key="frame" x="0.0" y="116" width="375" height="502"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ytd-Ax-xKj" firstAttribute="bottom" secondItem="ZPR-sy-a6K" secondAttribute="bottom" id="GVH-Bn-oub"/>
+                            <constraint firstItem="ZPR-sy-a6K" firstAttribute="top" secondItem="ytd-Ax-xKj" secondAttribute="top" id="SAd-Nr-2F3"/>
+                            <constraint firstItem="ZPR-sy-a6K" firstAttribute="leading" secondItem="ytd-Ax-xKj" secondAttribute="leading" id="b0X-A6-Bzi"/>
+                            <constraint firstItem="ytd-Ax-xKj" firstAttribute="trailing" secondItem="ZPR-sy-a6K" secondAttribute="trailing" id="p0b-YH-V1S"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ytd-Ax-xKj"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Favorites" id="soY-cj-YJh"/>
+                    <connections>
+                        <outlet property="tableView" destination="ZPR-sy-a6K" id="Dbo-1R-bih"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rAB-vN-kda" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-133.59999999999999" y="207.34632683658174"/>
+        </scene>
+        <!--FavoritesController-->
+        <scene sceneID="UHH-Th-yIx">
+            <objects>
+                <navigationController storyboardIdentifier="FavoritesController" title="FavoritesController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mdK-kL-isy" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="9by-74-Pw7"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="BsG-b5-wMO">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SMr-3T-TQI" kind="relationship" relationship="rootViewController" id="XPt-Je-D9L"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5VR-di-SCs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-831" y="207"/>
+        </scene>
+    </scenes>
+</document>

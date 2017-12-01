@@ -34,23 +34,20 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     var informationSections : [InformationSection] = []
     let colorForOverall : UIColor = UIColor.flatPurpleColorDark()
     
-    @IBOutlet weak var topHeroView: UIView!
-    @IBOutlet weak var restaurantTitleLabel: UILabel!
-    @IBOutlet weak var restaurantShortInformationLabel: UILabel!
-    @IBOutlet weak var addToFavoriteButton: UIButton!
-    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var ratingPanel: CosmosView!
-    @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var mapsButton: UIButton!
     @IBOutlet weak var websiteButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var restaurantCategory: UILabel!
+    @IBOutlet weak var restaurantHours: UILabel!
+    @IBOutlet weak var restaurantRatingLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableViewFunctionalities()
         setStatusBarColor()
-        setHeader()
         populateHeader()
         populateRating()
         populateButtons()
@@ -73,23 +70,17 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
         view.addSubview(statusBarView)
     }
     
-    func setHeader() {
-        topHeroView.backgroundColor = colorForOverall
-        addToFavoriteButton.setFAIcon(icon: .FABookmarkO, iconSize: 25, forState: .normal)
-    }
-    
     func populateHeader() {
-        restaurantTitleLabel.text = userData.name
+        self.title = userData.name
         let todayDate = Date()
         let calendar = Calendar.current
         let day = calendar.component(.weekday, from: todayDate)
         let dayValues = ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"]
         let category = String(userData.category).capitalized
+        restaurantCategory.text = category
         if (userData.hours[dayValues[day]] != nil) {
             let hoursOfOperationToday = userData.hours[dayValues[day]]
-            restaurantShortInformationLabel.text = "\(category) | Today's Hours: \(hoursOfOperationToday ?? "")"
-        } else {
-            restaurantShortInformationLabel.text = "\(category)"
+            restaurantHours.text = "\(hoursOfOperationToday ?? "")"
         }
     }
     
@@ -100,22 +91,30 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
         ratingPanel.settings.filledColor = UIColor.flatGray()
         ratingPanel.settings.emptyBorderColor = UIColor.flatGray()
         ratingPanel.settings.filledBorderColor = UIColor.flatGray()
-        ratingPanel.text = "\(userData.averageRating)"
+        restaurantRatingLabel.text = "\(userData.averageRating)"
     }
     
     func populateButtons() {
-        menuButton.setFAIcon(icon: .FABook, iconSize: 40, forState: .normal)
-        callButton.setFAIcon(icon: .FAPhone, iconSize: 40, forState: .normal)
-        mapsButton.setFAIcon(icon: .FAMap, iconSize: 40, forState: .normal)
-        websiteButton.setFAIcon(icon: .FALink, iconSize: 40, forState: .normal)
+        saveButton.setFAIcon(icon: .FAStar, iconSize: 30, forState: .normal)
+        callButton.setFAIcon(icon: .FAPhone, iconSize: 30, forState: .normal)
+        mapsButton.setFAIcon(icon: .FAMap, iconSize: 30, forState: .normal)
+        websiteButton.setFAIcon(icon: .FALink, iconSize: 30, forState: .normal)
     }
     
-    @IBAction func backToDiscoveryButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    @IBAction func revealInfoButtonPressed(_ sender: Any) {
+        if !userData.restaurantDescription.isEmpty && userData.restaurantDescription != "-" {
+            let infoAlert = UIAlertController(title: userData.name, message: userData.restaurantDescription, preferredStyle: UIAlertControllerStyle.alert)
+            infoAlert.addAction(UIAlertAction(title: "Close", style: .default, handler: { (action: UIAlertAction!) in
+                return
+            }))
+            self.present(infoAlert, animated: true, completion: nil)
+        } else {
+            Drop.down("More information not available.", state: .warning)
+        }
     }
     
-    @IBAction func addToFavoriteButton(_ sender: Any) {
-    
+    @IBAction func saveButton(_ sender: Any) {
+        favoritesItem.append(userData)
     }
     
     @IBAction func callPhoneNumber(_ sender: Any) {
@@ -129,12 +128,26 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func openMap(_ sender: Any) {
+        let errorMessage = "Unable to retrieve map data"
         let restaurantID = userData.restaurantID
         if !restaurantID.isEmpty && restaurantID.count > 3 {
-            let url = "https://www.google.com/maps/dir/?api=1&destination=WA&destination_place_id=\(restaurantID)&travelmode=walking"
-            UIApplication.shared.openURL(URL(string: url)!)
+            guard let url = URL(string: "https://www.google.com/maps/dir/?api=1&destination=WA&destination_place_id=\(restaurantID)&travelmode=walking") else {
+                Drop.down(errorMessage, state: .warning)
+                return
+            }
+            let leaveAppAlert = UIAlertController(title: "Leaving the application", message: "Are you sure you want to do so?", preferredStyle: UIAlertControllerStyle.alert)
+                
+            leaveAppAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in
+                return
+            }))
+            
+            leaveAppAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }))
+            
+            self.present(leaveAppAlert, animated: true, completion: nil)
         } else {
-            Drop.down("Unable to retrieve map data", state: .warning)
+            Drop.down(errorMessage, state: .warning)
         }
     }
     
@@ -142,7 +155,16 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
         let website = userData.contact_website
         if !website.isEmpty && website != "-" {
             let url = URL(string: website)
-            UIApplication.shared.open(url!)
+            let leaveAppAlert = UIAlertController(title: "Leaving the application", message: "Are you sure you want to do so?", preferredStyle: UIAlertControllerStyle.alert)
+            
+            leaveAppAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in
+                return
+            }))
+            
+            leaveAppAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+                UIApplication.shared.open(url!)
+            }))
+            self.present(leaveAppAlert, animated: true, completion: nil)
         } else {
             Drop.down("Unable to retrieve website.", state: .warning)
         }
