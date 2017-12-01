@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -361,17 +364,17 @@
             <objects>
                 <viewController title="Discover" id="1NT-Q8-wtf" customClass="DiscoverPulleyViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AGd-cM-ccQ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2z-Nc-3R1">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="275.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
                                 <connections>
                                     <segue destination="uW0-UY-tUd" kind="embed" id="WcE-nJ-dqw"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OzI-g3-Zco">
-                                <rect key="frame" x="0.0" y="275.5" width="600" height="275.5"/>
+                                <rect key="frame" x="0.0" y="309" width="375" height="309"/>
                                 <connections>
                                     <segue destination="AtK-Fj-UGt" kind="embed" id="XCc-FH-skt"/>
                                 </connections>
@@ -391,26 +394,32 @@
                         <viewLayoutGuide key="safeArea" id="a5V-zQ-4w3"/>
                     </view>
                     <navigationItem key="navigationItem" title="Discover" id="hFv-sW-iPJ">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="iLn-Ov-hEi">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9S4-IE-SqU">
-                                <rect key="frame" x="16" y="7" width="46" height="30"/>
+                        <barButtonItem key="leftBarButtonItem" enabled="NO" style="plain" id="iLn-Ov-hEi">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9S4-IE-SqU">
+                                <rect key="frame" x="16" y="7" width="42" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Today"/>
                             </button>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem style="plain" id="BIc-uK-y5e">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Yfp-L8-XuO">
-                                    <rect key="frame" x="313" y="7" width="46" height="30"/>
+                                    <rect key="frame" x="311" y="7" width="48" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Button"/>
+                                    <state key="normal" title="Search"/>
+                                    <connections>
+                                        <action selector="searchButtonClicked:" destination="1NT-Q8-wtf" eventType="touchUpInside" id="OuQ-MU-JG5"/>
+                                    </connections>
                                 </button>
                             </barButtonItem>
                             <barButtonItem style="plain" id="1Pq-lZ-fat">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YZV-Rb-9mk">
-                                    <rect key="frame" x="259" y="7" width="46" height="30"/>
+                                    <rect key="frame" x="219" y="7" width="84" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Button"/>
+                                    <state key="normal" title="My Location"/>
+                                    <connections>
+                                        <action selector="goToMyLocation:" destination="1NT-Q8-wtf" eventType="touchUpInside" id="AMY-Ev-0ZR"/>
+                                    </connections>
                                 </button>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -429,9 +438,11 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="cardView" destination="OzI-g3-Zco" id="sRd-dO-Hv0"/>
+                        <outlet property="dateLabelAsUIBarButtonItem" destination="9S4-IE-SqU" id="B76-ZI-G3V"/>
                         <outlet property="drawerContentContainerView" destination="OzI-g3-Zco" id="uFe-xc-AB2"/>
                         <outlet property="mapView" destination="f2z-Nc-3R1" id="Bnz-aJ-ol9"/>
                         <outlet property="primaryContentContainerView" destination="f2z-Nc-3R1" id="SN4-Oi-2ah"/>
+                        <outlet property="searchButton" destination="Yfp-L8-XuO" id="Sj9-rM-iFE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4KI-Xg-dCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
