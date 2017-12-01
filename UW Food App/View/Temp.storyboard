@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iiB-iE-Zmd">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -66,19 +62,19 @@
         <!--Discover-->
         <scene sceneID="FPJ-2a-31B">
             <objects>
-                <viewController title="Discover" id="FSX-68-WVU" customClass="DiscoverViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Discover" id="FSX-68-WVU" customClass="DiscoverPulleyViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TYL-aQ-hZb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWT-Oe-aSM">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="364.66666666666669"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="275.5"/>
                                 <connections>
                                     <segue destination="oWj-vu-Wqi" kind="embed" id="gkM-1j-cWy"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jvV-rA-BQy">
-                                <rect key="frame" x="0.0" y="364.66666666666674" width="375" height="364.33333333333326"/>
+                                <rect key="frame" x="0.0" y="275.5" width="600" height="275.5"/>
                                 <connections>
                                     <segue destination="t0h-QR-C4Z" kind="embed" id="cR4-M6-YyP"/>
                                 </connections>
@@ -233,7 +229,7 @@
             <objects>
                 <viewController id="t0h-QR-C4Z" customClass="DiscoverCardViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" id="CGf-9t-GTj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="364.33333333333331"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="364.33333333333326"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QtA-Wp-psL">
@@ -244,7 +240,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="LocationCardCell" id="nhg-Kg-m4c">
-                                <rect key="frame" x="37.666666666666664" y="0.0" width="300" height="300"/>
+                                <rect key="frame" x="37.5" y="0.0" width="300" height="300"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>

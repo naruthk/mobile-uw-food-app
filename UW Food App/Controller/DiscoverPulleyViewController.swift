@@ -9,7 +9,7 @@
 import UIKit
 import Pulley
 
-class DiscoverViewController: PulleyViewController {
+class DiscoverPulleyViewController: PulleyViewController {
     
     @IBOutlet var mapView: UIView!
     @IBOutlet var cardView: UICollectionView!

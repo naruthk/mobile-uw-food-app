@@ -102,7 +102,7 @@ extension DiscoverCardViewController: PulleyDrawerViewControllerDelegate {
     
     func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat)
     {
-        let discoverVC = parent as? DiscoverViewController
+        let discoverVC = parent as? DiscoverPulleyViewController
 
         // Set scrolling in card view
         if let cardVC = discoverVC?.cardViewController {
@@ -132,7 +132,7 @@ extension DiscoverCardViewController: PulleyDrawerViewControllerDelegate {
             }
         }
         
-        let discoverVC = parent as? DiscoverViewController
+        let discoverVC = parent as? DiscoverPulleyViewController
         
         // Set maps padding
         if let currentPadding = discoverVC?.mapViewController?.mapsPadding {

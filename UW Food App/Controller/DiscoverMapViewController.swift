@@ -189,7 +189,7 @@ class DiscoverMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let currentRestaurant = marker as GMSMarker
         // If the parent view controller is Discover, update its userData
-        if let parentVC = parent as? DiscoverViewController {
+        if let parentVC = parent as? DiscoverPulleyViewController {
             let userData = currentRestaurant.userData as! Restaurant
             parentVC.userData = userData
         }

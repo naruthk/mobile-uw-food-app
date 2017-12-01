@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		099D6363198F08E3CEDF03F2 /* Pods_UW_Food_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C394B865132160BAF33FCD /* Pods_UW_Food_AppTests.framework */; };
 		1859508C1FCE49B4000B0B93 /* Temp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1859508B1FCE49B4000B0B93 /* Temp.storyboard */; };
-		185950901FCE711A000B0B93 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859508F1FCE711A000B0B93 /* DiscoverViewController.swift */; };
+		185950901FCE711A000B0B93 /* DiscoverPulleyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859508F1FCE711A000B0B93 /* DiscoverPulleyViewController.swift */; };
 		185950941FCE8310000B0B93 /* DiscoverCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185950931FCE8310000B0B93 /* DiscoverCardViewController.swift */; };
 		1C5647E7583FA7AFA11A6EEB /* Pods_UW_Food_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FCB55720F179995255490E5 /* Pods_UW_Food_App.framework */; };
 		5FF36AC2B795DEFA27F3D31F /* Pods_UW_Food_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE0209E2D811D45A9EACD16 /* Pods_UW_Food_AppUITests.framework */; };
@@ -50,7 +50,7 @@
 /* Begin PBXFileReference section */
 		0658D48B618ADA0B9989D9B5 /* Pods-UW Food App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Food App.release.xcconfig"; path = "Pods/Target Support Files/Pods-UW Food App/Pods-UW Food App.release.xcconfig"; sourceTree = "<group>"; };
 		1859508B1FCE49B4000B0B93 /* Temp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Temp.storyboard; sourceTree = "<group>"; };
-		1859508F1FCE711A000B0B93 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		1859508F1FCE711A000B0B93 /* DiscoverPulleyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPulleyViewController.swift; sourceTree = "<group>"; };
 		185950931FCE8310000B0B93 /* DiscoverCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCardViewController.swift; sourceTree = "<group>"; };
 		19317581E64160285006363D /* Pods-UW Food App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Food App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UW Food App/Pods-UW Food App.debug.xcconfig"; sourceTree = "<group>"; };
 		252F1B2DEDD63E52B4822099 /* Pods-UW Food AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Food AppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UW Food AppUITests/Pods-UW Food AppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 				8B37638B1FC7DCF500D45B87 /* DiscoverMapViewController.swift */,
 				185950931FCE8310000B0B93 /* DiscoverCardViewController.swift */,
 				8B3763BA1FC7FD3100D45B87 /* SearchViewController.swift */,
-				1859508F1FCE711A000B0B93 /* DiscoverViewController.swift */,
+				1859508F1FCE711A000B0B93 /* DiscoverPulleyViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -587,7 +587,7 @@
 				8B3763C91FCB597200D45B87 /* MasterDetailViewController.swift in Sources */,
 				8B891FAF1FCE485200D8DF37 /* InformationSection.swift in Sources */,
 				8BC707861FCD60C9004E52B1 /* ExpandableHeaderView.swift in Sources */,
-				185950901FCE711A000B0B93 /* DiscoverViewController.swift in Sources */,
+				185950901FCE711A000B0B93 /* DiscoverPulleyViewController.swift in Sources */,
 				8B3763BB1FC7FD3100D45B87 /* SearchViewController.swift in Sources */,
 				8B37638A1FC7DCF500D45B87 /* AppDelegate.swift in Sources */,
 			);
