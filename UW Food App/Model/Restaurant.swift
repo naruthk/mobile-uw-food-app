@@ -66,6 +66,24 @@ class Restaurant {
         self.relativeDurationFromUserCurrentLocation = relativeDurationFromUserCurrentLocation
     }
     
+    init(value: String) {
+        self.restaurantID = value
+        self.name = value
+        self.restaurantDescription = value
+        self.locationName = value
+        self.fullAddress = value
+        self.mapCoordinates = [value]
+        self.category = value
+        self.averageRating = value
+        self.hours = [value:value]
+        self.contact_name = value
+        self.contact_email = value
+        self.contact_phone = value
+        self.contact_website = value
+        self.relativeDistanceFromUserCurrentLocation = value
+        self.relativeDurationFromUserCurrentLocation = value
+    }
+    
     func updateRelativeDistancesAndDuration(newDistance: String, newDuration: String) {
         self.relativeDistanceFromUserCurrentLocation = newDistance
         self.relativeDurationFromUserCurrentLocation = newDuration

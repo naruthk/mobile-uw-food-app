@@ -13,42 +13,70 @@ import SwiftyDrop
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    var indices: [String] = []
+    
+    var favoritesItemArray = [String]()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("Reloaded")
-        print("Data count: \(favoritesItem.count)")
-        indices = favoritesItem.keys.sorted()
-        self.tableView.reloadData()
+        retrieveFavorites()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    func retrieveFavorites() {
+        let user = Auth.auth().currentUser
+        if user != nil {
+            let usersRef = Database.database().reference().child("Users")
+            let currentUser = usersRef.child("\(user?.uid ?? "")")
+            let favoritesItem = currentUser.child("favorites")
+            favoritesItem.observe(.childAdded, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    let restaurantID = dictionary["restaurantID"] as! String
+                    if !self.favoritesItemArray.contains(restaurantID) {
+                        self.favoritesItemArray.append(restaurantID)
+                    }
+                    self.tableView.reloadData()
+                }
+            }) { (error) in
+                print("Error retrieving values")
+                Drop.down("Please check your Internet connection.", state: .error)
+            }
+        } else {
+            for (key, value) in favoritesItemDictionary {
+                if !self.favoritesItemArray.contains(key) {
+                    self.favoritesItemArray.append(key)
+                }
+            }
+        }
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favoritesItem.count
+        return favoritesItemArray.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
-        let userData = favoritesItem[indices[indexPath.row]]!
-        print(userData.description)
-        cell.textLabel?.text = userData.name
+        guard let restaurant = restaurantsData[favoritesItemArray[indexPath.row]] else {
+            return cell
+        }
+        cell.textLabel?.text = restaurant.name
         cell.textLabel?.adjustsFontSizeToFitWidth = true
-        cell.detailTextLabel?.text = String(userData.category).capitalized
+        cell.detailTextLabel?.text = String(restaurant.category).capitalized
         return cell
     }
-
+    
     /*
     // MARK: - Navigation
 

@@ -15,35 +15,22 @@ import Alamofire
 import SwiftyJSON
 import Firebase
 
-class MasterDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate {
+var favoritesItemDictionary = [String:Restaurant]()
 
-    // KEYS
+class MasterDetailViewController: UIViewController {
+    
     let GOOGLE_MAP_DISTANCE_MATRIX_API_KEY = "AIzaSyBCAhnvEa3vyHYp0A_mowFiqzjishhP-xQ"
     let GOOGLE_MAP_DISTANCE_URL = "https://maps.googleapis.com/maps/api/distancematrix/json"
 
-    var userData : Restaurant = Restaurant(
-        restaurantID: "-",
-        name: "-",
-        restaurantDescription: "-",
-        locationName: "-",
-        fullAddress: "-",
-        mapCoordinates: ["-"],
-        category: "-",
-        averageRating: "-",
-        hours: ["-":"-"],
-        contact_name: "-",
-        contact_email: "-",
-        contact_phone: "-",
-        contact_website: "-",
-        relativeDistanceFromUserCurrentLocation: "-",
-        relativeDurationFromUserCurrentLocation: "-")
-
+    var userData : Restaurant = Restaurant(value: "")
     var informationSections : [InformationSection] = []
     let colorForOverall : UIColor = UIColor.flatPurpleColorDark()
-    var isChecked = true
+    var isChecked = false
+    var userOriginalLocationParam = [Double]()
 
     @IBOutlet weak var ratingPanel: CosmosView!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var saveButtonLabel: UILabel!
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var mapsButton: UIButton!
     @IBOutlet weak var websiteButton: UIButton!
@@ -52,6 +39,10 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var restaurantHours: UILabel!
     @IBOutlet weak var restaurantRatingLabel: UILabel!
 
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableViewFunctionalities()
@@ -59,8 +50,7 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
         populateHeader()
         populateRating()
         populateButtons()
-        setRelativeDistancesForEachRestaurant(userOriginsLocation: userOriginsLocation)
-        self.tableView.reloadData()
+        setRelativeDistancesForEachRestaurant()
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,8 +59,6 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
 
     func setTableViewFunctionalities() {
         tableView.separatorStyle = .none
-        tableView.bounces = false
-        tableView.alwaysBounceVertical = false
     }
 
     func setStatusBarColor() {
@@ -105,6 +93,32 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func populateButtons() {
+        let user = Auth.auth().currentUser
+        if user != nil {
+            let usersRef = Database.database().reference().child("Users")
+            let currentUser = usersRef.child("\(user?.uid ?? "")")
+            let favoritesItem = currentUser.child("favorites")
+            favoritesItem.observe(.childAdded, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    let restaurantID = dictionary["restaurantID"] as! String
+                    if restaurantID == self.userData.restaurantID {
+                        self.saveButton.setFATitleColor(color: UIColor.flatGray())
+                        self.saveButtonLabel.text = "Unsaved"
+                    } else {
+                        self.saveButton.setFATitleColor(color: UIColor.init(red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0))
+                        self.saveButtonLabel.text = "Saved"
+                    }
+                }
+            }) { (error) in
+                print("Error retrieving values")
+            }
+        } else {
+            if favoritesItemDictionary.keys.contains(userData.restaurantID) {
+                self.saveButton.setFATitleColor(color: UIColor.flatGray())
+            } else {
+                self.saveButton.setFATitleColor(color: UIColor.init(red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0))
+            }
+        }
         saveButton.setFAIcon(icon: .FAStar, iconSize: 30, forState: .normal)
         callButton.setFAIcon(icon: .FAPhone, iconSize: 30, forState: .normal)
         mapsButton.setFAIcon(icon: .FAMap, iconSize: 30, forState: .normal)
@@ -124,30 +138,98 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     @IBAction func saveButton(_ sender: Any) {
-        isChecked = !isChecked
-        if !isChecked {
-            let user = Auth.auth().currentUser
-            if user != nil {
-                let usersRef = Database.database().reference().child("Users")
-                let currentUserRef = usersRef.child("\(user?.uid ?? "")")
-                let favoriteForThisUserRef = currentUserRef.child("favorites")
-                let dictionaryData = [
-                    "restaurantName" : userData.name,
-                    "restaurantID" : userData.restaurantID
-                ]
-                favoriteForThisUserRef.childByAutoId().setValue(dictionaryData)
-            }
-            favoritesItem[userData.restaurantID] = userData
-            print("Added to Favorites")
-            Drop.down("Added \(userData.name) to favorites!", state: .success)
-            saveButton.setFATitleColor(color: UIColor.flatGray())
-            saveButton.setFAIcon(icon: .FAStar, iconSize: 30, forState: .normal)
-        } else {
-            saveButton.setFATitleColor(color: UIColor.init(red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0))
-            saveButton.setFAIcon(icon: .FAStar, iconSize: 30, forState: .normal)
-            favoritesItem.removeValue(forKey: userData.restaurantID)
-            Drop.down("Removed \(userData.name) from favorites!", state: .success)
-        }
+//        let user = Auth.auth().currentUser
+//        if user != nil {
+//            let usersRef = Database.database().reference().child("Users")
+//            let currentUserRef = usersRef.child("\(user?.uid ?? "")")
+//            let favoritesItem = currentUserRef.child("favorites")
+//            if usersRef != nil {
+//                favoritesItem.observe(.childAdded, with: { (snapshot) in
+//                    if let dictionary = snapshot.value as? [String: AnyObject] {
+//                        let restaurantID = dictionary["restaurantID"] as! String
+//                        if restaurantID == self.userData.restaurantID {
+//                            self.saveButton.setFATitleColor(color: UIColor.init(red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0))
+//                            self.saveButtonLabel.text = "Saved"
+//                            favoritesItem.child(self.userData.restaurantID).removeValue { error, _ in
+//                                if error != nil {
+//                                    print("error \(error)")
+//                                } else {
+//                                    print("Removed from firebase too!")
+//                                    favoritesItemDictionary[self.userData.restaurantID] = nil
+//                                    Drop.down("Removed \(self.userData.name) from Favorites!", state: .success)
+//                                }
+//                            }
+//                        } else {
+//                            self.saveButton.setFATitleColor(color: UIColor.flatGray())
+//                            self.saveButtonLabel.text = "Unsaved"
+//                            let dictionaryData = [
+//                                "autoID" : favoritesItem.key,
+//                                "restaurantName" : self.userData.name,
+//                                "restaurantID" : self.userData.restaurantID
+//                            ]
+//                            favoritesItem.childByAutoId().setValue(dictionaryData)
+//                            favoritesItemDictionary[self.userData.restaurantID] = self.userData
+//                            print("Added to Favorites")
+//                            Drop.down("Added \(self.userData.name) to Favorites!", state: .success)
+//                        }
+//                    } else {
+//                        print("Fail")
+//                    }
+//                }) { (error) in
+//                    print("Error retrieving values")
+//                }
+//            } else {
+//                self.saveButton.setFATitleColor(color: UIColor.flatGray())
+//                self.saveButtonLabel.text = "Unsaved"
+//                let dictionaryData = [
+//                    "autoID" : favoritesItem.key,
+//                    "restaurantName" : self.userData.name,
+//                    "restaurantID" : self.userData.restaurantID
+//                ]
+//                favoritesItem.childByAutoId().setValue(dictionaryData)
+//                favoritesItemDictionary[self.userData.restaurantID] = self.userData
+//                print("Added to Favorites")
+//                Drop.down("Added \(self.userData.name) to Favorites!", state: .success)
+//            }
+//        }
+                
+//        isChecked = !isChecked
+//        if !isChecked {
+//            let user = Auth.auth().currentUser
+//            if user != nil {
+//                let usersRef = Database.database().reference().child("Users")
+//                let currentUserRef = usersRef.child("\(user?.uid ?? "")")
+//                let favoriteForThisUserRef = currentUserRef.child("favorites")
+//                let dictionaryData = [
+//                    "autoID" : favoriteForThisUserRef.key,
+//                    "restaurantName" : userData.name,
+//                    "restaurantID" : userData.restaurantID
+//                ]
+//                favoriteForThisUserRef.childByAutoId().setValue(dictionaryData)
+//            }
+//            favoritesItemDictionary[userData.restaurantID] = userData
+//            print("Added to Favorites")
+//            Drop.down("Added \(userData.name) to Favorites!", state: .success)
+//            saveButton.setFATitleColor(color: UIColor.flatGray())
+//        } else {
+//            let user = Auth.auth().currentUser
+//            if user != nil {
+//                let usersRef = Database.database().reference().child("Users")
+//                let currentUserRef = usersRef.child("\(user?.uid ?? "")")
+//                let favoriteForThisUserRef = currentUserRef.child("favorites")
+//                favoriteForThisUserRef.child(userData.restaurantID).removeValue { error, _ in
+//                    if error != nil {
+//                        print("error \(error)")
+//                    } else {
+//                        print("Removed from firebase too!")
+//                    }
+//                }
+//            }
+//            self.saveButton.setFATitleColor(color: UIColor.init(red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0))
+//            print("Removed from Favorites")
+//            favoritesItemDictionary[userData.restaurantID] = nil
+//            Drop.down("Removed \(userData.name) from Favorites!", state: .success)
+//        }
     }
 
     @IBAction func callPhoneNumber(_ sender: Any) {
@@ -203,16 +285,16 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
 
-    func setRelativeDistancesForEachRestaurant(userOriginsLocation: String) {
+    func setRelativeDistancesForEachRestaurant() {
+        let userOriginsLocation = "\(userOriginalLocationParam[0]),\(userOriginalLocationParam[1])"
         let restaurantID = userData.restaurantID
-        let latitude = userData.mapCoordinates[0]
-        let longitude = userData.mapCoordinates[1]
+        let destinationLatitude = userData.mapCoordinates[0]
+        let destionationLongitude = userData.mapCoordinates[1]
         let parameters : [String: String] = [
             "origins" : userOriginsLocation,
-            "destinations" : "\(latitude),\(longitude)",
+            "destinations" : "\(destinationLatitude),\(destionationLongitude)",
             "mode" : "walking",
             "key": GOOGLE_MAP_DISTANCE_MATRIX_API_KEY]
-
         Alamofire.request(GOOGLE_MAP_DISTANCE_URL, method: .get, parameters: parameters).responseJSON { response in
             if response.result.isSuccess {
                 print("Setting relative distance & duration")
@@ -232,7 +314,14 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
                 print("Error \(String(describing: response.result.error))")
             }
         }
+        DispatchQueue.main.async { [unowned self] in
+            self.tableView.reloadData()
+        }
     }
+    
+}
+
+extension MasterDetailViewController: UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return informationSections.count
