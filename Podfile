@@ -20,6 +20,7 @@ target 'UW Food App' do
   pod 'Font-Awesome-Swift'
   pod 'Cosmos', '~> 12.0'
   pod 'Pulley'
+  pod 'Cards', '~> 1.3'
 
   target 'UW Food AppTests' do
     inherit! :search_paths

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iiB-iE-Zmd">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -68,17 +68,17 @@
             <objects>
                 <viewController title="Discover" id="FSX-68-WVU" customClass="DiscoverViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TYL-aQ-hZb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWT-Oe-aSM">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="364.66666666666669"/>
                                 <connections>
                                     <segue destination="oWj-vu-Wqi" kind="embed" id="gkM-1j-cWy"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jvV-rA-BQy">
-                                <rect key="frame" x="0.0" y="309" width="375" height="309"/>
+                                <rect key="frame" x="0.0" y="364.66666666666674" width="375" height="364.33333333333326"/>
                                 <connections>
                                     <segue destination="t0h-QR-C4Z" kind="embed" id="cR4-M6-YyP"/>
                                 </connections>
@@ -99,6 +99,17 @@
                     </view>
                     <navigationItem key="navigationItem" title="Discover" id="NON-H7-HkP"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="cardView" destination="jvV-rA-BQy" id="2DW-zL-v57"/>
                         <outlet property="drawerContentContainerView" destination="jvV-rA-BQy" id="NMs-Qu-R4T"/>
@@ -117,7 +128,7 @@
                     <tabBarItem key="tabBarItem" title="Browse" id="y2Z-GM-Gnu"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="CqN-Mk-EaT">
-                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -136,7 +147,7 @@
                     <tabBarItem key="tabBarItem" title="Search" id="bFH-ms-c01"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="5jP-BX-HAs">
-                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -155,7 +166,7 @@
                     <tabBarItem key="tabBarItem" title="My Food" id="cBK-B2-h7L"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="IUy-wb-Qeo">
-                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -174,7 +185,7 @@
                     <tabBarItem key="tabBarItem" title="Discover" id="eTE-mK-o1A"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="UAm-ZI-3jD">
-                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -190,36 +201,76 @@
         <scene sceneID="j9f-Eg-RPS">
             <objects>
                 <viewController id="oWj-vu-Wqi" customClass="DiscoverMapViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YUY-JG-3mK" customClass="GMSMapView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
+                    <view key="view" contentMode="scaleToFill" id="YUY-JG-3mK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="364.66666666666669"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JFc-9Z-P6U" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="365"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <viewLayoutGuide key="safeArea" id="gbd-AH-Knm"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JFc-9Z-P6U" firstAttribute="top" secondItem="YUY-JG-3mK" secondAttribute="top" id="NJ8-02-9qs"/>
+                            <constraint firstItem="JFc-9Z-P6U" firstAttribute="leading" secondItem="YUY-JG-3mK" secondAttribute="leading" id="UAK-Nd-3mf"/>
+                            <constraint firstAttribute="trailing" secondItem="JFc-9Z-P6U" secondAttribute="trailing" id="ue1-eP-2OR"/>
+                            <constraint firstAttribute="bottom" secondItem="JFc-9Z-P6U" secondAttribute="bottom" id="ups-1Z-8eI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="AU2-ZK-GBb"/>
                     </view>
                     <connections>
-                        <outlet property="googleMaps" destination="YUY-JG-3mK" id="w59-Gg-73s"/>
+                        <outlet property="googleMaps" destination="JFc-9Z-P6U" id="MWx-at-npB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h42-Gs-q3g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2802" y="-1146"/>
+            <point key="canvasLocation" x="2417" y="-996"/>
         </scene>
         <!--Discover Card View Controller-->
         <scene sceneID="Vok-Qd-SKy">
             <objects>
                 <viewController id="t0h-QR-C4Z" customClass="DiscoverCardViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="JX2-fr-MDN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="YZW-Gm-kF7"/>
-                    </view>
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" id="CGf-9t-GTj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="364.33333333333331"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QtA-Wp-psL">
+                            <size key="itemSize" width="300" height="300"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="LocationCardCell" id="nhg-Kg-m4c">
+                                <rect key="frame" x="37.666666666666664" y="0.0" width="300" height="300"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7zZ-sP-qIN" customClass="Card" customModule="Cards">
+                                            <rect key="frame" x="15" y="15" width="270" height="270"/>
+                                        </view>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="7zZ-sP-qIN" firstAttribute="top" secondItem="nhg-Kg-m4c" secondAttribute="top" constant="15" id="2sf-Nk-W0x"/>
+                                    <constraint firstAttribute="bottom" secondItem="7zZ-sP-qIN" secondAttribute="bottom" constant="15" id="GYe-1F-x9K"/>
+                                    <constraint firstItem="7zZ-sP-qIN" firstAttribute="leading" secondItem="nhg-Kg-m4c" secondAttribute="leading" constant="15" id="Y9r-hh-PBo"/>
+                                    <constraint firstAttribute="trailing" secondItem="7zZ-sP-qIN" secondAttribute="trailing" constant="15" id="fJ1-qW-4gH"/>
+                                </constraints>
+                            </collectionViewCell>
+                        </cells>
+                    </collectionView>
                     <value key="contentSizeForViewInPopover" type="size" width="375" height="309"/>
                     <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="neS-iP-b4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2417" y="-632"/>
+            <point key="canvasLocation" x="2416.8000000000002" y="-632.51231527093603"/>
         </scene>
     </scenes>
 </document>

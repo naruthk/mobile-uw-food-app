@@ -33,6 +33,14 @@ class DiscoverMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     var userOriginsLocation = ""
     var locationDurationText = ""
     var locationDistanceText = ""
+    var mapsPadding:UIEdgeInsets {
+        get {
+            return googleMaps.padding
+        }
+        set(newPadding) {
+            googleMaps.padding = newPadding
+        }
+    }
     
     @IBOutlet weak var googleMaps: GMSMapView!
 //    @IBOutlet weak var todayDateLabel: UILabel!
@@ -49,7 +57,7 @@ class DiscoverMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
         self.googleMaps.camera = camera
         self.googleMaps.delegate = self
         self.googleMaps?.isMyLocationEnabled = true
-        self.googleMaps.settings.myLocationButton = true
+        self.googleMaps.settings.myLocationButton = false
         self.googleMaps.settings.compassButton = true
         self.googleMaps.settings.zoomGestures = true
         
@@ -177,6 +185,17 @@ class DiscoverMapViewController: UIViewController, GMSMapViewDelegate, CLLocatio
     }
     
     // MARK: - GMSMapViewDelegate
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        let currentRestaurant = marker as GMSMarker
+        // If the parent view controller is Discover, update its userData
+        if let parentVC = parent as? DiscoverViewController {
+            let userData = currentRestaurant.userData as! Restaurant
+            parentVC.userData = userData
+        }
+        // Bool to NOT let the default delegate to carry it's task
+        return false
+    }
     
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         let currentRestaurant = marker as GMSMarker

@@ -118,6 +118,20 @@
 			path = "Custom Views";
 			sourceTree = "<group>";
 		};
+		185950951FD09F02000B0B93 /* Custom Layouts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Custom Layouts";
+			sourceTree = "<group>";
+		};
+		185950991FD11C89000B0B93 /* Card Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Card Views";
+			sourceTree = "<group>";
+		};
 		4196DE48FEBA9CE62C12BDE9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +222,8 @@
 		8B3763B81FC7DD9E00D45B87 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				185950991FD11C89000B0B93 /* Card Views */,
+				185950951FD09F02000B0B93 /* Custom Layouts */,
 				1859508E1FCE6F1E000B0B93 /* Custom Views */,
 				8B3763921FC7DCF500D45B87 /* LaunchScreen.storyboard */,
 				1859508B1FCE49B4000B0B93 /* Temp.storyboard */,
@@ -450,11 +466,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-UW Food App/Pods-UW Food App-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Cards/Cards.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/Font-Awesome-Swift/Font_Awesome_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Player/Player.framework",
 				"${BUILT_PRODUCTS_DIR}/Pulley/Pulley.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyDrop/SwiftyDrop.framework",
@@ -465,11 +483,13 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cards.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Font_Awesome_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Player.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pulley.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyDrop.framework",
@@ -729,6 +749,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 96CLFU9L83;
 				INFOPLIST_FILE = "UW Food App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

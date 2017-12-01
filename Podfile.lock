@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.5.1)
+  - Cards (1.3.0):
+    - Player
   - ChameleonFramework (2.1.0):
     - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
@@ -56,6 +58,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - Player (0.8.4)
   - Pulley (2.1.0)
   - SVProgressHUD (2.2.2)
   - SwiftyDrop (4.0.2)
@@ -63,6 +66,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Cards (~> 1.3)
   - ChameleonFramework
   - Cosmos (~> 12.0)
   - Firebase
@@ -71,13 +75,14 @@ DEPENDENCIES:
   - Font-Awesome-Swift
   - GoogleMaps
   - GooglePlaces
-  - Pulley (~> 2.1)
+  - Pulley
   - SVProgressHUD
   - SwiftyDrop (~> 4.0)
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Cards: 40bd9052b7ffca2ff621ed282fe596c474af80c8
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Cosmos: 4a9f57998a08788a1062c7b8eefbc62d2b590f39
   Firebase: 27321a925aa85520618255a7c630859e0502ccbd
@@ -93,11 +98,12 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
   leveldb-library: 4f9eedf84ab46b4fa3b7893bf30714b2a1a74022
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Player: e45514e9e5fb8ff18f50eb2ba6f84dac9b6a0024
   Pulley: 7abf04a13c0d4681b3c21a4b4bb0bc83612899ae
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
   SwiftyDrop: a497afbcf50f7882ac7637c8308baf07c5ed15e6
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 7dff19c63fb745ae89a64f0ccbda4f1d795a8f92
+PODFILE CHECKSUM: 4b23e7a5cfcbbfbc58afb6dfb7863f6a59f80552
 
 COCOAPODS: 1.3.1
