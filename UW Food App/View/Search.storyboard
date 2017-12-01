@@ -36,26 +36,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lightbulb" translatesAutoresizingMaskIntoConstraints="NO" id="n5z-PV-Obz">
-                                <rect key="frame" x="123.5" y="166" width="128" height="128"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on the search bar at the top to look up restaurants" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAA-9A-DhN">
-                                <rect key="frame" x="62.5" y="334" width="250" height="50"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="EBZ-MI-qfg">
+                                <rect key="frame" x="87.5" y="234" width="200" height="200"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lightbulb" translatesAutoresizingMaskIntoConstraints="NO" id="n5z-PV-Obz">
+                                        <rect key="frame" x="36" y="0.0" width="128" height="100"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDW-64-p5K">
+                                        <rect key="frame" x="0.0" y="100" width="200" height="100"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on the search bar at the top to look up restaurants" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAA-9A-DhN">
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="UAA-9A-DhN" secondAttribute="trailing" id="BoC-9B-exB"/>
+                                            <constraint firstItem="UAA-9A-DhN" firstAttribute="top" secondItem="KDW-64-p5K" secondAttribute="top" id="Q9n-IC-CZh"/>
+                                            <constraint firstItem="UAA-9A-DhN" firstAttribute="leading" secondItem="KDW-64-p5K" secondAttribute="leading" id="n7N-cT-toA"/>
+                                            <constraint firstAttribute="bottom" secondItem="UAA-9A-DhN" secondAttribute="bottom" id="yCv-ft-gK3"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="a8F-dd-Wbk"/>
-                                    <constraint firstAttribute="height" constant="50" id="feU-Mp-CIl"/>
+                                    <constraint firstAttribute="width" constant="200" id="RYs-nq-5hp"/>
+                                    <constraint firstAttribute="height" constant="200" id="hpJ-df-bTM"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="n5z-PV-Obz" firstAttribute="top" secondItem="JY7-Pg-vDq" secondAttribute="top" constant="50" id="FrD-h6-YHK"/>
-                            <constraint firstItem="UAA-9A-DhN" firstAttribute="centerX" secondItem="Aag-q6-1zV" secondAttribute="centerX" id="RjO-y7-T6r"/>
-                            <constraint firstItem="n5z-PV-Obz" firstAttribute="centerX" secondItem="Aag-q6-1zV" secondAttribute="centerX" id="Zbp-iP-get"/>
-                            <constraint firstItem="UAA-9A-DhN" firstAttribute="top" secondItem="n5z-PV-Obz" secondAttribute="bottom" constant="40" id="ubh-li-FTn"/>
+                            <constraint firstItem="EBZ-MI-qfg" firstAttribute="centerX" secondItem="Aag-q6-1zV" secondAttribute="centerX" id="foH-vO-IMV"/>
+                            <constraint firstItem="EBZ-MI-qfg" firstAttribute="centerY" secondItem="Aag-q6-1zV" secondAttribute="centerY" id="oDI-gQ-VDa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JY7-Pg-vDq"/>
                     </view>
@@ -63,7 +78,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4l-Ta-Sct" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1487" y="-809"/>
+            <point key="canvasLocation" x="-1487.2" y="-809.14542728635683"/>
         </scene>
     </scenes>
     <resources>

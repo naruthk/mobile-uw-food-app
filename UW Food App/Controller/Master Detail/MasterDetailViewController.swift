@@ -11,8 +11,15 @@ import ChameleonFramework
 import Font_Awesome_Swift
 import Cosmos
 import SwiftyDrop
+import Alamofire
+import SwiftyJSON
+import Firebase
 
 class MasterDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate {
+
+    // KEYS
+    let GOOGLE_MAP_DISTANCE_MATRIX_API_KEY = "AIzaSyBCAhnvEa3vyHYp0A_mowFiqzjishhP-xQ"
+    let GOOGLE_MAP_DISTANCE_URL = "https://maps.googleapis.com/maps/api/distancematrix/json"
 
     var userData : Restaurant = Restaurant(
         restaurantID: "-",
@@ -30,10 +37,11 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
         contact_website: "-",
         relativeDistanceFromUserCurrentLocation: "-",
         relativeDurationFromUserCurrentLocation: "-")
-    
+
     var informationSections : [InformationSection] = []
     let colorForOverall : UIColor = UIColor.flatPurpleColorDark()
-    
+    var isChecked = true
+
     @IBOutlet weak var ratingPanel: CosmosView!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var callButton: UIButton!
@@ -43,7 +51,7 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var restaurantCategory: UILabel!
     @IBOutlet weak var restaurantHours: UILabel!
     @IBOutlet weak var restaurantRatingLabel: UILabel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableViewFunctionalities()
@@ -51,25 +59,27 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
         populateHeader()
         populateRating()
         populateButtons()
+        setRelativeDistancesForEachRestaurant(userOriginsLocation: userOriginsLocation)
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     func setTableViewFunctionalities() {
         tableView.separatorStyle = .none
         tableView.bounces = false
         tableView.alwaysBounceVertical = false
     }
-    
+
     func setStatusBarColor() {
         let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
         let statusBarColor = colorForOverall
         statusBarView.backgroundColor = statusBarColor
         view.addSubview(statusBarView)
     }
-    
+
     func populateHeader() {
         self.title = userData.name
         let todayDate = Date()
@@ -83,7 +93,7 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
             restaurantHours.text = "\(hoursOfOperationToday ?? "")"
         }
     }
-    
+
     func populateRating() {
         ratingPanel.rating = Double(userData.averageRating)!
         ratingPanel.settings.updateOnTouch = false
@@ -93,14 +103,14 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
         ratingPanel.settings.filledBorderColor = UIColor.flatGray()
         restaurantRatingLabel.text = "\(userData.averageRating)"
     }
-    
+
     func populateButtons() {
         saveButton.setFAIcon(icon: .FAStar, iconSize: 30, forState: .normal)
         callButton.setFAIcon(icon: .FAPhone, iconSize: 30, forState: .normal)
         mapsButton.setFAIcon(icon: .FAMap, iconSize: 30, forState: .normal)
         websiteButton.setFAIcon(icon: .FALink, iconSize: 30, forState: .normal)
     }
-    
+
     @IBAction func revealInfoButtonPressed(_ sender: Any) {
         if !userData.restaurantDescription.isEmpty && userData.restaurantDescription != "-" {
             let infoAlert = UIAlertController(title: userData.name, message: userData.restaurantDescription, preferredStyle: UIAlertControllerStyle.alert)
@@ -112,11 +122,34 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
             Drop.down("More information not available.", state: .warning)
         }
     }
-    
+
     @IBAction func saveButton(_ sender: Any) {
-        favoritesItem.append(userData)
+        isChecked = !isChecked
+        if !isChecked {
+            let user = Auth.auth().currentUser
+            if user != nil {
+                let usersRef = Database.database().reference().child("Users")
+                let currentUserRef = usersRef.child("\(user?.uid ?? "")")
+                let favoriteForThisUserRef = currentUserRef.child("favorites")
+                let dictionaryData = [
+                    "restaurantName" : userData.name,
+                    "restaurantID" : userData.restaurantID
+                ]
+                favoriteForThisUserRef.childByAutoId().setValue(dictionaryData)
+            }
+            favoritesItem[userData.restaurantID] = userData
+            print("Added to Favorites")
+            Drop.down("Added \(userData.name) to favorites!", state: .success)
+            saveButton.setFATitleColor(color: UIColor.flatGray())
+            saveButton.setFAIcon(icon: .FAStar, iconSize: 30, forState: .normal)
+        } else {
+            saveButton.setFATitleColor(color: UIColor.init(red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0))
+            saveButton.setFAIcon(icon: .FAStar, iconSize: 30, forState: .normal)
+            favoritesItem.removeValue(forKey: userData.restaurantID)
+            Drop.down("Removed \(userData.name) from favorites!", state: .success)
+        }
     }
-    
+
     @IBAction func callPhoneNumber(_ sender: Any) {
         let call = userData.contact_phone
         if !call.isEmpty && call != "-" {
@@ -126,7 +159,7 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
             Drop.down("Unable to retrieve phone number.", state: .warning)
         }
     }
-    
+
     @IBAction func openMap(_ sender: Any) {
         let errorMessage = "Unable to retrieve map data"
         let restaurantID = userData.restaurantID
@@ -136,31 +169,31 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
                 return
             }
             let leaveAppAlert = UIAlertController(title: "Leaving the application", message: "Are you sure you want to do so?", preferredStyle: UIAlertControllerStyle.alert)
-                
+
             leaveAppAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in
                 return
             }))
-            
+
             leaveAppAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }))
-            
+
             self.present(leaveAppAlert, animated: true, completion: nil)
         } else {
             Drop.down(errorMessage, state: .warning)
         }
     }
-    
+
     @IBAction func openWebsite(_ sender: Any) {
         let website = userData.contact_website
         if !website.isEmpty && website != "-" {
             let url = URL(string: website)
             let leaveAppAlert = UIAlertController(title: "Leaving the application", message: "Are you sure you want to do so?", preferredStyle: UIAlertControllerStyle.alert)
-            
+
             leaveAppAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in
                 return
             }))
-            
+
             leaveAppAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
                 UIApplication.shared.open(url!)
             }))
@@ -169,19 +202,50 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
             Drop.down("Unable to retrieve website.", state: .warning)
         }
     }
-    
+
+    func setRelativeDistancesForEachRestaurant(userOriginsLocation: String) {
+        let restaurantID = userData.restaurantID
+        let latitude = userData.mapCoordinates[0]
+        let longitude = userData.mapCoordinates[1]
+        let parameters : [String: String] = [
+            "origins" : userOriginsLocation,
+            "destinations" : "\(latitude),\(longitude)",
+            "mode" : "walking",
+            "key": GOOGLE_MAP_DISTANCE_MATRIX_API_KEY]
+
+        Alamofire.request(GOOGLE_MAP_DISTANCE_URL, method: .get, parameters: parameters).responseJSON { response in
+            if response.result.isSuccess {
+                print("Setting relative distance & duration")
+                let result : JSON = JSON(response.result.value!)
+                for currentElement in result["rows"][0]["elements"].arrayValue {
+                    let status = currentElement["status"].string
+                    if (status == "OK") {
+                        let locationDistance = "\(currentElement["distance"]["text"].string ?? "")"
+                        let locationDuration = "\(currentElement["duration"]["text"].string ?? "")"
+                        print("\(locationDistance), \(locationDuration)")
+                        self.userData.relativeDistanceFromUserCurrentLocation = locationDistance
+                        self.userData.relativeDurationFromUserCurrentLocation = locationDuration
+                        restaurantsData[restaurantID]?.updateRelativeDistancesAndDuration(newDistance: locationDistance, newDuration: locationDuration)
+                    }
+                }
+            } else {
+                print("Error \(String(describing: response.result.error))")
+            }
+        }
+    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return informationSections.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return informationSections[section].dataDetails.count
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (informationSections[indexPath.section].expanded) {
             return 30
@@ -189,11 +253,11 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
             return 0
         }
     }
-    
+
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 2
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = ExpandableHeaderView()
         header.customInit(
@@ -203,7 +267,7 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
             delegate: self)
         return header
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
         cell.textLabel?.text = informationSections[indexPath.section].dataTitles[indexPath.row]
@@ -211,7 +275,7 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
         cell.detailTextLabel?.text = informationSections[indexPath.section].dataDetails[indexPath.row]
         return cell
     }
-    
+
     func toggleSection(header: ExpandableHeaderView, section: Int) {
         informationSections[section].expanded = !informationSections[section].expanded
         tableView.beginUpdates()
@@ -222,3 +286,4 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
 
 }
+

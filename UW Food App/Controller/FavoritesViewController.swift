@@ -10,35 +10,44 @@ import UIKit
 import Firebase
 import SwiftyDrop
 
-class FavoritesViewController: UIViewController {
+class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    var indices: [String] = []
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("Reloaded")
+        print("Data count: \(favoritesItem.count)")
+        indices = favoritesItem.keys.sorted()
+        self.tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // TODO:
-        // 1. If the user has not logged in, then the Right button should display "Login". Vice versa.
-        // 2. If the user has already logged in, then the Left button should be hidden.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-//    @IBAction func logoutButtonPressed(_ sender: Any) {
-//        do {
-//            try Auth.auth().signOut()
-//            Drop.down("You've successfuly logged out.", state: .success)
-//            self.tabBarController?.selectedIndex = 0;   // Go back to Discover tab
-//        }
-//        catch {
-//            print("Unable to logout")
-//            Drop.down("Detecting network problem. Unable to logout.", state: .error)
-//        }
-//    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return favoritesItem.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
+        let userData = favoritesItem[indices[indexPath.row]]!
+        print(userData.description)
+        cell.textLabel?.text = userData.name
+        cell.textLabel?.adjustsFontSizeToFitWidth = true
+        cell.detailTextLabel?.text = String(userData.category).capitalized
+        return cell
+    }
 
     /*
     // MARK: - Navigation
