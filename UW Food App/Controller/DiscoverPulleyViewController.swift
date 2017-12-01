@@ -14,7 +14,7 @@ class DiscoverPulleyViewController: PulleyViewController {
     @IBOutlet var mapView: UIView!
     @IBOutlet var cardView: UICollectionView!
     
-    var mapViewController: DiscoverMapViewController!
+    var mapViewController: DiscoverViewController!
     var cardViewController: DiscoverCardViewController!
     
     var initialPadding:UIEdgeInsets!
@@ -31,7 +31,7 @@ class DiscoverPulleyViewController: PulleyViewController {
         super.backgroundDimmingColor = .clear
         super.backgroundDimmingOpacity = CGFloat(0)
         super.drawerBackgroundVisualEffectView = nil
-        mapViewController = childViewControllers.first as? DiscoverMapViewController
+        mapViewController = childViewControllers.first as? DiscoverViewController
         cardViewController = childViewControllers.last as? DiscoverCardViewController
         
     }
@@ -40,6 +40,7 @@ class DiscoverPulleyViewController: PulleyViewController {
         super.viewDidLoad()
         let _ = super.collapsedDrawerHeight(bottomSafeArea: CGFloat(300))
         // Do any additional setup after loading the view.
+                getTodayDate()
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,6 +48,14 @@ class DiscoverPulleyViewController: PulleyViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func getTodayDate() {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMMM dd"
+        let convertedDate = dateFormatter.string(from: currentDate)
+//        dateLabelAsButton.setTitle(String(convertedDate), for: .normal)
+//        dateLabelAsButton.tintColor = UIColor.flatGray()
+    }
     
     /*
      // MARK: - Navigation
