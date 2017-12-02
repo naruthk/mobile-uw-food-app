@@ -1,5 +1,5 @@
 //
-//  MapViewController.swift
+//  SearchViewController.swift
 //  UW Food App
 //
 //  Created by Naruth Kongurai on 11/23/17.
