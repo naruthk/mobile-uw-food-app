@@ -53,6 +53,7 @@ class DiscoverPulleyViewController: PulleyViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        parent?.navigationController?.navigationBar.isTranslucent = true
         // Do any additional setup after loading the view.
         getTodayDate()
     }

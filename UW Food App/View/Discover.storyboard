@@ -31,13 +31,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="etr-Ql-oad" firstAttribute="leading" secondItem="YVE-X9-LDi" secondAttribute="leading" id="SXE-6C-lf8"/>
-                            <constraint firstItem="etr-Ql-oad" firstAttribute="top" secondItem="YVE-X9-LDi" secondAttribute="top" id="XqG-KN-Wfi"/>
-                            <constraint firstItem="etr-Ql-oad" firstAttribute="leading" secondItem="YVE-X9-LDi" secondAttribute="leading" id="Zpb-e5-qqJ"/>
-                            <constraint firstItem="YVE-X9-LDi" firstAttribute="bottom" secondItem="etr-Ql-oad" secondAttribute="bottom" id="b88-07-8CC"/>
-                            <constraint firstItem="etr-Ql-oad" firstAttribute="bottom" secondItem="YVE-X9-LDi" secondAttribute="bottom" id="eJb-kz-iuj"/>
-                            <constraint firstItem="YVE-X9-LDi" firstAttribute="trailing" secondItem="etr-Ql-oad" secondAttribute="trailing" id="jkl-dM-lus"/>
-                            <constraint firstItem="etr-Ql-oad" firstAttribute="trailing" secondItem="YVE-X9-LDi" secondAttribute="trailing" id="qdV-X7-xYd"/>
+                            <constraint firstItem="etr-Ql-oad" firstAttribute="leading" secondItem="f89-zC-aAN" secondAttribute="leading" id="59Z-O3-Ns5"/>
+                            <constraint firstItem="etr-Ql-oad" firstAttribute="top" secondItem="f89-zC-aAN" secondAttribute="top" id="VRm-XF-Zzm"/>
+                            <constraint firstAttribute="bottom" secondItem="etr-Ql-oad" secondAttribute="bottom" id="fLP-9y-vtU"/>
+                            <constraint firstAttribute="trailing" secondItem="etr-Ql-oad" secondAttribute="trailing" id="noC-IJ-59i"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YVE-X9-LDi"/>
                     </view>
@@ -68,7 +65,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rEy-fg-0co" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2785" y="-305"/>
+            <point key="canvasLocation" x="-2447.1999999999998" y="-305.39730134932535"/>
         </scene>
         <!--Master Detail View Controller-->
         <scene sceneID="ueU-s3-ECu">
@@ -338,26 +335,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OGa-eT-YYu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2058" y="-125"/>
-        </scene>
-        <!--DiscoverController-->
-        <scene sceneID="nbo-O2-F2m">
-            <objects>
-                <navigationController storyboardIdentifier="DiscoverController" title="DiscoverController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="C2U-Lp-t0N" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Discover" image="Sample-LocationIcon" id="lRu-s7-a9f"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="w28-Qb-O3h">
-                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="1NT-Q8-wtf" kind="relationship" relationship="rootViewController" id="3JF-oJ-SxF"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TMk-EG-I4y" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3924" y="-124"/>
+            <point key="canvasLocation" x="-1719.2" y="-125.4872563718141"/>
         </scene>
         <!--Discover-->
         <scene sceneID="cLd-IS-3EA">
@@ -447,7 +425,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4KI-Xg-dCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3449" y="-128"/>
+            <point key="canvasLocation" x="-3217" y="-128"/>
         </scene>
         <!--Discover Card View Controller-->
         <scene sceneID="wuO-xG-QQv">
@@ -491,10 +469,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VOj-mG-N8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2750" y="170"/>
+            <point key="canvasLocation" x="-2412" y="169.56521739130437"/>
+        </scene>
+        <!--Discover-->
+        <scene sceneID="zJb-91-cgT">
+            <objects>
+                <navigationController storyboardIdentifier="DiscoverController" title="Discover" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2FV-hv-RTq" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="znK-6r-jlK">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1NT-Q8-wtf" kind="relationship" relationship="rootViewController" id="ByS-3A-8hT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zXE-vO-ANm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4006" y="-128"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Sample-LocationIcon" width="29" height="29"/>
-    </resources>
 </document>

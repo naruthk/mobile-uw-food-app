@@ -31,10 +31,10 @@
         <!--DiscoverController-->
         <scene sceneID="ufF-2R-dCL">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dJq-P5-goE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="DiscoverController" id="2IX-gt-x4M" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Discover" image="default_marker.png" id="IPw-hU-KyS"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dJq-P5-goE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3096" y="-231"/>
         </scene>

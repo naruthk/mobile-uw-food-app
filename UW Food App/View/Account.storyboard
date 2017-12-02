@@ -122,7 +122,6 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Swa-M4-oZO" firstAttribute="centerX" secondItem="2WS-Bd-CQq" secondAttribute="centerX" id="MoF-T6-xOp"/>
                             <constraint firstItem="3eg-62-TdG" firstAttribute="top" secondItem="5Od-2R-gg5" secondAttribute="top" constant="50" id="UnY-Up-TnC"/>
@@ -247,6 +246,6 @@
         <image name="Lightbulb" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8ng-ao-pAp"/>
+        <segue reference="1kb-rA-i4o"/>
     </inferredMetricsTieBreakers>
 </document>

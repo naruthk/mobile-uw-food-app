@@ -113,6 +113,16 @@ extension DiscoverCardViewController: PulleyDrawerViewControllerDelegate {
                 cardVC.collectionView?.isScrollEnabled = false
             }
         }
+        switch drawer.drawerPosition {
+        case .collapsed:
+            parent?.navigationController?.setNavigationBarHidden(false, animated: true)
+            parent?.view.setNeedsLayout()
+        case .open, .partiallyRevealed:
+            parent?.navigationController?.setNavigationBarHidden(true, animated: true)
+            parent?.view.setNeedsLayout()
+        default:
+            break
+        }
     }
     
     func drawerChangedDistanceFromBottom(drawer: PulleyViewController, distance: CGFloat, bottomSafeArea: CGFloat) {
@@ -139,7 +149,7 @@ extension DiscoverCardViewController: PulleyDrawerViewControllerDelegate {
             if discoverVC?.initialPadding == nil {
                 discoverVC?.initialPadding = currentPadding
             }
-            discoverVC?.mapViewController.mapsPadding = UIEdgeInsets(top: currentPadding.top, left: currentPadding.left, bottom: distance - bottomSafeArea, right: currentPadding.right)
+            discoverVC?.mapViewController.mapsPadding = UIEdgeInsets(top: CGFloat(0), left: currentPadding.left, bottom: distance - bottomSafeArea, right: currentPadding.right)
         }
         
         discoverVC?.mapViewController?.view?.alpha = 1 - dimmingProgress
