@@ -11,31 +11,22 @@ import ChameleonFramework
 import Font_Awesome_Swift
 import Cosmos
 import SwiftyDrop
+import Alamofire
+import SwiftyJSON
+import Firebase
 
-class MasterDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate {
+var favoritesItemDictionary = [String:Restaurant]()
 
-    var userData : Restaurant = Restaurant(
-        restaurantID: "-",
-        name: "-",
-        restaurantDescription: "-",
-        locationName: "-",
-        fullAddress: "-",
-        mapCoordinates: ["-"],
-        category: "-",
-        averageRating: "-",
-        hours: ["-":"-"],
-        contact_name: "-",
-        contact_email: "-",
-        contact_phone: "-",
-        contact_website: "-",
-        relativeDistanceFromUserCurrentLocation: "-",
-        relativeDurationFromUserCurrentLocation: "-")
+class MasterDetailViewController: UIViewController {
     
+    var restaurants = SharedInstance.sharedInstance
+    var userData : Restaurant = Restaurant(value: "")
     var informationSections : [InformationSection] = []
     let colorForOverall : UIColor = UIColor.flatPurpleColorDark()
     
     @IBOutlet weak var ratingPanel: CosmosView!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var saveButtonLabel: UILabel!
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var mapsButton: UIButton!
     @IBOutlet weak var websiteButton: UIButton!
@@ -43,6 +34,10 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var restaurantCategory: UILabel!
     @IBOutlet weak var restaurantHours: UILabel!
     @IBOutlet weak var restaurantRatingLabel: UILabel!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,15 +47,13 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
         populateRating()
         populateButtons()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     func setTableViewFunctionalities() {
         tableView.separatorStyle = .none
-        tableView.bounces = false
-        tableView.alwaysBounceVertical = false
     }
     
     func setStatusBarColor() {
@@ -71,30 +64,61 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func populateHeader() {
-        self.title = userData.name
+        self.title = userData._title
         let todayDate = Date()
         let calendar = Calendar.current
-        let day = calendar.component(.weekday, from: todayDate)
+        let day = calendar.component(.weekday, from: todayDate) - 1
         let dayValues = ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"]
-        let category = String(userData.category).capitalized
+        let category = String(userData._category).capitalized
         restaurantCategory.text = category
-        if (userData.hours[dayValues[day]] != nil) {
-            let hoursOfOperationToday = userData.hours[dayValues[day]]
-            restaurantHours.text = "\(hoursOfOperationToday ?? "")"
+        if (userData._hours[dayValues[day]] != nil) {
+            let hoursOfOperationToday = userData._hours[dayValues[day]]
+            restaurantHours.text = hoursOfOperationToday
         }
     }
     
     func populateRating() {
-        ratingPanel.rating = Double(userData.averageRating)!
-        ratingPanel.settings.updateOnTouch = false
-        ratingPanel.settings.starMargin = 2
-        ratingPanel.settings.filledColor = UIColor.flatGray()
-        ratingPanel.settings.emptyBorderColor = UIColor.flatGray()
-        ratingPanel.settings.filledBorderColor = UIColor.flatGray()
-        restaurantRatingLabel.text = "\(userData.averageRating)"
+        if userData._average_rating == "-" {
+            restaurantRatingLabel.text = "No ratings"
+        } else {
+            let rating = userData._average_rating
+            ratingPanel.rating = Double(rating)!
+            ratingPanel.settings.updateOnTouch = false
+            ratingPanel.settings.starMargin = 2
+            ratingPanel.settings.filledColor = UIColor.flatGray()
+            ratingPanel.settings.emptyBorderColor = UIColor.flatGray()
+            ratingPanel.settings.filledBorderColor = UIColor.flatGray()
+            restaurantRatingLabel.text = rating
+        }
     }
     
     func populateButtons() {
+        let user = Auth.auth().currentUser
+        if user != nil {
+            let usersRef = Database.database().reference().child("Users")
+            let currentUser = usersRef.child("\(user?.uid ?? "")")
+            let favoritesItem = currentUser.child("favorites")
+            favoritesItem.observe(.childAdded, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    let restaurantID = dictionary["restaurantID"] as! String
+                    if restaurantID == self.userData._id {
+                        self.saveButton.setFATitleColor(color: UIColor.flatGray())
+                        self.saveButtonLabel.text = "Unsaved"
+                    } else {
+                        self.saveButton.setFATitleColor(color: UIColor.init(red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0))
+                        self.saveButtonLabel.text = "Saved"
+                    }
+                }
+            }) { (error) in
+                print("Error retrieving values")
+            }
+        } else {
+            if favoritesItemDictionary.keys.contains(userData._id) {
+                self.saveButton.setFATitleColor(color: UIColor.flatGray())
+            } else {
+                self.saveButton.setFATitleColor(color: UIColor.init(red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0))
+            }
+        }
         saveButton.setFAIcon(icon: .FAStar, iconSize: 30, forState: .normal)
         callButton.setFAIcon(icon: .FAPhone, iconSize: 30, forState: .normal)
         mapsButton.setFAIcon(icon: .FAMap, iconSize: 30, forState: .normal)
@@ -102,8 +126,8 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func revealInfoButtonPressed(_ sender: Any) {
-        if !userData.restaurantDescription.isEmpty && userData.restaurantDescription != "-" {
-            let infoAlert = UIAlertController(title: userData.name, message: userData.restaurantDescription, preferredStyle: UIAlertControllerStyle.alert)
+        if !userData._description.isEmpty && userData._description != "-" {
+            let infoAlert = UIAlertController(title: userData._title, message: userData._description, preferredStyle: UIAlertControllerStyle.alert)
             infoAlert.addAction(UIAlertAction(title: "Close", style: .default, handler: { (action: UIAlertAction!) in
                 return
             }))
@@ -114,11 +138,102 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func saveButton(_ sender: Any) {
-        favoritesItem.append(userData)
+        //        let user = Auth.auth().currentUser
+        //        if user != nil {
+        //            let usersRef = Database.database().reference().child("Users")
+        //            let currentUserRef = usersRef.child("\(user?.uid ?? "")")
+        //            let favoritesItem = currentUserRef.child("favorites")
+        //            if usersRef != nil {
+        //                favoritesItem.observe(.childAdded, with: { (snapshot) in
+        //                    if let dictionary = snapshot.value as? [String: AnyObject] {
+        //                        let restaurantID = dictionary["restaurantID"] as! String
+        //                        if restaurantID == self.userData.restaurantID {
+        //                            self.saveButton.setFATitleColor(color: UIColor.init(red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0))
+        //                            self.saveButtonLabel.text = "Saved"
+        //                            favoritesItem.child(self.userData.restaurantID).removeValue { error, _ in
+        //                                if error != nil {
+        //                                    print("error \(error)")
+        //                                } else {
+        //                                    print("Removed from firebase too!")
+        //                                    favoritesItemDictionary[self.userData.restaurantID] = nil
+        //                                    Drop.down("Removed \(self.userData.name) from Favorites!", state: .success)
+        //                                }
+        //                            }
+        //                        } else {
+        //                            self.saveButton.setFATitleColor(color: UIColor.flatGray())
+        //                            self.saveButtonLabel.text = "Unsaved"
+        //                            let dictionaryData = [
+        //                                "autoID" : favoritesItem.key,
+        //                                "restaurantName" : self.userData.name,
+        //                                "restaurantID" : self.userData.restaurantID
+        //                            ]
+        //                            favoritesItem.childByAutoId().setValue(dictionaryData)
+        //                            favoritesItemDictionary[self.userData.restaurantID] = self.userData
+        //                            print("Added to Favorites")
+        //                            Drop.down("Added \(self.userData.name) to Favorites!", state: .success)
+        //                        }
+        //                    } else {
+        //                        print("Fail")
+        //                    }
+        //                }) { (error) in
+        //                    print("Error retrieving values")
+        //                }
+        //            } else {
+        //                self.saveButton.setFATitleColor(color: UIColor.flatGray())
+        //                self.saveButtonLabel.text = "Unsaved"
+        //                let dictionaryData = [
+        //                    "autoID" : favoritesItem.key,
+        //                    "restaurantName" : self.userData.name,
+        //                    "restaurantID" : self.userData.restaurantID
+        //                ]
+        //                favoritesItem.childByAutoId().setValue(dictionaryData)
+        //                favoritesItemDictionary[self.userData.restaurantID] = self.userData
+        //                print("Added to Favorites")
+        //                Drop.down("Added \(self.userData.name) to Favorites!", state: .success)
+        //            }
+        //        }
+        
+        //        isChecked = !isChecked
+        //        if !isChecked {
+        //            let user = Auth.auth().currentUser
+        //            if user != nil {
+        //                let usersRef = Database.database().reference().child("Users")
+        //                let currentUserRef = usersRef.child("\(user?.uid ?? "")")
+        //                let favoriteForThisUserRef = currentUserRef.child("favorites")
+        //                let dictionaryData = [
+        //                    "autoID" : favoriteForThisUserRef.key,
+        //                    "restaurantName" : userData.name,
+        //                    "restaurantID" : userData.restaurantID
+        //                ]
+        //                favoriteForThisUserRef.childByAutoId().setValue(dictionaryData)
+        //            }
+        //            favoritesItemDictionary[userData.restaurantID] = userData
+        //            print("Added to Favorites")
+        //            Drop.down("Added \(userData.name) to Favorites!", state: .success)
+        //            saveButton.setFATitleColor(color: UIColor.flatGray())
+        //        } else {
+        //            let user = Auth.auth().currentUser
+        //            if user != nil {
+        //                let usersRef = Database.database().reference().child("Users")
+        //                let currentUserRef = usersRef.child("\(user?.uid ?? "")")
+        //                let favoriteForThisUserRef = currentUserRef.child("favorites")
+        //                favoriteForThisUserRef.child(userData.restaurantID).removeValue { error, _ in
+        //                    if error != nil {
+        //                        print("error \(error)")
+        //                    } else {
+        //                        print("Removed from firebase too!")
+        //                    }
+        //                }
+        //            }
+        //            self.saveButton.setFATitleColor(color: UIColor.init(red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0))
+        //            print("Removed from Favorites")
+        //            favoritesItemDictionary[userData.restaurantID] = nil
+        //            Drop.down("Removed \(userData.name) from Favorites!", state: .success)
+        //        }
     }
     
     @IBAction func callPhoneNumber(_ sender: Any) {
-        let call = userData.contact_phone
+        let call = userData._contact_phone
         if !call.isEmpty && call != "-" {
             let url = URL(string: "tel://\(call)")
             UIApplication.shared.open(url!)
@@ -129,14 +244,14 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func openMap(_ sender: Any) {
         let errorMessage = "Unable to retrieve map data"
-        let restaurantID = userData.restaurantID
+        let restaurantID = userData._id
         if !restaurantID.isEmpty && restaurantID.count > 3 {
             guard let url = URL(string: "https://www.google.com/maps/dir/?api=1&destination=WA&destination_place_id=\(restaurantID)&travelmode=walking") else {
                 Drop.down(errorMessage, state: .warning)
                 return
             }
             let leaveAppAlert = UIAlertController(title: "Leaving the application", message: "Are you sure you want to do so?", preferredStyle: UIAlertControllerStyle.alert)
-                
+            
             leaveAppAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in
                 return
             }))
@@ -152,7 +267,7 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func openWebsite(_ sender: Any) {
-        let website = userData.contact_website
+        let website = userData._contact_website
         if !website.isEmpty && website != "-" {
             let url = URL(string: website)
             let leaveAppAlert = UIAlertController(title: "Leaving the application", message: "Are you sure you want to do so?", preferredStyle: UIAlertControllerStyle.alert)
@@ -169,6 +284,9 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
             Drop.down("Unable to retrieve website.", state: .warning)
         }
     }
+}
+
+extension MasterDetailViewController: UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return informationSections.count
@@ -220,5 +338,7 @@ class MasterDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
         tableView.endUpdates()
     }
-
+    
 }
+
+

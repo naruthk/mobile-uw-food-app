@@ -1,5 +1,5 @@
 //
-//  MapViewController.swift
+//  SearchViewController.swift
 //  UW Food App
 //
 //  Created by Naruth Kongurai on 11/23/17.
@@ -13,6 +13,7 @@ import SwiftyDrop
 
 class SearchViewController: UIViewController, CLLocationManagerDelegate {
     
+    var restaurants = SharedInstance.sharedInstance
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     var resultView: UITextView?
@@ -98,7 +99,7 @@ extension SearchViewController: GMSAutocompleteResultsViewControllerDelegate {
          // TODO: Keep the history after the user closes the app
         print("\(place.placeID)")
         
-        if let val = restaurantsData[place.placeID] {
+        if let val = restaurants.restaurantsData[place.placeID] {
             openMasterDetailViewScreen(val: val)
         } else {
             Drop.down("Cannot retrieve information for this restaurant", state: .error)

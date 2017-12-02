@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8A267660E1AD4832DE75665F2F87AEA3"
-               BuildableName = "ChameleonFramework.framework"
-               BlueprintName = "ChameleonFramework"
+               BlueprintIdentifier = "A8D456A2BB1D2ABC307C88C81DDAD4FA"
+               BuildableName = "Cards.framework"
+               BlueprintName = "Cards"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8A267660E1AD4832DE75665F2F87AEA3"
-            BuildableName = "ChameleonFramework.framework"
-            BlueprintName = "ChameleonFramework"
+            BlueprintIdentifier = "A8D456A2BB1D2ABC307C88C81DDAD4FA"
+            BuildableName = "Cards.framework"
+            BlueprintName = "Cards"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
