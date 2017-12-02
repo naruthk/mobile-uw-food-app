@@ -108,26 +108,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lightbulb" translatesAutoresizingMaskIntoConstraints="NO" id="3eg-62-TdG">
-                                <rect key="frame" x="124" y="166" width="128" height="128"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in with an existing account to make reviews and provide feedback." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Swa-M4-oZO">
-                                <rect key="frame" x="13" y="334" width="350" height="60"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="l7R-VQ-9ff">
+                                <rect key="frame" x="87" y="208" width="200" height="250"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lightbulb" translatesAutoresizingMaskIntoConstraints="NO" id="erB-Ay-un7">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="120"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ar-Kl-Zye">
+                                        <rect key="frame" x="0.0" y="130" width="200" height="120"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use your account to write reviews and report issues about any restaurants to us." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LiX-Rv-3gh">
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="120"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="LiX-Rv-3gh" firstAttribute="top" secondItem="5Ar-Kl-Zye" secondAttribute="top" id="QXn-sC-umK"/>
+                                            <constraint firstItem="LiX-Rv-3gh" firstAttribute="leading" secondItem="5Ar-Kl-Zye" secondAttribute="leading" id="gfb-cl-QMJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="LiX-Rv-3gh" secondAttribute="bottom" id="xjx-Bl-3XU"/>
+                                            <constraint firstAttribute="trailing" secondItem="LiX-Rv-3gh" secondAttribute="trailing" id="ywj-ME-NwN"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="Kx0-xv-fFA"/>
-                                    <constraint firstAttribute="width" constant="350" id="o5E-GK-g0e"/>
+                                    <constraint firstAttribute="width" constant="200" id="5XU-vV-gh4"/>
+                                    <constraint firstAttribute="height" constant="250" id="nfa-PR-u1R"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Swa-M4-oZO" firstAttribute="centerX" secondItem="2WS-Bd-CQq" secondAttribute="centerX" id="MoF-T6-xOp"/>
-                            <constraint firstItem="3eg-62-TdG" firstAttribute="top" secondItem="5Od-2R-gg5" secondAttribute="top" constant="50" id="UnY-Up-TnC"/>
-                            <constraint firstItem="3eg-62-TdG" firstAttribute="centerX" secondItem="Swa-M4-oZO" secondAttribute="centerX" id="tgo-z2-6yj"/>
-                            <constraint firstItem="Swa-M4-oZO" firstAttribute="top" secondItem="3eg-62-TdG" secondAttribute="bottom" constant="40" id="xHY-Bc-m4Y"/>
+                            <constraint firstItem="l7R-VQ-9ff" firstAttribute="centerX" secondItem="2WS-Bd-CQq" secondAttribute="centerX" id="dLc-an-M2Q"/>
+                            <constraint firstItem="l7R-VQ-9ff" firstAttribute="centerY" secondItem="2WS-Bd-CQq" secondAttribute="centerY" id="iH7-8y-BvE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Od-2R-gg5"/>
                     </view>
