@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1531D3E548ACE7C0C4EF6EDC /* Pods_UW_Food_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4386B1863F8030B46A9C7F08 /* Pods_UW_Food_AppUITests.framework */; };
+		8B1551C01FD1F7DF00499297 /* SharedInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1551BF1FD1F7DF00499297 /* SharedInstance.swift */; };
 		8B37638A1FC7DCF500D45B87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763891FC7DCF500D45B87 /* AppDelegate.swift */; };
 		8B37638C1FC7DCF500D45B87 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37638B1FC7DCF500D45B87 /* DiscoverViewController.swift */; };
 		8B37638F1FC7DCF500D45B87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B37638D1FC7DCF500D45B87 /* Main.storyboard */; };
@@ -56,6 +57,7 @@
 		34BCE3ED0D79E4F72C8C0958 /* Pods_UW_Food_AppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UW_Food_AppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4386B1863F8030B46A9C7F08 /* Pods_UW_Food_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UW_Food_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		47CE66462823E9B07521FA6E /* Pods-UW Food AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Food AppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UW Food AppTests/Pods-UW Food AppTests.release.xcconfig"; sourceTree = "<group>"; };
+		8B1551BF1FD1F7DF00499297 /* SharedInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInstance.swift; sourceTree = "<group>"; };
 		8B3763861FC7DCF500D45B87 /* UW Food App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UW Food App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B3763891FC7DCF500D45B87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B37638B1FC7DCF500D45B87 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				8B3763B81FC7DD9E00D45B87 /* View */,
 				8B3763B71FC7DD9800D45B87 /* Model */,
 				8B3763891FC7DCF500D45B87 /* AppDelegate.swift */,
+				8B1551BF1FD1F7DF00499297 /* SharedInstance.swift */,
 				8B3763901FC7DCF500D45B87 /* Assets.xcassets */,
 				8BC707831FCD4E16004E52B1 /* GoogleService-Info.plist */,
 				8B3763951FC7DCF500D45B87 /* Info.plist */,
@@ -586,6 +589,7 @@
 				8B3763BB1FC7FD3100D45B87 /* SearchViewController.swift in Sources */,
 				8B891FB51FCEBEDB00D8DF37 /* LoginViewController.swift in Sources */,
 				8B37638A1FC7DCF500D45B87 /* AppDelegate.swift in Sources */,
+				8B1551C01FD1F7DF00499297 /* SharedInstance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

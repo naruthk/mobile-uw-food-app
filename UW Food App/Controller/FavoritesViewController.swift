@@ -14,6 +14,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBOutlet weak var tableView: UITableView!
     
+    var restaurants = SharedInstance.sharedInstance
     var favoritesItemArray = [String]()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +51,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
                 Drop.down("Please check your Internet connection.", state: .error)
             }
         } else {
-            for (key, value) in favoritesItemDictionary {
+            for key in favoritesItemDictionary.keys {
                 if !self.favoritesItemArray.contains(key) {
                     self.favoritesItemArray.append(key)
                 }
@@ -68,12 +69,12 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
-        guard let restaurant = restaurantsData[favoritesItemArray[indexPath.row]] else {
+        guard let restaurant = restaurants.restaurantsData[favoritesItemArray[indexPath.row]] else {
             return cell
         }
-        cell.textLabel?.text = restaurant.name
+        cell.textLabel?.text = restaurant._title
         cell.textLabel?.adjustsFontSizeToFitWidth = true
-        cell.detailTextLabel?.text = String(restaurant.category).capitalized
+        cell.detailTextLabel?.text = restaurant._category
         return cell
     }
     
