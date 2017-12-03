@@ -8,6 +8,7 @@
 
 import UIKit
 import Pulley
+import Font_Awesome_Swift
 import GoogleMaps
 
 class DiscoverPulleyViewController: PulleyViewController {
@@ -16,6 +17,7 @@ class DiscoverPulleyViewController: PulleyViewController {
     @IBOutlet var cardView: UICollectionView!
     @IBOutlet weak var dateLabelAsUIBarButtonItem: UIButton!
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var myLocationButton: UIButton!
     
     var mapViewController: DiscoverMapViewController!
     var cardViewController: DiscoverCardViewController!
@@ -24,18 +26,6 @@ class DiscoverPulleyViewController: PulleyViewController {
     var userData:Restaurant! {
         didSet {
         }
-    }
-    
-    
-    @IBAction func goToMyLocation(_ sender: Any) {
-        if let location = mapViewController.locationManager.location {
-            let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 15)
-            mapViewController.googleMaps.camera = camera
-        }
-    }
-    
-    @IBAction func searchButtonClicked(_ sender: Any) {
-        self.tabBarController?.selectedIndex = 1;   // Search tab is the index #1
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,13 +43,23 @@ class DiscoverPulleyViewController: PulleyViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         getTodayDate()
+        setSearchButton()
+        setMyLocationButton()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    private func setSearchButton() {
+        searchButton.setFAIcon(icon: .FASearch, iconSize: 25, forState: .normal)
+        searchButton.setFATitleColor(color: UIColor.flatGray())
+    }
+    
+    private func setMyLocationButton() {
+        myLocationButton.setFAIcon(icon: .FALocationArrow, iconSize: 25, forState: .normal)
+        myLocationButton.setFATitleColor(color: UIColor.flatGray())
     }
     
     func getTodayDate() {
@@ -68,6 +68,17 @@ class DiscoverPulleyViewController: PulleyViewController {
         dateFormatter.dateFormat = "EEEE, MMMM dd"
         let convertedDate = dateFormatter.string(from: currentDate)
         dateLabelAsUIBarButtonItem.setTitle(convertedDate, for: .normal)
+    }
+    
+    @IBAction func searchButtonClicked(_ sender: Any) {
+        self.tabBarController?.selectedIndex = 1;   // Search tab is the index #1
+    }
+    
+    @IBAction func goToMyLocation(_ sender: Any) {
+        if let location = mapViewController.locationManager.location {
+            let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 15)
+            mapViewController.googleMaps.camera = camera
+        }
     }
     
     /*

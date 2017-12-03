@@ -20,8 +20,6 @@ The current project is under development.
     - [Libraries We're Using](#libraries-were-using)
   - [Documentation](#documentation)
     - [Obtaining Place ID](#obtaining-place-id)
-    - [JSON](#json)
-      - [Structure for "Reviews"](#structure-for-reviews)
   - [Contact](#contact)
   - [License](#license)
 
@@ -104,44 +102,6 @@ Google offers a way to retrieve the unique `PlaceID` for each restaurant on UW c
 Each `PlaceID` has reference to lots of information, including a restaurant's ratings, hours, and website information. More information can be found here [https://developers.google.com/places/ios-api/reference/interface_g_m_s_place](https://developers.google.com/places/ios-api/reference/interface_g_m_s_place)
 
 The `PlaceID` is what is stored as the value for the key `restaurantID`.
-
-### JSON
-
-| Type | Type | Explaination |
-| ---- | ---- | ------ |
-|  id  |  Text `string` | The unique id of the restaurant obtained from Google Map API ([Link](https://developers.google.com/places/place-id)) |
-| name | Text `string` | Name of the restaurant |
-| description | Text `string` | Short / long description of the restaurant. Copied directly from the HFS website |
-| locationName | Text `string` | Short name of the location |
-| fullAddress | Text `string` | Full address (with city, state, and zip code) |
-| mapCoordinates | Array `string` | Latitude and longitude data |
-| category | Text `string` | Category of the restaurant |
-| hours | Dictionary `string:string` | Operation hours from Monday until Sunday |
-| menu | Dictionary `string:string` | All the food items for this particular restaurant
-| contactInformation | Dictionary `string:string` | Name, phone number, website, and email address |
-
-----
-
-#### Structure for "Reviews"
-
-```json
-{
-  "comments": [
-    {
-      "reviewID": "134543534",
-      "user": "3405323424",
-      "comment": "Great, fast place to grab some drinks!",
-      "rating": "4.5"
-    },
-    {
-      "reviewID": "143121534",
-      "user": "556623424",
-      "comment": "Delicious",
-      "rating": "4.0"
-    }
-  ]
-}
-```
 
 ----
 

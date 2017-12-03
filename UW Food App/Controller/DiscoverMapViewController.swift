@@ -50,7 +50,6 @@ class DiscoverMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setSearchButton()
         checkConnectivityToFirebase()
         initializeLocationManager()
         setGoogleMapFunctionalities()
@@ -79,11 +78,6 @@ class DiscoverMapViewController: UIViewController {
                 Drop.down("Please check your Internet connection.", state: .error)
             }
         })
-    }
-
-    private func setSearchButton() {
-        searchButton.setFAIcon(icon: .FASearch, iconSize: 25, forState: .normal)
-        searchButton.setFATitleColor(color: UIColor.flatGray())
     }
 
     func retrieveRestaurantsData() {
@@ -181,22 +175,26 @@ class DiscoverMapViewController: UIViewController {
         if let cachedData = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [String:Restaurant] {
             self.restaurants.restaurantsData = cachedData
         }
-//        for (key, value) in self.restaurants.restaurantsData {
-//
-//            let category =
-//            let todayDate = Date()
-//            let calendar = Calendar.current
-//            let day = calendar.component(.weekday, from: todayDate) - 1
-//            let dayValues = ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"]
-//            let snippet = category + ", " + average_rating + " | Today: " + hours[dayValues[day]]!
-//
-//            self.createAMarker(
-//                userData: restaurant,
-//                latitude: Double(latitude)!,
-//                longitude: Double(longitude)!,
-//                title: title,
-//                snippet: snippet)
-//        }
+        for restaurant in self.restaurants.restaurantsData.values {
+            let title = restaurant._title
+            let category = restaurant._category
+            let average_rating = restaurant._average_rating
+            let hours = restaurant._hours
+            let latitude = restaurant._latitude
+            let longitude = restaurant._longitude
+            let todayDate = Date()
+            let calendar = Calendar.current
+            let day = calendar.component(.weekday, from: todayDate) - 1
+            let dayValues = ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"]
+            let snippet = category + ", " + average_rating + " | Today: " + hours[dayValues[day]]!
+
+            self.createAMarker(
+                userData: restaurant,
+                latitude: Double(latitude)!,
+                longitude: Double(longitude)!,
+                title: title,
+                snippet: snippet)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

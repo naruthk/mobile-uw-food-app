@@ -444,8 +444,9 @@
                         <outlet property="dateLabelAsUIBarButtonItem" destination="9S4-IE-SqU" id="B76-ZI-G3V"/>
                         <outlet property="drawerContentContainerView" destination="OzI-g3-Zco" id="uFe-xc-AB2"/>
                         <outlet property="mapView" destination="f2z-Nc-3R1" id="Bnz-aJ-ol9"/>
+                        <outlet property="myLocationButton" destination="YZV-Rb-9mk" id="fkN-yW-Zpg"/>
                         <outlet property="primaryContentContainerView" destination="f2z-Nc-3R1" id="SN4-Oi-2ah"/>
-                        <outlet property="searchButton" destination="Yfp-L8-XuO" id="Sj9-rM-iFE"/>
+                        <outlet property="searchButton" destination="Yfp-L8-XuO" id="neV-sf-AGx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4KI-Xg-dCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
