@@ -297,11 +297,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIe-dJ-vGe" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="234" y="10" width="125" height="34"/>
+                                                    <rect key="frame" x="219" y="10" width="140" height="34"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="34" id="59B-fr-yfO"/>
-                                                        <constraint firstAttribute="width" constant="125" id="GaY-Pp-00q"/>
+                                                        <constraint firstAttribute="width" constant="140" id="GaY-Pp-00q"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I've dine here quite often. They serve some of the best meals out there on campus." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fJ-Qp-C7K">
@@ -382,7 +382,7 @@
         <scene sceneID="nbo-O2-F2m">
             <objects>
                 <navigationController storyboardIdentifier="DiscoverController" title="DiscoverController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="C2U-Lp-t0N" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Discover" image="Sample-LocationIcon" id="lRu-s7-a9f"/>
+                    <tabBarItem key="tabBarItem" title="Discover" image="Discover" id="lRu-s7-a9f"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="w28-Qb-O3h">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
@@ -534,7 +534,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Sample-LocationIcon" width="29" height="29"/>
+        <image name="Discover" width="32" height="32"/>
         <image name="Sample-Restaurant" width="2016" height="1136"/>
     </resources>
 </document>

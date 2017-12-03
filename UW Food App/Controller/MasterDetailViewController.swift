@@ -11,8 +11,6 @@ import ChameleonFramework
 import Font_Awesome_Swift
 import Cosmos
 import SwiftyDrop
-import Alamofire
-import SwiftyJSON
 import Firebase
 
 var favoritesItemDictionary = [String:Restaurant]()
@@ -24,6 +22,7 @@ class MasterDetailViewController: UIViewController {
     var informationSections : [InformationSection] = []
     let colorForOverall : UIColor = UIColor.flatPurpleColorDark()
     let reviewsPanelView = UIView()
+    var reviewsSection = [Reviews]()
     
     @IBOutlet weak var ratingPanel: CosmosView!
     @IBOutlet weak var saveButton: UIButton!
@@ -45,7 +44,12 @@ class MasterDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.hidesNavigationBarHairline = true
-        populateReviews()
+        
+        let reviews = InformationSection(type: "Reviews", dataTitles: ["Anthony"], dataDetails: ["Quite unexpected!"], expanded: true)
+        informationSections.append(reviews)
+        
+        
+        retrieveReviews()
         setTableViewFunctionalities()
         populateHeader()
         populateRating()
@@ -54,6 +58,24 @@ class MasterDetailViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func retrieveReviews() {
+        let reviewsDB = Database.database().reference().child("reviews/\(userData._id)")
+        reviewsDB.observe(.childAdded, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                self.populateReviews(dictionary: dictionary)
+            }
+        })
+    }
+    
+    func populateReviews(dictionary: [String: AnyObject]) {
+        let message = dictionary["message"] as! String
+        let rating = dictionary["rating"] as! String
+        let sender = dictionary["sender"] as! String
+        let timestamp = dictionary["timestamp"] as! Double
+        let reviewData = Reviews(sender: sender, rating: rating, message: message, timestamp: timestamp)
+        reviewsSection.append(reviewData)
     }
     
     func setTableViewFunctionalities() {
@@ -135,11 +157,6 @@ class MasterDetailViewController: UIViewController {
         if !call.isEmpty && call != "-" {
             callButtonLabel.text = "\(call)"
         }
-    }
-    
-    func populateReviews() {
-        let reviews = InformationSection(type: "Reviews", dataTitles: ["John Semuel", "Smith Semuel", "A", "B", "C"], dataDetails: ["Wow love this place!Wow love this place!Wow love this place!Wow love this place!Wow love this place!Wow love this place!", "Great", "Wow", "Not bad, seriously", "ergjiegiroejgiorjgoirejg oiejrgiorejgo oiefieow jfiwej fio jiwoejf iowj fiow iwef o"], expanded: true)
-        informationSections.append(reviews)
     }
     
     @IBAction func revealInfoButtonPressed(_ sender: Any) {
@@ -311,18 +328,36 @@ extension MasterDetailViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 3 {
+            return reviewsSection.count
+        }
         return informationSections[section].dataDetails.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if (section == 3) {
+        if section == 3 {
             return 100
         }
         return 44
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 3 {
+            let footer = UITableViewCell()
+            return footer
+        }
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 3 {
+            return 30
+        }
+        return 0
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == informationSections.count - 1 {
+        if section == 3 {
             let reviewHeader = UITableViewCell()
             reviewHeader.backgroundColor = UIColor.white
             reviewHeader.textLabel?.text = "Reviews"
@@ -339,11 +374,25 @@ extension MasterDetailViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == informationSections.count - 1 {
+        if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "commentsCell")! as! CommentsCell
-            cell.name.text = informationSections[indexPath.section].dataTitles[indexPath.row]
-            cell.textLabel?.adjustsFontSizeToFitWidth = true
-            cell.message.text = informationSections[indexPath.section].dataDetails[indexPath.row]
+//            let review = reviewsSection[indexPath.section]
+            let review = reviewsSection[0]
+            let date = Date(timeIntervalSince1970: review.timestamp)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "YYYY-MM-d"
+            let strDate = dateFormatter.string(from: date)
+            cell.name.text = review.sender
+            cell.name.adjustsFontSizeToFitWidth = true
+            cell.date.text = strDate
+            cell.message.text = review.message
+            cell.stars.rating = Double(review.rating)!
+            cell.stars.text = review.rating
+            cell.stars.settings.updateOnTouch = false
+            cell.stars.settings.starMargin = 2
+            cell.stars.settings.filledColor = UIColor.flatGray()
+            cell.stars.settings.emptyBorderColor = UIColor.flatGray()
+            cell.stars.settings.filledBorderColor = UIColor.flatGray()
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!

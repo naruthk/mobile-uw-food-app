@@ -1,8 +1,10 @@
 {
   "restaurants" : {
     "3" : {
-      "averageRating" : "3.7",
-      "category" : "espresso",
+      "address" : "1315 NE Campus Pkwy, Seattle, WA 98105",
+      "average_rating" : "4.0",
+      "building" : "Alder Hall",
+      "category" : "Espresso",
       "contactInformation" : {
         "email" : "bowerh@uw.edu",
         "name" : "Heidi Antush",
@@ -10,7 +12,6 @@
         "website" : "https://www.hfs.washington.edu/districtmarket/"
       },
       "description" : "District Market is a neighborhood market with fresh produce, meats and seafood, groceries, breads and baked goods, a full-service deli with chef-prepared side dishes, salads and entrées, and a rotating menu of hot foods ready to take home and eat. District Market also includes Husky Grind, a full café with espresso and desserts, and both indoor seating and a convenient walk-up window for street access.",
-      "fullAddress" : "1315 NE Campus Pkwy, Seattle, WA 98105",
       "hours" : {
         "fri" : "7 am - 12 am",
         "mon" : "7 am - 12 am",
@@ -21,21 +22,15 @@
         "wed" : "7 am - 12 am"
       },
       "id" : "3",
-      "locationName" : "District Market, Alder Hall",
-      "mapCoordinates" : {
-        "latitude" : "47.655855",
-        "longitude" : "-122.313793"
-      },
-      "menu" : [ {
-        "foodCategory" : "drinks",
-        "name" : "Chocolate Latte",
-        "price" : "5.05"
-      } ],
-      "name" : "Husky Grind at District Market"
+      "latitude" : "47.655855",
+      "longitude" : "-122.313793",
+      "title" : "District Market"
     },
     "ChIJ8SgXBJMUkFQRQM4LYe2jMSQ" : {
-      "averageRating" : "0.0",
-      "category" : "espresso",
+      "address" : "Intramural Activities Building, Seattle, WA 98195",
+      "average_rating" : "4.0",
+      "building" : "IMA",
+      "category" : "Espresso",
       "contactInformation" : {
         "email" : "torinm@uw.edu",
         "name" : "Torin Munro",
@@ -43,7 +38,6 @@
         "website" : "https://www.hfs.washington.edu/dining/Default.aspx?id=336"
       },
       "description" : "Dawg Bites, a smoothie bar located inside the Intramural Activities Building (IMA) on Montlake Boulevard, is a great place to get refreshed after a workout. Choose from a large selection of fresh grab-and-go salads and sandwiches, cold drinks, espresso, and of course, Freshëns blended fruit smoothies.",
-      "fullAddress" : "Intramural Activities Building, Seattle, WA 98195",
       "hours" : {
         "fri" : "7 am - 10 pm",
         "mon" : "7 am - 10 pm",
@@ -54,21 +48,15 @@
         "wed" : "7 am - 10 pm"
       },
       "id" : "ChIJ8SgXBJMUkFQRQM4LYe2jMSQ",
-      "locationName" : "Intramural Activities Building (IMA)",
-      "mapCoordinates" : {
-        "latitude" : "47.653491",
-        "longitude" : "-122.301684"
-      },
-      "menu" : [ {
-        "foodCategory" : "drinks",
-        "name" : "Chocolate Latte",
-        "price" : "5.05"
-      } ],
-      "name" : "Dawg Bites"
+      "latitude" : "47.653491",
+      "longitude" : "-122.301684",
+      "title" : "Dawg Bites"
     },
     "ChIJIQv9efIUkFQRUtMgUxr7kl4" : {
-      "averageRating" : "3.8",
-      "category" : "espresso",
+      "address" : "Physics-Astronomy Building, Seattle, WA 98195",
+      "average_rating" : "3.6",
+      "building" : "Physics-Astronomy Building",
+      "category" : "Espresso",
       "contactInformation" : {
         "email" : "-",
         "name" : "-",
@@ -76,7 +64,6 @@
         "website" : "-"
       },
       "description" : "-",
-      "fullAddress" : "Physics-Astronomy Building, Seattle, WA 98195",
       "hours" : {
         "fri" : "7 am - 10 pm",
         "mon" : "7 am - 10 pm",
@@ -87,21 +74,15 @@
         "wed" : "7 am - 10 pm"
       },
       "id" : "ChIJIQv9efIUkFQRUtMgUxr7kl4",
-      "locationName" : "Physics-Astronomy Building",
-      "mapCoordinates" : {
-        "latitude" : "47.653261",
-        "longitude" : "-122.311701"
-      },
-      "menu" : [ {
-        "foodCategory" : "drinks",
-        "name" : "Chocolate Latte",
-        "price" : "5.05"
-      } ],
-      "name" : "H-bar"
+      "latitude" : "47.653261",
+      "longitude" : "-122.311701",
+      "title" : "H-Bar"
     },
     "ChIJTwA1fPEUkFQRnLQr5-aUP0Q" : {
-      "averageRating" : "3.9",
-      "category" : "espresso",
+      "address" : "3925 Adams Ln NE, Seattle, WA 98105",
+      "average_rating" : "4.0",
+      "building" : "Mercer Court",
+      "category" : "Espresso",
       "contactInformation" : {
         "email" : "-",
         "name" : "Joseph Maurey",
@@ -109,7 +90,6 @@
         "website" : "https://www.hfs.washington.edu/huskygrind/"
       },
       "description" : "Husky Grind is about more than providing a quality cup of coffee. We develop our flavor profiles by small-batch roasting on campus, and the rest of our beans are prepared locally by Seven Coffee Roasters. Origin cards let you know exactly where our beans come from including the country, farm, exporter and certifications. Single-origin practices follow the traditions of specialty brewers, letting you experience the character and subtleties in a particular region's crop. So drop in and warm up at your friendly neighborhood Husky Grind. Husky Grind also partners with design and agricultural programs on campus for coffee-related special events and seminars. You'll find Husky Grind coffee at Husky Grind Café in Mercer Court as well as District Market in Alder Hall and Parnassus in the Art Building.",
-      "fullAddress" : "3925 Adams Ln NE, Seattle, WA 98105",
       "hours" : {
         "fri" : "7 am - 10 pm",
         "mon" : "7 am - 10 pm",
@@ -120,17 +100,53 @@
         "wed" : "7 am - 10 pm"
       },
       "id" : "ChIJTwA1fPEUkFQRnLQr5-aUP0Q",
-      "locationName" : "Mercer Court",
-      "mapCoordinates" : {
-        "latitude" : "47.654726",
-        "longitude" : "-122.317157"
+      "latitude" : "47.654726",
+      "longitude" : "-122.317157",
+      "title" : "Husky Grind (Mercer Court)"
+    },
+    "uihh" : "jknjknjknijjkbkbkkjb"
+  },
+  "reviews" : {
+    "3" : {
+      "e8fw9eg798ewg59duduffd-3" : {
+        "message" : "It's an okay place in my opinion.",
+        "rating" : "3.5",
+        "sender" : "a@b.com",
+        "timestamp" : 1459361875686
       },
-      "menu" : [ {
-        "foodCategory" : "drinks",
-        "name" : "Chocolate Latte",
-        "price" : "5.05"
-      } ],
-      "name" : "Husky Grind at Mercer Court"
+      "e8fw9eg798ewg89uduffd-k" : {
+        "message" : "One of the best places out there to eat on campus.",
+        "rating" : "4.5",
+        "sender" : "csms@gmail.com",
+        "timestamp" : 1459361875666
+      }
+    },
+    "ChIJ8SgXBJMUkFQRQM4LYe2jMSQ" : {
+      "rgiejg9er0g90erig0ejgjd-k" : {
+        "message" : "Not bad to be honest.",
+        "rating" : "4.0",
+        "sender" : "johnsmicken@gmail.com",
+        "timestamp" : 1459361875666
+      },
+      "total_rating" : "4.0"
+    },
+    "ChIJIQv9efIUkFQRUtMgUxr7kl4" : {
+      "rgiejg9er0g90ettg0ejgjd98" : {
+        "message" : "The staffs are very rude.",
+        "rating" : "3.6",
+        "sender" : "canesmith@live.com",
+        "timestamp" : 1459361305601
+      },
+      "total_rating" : "3.6"
+    },
+    "ChIJTwA1fPEUkFQRnLQr5-aUP0Q" : {
+      "rgiejg9er0g90ettg0ejgjd98" : {
+        "message" : "Not bad to be honest.",
+        "rating" : "4.0",
+        "sender" : "johnsmicken@gmail.com",
+        "timestamp" : 1459361875666
+      },
+      "total_rating" : "4.0"
     }
   }
 }

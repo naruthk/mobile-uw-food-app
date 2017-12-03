@@ -242,7 +242,7 @@
         <scene sceneID="ynR-Yq-TVY">
             <objects>
                 <navigationController storyboardIdentifier="AccountController" title="Account Controller (Nav)" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="haP-2J-lDw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Account" id="JQT-H9-Vri"/>
+                    <tabBarItem key="tabBarItem" title="Account" image="User" id="JQT-H9-Vri"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Ivc-Ut-igk">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
@@ -260,6 +260,7 @@
     </scenes>
     <resources>
         <image name="Lightbulb" width="128" height="128"/>
+        <image name="User" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="8ng-ao-pAp"/>

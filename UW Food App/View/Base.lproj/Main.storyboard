@@ -32,7 +32,7 @@
         <scene sceneID="ufF-2R-dCL">
             <objects>
                 <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="DiscoverController" id="2IX-gt-x4M" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Discover" image="default_marker.png" id="IPw-hU-KyS"/>
+                    <tabBarItem key="tabBarItem" title="Discover" image="Discover" id="IPw-hU-KyS"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dJq-P5-goE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -70,6 +70,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="default_marker.png" width="22" height="41"/>
+        <image name="Discover" width="32" height="32"/>
     </resources>
 </document>

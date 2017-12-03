@@ -91,6 +91,11 @@ With CocoaPods as the package dependency manager, we install these libraries:
 - SwiftyJSON
 - SwiftyDrop
 
+For images,
+
+- Freepik (Flaticon)
+- Google (Flaticon)
+
 ----
 
 ## Documentation

@@ -14,7 +14,6 @@
 		1840B67B1FD13B5F00DFE84E /* DiscoverCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B65B1FD13B5F00DFE84E /* DiscoverCardViewController.swift */; };
 		1840B67C1FD13B5F00DFE84E /* MasterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B65D1FD13B5F00DFE84E /* MasterDetailViewController.swift */; };
 		1840B67D1FD13B5F00DFE84E /* InformationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B65E1FD13B5F00DFE84E /* InformationSection.swift */; };
-		1840B67E1FD13B5F00DFE84E /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B65F1FD13B5F00DFE84E /* ExpandableHeaderView.swift */; };
 		1840B67F1FD13B5F00DFE84E /* DiscoverMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6601FD13B5F00DFE84E /* DiscoverMapViewController.swift */; };
 		1840B6801FD13B5F00DFE84E /* DiscoverPulleyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6611FD13B5F00DFE84E /* DiscoverPulleyViewController.swift */; };
 		1840B6821FD13B5F00DFE84E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6641FD13B5F00DFE84E /* LoginViewController.swift */; };
@@ -35,6 +34,7 @@
 		8B1551C21FD32D3D00499297 /* SharedInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1551C11FD32D3D00499297 /* SharedInstance.swift */; };
 		8B1551C41FD353FF00499297 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1551C31FD353FF00499297 /* Reachability.swift */; };
 		8B1551CD1FD4060600499297 /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1551CC1FD4060600499297 /* CommentsCell.swift */; };
+		8B1551CF1FD41A1100499297 /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1551CE1FD41A1100499297 /* Reviews.swift */; };
 		8B37639F1FC7DCF500D45B87 /* UW_Food_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37639E1FC7DCF500D45B87 /* UW_Food_AppTests.swift */; };
 		8B3763AA1FC7DCF500D45B87 /* UW_Food_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763A91FC7DCF500D45B87 /* UW_Food_AppUITests.swift */; };
 		C707847E9884A2875D857C81 /* Pods_UW_Food_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E907F138614499790603683F /* Pods_UW_Food_App.framework */; };
@@ -66,7 +66,6 @@
 		1840B65B1FD13B5F00DFE84E /* DiscoverCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverCardViewController.swift; sourceTree = "<group>"; };
 		1840B65D1FD13B5F00DFE84E /* MasterDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterDetailViewController.swift; sourceTree = "<group>"; };
 		1840B65E1FD13B5F00DFE84E /* InformationSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationSection.swift; sourceTree = "<group>"; };
-		1840B65F1FD13B5F00DFE84E /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
 		1840B6601FD13B5F00DFE84E /* DiscoverMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverMapViewController.swift; sourceTree = "<group>"; };
 		1840B6611FD13B5F00DFE84E /* DiscoverPulleyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverPulleyViewController.swift; sourceTree = "<group>"; };
 		1840B6641FD13B5F00DFE84E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +90,7 @@
 		8B1551C11FD32D3D00499297 /* SharedInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInstance.swift; sourceTree = "<group>"; };
 		8B1551C31FD353FF00499297 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		8B1551CC1FD4060600499297 /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
+		8B1551CE1FD41A1100499297 /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
 		8B3763861FC7DCF500D45B87 /* UW Food App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UW Food App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B37639A1FC7DCF500D45B87 /* UW Food AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UW Food AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B37639E1FC7DCF500D45B87 /* UW_Food_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UW_Food_AppTests.swift; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 		1840B6581FD13B5F00DFE84E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1840B65C1FD13B5F00DFE84E /* Master Detail */,
+				1840B65D1FD13B5F00DFE84E /* MasterDetailViewController.swift */,
 				1840B6591FD13B5F00DFE84E /* SearchViewController.swift */,
 				1840B65A1FD13B5F00DFE84E /* FavoritesViewController.swift */,
 				1840B65B1FD13B5F00DFE84E /* DiscoverCardViewController.swift */,
@@ -169,16 +169,6 @@
 				1840B6631FD13B5F00DFE84E /* Account */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		1840B65C1FD13B5F00DFE84E /* Master Detail */ = {
-			isa = PBXGroup;
-			children = (
-				1840B65D1FD13B5F00DFE84E /* MasterDetailViewController.swift */,
-				1840B65E1FD13B5F00DFE84E /* InformationSection.swift */,
-				1840B65F1FD13B5F00DFE84E /* ExpandableHeaderView.swift */,
-			);
-			path = "Master Detail";
 			sourceTree = "<group>";
 		};
 		1840B6631FD13B5F00DFE84E /* Account */ = {
@@ -194,9 +184,11 @@
 		1840B6671FD13B5F00DFE84E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1840B65E1FD13B5F00DFE84E /* InformationSection.swift */,
 				1840B6681FD13B5F00DFE84E /* Food.swift */,
 				1840B6691FD13B5F00DFE84E /* Menu.swift */,
 				1840B66A1FD13B5F00DFE84E /* Restaurant.swift */,
+				8B1551CE1FD41A1100499297 /* Reviews.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -596,7 +588,6 @@
 			files = (
 				1840B67A1FD13B5F00DFE84E /* FavoritesViewController.swift in Sources */,
 				8B1551CD1FD4060600499297 /* CommentsCell.swift in Sources */,
-				1840B67E1FD13B5F00DFE84E /* ExpandableHeaderView.swift in Sources */,
 				1840B6861FD13B5F00DFE84E /* Menu.swift in Sources */,
 				1840B6841FD13B5F00DFE84E /* RegisterViewController.swift in Sources */,
 				1840B6871FD13B5F00DFE84E /* Restaurant.swift in Sources */,
@@ -610,6 +601,7 @@
 				8B1551C21FD32D3D00499297 /* SharedInstance.swift in Sources */,
 				1840B6851FD13B5F00DFE84E /* Food.swift in Sources */,
 				1840B6821FD13B5F00DFE84E /* LoginViewController.swift in Sources */,
+				8B1551CF1FD41A1100499297 /* Reviews.swift in Sources */,
 				1840B67B1FD13B5F00DFE84E /* DiscoverCardViewController.swift in Sources */,
 				1840B6831FD13B5F00DFE84E /* AccountViewController.swift in Sources */,
 			);

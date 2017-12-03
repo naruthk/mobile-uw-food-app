@@ -65,9 +65,10 @@ class DiscoverPulleyViewController: PulleyViewController {
     func getTodayDate() {
         let currentDate = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE, MMMM dd"
+        dateFormatter.dateFormat = "EEEE, MMMM d"
         let convertedDate = dateFormatter.string(from: currentDate)
         dateLabelAsUIBarButtonItem.setTitle(convertedDate, for: .normal)
+        dateLabelAsUIBarButtonItem.tintColor = UIColor.darkGray
     }
     
     @IBAction func searchButtonClicked(_ sender: Any) {

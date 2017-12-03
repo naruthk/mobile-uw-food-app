@@ -225,6 +225,7 @@ extension DiscoverMapViewController: GMSMapViewDelegate {
     func createAMarker(userData: Restaurant, latitude: Double, longitude: Double, title: String, snippet: String) {
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        marker.icon = UIImage(named: "Markers")
         marker.title = title
         marker.snippet = snippet
         marker.userData = userData as Any
