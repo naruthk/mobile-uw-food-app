@@ -33,6 +33,7 @@
 		371EA9F94F3356F75E30004F /* Pods_UW_Food_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3F99C247268DC66862434 /* Pods_UW_Food_AppTests.framework */; };
 		41E23374BC1BD1DCC0D01AA4 /* Pods_UW_Food_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1018558A55F1DED32575556F /* Pods_UW_Food_AppUITests.framework */; };
 		8B1551C21FD32D3D00499297 /* SharedInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1551C11FD32D3D00499297 /* SharedInstance.swift */; };
+		8B1551C41FD353FF00499297 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1551C31FD353FF00499297 /* Reachability.swift */; };
 		8B37639F1FC7DCF500D45B87 /* UW_Food_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37639E1FC7DCF500D45B87 /* UW_Food_AppTests.swift */; };
 		8B3763AA1FC7DCF500D45B87 /* UW_Food_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763A91FC7DCF500D45B87 /* UW_Food_AppUITests.swift */; };
 		C707847E9884A2875D857C81 /* Pods_UW_Food_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E907F138614499790603683F /* Pods_UW_Food_App.framework */; };
@@ -87,6 +88,7 @@
 		6F5684757416C2902D3CF0F8 /* Pods-UW Food AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Food AppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UW Food AppTests/Pods-UW Food AppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8A3D3CEA2954EFE39708BEFF /* Pods-UW Food AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Food AppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UW Food AppTests/Pods-UW Food AppTests.release.xcconfig"; sourceTree = "<group>"; };
 		8B1551C11FD32D3D00499297 /* SharedInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInstance.swift; sourceTree = "<group>"; };
+		8B1551C31FD353FF00499297 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		8B3763861FC7DCF500D45B87 /* UW Food App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UW Food App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B37639A1FC7DCF500D45B87 /* UW Food AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UW Food AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B37639E1FC7DCF500D45B87 /* UW_Food_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UW_Food_AppTests.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				1840B6751FD13B5F00DFE84E /* AppDelegate.swift */,
 				1840B6761FD13B5F00DFE84E /* Info.plist */,
 				8B1551C11FD32D3D00499297 /* SharedInstance.swift */,
+				8B1551C31FD353FF00499297 /* Reachability.swift */,
 			);
 			path = "UW Food App";
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				1840B6841FD13B5F00DFE84E /* RegisterViewController.swift in Sources */,
 				1840B6871FD13B5F00DFE84E /* Restaurant.swift in Sources */,
 				1840B67F1FD13B5F00DFE84E /* DiscoverMapViewController.swift in Sources */,
+				8B1551C41FD353FF00499297 /* Reachability.swift in Sources */,
 				1840B67D1FD13B5F00DFE84E /* InformationSection.swift in Sources */,
 				1840B68F1FD13B5F00DFE84E /* AppDelegate.swift in Sources */,
 				1840B6791FD13B5F00DFE84E /* SearchViewController.swift in Sources */,

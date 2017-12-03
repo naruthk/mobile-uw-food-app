@@ -198,8 +198,11 @@
                                                 <constraint firstAttribute="height" constant="15" id="K1I-0h-gfY"/>
                                             </constraints>
                                         </stackView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wbg-a6-VDJ">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sample-Restaurant" translatesAutoresizingMaskIntoConstraints="NO" id="wbg-a6-VDJ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="153"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="153" id="21u-dn-heA"/>
+                                            </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="YuB-6w-IIH">
                                             <rect key="frame" x="16" y="261" width="343" height="12"/>
@@ -496,5 +499,6 @@
     </scenes>
     <resources>
         <image name="Sample-LocationIcon" width="29" height="29"/>
+        <image name="Sample-Restaurant" width="2016" height="1136"/>
     </resources>
 </document>
