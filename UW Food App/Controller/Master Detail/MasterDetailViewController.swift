@@ -23,17 +23,20 @@ class MasterDetailViewController: UIViewController {
     var userData : Restaurant = Restaurant(value: "")
     var informationSections : [InformationSection] = []
     let colorForOverall : UIColor = UIColor.flatPurpleColorDark()
+    let reviewsPanelView = UIView()
     
     @IBOutlet weak var ratingPanel: CosmosView!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var saveButtonLabel: UILabel!
     @IBOutlet weak var callButton: UIButton!
+    @IBOutlet weak var callButtonLabel: UILabel!
     @IBOutlet weak var mapsButton: UIButton!
     @IBOutlet weak var websiteButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var restaurantCategory: UILabel!
     @IBOutlet weak var restaurantHours: UILabel!
     @IBOutlet weak var restaurantRatingLabel: UILabel!
+    @IBOutlet weak var infoButtonLabel: UIBarButtonItem!
     
     override func viewDidAppear(_ animated: Bool) {
         self.tableView.reloadData()
@@ -41,8 +44,9 @@ class MasterDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.hidesNavigationBarHairline = true
+        populateReviews()
         setTableViewFunctionalities()
-        setStatusBarColor()
         populateHeader()
         populateRating()
         populateButtons()
@@ -53,14 +57,10 @@ class MasterDetailViewController: UIViewController {
     }
     
     func setTableViewFunctionalities() {
-        tableView.separatorStyle = .none
-    }
-    
-    func setStatusBarColor() {
-        let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
-        let statusBarColor = colorForOverall
-        statusBarView.backgroundColor = statusBarColor
-        view.addSubview(statusBarView)
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = UIColor.flatWhite()
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     func populateHeader() {
@@ -119,10 +119,27 @@ class MasterDetailViewController: UIViewController {
                 self.saveButton.setFATitleColor(color: UIColor.init(red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0))
             }
         }
-        saveButton.setFAIcon(icon: .FAStar, iconSize: 30, forState: .normal)
+        infoButtonLabel.setFAIcon(icon: .FAInfoCircle, iconSize: 25)
+        saveButton.setFAIcon(icon: .FAStarO, iconSize: 30, forState: .normal)
         callButton.setFAIcon(icon: .FAPhone, iconSize: 30, forState: .normal)
         mapsButton.setFAIcon(icon: .FAMap, iconSize: 30, forState: .normal)
         websiteButton.setFAIcon(icon: .FALink, iconSize: 30, forState: .normal)
+        
+        infoButtonLabel.tintColor = UIColor.flatGray()
+        saveButton.tintColor = UIColor.flatGray()
+        callButton.tintColor = UIColor.flatGray()
+        mapsButton.tintColor = UIColor.flatGray()
+        websiteButton.tintColor = UIColor.flatGray()
+        
+        let call = userData._contact_phone
+        if !call.isEmpty && call != "-" {
+            callButtonLabel.text = "\(call)"
+        }
+    }
+    
+    func populateReviews() {
+        let reviews = InformationSection(type: "Reviews", dataTitles: ["John Semuel", "Smith Semuel", "A", "B", "C"], dataDetails: ["Wow love this place!Wow love this place!Wow love this place!Wow love this place!Wow love this place!Wow love this place!", "Great", "Wow", "Not bad, seriously", "ergjiegiroejgiorjgoirejg oiejrgiorejgo oiefieow jfiwej fio jiwoejf iowj fiow iwef o"], expanded: true)
+        informationSections.append(reviews)
     }
     
     @IBAction func revealInfoButtonPressed(_ sender: Any) {
@@ -138,6 +155,7 @@ class MasterDetailViewController: UIViewController {
     }
     
     @IBAction func saveButton(_ sender: Any) {
+        
         //        let user = Auth.auth().currentUser
         //        if user != nil {
         //            let usersRef = Database.database().reference().child("Users")
@@ -286,7 +304,7 @@ class MasterDetailViewController: UIViewController {
     }
 }
 
-extension MasterDetailViewController: UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate {
+extension MasterDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return informationSections.count
@@ -297,46 +315,42 @@ extension MasterDetailViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if (section == 3) {
+            return 100
+        }
         return 44
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (informationSections[indexPath.section].expanded) {
-            return 30
-        } else {
-            return 0
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 2
-    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = ExpandableHeaderView()
-        header.customInit(
-            leftText: informationSections[section].type,
-            rightText: informationSections[section].type,
-            section: section,
-            delegate: self)
+        if section == informationSections.count - 1 {
+            let reviewHeader = UITableViewCell()
+            reviewHeader.backgroundColor = UIColor.white
+            reviewHeader.textLabel?.text = "Reviews"
+            reviewHeader.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
+            return reviewHeader
+        }
+        let header = UITableViewCell()
+        header.textLabel?.text = informationSections[section].type
+        header.textLabel?.textColor = UIColor(hexString: "#333333")
+        header.textLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        header.backgroundColor = UIColor(hexString: "#f7f7f7")
+        header.detailTextLabel?.text = "\(informationSections[section].dataDetails.count) reviews"
         return header
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == informationSections.count - 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "commentsCell")! as! CommentsCell
+            cell.name.text = informationSections[indexPath.section].dataTitles[indexPath.row]
+            cell.textLabel?.adjustsFontSizeToFitWidth = true
+            cell.message.text = informationSections[indexPath.section].dataDetails[indexPath.row]
+            return cell
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
         cell.textLabel?.text = informationSections[indexPath.section].dataTitles[indexPath.row]
         cell.textLabel?.adjustsFontSizeToFitWidth = true
         cell.detailTextLabel?.text = informationSections[indexPath.section].dataDetails[indexPath.row]
         return cell
-    }
-    
-    func toggleSection(header: ExpandableHeaderView, section: Int) {
-        informationSections[section].expanded = !informationSections[section].expanded
-        tableView.beginUpdates()
-        for i in 0 ..< informationSections[section].dataDetails.count {
-            tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
-        }
-        tableView.endUpdates()
     }
     
 }
