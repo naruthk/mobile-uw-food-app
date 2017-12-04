@@ -153,7 +153,12 @@ class DiscoverMapViewController: UIViewController {
         let calendar = Calendar.current
         let day = calendar.component(.weekday, from: todayDate) - 1
         let dayValues = ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"]
-        let snippet = category + ", " + average_rating + " | Today: " + hours[dayValues[day]]!
+        var snippet : String = ""
+        if average_rating == "0.0" {
+            snippet = category + " | Today: " + hours[dayValues[day]]!
+        } else {
+            snippet = category + ", " + average_rating + " | Today: " + hours[dayValues[day]]!
+        }
         
         self.createAMarker(
             userData: restaurant,

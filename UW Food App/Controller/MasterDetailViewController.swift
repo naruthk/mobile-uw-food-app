@@ -8,10 +8,11 @@
 
 import UIKit
 import ChameleonFramework
-import Font_Awesome_Swift
 import Cosmos
-import SwiftyDrop
 import Firebase
+import Font_Awesome_Swift
+import PopupDialog
+import SwiftyDrop
 
 var favoritesItemDictionary = [String:Restaurant]()
 
@@ -29,6 +30,11 @@ class MasterDetailViewController: UIViewController {
     var locationsItem : [Information] = []
     var paymentsItem : [Information] = []
     var reviewsItem : [Reviews] = []
+    var ratingComment : String = ""
+    var ratingValue : String = ""
+    var ratingSum : Double = 0.0
+    var ratingCounter : Int = 0
+    var ratingTotal : Double = 0.0
     
     @IBOutlet weak var ratingPanel: CosmosView!
     @IBOutlet weak var saveButton: UIButton!
@@ -50,7 +56,6 @@ class MasterDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.hidesNavigationBarHairline = true
-        
         sections = [
             Category(name:"Hours", items: hoursItem as [AnyObject]),
             Category(name:"Location", items: locationsItem as [AnyObject]),
@@ -58,7 +63,7 @@ class MasterDetailViewController: UIViewController {
             Category(name:"Reviews", items: reviewsItem as [AnyObject])
         ]
         
-        let when = DispatchTime.now() + 3
+        let when = DispatchTime.now() + 2
         DispatchQueue.main.asyncAfter(deadline: when) {
             self.sections.remove(at: self.sections.count - 1)
             self.sections.append(Category(name:"Reviews", items: self.reviewsItem as [AnyObject]))
@@ -69,6 +74,7 @@ class MasterDetailViewController: UIViewController {
         populateHeader()
         populateRating()
         populateButtons()
+        setupRatingPopup()
     }
     
     override func didReceiveMemoryWarning() {
@@ -113,8 +119,9 @@ class MasterDetailViewController: UIViewController {
     }
     
     func populateRating() {
-        if userData._average_rating == "-" {
-            restaurantRatingLabel.text = "No ratings"
+        if userData._average_rating == "0.0" || userData._average_rating == "-" {
+            restaurantRatingLabel.text = "Be the first to review."
+            ratingPanel.rating = 0.0
         } else {
             let rating = Double(userData._average_rating)!
             ratingPanel.rating = rating
@@ -132,7 +139,7 @@ class MasterDetailViewController: UIViewController {
             ratingPanel.settings.filledColor = color
             ratingPanel.settings.emptyBorderColor = color
             ratingPanel.settings.filledBorderColor = color
-            restaurantRatingLabel.text = "\(rating)"
+            restaurantRatingLabel.text = "\(rating) | Leave a Review"
         }
     }
     
@@ -186,29 +193,83 @@ class MasterDetailViewController: UIViewController {
         }
     }
     
+    func setupRatingPopup() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleRatingTap(_:)))
+        ratingPanel.addGestureRecognizer(tap)
+    }
+    
+    @objc func handleRatingTap(_ sender: UITapGestureRecognizer) {
+        if Auth.auth().currentUser == nil {
+            let title = "Important Notice"
+            let message = "You must be signed in before you can provide a review."
+            let popup = PopupDialog(title: title, message: message)
+            let close = CancelButton(title: "Close") {}
+            popup.addButton(close)
+            self.present(popup, animated: true, completion: nil)
+        }
+        let ratingVC = RatingViewController(nibName: "RatingViewController", bundle: nil)
+        let popup = PopupDialog(viewController: ratingVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true)
+        let cancelBtn = CancelButton(title: "Cancel", height: 60) {}
+        let ratedBtn = DefaultButton(title: "Rate", height: 60) {
+            Drop.down("Thanks for rating the \(self.userData._title)", state: .success)
+            self.ratingComment = ratingVC.returnData()[0]
+            self.ratingValue = ratingVC.returnData()[1]
+            guard let user = Auth.auth().currentUser else { return }
+            let reviewsDB = Database.database().reference().child("reviews/\(self.userData._id)")
+            let reviewDictionary : [String: Any] = [
+                "message": self.ratingComment, "name": user.displayName ?? "-" ,
+                "sender": user.email ?? "-", "rating": "\(self.ratingValue.prefix(3))",
+                "timestamp": NSDate().timeIntervalSince1970
+            ]
+            reviewsDB.childByAutoId().setValue(reviewDictionary)
+            
+            // Fetch total ratings for this particular restaurant
+            let ratingsDB = Database.database().reference().child("reviews/\(self.userData._id)")
+            ratingsDB.queryOrdered(byChild: "rating").observe(.childAdded, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    let str = dictionary["rating"] as! String
+                    let value = Double(str.prefix(3))!
+                    self.ratingSum = self.ratingSum + value
+                    self.ratingCounter += 1
+                }
+            })
+            
+            // Neat trick. Let the fetching above finishes first before updating our restaurants JSON
+            let when = DispatchTime.now() + 3
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                self.ratingTotal = self.ratingSum / Double(self.ratingCounter)
+                let restaurantDB = Database.database().reference().child("restaurants/\(self.userData._id)")
+                let ratingDictionary = ["average_rating": "\(String(self.ratingTotal).prefix(3))"]
+                restaurantDB.updateChildValues(ratingDictionary)
+                self.ratingTotal = 0.0
+            }
+        }
+        popup.addButtons([cancelBtn, ratedBtn])
+        present(popup, animated: true, completion: nil)
+    }
+    
     @IBAction func moreActionPressed(_ sender: Any) {
-        
         let item1 = "Check out this place called the \(userData._title). They got some great food."
         let item2 = "- from the UW Food App!"
-        
         let activityVC : UIActivityViewController = UIActivityViewController(activityItems: [item1, item2], applicationActivities: nil)
         self.present(activityVC, animated: true, completion: nil)
     }
     
     @IBAction func moreInfoButtonPressed(_ sender: Any) {
         if !userData._description.isEmpty && userData._description != "-" {
-            let infoAlert = UIAlertController(title: userData._title, message: userData._description, preferredStyle: UIAlertControllerStyle.alert)
-            infoAlert.addAction(UIAlertAction(title: "Close", style: .default, handler: { (action: UIAlertAction!) in
-                return
-            }))
-            self.present(infoAlert, animated: true, completion: nil)
+            let title = "\(userData._title)"
+            let message = "\(userData._description)"
+            let popup = PopupDialog(title: title, message: message)
+            let close = CancelButton(title: "Close") {}
+            popup.addButton(close)
+            self.present(popup, animated: true, completion: nil)
         } else {
             Drop.down("More information not available.", state: .warning)
         }
     }
     
     @IBAction func saveButton(_ sender: Any) {
-        // TO-DO: Implement Save button
+        // TO-DO: Implement Save Functionality
         
     }
     

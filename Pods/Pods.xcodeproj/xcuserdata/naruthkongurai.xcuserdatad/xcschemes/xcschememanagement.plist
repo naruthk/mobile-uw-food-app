@@ -88,26 +88,33 @@
 			<key>orderHint</key>
 			<integer>13</integer>
 		</dict>
-		<key>Pulley.xcscheme</key>
+		<key>PopupDialog.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>14</integer>
 		</dict>
-		<key>SwiftyDrop.xcscheme</key>
+		<key>Pulley.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>15</integer>
 		</dict>
-		<key>SwiftyJSON.xcscheme</key>
+		<key>SwiftyDrop.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>16</integer>
+		</dict>
+		<key>SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>17</integer>
 		</dict>
 		<key>leveldb-library.xcscheme</key>
 		<dict>

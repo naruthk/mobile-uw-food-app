@@ -9,11 +9,14 @@
 import UIKit
 import Firebase
 import SwiftyDrop
+import PopupDialog
 
 class RegisterViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var displayNameTextField: UITextField!
+    @IBOutlet weak var infoButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +28,15 @@ class RegisterViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    @IBAction func infoButtonPressed(_ sender: Any) {
+        let title = "Display Name"
+        let message = "A display name is what everybody else sees when they read your reviews. Feel free to pick anything you want now. You can always change it later if you want."
+        let popup = PopupDialog(title: title, message: message)
+        let close = CancelButton(title: "I got it!") {}
+        popup.addButton(close)
+        self.present(popup, animated: true, completion: nil)
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
@@ -42,25 +54,26 @@ class RegisterViewController: UIViewController {
             if error != nil {
                 print(error ?? "")
                 Drop.down("Unable to register. Please try again.", state: .error)
-            } else {
-                
-                self.performSegue(withIdentifier: "goToAccount", sender: self)
-                
-                self.emailTextField.clearsOnBeginEditing = true
-                self.passwordTextField.clearsOnBeginEditing = true
-                Drop.down("Thanks for registering.", state: .success)
+            } else if let user = user {
+                let changeRequest = user.createProfileChangeRequest()
+                changeRequest.displayName = self.displayNameTextField.text
+                changeRequest.commitChanges(completion: { error in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        let title = "Registration Successful!"
+                        let message = "Thanks for signing up an account with us. You can now leave reviews for any restaurants."
+                        let popup = PopupDialog(title: title, message: message, gestureDismissal: false)
+                        let close = CancelButton(title: "Close") {
+                            self.emailTextField.clearsOnBeginEditing = true
+                            self.passwordTextField.clearsOnBeginEditing = true
+                            self.performSegue(withIdentifier: "goToAccount", sender: self)
+                        }
+                        popup.addButton(close)
+                        self.present(popup, animated: true, completion: nil)
+                    }
+                })
             }
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -35,6 +35,8 @@
 		8B1551C41FD353FF00499297 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1551C31FD353FF00499297 /* Reachability.swift */; };
 		8B1551CD1FD4060600499297 /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1551CC1FD4060600499297 /* CommentsCell.swift */; };
 		8B1551CF1FD41A1100499297 /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1551CE1FD41A1100499297 /* Reviews.swift */; };
+		8B1551D21FD4F13A00499297 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1551D01FD4F13A00499297 /* RatingViewController.swift */; };
+		8B1551D31FD4F13A00499297 /* RatingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B1551D11FD4F13A00499297 /* RatingViewController.xib */; };
 		8B37639F1FC7DCF500D45B87 /* UW_Food_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37639E1FC7DCF500D45B87 /* UW_Food_AppTests.swift */; };
 		8B3763AA1FC7DCF500D45B87 /* UW_Food_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763A91FC7DCF500D45B87 /* UW_Food_AppUITests.swift */; };
 		C707847E9884A2875D857C81 /* Pods_UW_Food_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E907F138614499790603683F /* Pods_UW_Food_App.framework */; };
@@ -91,6 +93,8 @@
 		8B1551C31FD353FF00499297 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		8B1551CC1FD4060600499297 /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
 		8B1551CE1FD41A1100499297 /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
+		8B1551D01FD4F13A00499297 /* RatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
+		8B1551D11FD4F13A00499297 /* RatingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RatingViewController.xib; sourceTree = "<group>"; };
 		8B3763861FC7DCF500D45B87 /* UW Food App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UW Food App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B37639A1FC7DCF500D45B87 /* UW Food AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UW Food AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B37639E1FC7DCF500D45B87 /* UW_Food_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UW_Food_AppTests.swift; sourceTree = "<group>"; };
@@ -160,13 +164,13 @@
 		1840B6581FD13B5F00DFE84E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8B1551D41FD4F14700499297 /* Discover */,
+				1840B6631FD13B5F00DFE84E /* Account */,
 				1840B65D1FD13B5F00DFE84E /* MasterDetailViewController.swift */,
 				1840B6591FD13B5F00DFE84E /* SearchViewController.swift */,
 				1840B65A1FD13B5F00DFE84E /* FavoritesViewController.swift */,
-				1840B65B1FD13B5F00DFE84E /* DiscoverCardViewController.swift */,
-				1840B6601FD13B5F00DFE84E /* DiscoverMapViewController.swift */,
-				1840B6611FD13B5F00DFE84E /* DiscoverPulleyViewController.swift */,
-				1840B6631FD13B5F00DFE84E /* Account */,
+				8B1551D01FD4F13A00499297 /* RatingViewController.swift */,
+				8B1551D11FD4F13A00499297 /* RatingViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -205,6 +209,16 @@
 				8B1551CC1FD4060600499297 /* CommentsCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		8B1551D41FD4F14700499297 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				1840B65B1FD13B5F00DFE84E /* DiscoverCardViewController.swift */,
+				1840B6601FD13B5F00DFE84E /* DiscoverMapViewController.swift */,
+				1840B6611FD13B5F00DFE84E /* DiscoverPulleyViewController.swift */,
+			);
+			path = Discover;
 			sourceTree = "<group>";
 		};
 		8B37637D1FC7DCF500D45B87 = {
@@ -377,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1840B6771FD13B5F00DFE84E /* Assets.xcassets in Resources */,
+				8B1551D31FD4F13A00499297 /* RatingViewController.xib in Resources */,
 				1840B6881FD13B5F00DFE84E /* Search.storyboard in Resources */,
 				1840B6891FD13B5F00DFE84E /* Favorites.storyboard in Resources */,
 				1840B68B1FD13B5F00DFE84E /* Main.storyboard in Resources */,
@@ -437,6 +452,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Player/Player.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/Pulley/Pulley.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyDrop/SwiftyDrop.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -453,6 +469,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Player.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pulley.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyDrop.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -601,6 +618,7 @@
 				8B1551C21FD32D3D00499297 /* SharedInstance.swift in Sources */,
 				1840B6851FD13B5F00DFE84E /* Food.swift in Sources */,
 				1840B6821FD13B5F00DFE84E /* LoginViewController.swift in Sources */,
+				8B1551D21FD4F13A00499297 /* RatingViewController.swift in Sources */,
 				8B1551CF1FD41A1100499297 /* Reviews.swift in Sources */,
 				1840B67B1FD13B5F00DFE84E /* DiscoverCardViewController.swift in Sources */,
 				1840B6831FD13B5F00DFE84E /* AccountViewController.swift in Sources */,

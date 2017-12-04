@@ -21,6 +21,7 @@ target 'UW Food App' do
   pod 'Pulley'
   pod 'Cards', '~> 1.3'
   pod 'ChameleonFramework'
+  pod 'PopupDialog', '~> 0.6'
 
   target 'UW Food AppTests' do
     inherit! :search_paths

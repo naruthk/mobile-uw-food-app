@@ -80,18 +80,30 @@ You must open **`UW Food App.xcworkspace`** in order to start developing the app
 
 ### Libraries We're Using
 
-With CocoaPods as the package dependency manager, we install these libraries:
+With CocoaPods as the package dependency manager, we're using
 
-- Alamofire
-- ChameleonFramework
-- Firebase
-- Font-Awesome-Swift
-- GoogleMaps
-- GooglePlaces
-- SwiftyJSON
-- SwiftyDrop
+- Alamofire (4.5.1)
+- Cards (1.3.0)
+- ChameleonFramework (2.1.0)
+- Cosmos (12.0.1)
+- Firebase (4.6.0)
+- FirebaseAnalytics (4.0.5)
+- FirebaseAuth (4.3.2)
+- FirebaseCore (4.0.11)
+- FirebaseDatabase (4.1.1)
+- FirebaseInstanceID (2.0.6)
+- Font-Awesome-Swift (1.7.1)
+- GTMSessionFetcher (1.1.12)
+- GoogleMaps (2.5.0)
+- GooglePlaces (2.5.0)
+- GoogleToolboxForMac (2.1.3)
+- Player (0.8.4)
+- Pulley (2.1.0)
+- PopupDialog (0.6.2)
+- SwiftyDrop (4.0.2)
+- SwiftyJSON (4.0.0)
 
-For images,
+For various images and icons through the app, we're obtaining them from
 
 - Freepik (Flaticon)
 - Google (Flaticon)

@@ -175,37 +175,62 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yVc-cn-UQR">
-                                <rect key="frame" x="16" y="132" width="343" height="230"/>
+                                <rect key="frame" x="16" y="132" width="343" height="250"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0on-51-5vg">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0on-51-5vg">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="O7Q-Nd-BmY"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="O7Q-Nd-BmY"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="21"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7bK-h2-B2M">
-                                        <rect key="frame" x="0.0" y="70" width="343" height="60"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7bK-h2-B2M">
+                                        <rect key="frame" x="0.0" y="60" width="343" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="HeQ-UQ-fKh"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="HeQ-UQ-fKh"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="21"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passwords must be at least 6 characters long. " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mb5-ie-DlI">
-                                        <rect key="frame" x="0.0" y="140" width="343" height="40"/>
+                                        <rect key="frame" x="0.0" y="120" width="343" height="20"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="28e-6x-Ltw"/>
+                                            <constraint firstAttribute="height" constant="20" id="EU3-7D-Mg6"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pn3-p5-nb6">
+                                        <rect key="frame" x="0.0" y="150" width="343" height="50"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Display Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gdL-Tg-5CB">
+                                                <rect key="frame" x="0.0" y="0.0" width="308" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="YVz-eR-Cql"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="21"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="nickname"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JUd-Zm-WdM">
+                                                <rect key="frame" x="308" y="0.0" width="35" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="35" id="8Q6-MY-aWk"/>
+                                                    <constraint firstAttribute="height" constant="50" id="v0Q-Ip-6R4"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="infoButtonPressed:" destination="ZyT-Sn-ncy" eventType="touchUpInside" id="79P-BZ-bBH"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TpJ-p8-X7d">
-                                        <rect key="frame" x="0.0" y="190" width="343" height="40"/>
+                                        <rect key="frame" x="0.0" y="210" width="343" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="q3T-DW-aHm"/>
@@ -220,7 +245,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="yVc-cn-UQR" firstAttribute="leading" secondItem="148-4b-e9c" secondAttribute="leading" constant="16" id="I55-7y-xtS"/>
                             <constraint firstItem="yVc-cn-UQR" firstAttribute="top" secondItem="148-4b-e9c" secondAttribute="top" constant="16" id="IAF-1Z-ezZ"/>
@@ -229,7 +254,9 @@
                         <viewLayoutGuide key="safeArea" id="148-4b-e9c"/>
                     </view>
                     <connections>
+                        <outlet property="displayNameTextField" destination="gdL-Tg-5CB" id="MbN-3j-fzL"/>
                         <outlet property="emailTextField" destination="0on-51-5vg" id="Cvn-3D-4lh"/>
+                        <outlet property="infoButton" destination="JUd-Zm-WdM" id="ZCm-G7-DqY"/>
                         <outlet property="passwordTextField" destination="7bK-h2-B2M" id="RyC-fN-iXP"/>
                         <segue destination="c3E-91-mqO" kind="show" identifier="goToAccount" id="NLt-RY-2oO"/>
                     </connections>
@@ -263,6 +290,6 @@
         <image name="User" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8ng-ao-pAp"/>
+        <segue reference="NLt-RY-2oO"/>
     </inferredMetricsTieBreakers>
 </document>
