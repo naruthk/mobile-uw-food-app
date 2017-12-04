@@ -10,13 +10,13 @@ import Foundation
 
 struct Reviews {
     
-    var sender: String!
+    var name: String!
     var rating: String!
     var message: String!
     var timestamp: Double!
     
-    init(sender: String, rating: String, message: String, timestamp: Double) {
-        self.sender = sender
+    init(name: String, rating: String, message: String, timestamp: Double) {
+        self.name = name
         self.rating = rating
         self.message = message
         self.timestamp = timestamp

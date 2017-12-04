@@ -13,7 +13,7 @@
 		1840B67A1FD13B5F00DFE84E /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B65A1FD13B5F00DFE84E /* FavoritesViewController.swift */; };
 		1840B67B1FD13B5F00DFE84E /* DiscoverCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B65B1FD13B5F00DFE84E /* DiscoverCardViewController.swift */; };
 		1840B67C1FD13B5F00DFE84E /* MasterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B65D1FD13B5F00DFE84E /* MasterDetailViewController.swift */; };
-		1840B67D1FD13B5F00DFE84E /* InformationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B65E1FD13B5F00DFE84E /* InformationSection.swift */; };
+		1840B67D1FD13B5F00DFE84E /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B65E1FD13B5F00DFE84E /* Information.swift */; };
 		1840B67F1FD13B5F00DFE84E /* DiscoverMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6601FD13B5F00DFE84E /* DiscoverMapViewController.swift */; };
 		1840B6801FD13B5F00DFE84E /* DiscoverPulleyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6611FD13B5F00DFE84E /* DiscoverPulleyViewController.swift */; };
 		1840B6821FD13B5F00DFE84E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6641FD13B5F00DFE84E /* LoginViewController.swift */; };
@@ -65,7 +65,7 @@
 		1840B65A1FD13B5F00DFE84E /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		1840B65B1FD13B5F00DFE84E /* DiscoverCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverCardViewController.swift; sourceTree = "<group>"; };
 		1840B65D1FD13B5F00DFE84E /* MasterDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterDetailViewController.swift; sourceTree = "<group>"; };
-		1840B65E1FD13B5F00DFE84E /* InformationSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationSection.swift; sourceTree = "<group>"; };
+		1840B65E1FD13B5F00DFE84E /* Information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
 		1840B6601FD13B5F00DFE84E /* DiscoverMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverMapViewController.swift; sourceTree = "<group>"; };
 		1840B6611FD13B5F00DFE84E /* DiscoverPulleyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverPulleyViewController.swift; sourceTree = "<group>"; };
 		1840B6641FD13B5F00DFE84E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 		1840B6671FD13B5F00DFE84E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1840B65E1FD13B5F00DFE84E /* InformationSection.swift */,
+				1840B65E1FD13B5F00DFE84E /* Information.swift */,
 				1840B6681FD13B5F00DFE84E /* Food.swift */,
 				1840B6691FD13B5F00DFE84E /* Menu.swift */,
 				1840B66A1FD13B5F00DFE84E /* Restaurant.swift */,
@@ -593,7 +593,7 @@
 				1840B6871FD13B5F00DFE84E /* Restaurant.swift in Sources */,
 				1840B67F1FD13B5F00DFE84E /* DiscoverMapViewController.swift in Sources */,
 				8B1551C41FD353FF00499297 /* Reachability.swift in Sources */,
-				1840B67D1FD13B5F00DFE84E /* InformationSection.swift in Sources */,
+				1840B67D1FD13B5F00DFE84E /* Information.swift in Sources */,
 				1840B68F1FD13B5F00DFE84E /* AppDelegate.swift in Sources */,
 				1840B6791FD13B5F00DFE84E /* SearchViewController.swift in Sources */,
 				1840B67C1FD13B5F00DFE84E /* MasterDetailViewController.swift in Sources */,

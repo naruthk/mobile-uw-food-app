@@ -15,14 +15,20 @@ import Firebase
 
 var favoritesItemDictionary = [String:Restaurant]()
 
+struct Category {
+    let name : String
+    var items : [AnyObject]
+}
+
 class MasterDetailViewController: UIViewController {
     
     var restaurants = SharedInstance.sharedInstance
     var userData : Restaurant = Restaurant(value: "")
-    var informationSections : [InformationSection] = []
-    let colorForOverall : UIColor = UIColor.flatPurpleColorDark()
-    let reviewsPanelView = UIView()
-    var reviewsSection = [Reviews]()
+    var sections = [Category]()
+    var hoursItem : [Information] = []
+    var locationsItem : [Information] = []
+    var paymentsItem : [Information] = []
+    var reviewsItem : [Reviews] = []
     
     @IBOutlet weak var ratingPanel: CosmosView!
     @IBOutlet weak var saveButton: UIButton!
@@ -31,12 +37,12 @@ class MasterDetailViewController: UIViewController {
     @IBOutlet weak var callButtonLabel: UILabel!
     @IBOutlet weak var mapsButton: UIButton!
     @IBOutlet weak var websiteButton: UIButton!
+    @IBOutlet weak var moreInfoButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var restaurantCategory: UILabel!
     @IBOutlet weak var restaurantHours: UILabel!
     @IBOutlet weak var restaurantRatingLabel: UILabel!
-    @IBOutlet weak var infoButtonLabel: UIBarButtonItem!
-    
+
     override func viewDidAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
@@ -45,10 +51,19 @@ class MasterDetailViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.hidesNavigationBarHairline = true
         
-        let reviews = InformationSection(type: "Reviews", dataTitles: ["Anthony"], dataDetails: ["Quite unexpected!"], expanded: true)
-        informationSections.append(reviews)
+        sections = [
+            Category(name:"Hours", items: hoursItem as [AnyObject]),
+            Category(name:"Location", items: locationsItem as [AnyObject]),
+            Category(name:"Payment Services", items: paymentsItem as [AnyObject]),
+            Category(name:"Reviews", items: reviewsItem as [AnyObject])
+        ]
         
-        
+        let when = DispatchTime.now() + 3
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.sections.remove(at: self.sections.count - 1)
+            self.sections.append(Category(name:"Reviews", items: self.reviewsItem as [AnyObject]))
+            self.tableView.reloadSections([self.sections.count-1], with: .none)
+        }
         retrieveReviews()
         setTableViewFunctionalities()
         populateHeader()
@@ -72,10 +87,10 @@ class MasterDetailViewController: UIViewController {
     func populateReviews(dictionary: [String: AnyObject]) {
         let message = dictionary["message"] as! String
         let rating = dictionary["rating"] as! String
-        let sender = dictionary["sender"] as! String
+        let name = dictionary["name"] as! String
         let timestamp = dictionary["timestamp"] as! Double
-        let reviewData = Reviews(sender: sender, rating: rating, message: message, timestamp: timestamp)
-        reviewsSection.append(reviewData)
+        let review = Reviews(name: name, rating: rating, message: message, timestamp: timestamp)
+        self.reviewsItem.append(review)
     }
     
     func setTableViewFunctionalities() {
@@ -87,9 +102,7 @@ class MasterDetailViewController: UIViewController {
     
     func populateHeader() {
         self.title = userData._title
-        let todayDate = Date()
-        let calendar = Calendar.current
-        let day = calendar.component(.weekday, from: todayDate) - 1
+        let day = Calendar.current.component(.weekday, from: Date()) - 1
         let dayValues = ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"]
         let category = String(userData._category).capitalized
         restaurantCategory.text = category
@@ -103,14 +116,23 @@ class MasterDetailViewController: UIViewController {
         if userData._average_rating == "-" {
             restaurantRatingLabel.text = "No ratings"
         } else {
-            let rating = userData._average_rating
-            ratingPanel.rating = Double(rating)!
+            let rating = Double(userData._average_rating)!
+            ratingPanel.rating = rating
             ratingPanel.settings.updateOnTouch = false
-            ratingPanel.settings.starMargin = 2
-            ratingPanel.settings.filledColor = UIColor.flatGray()
-            ratingPanel.settings.emptyBorderColor = UIColor.flatGray()
-            ratingPanel.settings.filledBorderColor = UIColor.flatGray()
-            restaurantRatingLabel.text = rating
+            ratingPanel.settings.starMargin = 1
+            ratingPanel.settings.fillMode = .precise
+            let color : UIColor
+            if (rating > 4) {
+                color = UIColor.flatRed()
+            } else if rating > 3 {
+                color = UIColor.flatOrange()
+            } else {
+                color = UIColor.flatGray()
+            }
+            ratingPanel.settings.filledColor = color
+            ratingPanel.settings.emptyBorderColor = color
+            ratingPanel.settings.filledBorderColor = color
+            restaurantRatingLabel.text = "\(rating)"
         }
     }
     
@@ -141,25 +163,39 @@ class MasterDetailViewController: UIViewController {
                 self.saveButton.setFATitleColor(color: UIColor.init(red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0))
             }
         }
-        infoButtonLabel.setFAIcon(icon: .FAInfoCircle, iconSize: 25)
-        saveButton.setFAIcon(icon: .FAStarO, iconSize: 30, forState: .normal)
-        callButton.setFAIcon(icon: .FAPhone, iconSize: 30, forState: .normal)
-        mapsButton.setFAIcon(icon: .FAMap, iconSize: 30, forState: .normal)
-        websiteButton.setFAIcon(icon: .FALink, iconSize: 30, forState: .normal)
         
-        infoButtonLabel.tintColor = UIColor.flatGray()
-        saveButton.tintColor = UIColor.flatGray()
-        callButton.tintColor = UIColor.flatGray()
-        mapsButton.tintColor = UIColor.flatGray()
-        websiteButton.tintColor = UIColor.flatGray()
+        let iconSize : CGFloat  = 35
+        saveButton.setFAIcon(icon: .FAStarO, iconSize: iconSize, forState: .normal)
+        callButton.setFAIcon(icon: .FAPhone, iconSize: iconSize, forState: .normal)
+        mapsButton.setFAIcon(icon: .FAMapMarker, iconSize: iconSize, forState: .normal)
+        websiteButton.setFAIcon(icon: .FALink, iconSize: iconSize, forState: .normal)
+        moreInfoButton.setFAIcon(icon: .FAInfoCircle, iconSize: iconSize, forState: .normal)
+        
+        guard let color = UIColor.flatGrayColorDark() else { return }
+        saveButton.tintColor = color
+        saveButton.setFATitleColor(color: color)
+        callButton.tintColor = color
+        mapsButton.tintColor = color
+        websiteButton.tintColor = color
+        moreInfoButton.tintColor = color
         
         let call = userData._contact_phone
         if !call.isEmpty && call != "-" {
             callButtonLabel.text = "\(call)"
+            callButtonLabel.adjustsFontSizeToFitWidth = true
         }
     }
     
-    @IBAction func revealInfoButtonPressed(_ sender: Any) {
+    @IBAction func moreActionPressed(_ sender: Any) {
+        
+        let item1 = "Check out this place called the \(userData._title). They got some great food."
+        let item2 = "- from the UW Food App!"
+        
+        let activityVC : UIActivityViewController = UIActivityViewController(activityItems: [item1, item2], applicationActivities: nil)
+        self.present(activityVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func moreInfoButtonPressed(_ sender: Any) {
         if !userData._description.isEmpty && userData._description != "-" {
             let infoAlert = UIAlertController(title: userData._title, message: userData._description, preferredStyle: UIAlertControllerStyle.alert)
             infoAlert.addAction(UIAlertAction(title: "Close", style: .default, handler: { (action: UIAlertAction!) in
@@ -172,99 +208,8 @@ class MasterDetailViewController: UIViewController {
     }
     
     @IBAction func saveButton(_ sender: Any) {
+        // TO-DO: Implement Save button
         
-        //        let user = Auth.auth().currentUser
-        //        if user != nil {
-        //            let usersRef = Database.database().reference().child("Users")
-        //            let currentUserRef = usersRef.child("\(user?.uid ?? "")")
-        //            let favoritesItem = currentUserRef.child("favorites")
-        //            if usersRef != nil {
-        //                favoritesItem.observe(.childAdded, with: { (snapshot) in
-        //                    if let dictionary = snapshot.value as? [String: AnyObject] {
-        //                        let restaurantID = dictionary["restaurantID"] as! String
-        //                        if restaurantID == self.userData.restaurantID {
-        //                            self.saveButton.setFATitleColor(color: UIColor.init(red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0))
-        //                            self.saveButtonLabel.text = "Saved"
-        //                            favoritesItem.child(self.userData.restaurantID).removeValue { error, _ in
-        //                                if error != nil {
-        //                                    print("error \(error)")
-        //                                } else {
-        //                                    print("Removed from firebase too!")
-        //                                    favoritesItemDictionary[self.userData.restaurantID] = nil
-        //                                    Drop.down("Removed \(self.userData.name) from Favorites!", state: .success)
-        //                                }
-        //                            }
-        //                        } else {
-        //                            self.saveButton.setFATitleColor(color: UIColor.flatGray())
-        //                            self.saveButtonLabel.text = "Unsaved"
-        //                            let dictionaryData = [
-        //                                "autoID" : favoritesItem.key,
-        //                                "restaurantName" : self.userData.name,
-        //                                "restaurantID" : self.userData.restaurantID
-        //                            ]
-        //                            favoritesItem.childByAutoId().setValue(dictionaryData)
-        //                            favoritesItemDictionary[self.userData.restaurantID] = self.userData
-        //                            print("Added to Favorites")
-        //                            Drop.down("Added \(self.userData.name) to Favorites!", state: .success)
-        //                        }
-        //                    } else {
-        //                        print("Fail")
-        //                    }
-        //                }) { (error) in
-        //                    print("Error retrieving values")
-        //                }
-        //            } else {
-        //                self.saveButton.setFATitleColor(color: UIColor.flatGray())
-        //                self.saveButtonLabel.text = "Unsaved"
-        //                let dictionaryData = [
-        //                    "autoID" : favoritesItem.key,
-        //                    "restaurantName" : self.userData.name,
-        //                    "restaurantID" : self.userData.restaurantID
-        //                ]
-        //                favoritesItem.childByAutoId().setValue(dictionaryData)
-        //                favoritesItemDictionary[self.userData.restaurantID] = self.userData
-        //                print("Added to Favorites")
-        //                Drop.down("Added \(self.userData.name) to Favorites!", state: .success)
-        //            }
-        //        }
-        
-        //        isChecked = !isChecked
-        //        if !isChecked {
-        //            let user = Auth.auth().currentUser
-        //            if user != nil {
-        //                let usersRef = Database.database().reference().child("Users")
-        //                let currentUserRef = usersRef.child("\(user?.uid ?? "")")
-        //                let favoriteForThisUserRef = currentUserRef.child("favorites")
-        //                let dictionaryData = [
-        //                    "autoID" : favoriteForThisUserRef.key,
-        //                    "restaurantName" : userData.name,
-        //                    "restaurantID" : userData.restaurantID
-        //                ]
-        //                favoriteForThisUserRef.childByAutoId().setValue(dictionaryData)
-        //            }
-        //            favoritesItemDictionary[userData.restaurantID] = userData
-        //            print("Added to Favorites")
-        //            Drop.down("Added \(userData.name) to Favorites!", state: .success)
-        //            saveButton.setFATitleColor(color: UIColor.flatGray())
-        //        } else {
-        //            let user = Auth.auth().currentUser
-        //            if user != nil {
-        //                let usersRef = Database.database().reference().child("Users")
-        //                let currentUserRef = usersRef.child("\(user?.uid ?? "")")
-        //                let favoriteForThisUserRef = currentUserRef.child("favorites")
-        //                favoriteForThisUserRef.child(userData.restaurantID).removeValue { error, _ in
-        //                    if error != nil {
-        //                        print("error \(error)")
-        //                    } else {
-        //                        print("Removed from firebase too!")
-        //                    }
-        //                }
-        //            }
-        //            self.saveButton.setFATitleColor(color: UIColor.init(red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0))
-        //            print("Removed from Favorites")
-        //            favoritesItemDictionary[userData.restaurantID] = nil
-        //            Drop.down("Removed \(userData.name) from Favorites!", state: .success)
-        //        }
     }
     
     @IBAction func callPhoneNumber(_ sender: Any) {
@@ -286,15 +231,10 @@ class MasterDetailViewController: UIViewController {
                 return
             }
             let leaveAppAlert = UIAlertController(title: "Leaving the application", message: "Are you sure you want to do so?", preferredStyle: UIAlertControllerStyle.alert)
-            
-            leaveAppAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in
-                return
-            }))
-            
+            leaveAppAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in return }))
             leaveAppAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }))
-            
             self.present(leaveAppAlert, animated: true, completion: nil)
         } else {
             Drop.down(errorMessage, state: .warning)
@@ -306,11 +246,7 @@ class MasterDetailViewController: UIViewController {
         if !website.isEmpty && website != "-" {
             let url = URL(string: website)
             let leaveAppAlert = UIAlertController(title: "Leaving the application", message: "Are you sure you want to do so?", preferredStyle: UIAlertControllerStyle.alert)
-            
-            leaveAppAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in
-                return
-            }))
-            
+            leaveAppAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in return }))
             leaveAppAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
                 UIApplication.shared.open(url!)
             }))
@@ -324,25 +260,27 @@ class MasterDetailViewController: UIViewController {
 extension MasterDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return informationSections.count
+        return self.sections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 3 {
-            return reviewsSection.count
-        }
-        return informationSections[section].dataDetails.count
+        let items = self.sections[section].items
+        return items.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.sections[section].name
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 3 {
+        if self.sections[section].name == "Reviews" {
             return 100
         }
         return 44
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if section == 3 {
+        if self.sections[section].name == "Reviews" {
             let footer = UITableViewCell()
             return footer
         }
@@ -350,55 +288,71 @@ extension MasterDetailViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 3 {
+        if self.sections[section].name == "Reviews" {
             return 30
         }
         return 0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 3 {
-            let reviewHeader = UITableViewCell()
-            reviewHeader.backgroundColor = UIColor.white
-            reviewHeader.textLabel?.text = "Reviews"
-            reviewHeader.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
-            return reviewHeader
+        if self.sections[section].name == "Hours" {
+            let header = UITableViewCell()
+            header.backgroundColor = UIColor.white
+            header.textLabel?.text = "Information"
+            header.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
+            return header
         }
-        let header = UITableViewCell()
-        header.textLabel?.text = informationSections[section].type
-        header.textLabel?.textColor = UIColor(hexString: "#333333")
-        header.textLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        header.backgroundColor = UIColor(hexString: "#f7f7f7")
-        header.detailTextLabel?.text = "\(informationSections[section].dataDetails.count) reviews"
-        return header
+        if self.sections[section].name == "Reviews" {
+            let header = UITableViewCell()
+            header.backgroundColor = UIColor.white
+            header.textLabel?.text = "Reviews"
+            header.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
+            return header
+        }
+        return nil
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 3 {
+        let items = self.sections[indexPath.section].items
+        let item = items[indexPath.row]
+        
+        if indexPath.section == sections.count - 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "commentsCell")! as! CommentsCell
-//            let review = reviewsSection[indexPath.section]
-            let review = reviewsSection[0]
-            let date = Date(timeIntervalSince1970: review.timestamp)
+            let reviewItem = item as! Reviews
+            let rating = Double(reviewItem.rating)!
+            let color : UIColor
+            if (rating > 4) {
+                color = UIColor.flatRed()
+            } else if rating > 3 {
+                color = UIColor.flatOrange()
+            } else {
+                color = UIColor.flatGray()
+            }
+            let timestamp = Double(reviewItem.timestamp)
+            let date = Date(timeIntervalSince1970: timestamp)
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "YYYY-MM-d"
             let strDate = dateFormatter.string(from: date)
-            cell.name.text = review.sender
+            cell.name.text = reviewItem.name
             cell.name.adjustsFontSizeToFitWidth = true
             cell.date.text = strDate
-            cell.message.text = review.message
-            cell.stars.rating = Double(review.rating)!
-            cell.stars.text = review.rating
+            cell.message.text = reviewItem.message
+            cell.stars.rating = Double(reviewItem.rating)!
+            cell.stars.text = reviewItem.rating
             cell.stars.settings.updateOnTouch = false
-            cell.stars.settings.starMargin = 2
-            cell.stars.settings.filledColor = UIColor.flatGray()
-            cell.stars.settings.emptyBorderColor = UIColor.flatGray()
-            cell.stars.settings.filledBorderColor = UIColor.flatGray()
+            cell.stars.settings.starMargin = 1
+            cell.stars.settings.fillMode = .precise
+            cell.stars.settings.filledColor = color
+            cell.stars.settings.emptyBorderColor = color
+            cell.stars.settings.filledBorderColor = color
             return cell
         }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
-        cell.textLabel?.text = informationSections[indexPath.section].dataTitles[indexPath.row]
+        let informationItem = item as! Information
+        cell.textLabel?.text = informationItem.leftText
         cell.textLabel?.adjustsFontSizeToFitWidth = true
-        cell.detailTextLabel?.text = informationSections[indexPath.section].dataDetails[indexPath.row]
+        cell.detailTextLabel?.text = informationItem.rightText
         return cell
     }
     

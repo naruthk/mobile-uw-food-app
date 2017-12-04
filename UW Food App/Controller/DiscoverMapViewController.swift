@@ -200,11 +200,29 @@ class DiscoverMapViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToDetail" {
             if let myVC = segue.destination as? MasterDetailViewController {
-                let hours = InformationSection(type: "Hours", dataTitles: ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"], dataDetails: [userData._hours["sun"]!, userData._hours["mon"]!, userData._hours["tues"]!, userData._hours["wed"]!, userData._hours["thurs"]!, userData._hours["fri"]!, userData._hours["sat"]!], expanded: true)
-                let location = InformationSection(type: "Location", dataTitles: ["Building", "Walking Distance", "Walking Duration"], dataDetails: [userData._building, userData._distance, userData._duration], expanded: true)
-                let payment = InformationSection(type: "Payment", dataTitles: ["Husky Card", "Debit, Credit Cards", "Cash"], dataDetails: ["Yes", "Yes (Visa, MasterCard)", "Yes"], expanded: true)
+                let hours = [
+                    Information(leftText: "Sun", rightText: userData._hours["sun"]!),
+                    Information(leftText: "Mon", rightText: userData._hours["mon"]!),
+                    Information(leftText: "Tues", rightText: userData._hours["tues"]!),
+                    Information(leftText: "Wed", rightText: userData._hours["wed"]!),
+                    Information(leftText: "Thurs", rightText: userData._hours["thurs"]!),
+                    Information(leftText: "Fri", rightText: userData._hours["fri"]!),
+                    Information(leftText: "Sat", rightText: userData._hours["sat"]!)
+                ]
+                let locations = [
+                    Information(leftText: "Building", rightText: userData._building),
+                    Information(leftText: "Walking Distance", rightText: userData._distance),
+                    Information(leftText: "Walking Duration", rightText: userData._duration)
+                ]
+                let payments = [
+                    Information(leftText: "Husky Card", rightText: "Yes"),
+                    Information(leftText: "Debit, Credit Card", rightText: "Yes (VISA, MasterCard)"),
+                    Information(leftText: "Cash", rightText: "Yes")
+                ]
                 myVC.userData = self.userData
-                myVC.informationSections = [hours, location, payment]
+                myVC.hoursItem = hours
+                myVC.locationsItem = locations
+                myVC.paymentsItem = payments
             }
         }
     }
