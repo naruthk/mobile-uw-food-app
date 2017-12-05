@@ -53,6 +53,10 @@ class MasterDetailViewController: UIViewController {
         self.tableView.reloadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.hidesNavigationBarHairline = true
@@ -89,7 +93,7 @@ class MasterDetailViewController: UIViewController {
             }
         })
     }
-    
+
     func populateReviews(dictionary: [String: AnyObject]) {
         let message = dictionary["message"] as! String
         let rating = dictionary["rating"] as! String
@@ -167,91 +171,73 @@ class MasterDetailViewController: UIViewController {
     
     func setFavoriteIcon() {
         guard let color = UIColor.flatGray() else { return }
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user == nil {
-                self.saveButton.setFATitleColor(color: color)
-                self.saveButton.setFAIcon(icon: .FAStarO, iconSize: self.iconSize, forState: .normal)
-                self.saveButtonLabel.text = "Add"
-            } else {
-                print("Determining the right state of Favorite icon for this user")
-                let usersRef = Database.database().reference().child("Users")
-                let currentUser = usersRef.child("\(user?.uid ?? "")")
-                let favoritesItem = currentUser.child("favorites")
-                favoritesItem.observe(.childAdded, with: { (snapshot) in
-                    if let dictionary = snapshot.value as? [String: AnyObject] {
-                        let id = dictionary["restaurants_id"] as! String
-                        if id == self.userData._id {
-                            self.saveButton.setFATitleColor(color: UIColor.red)
-                            self.saveButton.setFAIcon(icon: .FAStar, iconSize: self.iconSize, forState: .normal)
-                            self.saveButtonLabel.text = "Added"
-                        } else {
-                            self.saveButton.setFATitleColor(color: color)
-                            self.saveButton.setFAIcon(icon: .FAStarO, iconSize: self.iconSize, forState: .normal)
-                            self.saveButtonLabel.text = "Add"
-                        }
-                    }
-                }) { (error) in
-                    print("Error retrieving values. Defaulting to original state.")
-                }
-                self.saveButton.setFATitleColor(color: color)
-                self.saveButton.setFAIcon(icon: .FAStarO, iconSize: self.iconSize, forState: .normal)
-                self.saveButtonLabel.text = "Add"
-            }
-        }
-    }
+        if self.favorites.favoritesItemDictionary.keys.contains(userData._id) {
+            self.saveButton.setFATitleColor(color: UIColor.red)
+            self.saveButton.setFAIcon(icon: .FAStar, iconSize: self.iconSize, forState: .normal)
+            self.saveButtonLabel.text = "Added"
+        } else {
+            self.saveButton.setFATitleColor(color: color)
+            self.saveButton.setFAIcon(icon: .FAStarO, iconSize: self.iconSize, forState: .normal)
+            self.saveButtonLabel.text = "Add"
+        }}
     
     @IBAction func saveButton(_ sender: Any) {
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user == nil {
-                let title = "Message"
-                let message = "You must be signed in before you can save restaurants to Favorites."
-                let popup = PopupDialog(title: title, message: message)
-                let close = CancelButton(title: "Close") {}
-                popup.addButton(close)
-                self.present(popup, animated: true, completion: nil)
-            } else if user == Auth.auth().currentUser {
-                let usersRef = Database.database().reference().child("Users")
-                let currentUser = usersRef.child("\(user?.uid ?? "")")
-                let favoritesItem = currentUser.child("favorites")
-                favoritesItem.observe(.childAdded, with: { (snapshot) in
-                    if let dictionary = snapshot.value as? [String: AnyObject] {
-                        let id = dictionary["restaurants_id"] as! String
-                        if self.favorites.favoritesItemDictionary.keys.contains(id) {
-                            self.saveButton.setFATitleColor(color: UIColor.flatGray())
-                            self.saveButton.setFAIcon(icon: .FAStarO, iconSize: self.iconSize, forState: .normal)
-                            self.saveButtonLabel.text = "Add"
-                            self.favorites.favoritesItemDictionary.removeValue(forKey: self.userData._id)
-                            
-                            // TO-DO: REMOVE THE ITEM OUT OF FIREBASE
-                            
-                        } else {
-                            self.saveButton.setFATitleColor(color: UIColor.flatGray())
-                            self.saveButton.setFAIcon(icon: .FAStar, iconSize: self.iconSize, forState: .normal)
-                            self.saveButtonLabel.text = "Added"
-                            Drop.down("Added \(self.userData._title) to Favorites!", state: .success)
-                            self.favorites.favoritesItemDictionary[self.userData._id] = self.userData
-                            
-                            // TO-DO: INSERT THE ITEM INTO FIREBASE
-                            
-                        }
+        guard let currentUser = Auth.auth().currentUser else {
+            let title = "Message"
+            let message = "You must be signed in before you can save restaurants to Favorites."
+            let popup = PopupDialog(title: title, message: message)
+            let close = DefaultButton(title: "Close") {}
+            popup.addButton(close)
+            self.present(popup, animated: true, completion: nil)
+            return
+        }
+        
+        // If our Favorites dictionary already has the item, that means the user intends to remove the item
+        // from his/her favorites
+        if self.favorites.favoritesItemDictionary.keys.contains(userData._id) {
+            self.favorites.favoritesItemDictionary.removeValue(forKey: userData._id)
+            // Resetting icon's properties to its default state
+            self.saveButton.setFATitleColor(color: UIColor.flatGray())
+            self.saveButton.setFAIcon(icon: .FAStarO, iconSize: self.iconSize, forState: .normal)
+            self.saveButtonLabel.text = "Add"
+            
+            // Removing the item from Firebase
+            let ref = Database.database().reference().child("users/\(currentUser.uid)/favorites")
+            ref.queryOrderedByKey()
+            ref.observe(.childAdded, with: { (snapshot) in
+                print(snapshot)
+                if let dictionary = snapshot.value as? [String: Any] {
+                    let id = dictionary["id"] as! String
+                    if id == self.userData._id {
+                        
+                        // Remove from Firebase!
+                        let childOfRef = ref.child(snapshot.key)
+                        childOfRef.removeValue()
+                        
+                        self.favorites.favoritesItemDictionary.removeValue(forKey: id)
+                        Drop.down("Successfully removed \(self.userData._title) from Favorites!", state: .success)
                     }
-                }) { (error) in
-                    print("Error retrieving values. Defaulting to original state.")
                 }
-                
-                if !self.favorites.favoritesItemDictionary.keys.contains(self.userData._id) {
-                    self.favorites.favoritesItemDictionary[self.userData._id] = self.userData
-                    Drop.down("Added \(self.userData._title) to Favorites!", state: .success)
-                    self.saveButton.setFATitleColor(color: UIColor.flatGray())
-                    self.saveButton.setFAIcon(icon: .FAStar, iconSize: self.iconSize, forState: .normal)
-                    self.saveButtonLabel.text = "Added"
-                } else {
-                    self.favorites.favoritesItemDictionary.removeValue(forKey: self.userData._id)
-                    Drop.down("Successfully removed \(self.userData._title) from Favorites!", state: .success)
-                    self.saveButton.setFATitleColor(color: UIColor.flatGray())
-                    self.saveButton.setFAIcon(icon: .FAStarO, iconSize: self.iconSize, forState: .normal)
-                    self.saveButtonLabel.text = "Add"
-                }
+            }) { error in print(error)}
+        } else {
+            // If we're here at this point, then obviously the item is not currently inside our dictionary of
+            // Favorites item. So we have to add it.
+            Drop.down("Added \(self.userData._title) to Favorites!", state: .success)
+            self.saveButton.setFATitleColor(color: UIColor.flatGray())
+            self.saveButton.setFAIcon(icon: .FAStar, iconSize: self.iconSize, forState: .normal)
+            self.saveButtonLabel.text = "Added"
+            self.favorites.favoritesItemDictionary[self.userData._id] = self.userData
+            
+            // After about 5 seconds (to ensure that the statements above executes successfully, we then add
+            // this item to our favorites.
+            let when = DispatchTime.now() + 5
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                let usersDB = Database.database().reference().child("users/\(currentUser.uid)/favorites")
+                let favoriteData: [String: String] = [
+                    "title": self.userData._title,
+                    "id": self.userData._id
+                ]
+                usersDB.childByAutoId().setValue(favoriteData)
             }
         }
     }
@@ -267,7 +253,7 @@ class MasterDetailViewController: UIViewController {
                 let title = "Message"
                 let message = "You must be signed in before you can provide a review."
                 let popup = PopupDialog(title: title, message: message)
-                let close = CancelButton(title: "Close") {}
+                let close = DefaultButton(title: "Close") {}
                 popup.addButton(close)
                 self.present(popup, animated: true, completion: nil)
             } else if user == Auth.auth().currentUser {
@@ -326,7 +312,7 @@ class MasterDetailViewController: UIViewController {
             let title = "\(userData._title)"
             let message = "\(userData._description)"
             let popup = PopupDialog(title: title, message: message)
-            let close = CancelButton(title: "Close") {}
+            let close = DefaultButton(title: "Close") {}
             popup.addButton(close)
             self.present(popup, animated: true, completion: nil)
         } else {

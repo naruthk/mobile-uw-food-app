@@ -16,7 +16,6 @@
 		1840B67D1FD13B5F00DFE84E /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B65E1FD13B5F00DFE84E /* Information.swift */; };
 		1840B67F1FD13B5F00DFE84E /* DiscoverMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6601FD13B5F00DFE84E /* DiscoverMapViewController.swift */; };
 		1840B6801FD13B5F00DFE84E /* DiscoverPulleyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6611FD13B5F00DFE84E /* DiscoverPulleyViewController.swift */; };
-		1840B6821FD13B5F00DFE84E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6641FD13B5F00DFE84E /* LoginViewController.swift */; };
 		1840B6831FD13B5F00DFE84E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6651FD13B5F00DFE84E /* AccountViewController.swift */; };
 		1840B6841FD13B5F00DFE84E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6661FD13B5F00DFE84E /* RegisterViewController.swift */; };
 		1840B6851FD13B5F00DFE84E /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6681FD13B5F00DFE84E /* Food.swift */; };
@@ -39,6 +38,7 @@
 		8B1551D31FD4F13A00499297 /* RatingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B1551D11FD4F13A00499297 /* RatingViewController.xib */; };
 		8B37639F1FC7DCF500D45B87 /* UW_Food_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37639E1FC7DCF500D45B87 /* UW_Food_AppTests.swift */; };
 		8B3763AA1FC7DCF500D45B87 /* UW_Food_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763A91FC7DCF500D45B87 /* UW_Food_AppUITests.swift */; };
+		8B47E6821FD64CD900590A67 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B47E6811FD64CD900590A67 /* SignInViewController.swift */; };
 		C707847E9884A2875D857C81 /* Pods_UW_Food_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E907F138614499790603683F /* Pods_UW_Food_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,7 +70,6 @@
 		1840B65E1FD13B5F00DFE84E /* Information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
 		1840B6601FD13B5F00DFE84E /* DiscoverMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverMapViewController.swift; sourceTree = "<group>"; };
 		1840B6611FD13B5F00DFE84E /* DiscoverPulleyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverPulleyViewController.swift; sourceTree = "<group>"; };
-		1840B6641FD13B5F00DFE84E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1840B6651FD13B5F00DFE84E /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		1840B6661FD13B5F00DFE84E /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		1840B6681FD13B5F00DFE84E /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
@@ -102,6 +101,7 @@
 		8B3763A51FC7DCF500D45B87 /* UW Food AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UW Food AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B3763A91FC7DCF500D45B87 /* UW_Food_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UW_Food_AppUITests.swift; sourceTree = "<group>"; };
 		8B3763AB1FC7DCF500D45B87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B47E6811FD64CD900590A67 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		A82583B833B7D8FAB787F031 /* Pods-UW Food AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Food AppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UW Food AppUITests/Pods-UW Food AppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C00E7DC95ABC46CA5B8B69BD /* Pods-UW Food App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Food App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UW Food App/Pods-UW Food App.debug.xcconfig"; sourceTree = "<group>"; };
 		E907F138614499790603683F /* Pods_UW_Food_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UW_Food_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,9 +178,9 @@
 		1840B6631FD13B5F00DFE84E /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				1840B6641FD13B5F00DFE84E /* LoginViewController.swift */,
 				1840B6651FD13B5F00DFE84E /* AccountViewController.swift */,
 				1840B6661FD13B5F00DFE84E /* RegisterViewController.swift */,
+				8B47E6811FD64CD900590A67 /* SignInViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -617,9 +617,9 @@
 				1840B6801FD13B5F00DFE84E /* DiscoverPulleyViewController.swift in Sources */,
 				8B1551C21FD32D3D00499297 /* SharedInstance.swift in Sources */,
 				1840B6851FD13B5F00DFE84E /* Food.swift in Sources */,
-				1840B6821FD13B5F00DFE84E /* LoginViewController.swift in Sources */,
 				8B1551D21FD4F13A00499297 /* RatingViewController.swift in Sources */,
 				8B1551CF1FD41A1100499297 /* Reviews.swift in Sources */,
+				8B47E6821FD64CD900590A67 /* SignInViewController.swift in Sources */,
 				1840B67B1FD13B5F00DFE84E /* DiscoverCardViewController.swift in Sources */,
 				1840B6831FD13B5F00DFE84E /* AccountViewController.swift in Sources */,
 			);

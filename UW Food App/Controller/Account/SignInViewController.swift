@@ -1,32 +1,43 @@
-
-//  LoginViewController.swift
+//
+//  WelcomeScreenForAccountViewController.swift
 //  UW Food App
 //
-//  Created by Naruth Kongurai on 11/29/17.
+//  Created by Naruth Kongurai on 12/4/17.
 //  Copyright © 2017 iSchool. All rights reserved.
-
+//
 
 import UIKit
 import Firebase
 import SwiftyDrop
+import ChameleonFramework
 
-class LoginViewController: UIViewController {
-
+class SignInViewController: UIViewController {
+    
+    var favorites = SharedInstance.sharedInstance
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.favorites.favoritesItemDictionary.removeAll()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.dismiss(animated: false) {}
+        self.favorites.favoritesItemDictionary.removeAll()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
-
-    @IBAction func loginButtonPressed(_ sender: Any) {
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func signInButtonPressed(_ sender: Any) {
         
         if (emailTextField.text?.isEmpty)! {
             Drop.down("Please specify a valid email address.", state: .error)
@@ -48,21 +59,9 @@ class LoginViewController: UIViewController {
                 self.emailTextField.clearsOnBeginEditing = true
                 self.passwordTextField.clearsOnBeginEditing = true
             }
-
+            
         })
-    
+        
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
-

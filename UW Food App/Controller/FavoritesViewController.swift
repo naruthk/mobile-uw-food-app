@@ -20,6 +20,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tableView.reloadData()
         retrieveFavorites()
     }
     
@@ -36,6 +37,8 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     func retrieveFavorites() {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if user == nil {
+                self.favorites.favoritesItemDictionary.removeAll()
+                
                 // TODO: - Present an Empty View
                 
             } else if user == Auth.auth().currentUser {
@@ -53,14 +56,12 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
                 }) { (error) in
                     print("Error retrieving values")
                 }
+                
                 self.favoriteItemsArray.removeAll()
                 for id in self.favorites.favoritesItemDictionary.keys {
                     self.favoriteItemsArray.append(id)
                 }
-                
-                // TODO: Remove the item if it's not the dictionary
-                
-                
+
                 self.tableView.reloadData()
                 self.tableView.reloadSections([0], with: .none)
             }
