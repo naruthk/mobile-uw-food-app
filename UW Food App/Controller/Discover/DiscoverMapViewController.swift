@@ -19,19 +19,10 @@ import SwiftyJSON
 
 class DiscoverMapViewController: UIViewController {
     
-    var mapsPadding:UIEdgeInsets {
-        get {
-            return googleMaps.padding
-        }
-        set(newPadding) {
-            googleMaps.padding = newPadding
-        }
-    }
-    
     let googleMapDistanceMatrixAPIKey = SharedInstance.sharedInstance.GOOGLE_MAP_DISTANCE_MATRIX_API_KEY
     let googleMapDistanceURL = SharedInstance.sharedInstance.GOOGLE_MAP_DISTANCE_URL
-    
     var restaurants = SharedInstance.sharedInstance
+    var searches = SharedInstance.sharedInstance
     var savedMarkersDictionary = Dictionary<String, GMSMarker>()
     var filePath: String {
         let manager = FileManager.default
@@ -42,7 +33,14 @@ class DiscoverMapViewController: UIViewController {
     var defaultLocation = [47.656059, -122.305047]
     var lastAddedMarker = GMSMarker()
     var userOriginalLocationParam = [Double]()
-    var searchHistories = [Restaurant]()
+    var mapsPadding:UIEdgeInsets {
+        get {
+            return googleMaps.padding
+        }
+        set(newPadding) {
+            googleMaps.padding = newPadding
+        }
+    }
     var userData = Restaurant(value: "")
     
     @IBOutlet weak var googleMaps: GMSMapView!
@@ -130,25 +128,11 @@ class DiscoverMapViewController: UIViewController {
         hours["thurs"] = hourThurs
         hours["fri"] = hourFri
         hours["sat"] = hourSat
-        
-        let restaurant = Restaurant(
-            id: id,
-            title: title,
-            description: description,
-            building: building,
-            address: address,
-            latitude: latitude,
-            longitude: longitude,
-            category: category,
-            average_rating: average_rating,
-            hours: hours,
-            contact_name: contact_name,
-            contact_email: contact_email,
-            contact_phone: contact_phone,
-            contact_website: contact_website,
-            distance: "-",
-            duration: "-")
-        
+        let restaurant = Restaurant(id: id, title: title, description: description, building: building,
+            address: address, latitude: latitude, longitude: longitude, category: category,
+            average_rating: average_rating, hours: hours, contact_name: contact_name,
+            contact_email: contact_email, contact_phone: contact_phone, contact_website: contact_website,
+            distance: "-", duration: "-")
         let todayDate = Date()
         let calendar = Calendar.current
         let day = calendar.component(.weekday, from: todayDate) - 1
@@ -268,6 +252,7 @@ extension DiscoverMapViewController: GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         userData = marker.userData as! Restaurant
+        self.searches.searchHistories.append(userData)
         self.performSegue(withIdentifier: "goToDetail", sender: self)
     }
     

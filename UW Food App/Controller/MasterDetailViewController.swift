@@ -14,8 +14,6 @@ import Font_Awesome_Swift
 import PopupDialog
 import SwiftyDrop
 
-var favoritesItemDictionary = [String:Restaurant]()
-
 struct Category {
     let name : String
     var items : [AnyObject]
@@ -24,6 +22,7 @@ struct Category {
 class MasterDetailViewController: UIViewController {
     
     var restaurants = SharedInstance.sharedInstance
+    var favorites = SharedInstance.sharedInstance
     var userData : Restaurant = Restaurant(value: "")
     var sections = [Category]()
     var hoursItem : [Information] = []
@@ -35,6 +34,7 @@ class MasterDetailViewController: UIViewController {
     var ratingSum : Double = 0.0
     var ratingCounter : Int = 0
     var ratingTotal : Double = 0.0
+    let iconSize : CGFloat  = 35
     
     @IBOutlet weak var ratingPanel: CosmosView!
     @IBOutlet weak var saveButton: UIButton!
@@ -144,35 +144,7 @@ class MasterDetailViewController: UIViewController {
     }
     
     func populateButtons() {
-        let user = Auth.auth().currentUser
-        if user != nil {
-            let usersRef = Database.database().reference().child("Users")
-            let currentUser = usersRef.child("\(user?.uid ?? "")")
-            let favoritesItem = currentUser.child("favorites")
-            favoritesItem.observe(.childAdded, with: { (snapshot) in
-                if let dictionary = snapshot.value as? [String: AnyObject] {
-                    let restaurantID = dictionary["restaurantID"] as! String
-                    if restaurantID == self.userData._id {
-                        self.saveButton.setFATitleColor(color: UIColor.flatGray())
-                        self.saveButtonLabel.text = "Unsaved"
-                    } else {
-                        self.saveButton.setFATitleColor(color: UIColor.init(red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0))
-                        self.saveButtonLabel.text = "Saved"
-                    }
-                }
-            }) { (error) in
-                print("Error retrieving values")
-            }
-        } else {
-            if favoritesItemDictionary.keys.contains(userData._id) {
-                self.saveButton.setFATitleColor(color: UIColor.flatGray())
-            } else {
-                self.saveButton.setFATitleColor(color: UIColor.init(red: 14.0/255, green: 122.0/255, blue: 254.0/255, alpha: 1.0))
-            }
-        }
-        
-        let iconSize : CGFloat  = 35
-        saveButton.setFAIcon(icon: .FAStarO, iconSize: iconSize, forState: .normal)
+        setFavoriteIcon()
         callButton.setFAIcon(icon: .FAPhone, iconSize: iconSize, forState: .normal)
         mapsButton.setFAIcon(icon: .FAMapMarker, iconSize: iconSize, forState: .normal)
         websiteButton.setFAIcon(icon: .FALink, iconSize: iconSize, forState: .normal)
@@ -193,59 +165,153 @@ class MasterDetailViewController: UIViewController {
         }
     }
     
+    func setFavoriteIcon() {
+        guard let color = UIColor.flatGray() else { return }
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user == nil {
+                self.saveButton.setFATitleColor(color: color)
+                self.saveButton.setFAIcon(icon: .FAStarO, iconSize: self.iconSize, forState: .normal)
+                self.saveButtonLabel.text = "Add"
+            } else {
+                print("Determining the right state of Favorite icon for this user")
+                let usersRef = Database.database().reference().child("Users")
+                let currentUser = usersRef.child("\(user?.uid ?? "")")
+                let favoritesItem = currentUser.child("favorites")
+                favoritesItem.observe(.childAdded, with: { (snapshot) in
+                    if let dictionary = snapshot.value as? [String: AnyObject] {
+                        let id = dictionary["restaurants_id"] as! String
+                        if id == self.userData._id {
+                            self.saveButton.setFATitleColor(color: UIColor.red)
+                            self.saveButton.setFAIcon(icon: .FAStar, iconSize: self.iconSize, forState: .normal)
+                            self.saveButtonLabel.text = "Added"
+                        } else {
+                            self.saveButton.setFATitleColor(color: color)
+                            self.saveButton.setFAIcon(icon: .FAStarO, iconSize: self.iconSize, forState: .normal)
+                            self.saveButtonLabel.text = "Add"
+                        }
+                    }
+                }) { (error) in
+                    print("Error retrieving values. Defaulting to original state.")
+                }
+                self.saveButton.setFATitleColor(color: color)
+                self.saveButton.setFAIcon(icon: .FAStarO, iconSize: self.iconSize, forState: .normal)
+                self.saveButtonLabel.text = "Add"
+            }
+        }
+    }
+    
+    @IBAction func saveButton(_ sender: Any) {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user == nil {
+                let title = "Message"
+                let message = "You must be signed in before you can save restaurants to Favorites."
+                let popup = PopupDialog(title: title, message: message)
+                let close = CancelButton(title: "Close") {}
+                popup.addButton(close)
+                self.present(popup, animated: true, completion: nil)
+            } else if user == Auth.auth().currentUser {
+                let usersRef = Database.database().reference().child("Users")
+                let currentUser = usersRef.child("\(user?.uid ?? "")")
+                let favoritesItem = currentUser.child("favorites")
+                favoritesItem.observe(.childAdded, with: { (snapshot) in
+                    if let dictionary = snapshot.value as? [String: AnyObject] {
+                        let id = dictionary["restaurants_id"] as! String
+                        if self.favorites.favoritesItemDictionary.keys.contains(id) {
+                            self.saveButton.setFATitleColor(color: UIColor.flatGray())
+                            self.saveButton.setFAIcon(icon: .FAStarO, iconSize: self.iconSize, forState: .normal)
+                            self.saveButtonLabel.text = "Add"
+                            self.favorites.favoritesItemDictionary.removeValue(forKey: self.userData._id)
+                            
+                            // TO-DO: REMOVE THE ITEM OUT OF FIREBASE
+                            
+                        } else {
+                            self.saveButton.setFATitleColor(color: UIColor.flatGray())
+                            self.saveButton.setFAIcon(icon: .FAStar, iconSize: self.iconSize, forState: .normal)
+                            self.saveButtonLabel.text = "Added"
+                            Drop.down("Added \(self.userData._title) to Favorites!", state: .success)
+                            self.favorites.favoritesItemDictionary[self.userData._id] = self.userData
+                            
+                            // TO-DO: INSERT THE ITEM INTO FIREBASE
+                            
+                        }
+                    }
+                }) { (error) in
+                    print("Error retrieving values. Defaulting to original state.")
+                }
+                
+                if !self.favorites.favoritesItemDictionary.keys.contains(self.userData._id) {
+                    self.favorites.favoritesItemDictionary[self.userData._id] = self.userData
+                    Drop.down("Added \(self.userData._title) to Favorites!", state: .success)
+                    self.saveButton.setFATitleColor(color: UIColor.flatGray())
+                    self.saveButton.setFAIcon(icon: .FAStar, iconSize: self.iconSize, forState: .normal)
+                    self.saveButtonLabel.text = "Added"
+                } else {
+                    self.favorites.favoritesItemDictionary.removeValue(forKey: self.userData._id)
+                    Drop.down("Successfully removed \(self.userData._title) from Favorites!", state: .success)
+                    self.saveButton.setFATitleColor(color: UIColor.flatGray())
+                    self.saveButton.setFAIcon(icon: .FAStarO, iconSize: self.iconSize, forState: .normal)
+                    self.saveButtonLabel.text = "Add"
+                }
+            }
+        }
+    }
+    
     func setupRatingPopup() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleRatingTap(_:)))
         ratingPanel.addGestureRecognizer(tap)
     }
     
     @objc func handleRatingTap(_ sender: UITapGestureRecognizer) {
-        if Auth.auth().currentUser == nil {
-            let title = "Important Notice"
-            let message = "You must be signed in before you can provide a review."
-            let popup = PopupDialog(title: title, message: message)
-            let close = CancelButton(title: "Close") {}
-            popup.addButton(close)
-            self.present(popup, animated: true, completion: nil)
-        }
-        let ratingVC = RatingViewController(nibName: "RatingViewController", bundle: nil)
-        let popup = PopupDialog(viewController: ratingVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true)
-        let cancelBtn = CancelButton(title: "Cancel", height: 60) {}
-        let ratedBtn = DefaultButton(title: "Rate", height: 60) {
-            Drop.down("Thanks for rating the \(self.userData._title)", state: .success)
-            self.ratingComment = ratingVC.returnData()[0]
-            self.ratingValue = ratingVC.returnData()[1]
-            guard let user = Auth.auth().currentUser else { return }
-            let reviewsDB = Database.database().reference().child("reviews/\(self.userData._id)")
-            let reviewDictionary : [String: Any] = [
-                "message": self.ratingComment, "name": user.displayName ?? "-" ,
-                "sender": user.email ?? "-", "rating": "\(self.ratingValue.prefix(3))",
-                "timestamp": NSDate().timeIntervalSince1970
-            ]
-            reviewsDB.childByAutoId().setValue(reviewDictionary)
-            
-            // Fetch total ratings for this particular restaurant
-            let ratingsDB = Database.database().reference().child("reviews/\(self.userData._id)")
-            ratingsDB.queryOrdered(byChild: "rating").observe(.childAdded, with: { (snapshot) in
-                if let dictionary = snapshot.value as? [String: AnyObject] {
-                    let str = dictionary["rating"] as! String
-                    let value = Double(str.prefix(3))!
-                    self.ratingSum = self.ratingSum + value
-                    self.ratingCounter += 1
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user == nil {
+                let title = "Message"
+                let message = "You must be signed in before you can provide a review."
+                let popup = PopupDialog(title: title, message: message)
+                let close = CancelButton(title: "Close") {}
+                popup.addButton(close)
+                self.present(popup, animated: true, completion: nil)
+            } else if user == Auth.auth().currentUser {
+                let ratingVC = RatingViewController(nibName: "RatingViewController", bundle: nil)
+                let popup = PopupDialog(viewController: ratingVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true)
+                let cancelBtn = CancelButton(title: "Cancel", height: 60) {}
+                let ratedBtn = DefaultButton(title: "Rate", height: 60) {
+                    Drop.down("Thanks for rating the \(self.userData._title)", state: .success)
+                    self.ratingComment = ratingVC.returnData()[0]
+                    self.ratingValue = ratingVC.returnData()[1]
+                    guard let user = Auth.auth().currentUser else { return }
+                    let reviewsDB = Database.database().reference().child("reviews/\(self.userData._id)")
+                    let reviewDictionary : [String: Any] = [
+                        "message": self.ratingComment, "name": user.displayName ?? "-" ,
+                        "sender": user.email ?? "-", "rating": "\(self.ratingValue.prefix(3))",
+                        "timestamp": NSDate().timeIntervalSince1970
+                    ]
+                    reviewsDB.childByAutoId().setValue(reviewDictionary)
+                    
+                    // Fetch total ratings for this particular restaurant
+                    let ratingsDB = Database.database().reference().child("reviews/\(self.userData._id)")
+                    ratingsDB.queryOrdered(byChild: "rating").observe(.childAdded, with: { (snapshot) in
+                        if let dictionary = snapshot.value as? [String: AnyObject] {
+                            let str = dictionary["rating"] as! String
+                            let value = Double(str.prefix(3))!
+                            self.ratingSum = self.ratingSum + value
+                            self.ratingCounter += 1
+                        }
+                    })
+                    
+                    // Neat trick. Let the fetching above finishes first before updating our restaurants JSON
+                    let when = DispatchTime.now() + 3
+                    DispatchQueue.main.asyncAfter(deadline: when) {
+                        self.ratingTotal = self.ratingSum / Double(self.ratingCounter)
+                        let restaurantDB = Database.database().reference().child("restaurants/\(self.userData._id)")
+                        let ratingDictionary = ["average_rating": "\(String(self.ratingTotal).prefix(3))"]
+                        restaurantDB.updateChildValues(ratingDictionary)
+                        self.ratingTotal = 0.0
+                    }
                 }
-            })
-            
-            // Neat trick. Let the fetching above finishes first before updating our restaurants JSON
-            let when = DispatchTime.now() + 3
-            DispatchQueue.main.asyncAfter(deadline: when) {
-                self.ratingTotal = self.ratingSum / Double(self.ratingCounter)
-                let restaurantDB = Database.database().reference().child("restaurants/\(self.userData._id)")
-                let ratingDictionary = ["average_rating": "\(String(self.ratingTotal).prefix(3))"]
-                restaurantDB.updateChildValues(ratingDictionary)
-                self.ratingTotal = 0.0
+                popup.addButtons([cancelBtn, ratedBtn])
+                self.present(popup, animated: true, completion: nil)
             }
         }
-        popup.addButtons([cancelBtn, ratedBtn])
-        present(popup, animated: true, completion: nil)
     }
     
     @IBAction func moreActionPressed(_ sender: Any) {
@@ -266,11 +332,6 @@ class MasterDetailViewController: UIViewController {
         } else {
             Drop.down("More information not available.", state: .warning)
         }
-    }
-    
-    @IBAction func saveButton(_ sender: Any) {
-        // TO-DO: Implement Save Functionality
-        
     }
     
     @IBAction func callPhoneNumber(_ sender: Any) {

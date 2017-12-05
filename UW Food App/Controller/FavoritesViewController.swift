@@ -15,7 +15,8 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var tableView: UITableView!
     
     var restaurants = SharedInstance.sharedInstance
-    var favoritesItemArray = [String]()
+    var favorites = SharedInstance.sharedInstance
+    var favoriteItemsArray = [String]()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -33,28 +34,35 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func retrieveFavorites() {
-        let user = Auth.auth().currentUser
-        if user != nil {
-            let usersRef = Database.database().reference().child("Users")
-            let currentUser = usersRef.child("\(user?.uid ?? "")")
-            let favoritesItem = currentUser.child("favorites")
-            favoritesItem.observe(.childAdded, with: { (snapshot) in
-                if let dictionary = snapshot.value as? [String: AnyObject] {
-                    let restaurantID = dictionary["restaurantID"] as! String
-                    if !self.favoritesItemArray.contains(restaurantID) {
-                        self.favoritesItemArray.append(restaurantID)
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user == nil {
+                // TODO: - Present an Empty View
+                
+            } else if user == Auth.auth().currentUser {
+                let usersRef = Database.database().reference().child("Users")
+                let currentUser = usersRef.child("\(user?.uid ?? "")")
+                let favoritesItem = currentUser.child("favorites")
+                favoritesItem.observe(.childAdded, with: { (snapshot) in
+                    if let dictionary = snapshot.value as? [String: AnyObject] {
+                        let id = dictionary["restaurantID"] as! String
+                        if !self.favoriteItemsArray.contains(id) {
+                            self.favoriteItemsArray.append(id)
+                        }
+                        self.tableView.reloadData()
                     }
-                    self.tableView.reloadData()
+                }) { (error) in
+                    print("Error retrieving values")
                 }
-            }) { (error) in
-                print("Error retrieving values")
-                Drop.down("Please check your Internet connection.", state: .error)
-            }
-        } else {
-            for key in favoritesItemDictionary.keys {
-                if !self.favoritesItemArray.contains(key) {
-                    self.favoritesItemArray.append(key)
+                self.favoriteItemsArray.removeAll()
+                for id in self.favorites.favoritesItemDictionary.keys {
+                    self.favoriteItemsArray.append(id)
                 }
+                
+                // TODO: Remove the item if it's not the dictionary
+                
+                
+                self.tableView.reloadData()
+                self.tableView.reloadSections([0], with: .none)
             }
         }
     }
@@ -64,12 +72,16 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favoritesItemArray.count
+        if favoriteItemsArray.count == 0 {
+            tableView.separatorStyle = .none
+            tableView.backgroundView?.isHidden = false
+        }
+        return favoriteItemsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
-        guard let restaurant = restaurants.restaurantsData[favoritesItemArray[indexPath.row]] else {
+        guard let restaurant = restaurants.restaurantsData[favoriteItemsArray[indexPath.row]] else {
             return cell
         }
         cell.textLabel?.text = restaurant._title

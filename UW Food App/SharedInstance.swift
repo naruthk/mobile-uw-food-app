@@ -14,6 +14,8 @@ class SharedInstance {
     static let sharedInstance = SharedInstance()
     
     var restaurantsData = [String:Restaurant]()
+    var favoritesItemDictionary = [String:Restaurant]()
+    var searchHistories = [Restaurant]()
     
     let GOOGLE_MAP_DISTANCE_MATRIX_API_KEY = "AIzaSyBCAhnvEa3vyHYp0A_mowFiqzjishhP-xQ"
     let GOOGLE_MAP_DISTANCE_URL = "https://maps.googleapis.com/maps/api/distancematrix/json"

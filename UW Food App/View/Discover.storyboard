@@ -374,6 +374,7 @@
                         <outlet property="restaurantHours" destination="QKE-Yg-4cH" id="pLe-3f-eBh"/>
                         <outlet property="restaurantRatingLabel" destination="Uxu-Na-7Z2" id="cQq-Wz-mti"/>
                         <outlet property="saveButton" destination="SJN-P3-Ppz" id="xWa-cI-8fM"/>
+                        <outlet property="saveButtonLabel" destination="SxE-kq-XHN" id="fH6-TZ-ymv"/>
                         <outlet property="tableView" destination="Oyp-72-v6W" id="3P6-9D-pC4"/>
                         <outlet property="websiteButton" destination="dK5-1a-lYv" id="c4M-4u-H0G"/>
                     </connections>
