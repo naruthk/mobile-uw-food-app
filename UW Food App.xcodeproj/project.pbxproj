@@ -188,6 +188,7 @@
 		1840B6671FD13B5F00DFE84E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8B1551CC1FD4060600499297 /* CommentsCell.swift */,
 				1840B65E1FD13B5F00DFE84E /* Information.swift */,
 				1840B6681FD13B5F00DFE84E /* Food.swift */,
 				1840B6691FD13B5F00DFE84E /* Menu.swift */,
@@ -206,7 +207,6 @@
 				1840B6701FD13B5F00DFE84E /* Main.storyboard */,
 				1840B6731FD13B5F00DFE84E /* Account.storyboard */,
 				1840B6741FD13B5F00DFE84E /* Discover.storyboard */,
-				8B1551CC1FD4060600499297 /* CommentsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

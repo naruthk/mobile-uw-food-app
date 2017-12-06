@@ -26,6 +26,7 @@ target 'UW Food App' do
   target 'UW Food AppTests' do
     inherit! :search_paths
     # Pods for testing
+    
   end
 
   target 'UW Food AppUITests' do
