@@ -1,3 +1,31 @@
+/// Copyright (c) 2017 UW Food App
+///
+/// Permission is hereby granted, free of charge, to any person obtaining a copy
+/// of this software and associated documentation files (the "Software"), to deal
+/// in the Software without restriction, including without limitation the rights
+/// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+/// copies of the Software, and to permit persons to whom the Software is
+/// furnished to do so, subject to the following conditions:
+///
+/// The above copyright notice and this permission notice shall be included in
+/// all copies or substantial portions of the Software.
+///
+/// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
+/// distribute, sublicense, create a derivative work, and/or sell copies of the
+/// Software in any work that is designed, intended, or marketed for pedagogical or
+/// instructional purposes related to programming, coding, application development,
+/// or information technology.  Permission for such use, copying, modification,
+/// merger, publication, distribution, sublicensing, creation of derivative works,
+/// or sale is expressly withheld.
+///
+/// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+/// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+/// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+/// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+/// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+/// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+/// THE SOFTWARE.
+
 //
 //  MasterDetailViewController.swift
 //  UW Food App
@@ -14,6 +42,7 @@ import Font_Awesome_Swift
 import PopupDialog
 import SwiftyDrop
 
+// This struct is only for this particular only
 struct Category {
     let name : String
     var items : [AnyObject]
@@ -21,8 +50,10 @@ struct Category {
 
 class MasterDetailViewController: UIViewController {
     
+    // Shared with the rest of the classes
     var restaurants = SharedInstance.sharedInstance
     var favorites = SharedInstance.sharedInstance
+    
     var userData : Restaurant = Restaurant(value: "")
     var sections = [Category]()
     var hoursItem : [Information] = []
@@ -59,7 +90,7 @@ class MasterDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.hidesNavigationBarHairline = true
+        
         sections = [
             Category(name:"Hours", items: hoursItem as [AnyObject]),
             Category(name:"Location", items: locationsItem as [AnyObject]),
@@ -67,6 +98,7 @@ class MasterDetailViewController: UIViewController {
             Category(name:"Reviews", items: reviewsItem as [AnyObject])
         ]
         
+        // We need to wait a few moments before reloading table sections and table data.
         let when = DispatchTime.now() + 2
         DispatchQueue.main.asyncAfter(deadline: when) {
             self.sections.remove(at: self.sections.count - 1)
@@ -85,6 +117,7 @@ class MasterDetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    // Populates all data for this particular restaurant and append them to the reviewsItem array
     func retrieveReviews() {
         let reviewsDB = Database.database().reference().child("reviews/\(userData._id)")
         reviewsDB.observe(.childAdded, with: { (snapshot) in
@@ -94,6 +127,7 @@ class MasterDetailViewController: UIViewController {
         })
     }
 
+    // Populates navigation bar titles and today's operating hours
     func populateReviews(dictionary: [String: AnyObject]) {
         let message = dictionary["message"] as! String
         let rating = dictionary["rating"] as! String
@@ -103,6 +137,7 @@ class MasterDetailViewController: UIViewController {
         self.reviewsItem.append(review)
     }
     
+    // Setup basic table functionalities
     func setTableViewFunctionalities() {
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = UIColor.flatWhite()
@@ -122,6 +157,7 @@ class MasterDetailViewController: UIViewController {
         }
     }
     
+    // Populates ratings for this particular restaurant
     func populateRating() {
         if userData._average_rating == "0.0" || userData._average_rating == "-" {
             restaurantRatingLabel.text = "Be the first to review."
@@ -147,6 +183,7 @@ class MasterDetailViewController: UIViewController {
         }
     }
     
+    // Populates calls, maps, website, more information buttons
     func populateButtons() {
         setFavoriteIcon()
         callButton.setFAIcon(icon: .FAPhone, iconSize: iconSize, forState: .normal)
@@ -181,6 +218,9 @@ class MasterDetailViewController: UIViewController {
             self.saveButtonLabel.text = "Add"
         }}
     
+    // When the user taps the save button, first check to see if the user is logged in. If not, reject going
+    // forward by showing a popup dialog. If yes, then retrieves user's current items from Firebase and
+    // change the state of the icon to reflect.
     @IBAction func saveButton(_ sender: Any) {
         guard let currentUser = Auth.auth().currentUser else {
             let title = "Message"
@@ -247,6 +287,8 @@ class MasterDetailViewController: UIViewController {
         ratingPanel.addGestureRecognizer(tap)
     }
     
+    // Lets the user rates and leaves a review for this particular restaurant. Only accessed users are allowed
+    // to provide ratings.
     @objc func handleRatingTap(_ sender: UITapGestureRecognizer) {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if user == nil {
@@ -273,7 +315,9 @@ class MasterDetailViewController: UIViewController {
                     ]
                     reviewsDB.childByAutoId().setValue(reviewDictionary)
                     
-                    // Fetch total ratings for this particular restaurant
+                    // Aside from just appending ratings to the Firebase database console, we also need to
+                    // calculate the average ratings for this particular restaurant and update this
+                    // restaurant's average rating on the "restaurants" reference.
                     let ratingsDB = Database.database().reference().child("reviews/\(self.userData._id)")
                     ratingsDB.queryOrdered(byChild: "rating").observe(.childAdded, with: { (snapshot) in
                         if let dictionary = snapshot.value as? [String: AnyObject] {
@@ -283,8 +327,7 @@ class MasterDetailViewController: UIViewController {
                             self.ratingCounter += 1
                         }
                     })
-                    
-                    // Neat trick. Let the fetching above finishes first before updating our restaurants JSON
+                
                     let when = DispatchTime.now() + 3
                     DispatchQueue.main.asyncAfter(deadline: when) {
                         self.ratingTotal = self.ratingSum / Double(self.ratingCounter)
