@@ -40,6 +40,7 @@
 		8B3763AA1FC7DCF500D45B87 /* UW_Food_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3763A91FC7DCF500D45B87 /* UW_Food_AppUITests.swift */; };
 		8B47E6821FD64CD900590A67 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B47E6811FD64CD900590A67 /* SignInViewController.swift */; };
 		8BA57B971FD7F9A700420A37 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA57B961FD7F9A700420A37 /* HelperFunctions.swift */; };
+		8BA57B9B1FD88F6300420A37 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA57B9A1FD88F6300420A37 /* FavoritesTableViewCell.swift */; };
 		C707847E9884A2875D857C81 /* Pods_UW_Food_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E907F138614499790603683F /* Pods_UW_Food_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,7 @@
 		8B3763AB1FC7DCF500D45B87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B47E6811FD64CD900590A67 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		8BA57B961FD7F9A700420A37 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		8BA57B9A1FD88F6300420A37 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		A82583B833B7D8FAB787F031 /* Pods-UW Food AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Food AppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UW Food AppUITests/Pods-UW Food AppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C00E7DC95ABC46CA5B8B69BD /* Pods-UW Food App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Food App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UW Food App/Pods-UW Food App.debug.xcconfig"; sourceTree = "<group>"; };
 		E907F138614499790603683F /* Pods_UW_Food_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UW_Food_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				8B1551CC1FD4060600499297 /* CommentsCell.swift */,
+				8BA57B9A1FD88F6300420A37 /* FavoritesTableViewCell.swift */,
 				1840B65E1FD13B5F00DFE84E /* Information.swift */,
 				1840B6681FD13B5F00DFE84E /* Food.swift */,
 				1840B6691FD13B5F00DFE84E /* Menu.swift */,
@@ -619,6 +622,7 @@
 				1840B6791FD13B5F00DFE84E /* SearchViewController.swift in Sources */,
 				1840B67C1FD13B5F00DFE84E /* MasterDetailViewController.swift in Sources */,
 				1840B6801FD13B5F00DFE84E /* DiscoverPulleyViewController.swift in Sources */,
+				8BA57B9B1FD88F6300420A37 /* FavoritesTableViewCell.swift in Sources */,
 				8B1551C21FD32D3D00499297 /* SharedInstance.swift in Sources */,
 				1840B6851FD13B5F00DFE84E /* Food.swift in Sources */,
 				8B1551D21FD4F13A00499297 /* RatingViewController.swift in Sources */,

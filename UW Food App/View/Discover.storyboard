@@ -73,7 +73,7 @@
         <!--Master Detail View Controller-->
         <scene sceneID="ueU-s3-ECu">
             <objects>
-                <viewController storyboardIdentifier="MasterDetail" id="JWO-Wk-PDE" customClass="MasterDetailViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MasterDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JWO-Wk-PDE" customClass="MasterDetailViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="do9-sZ-tHr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="364.66666666666669"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -349,6 +349,7 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Oyp-72-v6W" firstAttribute="top" secondItem="GkZ-ps-5iP" secondAttribute="top" id="5KS-AC-Mvu"/>
                             <constraint firstItem="GkZ-ps-5iP" firstAttribute="trailing" secondItem="Oyp-72-v6W" secondAttribute="trailing" id="MVx-KN-z9T"/>

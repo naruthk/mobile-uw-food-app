@@ -267,36 +267,6 @@ class DiscoverMapViewController: UIViewController {
                 snippet: snippet)
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToDetail" {
-            if let myVC = segue.destination as? MasterDetailViewController {
-                let hours = [
-                    Information(leftText: "Sun", rightText: userData._hours["sun"]!),
-                    Information(leftText: "Mon", rightText: userData._hours["mon"]!),
-                    Information(leftText: "Tues", rightText: userData._hours["tues"]!),
-                    Information(leftText: "Wed", rightText: userData._hours["wed"]!),
-                    Information(leftText: "Thurs", rightText: userData._hours["thurs"]!),
-                    Information(leftText: "Fri", rightText: userData._hours["fri"]!),
-                    Information(leftText: "Sat", rightText: userData._hours["sat"]!)
-                ]
-                let locations = [
-                    Information(leftText: "Building", rightText: userData._building),
-                    Information(leftText: "Walking Distance", rightText: userData._distance),
-                    Information(leftText: "Walking Duration", rightText: userData._duration)
-                ]
-                let payments = [
-                    Information(leftText: "Husky Card", rightText: "Yes"),
-                    Information(leftText: "Debit, Credit Card", rightText: "Yes (VISA, MasterCard)"),
-                    Information(leftText: "Cash", rightText: "Yes")
-                ]
-                myVC.userData = self.userData
-                myVC.hoursItem = hours
-                myVC.locationsItem = locations
-                myVC.paymentsItem = payments
-            }
-        }
-    }
 }
 
 // MARK: - GMSMapViewDelgate
@@ -340,7 +310,29 @@ extension DiscoverMapViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         userData = marker.userData as! Restaurant
         self.searches.searchHistories.append(userData)
-        self.performSegue(withIdentifier: "goToDetail", sender: self)
+        let vc = UIStoryboard(name: "Discover", bundle: nil).instantiateViewController(withIdentifier: "MasterDetail") as! MasterDetailViewController
+        vc.userData = userData
+        vc.hoursItem = [
+            Information(leftText: "Sun", rightText: userData._hours["sun"]!),
+            Information(leftText: "Mon", rightText: userData._hours["mon"]!),
+            Information(leftText: "Tues", rightText: userData._hours["tues"]!),
+            Information(leftText: "Wed", rightText: userData._hours["wed"]!),
+            Information(leftText: "Thurs", rightText: userData._hours["thurs"]!),
+            Information(leftText: "Fri", rightText: userData._hours["fri"]!),
+            Information(leftText: "Sat", rightText: userData._hours["sat"]!)
+        ]
+        vc.locationsItem = [
+            Information(leftText: "Husky Card", rightText: "Yes"),
+            Information(leftText: "Debit, Credit Card", rightText: "Yes (VISA, MasterCard)"),
+            Information(leftText: "Cash", rightText: "Yes")
+        ]
+        vc.paymentsItem = [
+            Information(leftText: "Husky Card", rightText: "Yes"),
+            Information(leftText: "Debit, Credit Card", rightText: "Yes (VISA, MasterCard)"),
+            Information(leftText: "Cash", rightText: "Yes")
+        ]
+        let navBarOnVC: UINavigationController = UINavigationController(rootViewController: vc)
+        self.present(navBarOnVC, animated: true, completion: nil)
     }
     
     // This method fetches the Google Maps API to find out how far the user's walking distance and duration are

@@ -1,3 +1,31 @@
+/// Copyright (c) 2017 UW Food App
+///
+/// Permission is hereby granted, free of charge, to any person obtaining a copy
+/// of this software and associated documentation files (the "Software"), to deal
+/// in the Software without restriction, including without limitation the rights
+/// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+/// copies of the Software, and to permit persons to whom the Software is
+/// furnished to do so, subject to the following conditions:
+///
+/// The above copyright notice and this permission notice shall be included in
+/// all copies or substantial portions of the Software.
+///
+/// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
+/// distribute, sublicense, create a derivative work, and/or sell copies of the
+/// Software in any work that is designed, intended, or marketed for pedagogical or
+/// instructional purposes related to programming, coding, application development,
+/// or information technology.  Permission for such use, copying, modification,
+/// merger, publication, distribution, sublicensing, creation of derivative works,
+/// or sale is expressly withheld.
+///
+/// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+/// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+/// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+/// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+/// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+/// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+/// THE SOFTWARE.
+
 //
 //  SearchViewController.swift
 //  UW Food App
@@ -13,31 +41,23 @@ import SwiftyDrop
 
 class SearchViewController: UIViewController, CLLocationManagerDelegate {
     
+    // Shared with the rest of the classes
     var restaurants = SharedInstance.sharedInstance
+    
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     var resultView: UITextView?
-    
     var userOriginalLocationParam : [Double] = []
     let locationManager = CLLocationManager()
     let autocompleteController = GMSAutocompleteViewController()
     
-    var searchHistory : [String] = []       // Array of IDs of each restaurant
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        searchController?.searchBar.placeholder = "Restaurants"
-        
         initializeLocationManager()
-        
-        let filter = GMSAutocompleteFilter()
-        filter.type = .establishment
-        filter.country = "usa"
-        
+        setMapFilter()
+        searchController?.searchBar.placeholder = "Restaurants"
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
-        
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
         searchController?.searchBar.sizeToFit()
@@ -45,11 +65,16 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
         definesPresentationContext = true
         searchController?.hidesNavigationBarDuringPresentation = false
     }
-
-    func setUpSeachHistoriesList() {
-        
+    
+    // We try to filter the map's data to be as close to what we want as possible. That's why
+    // enum "establishment" is used.
+    func setMapFilter() {
+        let filter = GMSAutocompleteFilter()
+        filter.type = .establishment
+        filter.country = "usa"
     }
     
+    // Begin finding user's current location
     func initializeLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -57,6 +82,7 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
     }
     
+    // Retrieve the user's current location (latitude and longitude)
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[locations.count - 1]
         if location.horizontalAccuracy > 0 {
@@ -69,6 +95,8 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    // Return the coordinates of the user's current location to the GMSCoordinateBounds so that
+    // Google can fetch results near-by
     func getCoordinateBounds(latitude: CLLocationDegrees,
                              longitude: CLLocationDegrees,
                              distance: Double = 0.0001) -> GMSCoordinateBounds {
@@ -90,67 +118,45 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
     
 }
 
+// MARK: - GMSAutocompleteResultsViewControllerDelegate
 extension SearchViewController: GMSAutocompleteResultsViewControllerDelegate {
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
-        
-        searchHistory.append("\(place.placeID)")
-         // TODO: Keep the history after the user closes the app
-        print("\(place.placeID)")
-        
         if let val = restaurants.restaurantsData[place.placeID] {
-            openMasterDetailViewScreen(val: val)
+            let vc = UIStoryboard(name: "Discover", bundle: nil).instantiateViewController(withIdentifier: "MasterDetail") as! MasterDetailViewController
+            vc.userData = val
+            vc.hoursItem = [
+                Information(leftText: "Sun", rightText: val._hours["sun"]!),
+                Information(leftText: "Mon", rightText: val._hours["mon"]!),
+                Information(leftText: "Tues", rightText: val._hours["tues"]!),
+                Information(leftText: "Wed", rightText: val._hours["wed"]!),
+                Information(leftText: "Thurs", rightText: val._hours["thurs"]!),
+                Information(leftText: "Fri", rightText: val._hours["fri"]!),
+                Information(leftText: "Sat", rightText: val._hours["sat"]!)
+            ]
+            vc.locationsItem = [
+                Information(leftText: "Husky Card", rightText: "Yes"),
+                Information(leftText: "Debit, Credit Card", rightText: "Yes (VISA, MasterCard)"),
+                Information(leftText: "Cash", rightText: "Yes")
+            ]
+            vc.paymentsItem = [
+                Information(leftText: "Husky Card", rightText: "Yes"),
+                Information(leftText: "Debit, Credit Card", rightText: "Yes (VISA, MasterCard)"),
+                Information(leftText: "Cash", rightText: "Yes")
+            ]
+            let navBarOnVC: UINavigationController = UINavigationController(rootViewController: vc)
+            self.present(navBarOnVC, animated: true, completion: nil)
         } else {
             Drop.down("Cannot retrieve information for this restaurant", state: .error)
         }
     }
     
-    func openMasterDetailViewScreen(val: Restaurant) {
-//        let userData = val
-//        let myVC = storyboard?.instantiateViewController(withIdentifier: "MasterDetail") as! MasterDetailViewController
-//        myVC.userData = userData
-//        myVC.informationSections = [
-//            InformationSection(type: "Hours",
-//                               dataTitles: [
-//                                "Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"
-//                ],
-//                               dataDetails: [
-//                                userData.hours["sun"]!,
-//                                userData.hours["mon"]!,
-//                                userData.hours["tues"]!,
-//                                userData.hours["wed"]!,
-//                                userData.hours["thurs"]!,
-//                                userData.hours["fri"]!,
-//                                userData.hours["sat"]!
-//                ],
-//                               expanded: true),
-//            InformationSection(type: "Location",
-//                               dataTitles: [
-//                                "Address", "Distance", "Duration"
-//                ],
-//                               dataDetails: [
-//                                userData.locationName,
-//                                userData.relativeDistanceFromUserCurrentLocation,
-//                                userData.relativeDurationFromUserCurrentLocation
-//                ],
-//                               expanded: false),
-//            InformationSection(type: "Payment",
-//                               dataTitles: [
-//                                "UW-Only", "Cards"
-//                ],
-//                               dataDetails: ["Husky Card", "Debit, Credit (Visa, MasterCard)"], expanded: false),
-//        ]
-//        self.present(myVC, animated: true, completion: nil)
-    }
-    
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didFailAutocompleteWithError error: Error){
-        // TODO: handle the error.
         print("Error: ", error.localizedDescription)
     }
     
-    // Turn the network activity indicator on and off again.
     func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }

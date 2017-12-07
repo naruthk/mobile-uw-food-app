@@ -37,11 +37,12 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     func retrieveFavorites() {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if user == nil {
-                self.favorites.favoritesItemDictionary.removeAll()
-                
-                // TODO: - Present an Empty View
+ 
                 
             } else if user == Auth.auth().currentUser {
+                
+                self.favorites.favoritesItemDictionary.removeAll()
+                
                 let usersRef = Database.database().reference().child("Users")
                 let currentUser = usersRef.child("\(user?.uid ?? "")")
                 let favoritesItem = currentUser.child("favorites")
@@ -57,11 +58,9 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
                     print("Error retrieving values")
                 }
                 
-                self.favoriteItemsArray.removeAll()
                 for id in self.favorites.favoritesItemDictionary.keys {
                     self.favoriteItemsArray.append(id)
                 }
-
                 self.tableView.reloadData()
                 self.tableView.reloadSections([0], with: .none)
             }
@@ -73,33 +72,25 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if favoriteItemsArray.count == 0 {
-            tableView.separatorStyle = .none
-            tableView.backgroundView?.isHidden = false
-        }
         return favoriteItemsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteItemCell") as! FavoritesTableViewCell
         guard let restaurant = restaurants.restaurantsData[favoriteItemsArray[indexPath.row]] else {
             return cell
         }
-        cell.textLabel?.text = restaurant._title
-        cell.textLabel?.adjustsFontSizeToFitWidth = true
-        cell.detailTextLabel?.text = restaurant._category
+        cell.titleLabel.text = restaurant._title
+        cell.titleLabel.adjustsFontSizeToFitWidth = true
+        cell.rating.text = restaurant._average_rating
+        cell.category.text = restaurant._category
         return cell
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TO-DO: IMPLEMENTATION NEEDED
+        
+    }
     
 }
 

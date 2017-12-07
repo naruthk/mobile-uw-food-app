@@ -54,7 +54,7 @@ class MasterDetailViewController: UIViewController {
     var restaurants = SharedInstance.sharedInstance
     var favorites = SharedInstance.sharedInstance
     
-    var userData : Restaurant = Restaurant(value: "")
+    var userData : Restaurant = Restaurant(value: "-")
     var sections = [Category]()
     var hoursItem : [Information] = []
     var locationsItem : [Information] = []
@@ -105,12 +105,20 @@ class MasterDetailViewController: UIViewController {
             self.sections.append(Category(name:"Reviews", items: self.reviewsItem as [AnyObject]))
             self.tableView.reloadSections([self.sections.count-1], with: .none)
         }
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(MasterDetailViewController.goBack(_:)))
+        
         retrieveReviews()
         setTableViewFunctionalities()
         populateHeader()
         populateRating()
         populateButtons()
         setupRatingPopup()
+    }
+    
+    @objc func goBack(_ sender: UINavigationItem) {
+        print("I'm tapped")
+        dismiss(animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
