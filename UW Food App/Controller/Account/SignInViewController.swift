@@ -25,7 +25,14 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dismiss(animated: false) {}
-        self.favorites.favoritesItemDictionary.removeAll()
+        
+        if Auth.auth().currentUser != nil {
+            do {
+                try Auth.auth().signOut()
+            } catch {
+                print(error)
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {

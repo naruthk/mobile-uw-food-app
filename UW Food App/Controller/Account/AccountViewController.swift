@@ -42,7 +42,7 @@ class AccountViewController: UIViewController {
             }
         }) { (error) in print(error)}
     }
-    
+
     @IBAction func logoutButtonPressed(_ sender: Any) {
         let title = "Confirmation"
         let message = "Are you sure you want to sign out from this account: \(user?.email ?? "")?"
@@ -53,10 +53,10 @@ class AccountViewController: UIViewController {
                 try Auth.auth().signOut()
                 Drop.down("You've signed out.", state: .success)
                 Auth.auth()
-                
+
                 // Clear
                 self.favorites.favoritesItemDictionary.removeAll()
-                
+
                 guard (self.navigationController?.popToRootViewController(animated: true)) != nil
                     else {
                         print("No viewcontrollers to pop.")
@@ -69,30 +69,6 @@ class AccountViewController: UIViewController {
         }
         popup.addButtons([cancelBtn, closeBtn])
         self.present(popup, animated: true, completion: nil)
-//        do {
-//            try Auth.auth().signOut()
-//            // Clear favorites item
-//            self.favorites.favoritesItemDictionary.removeAll()
-//            Drop.down("You've signed out.", state: .success)
-//        } catch {
-//            print("Error logging out")
-//            Drop.down("An unknown error unoccurred", state: .error)
-//        }
-//
-//        guard (navigationController?.popToRootViewController(animated: true)) != nil
-//            else {
-//                print("No viewcontrollers to pop.")
-//                return
-//        }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

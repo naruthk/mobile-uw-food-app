@@ -117,7 +117,6 @@ class MasterDetailViewController: UIViewController {
     }
     
     @objc func goBack(_ sender: UINavigationItem) {
-        print("I'm tapped")
         dismiss(animated: true, completion: nil)
     }
     
@@ -239,7 +238,7 @@ class MasterDetailViewController: UIViewController {
             self.present(popup, animated: true, completion: nil)
             return
         }
-        
+    
         // If our Favorites dictionary already has the item, that means the user intends to remove the item
         // from his/her favorites
         if self.favorites.favoritesItemDictionary.keys.contains(userData._id) {
@@ -248,44 +247,30 @@ class MasterDetailViewController: UIViewController {
             self.saveButton.setFATitleColor(color: UIColor.flatGray())
             self.saveButton.setFAIcon(icon: .FAStarO, iconSize: self.iconSize, forState: .normal)
             self.saveButtonLabel.text = "Add"
-            
-            // Removing the item from Firebase
-            let ref = Database.database().reference().child("users/\(currentUser.uid)/favorites")
-            ref.queryOrderedByKey()
-            ref.observe(.childAdded, with: { (snapshot) in
-                print(snapshot)
-                if let dictionary = snapshot.value as? [String: Any] {
-                    let id = dictionary["id"] as! String
-                    if id == self.userData._id {
-                        
-                        // Remove from Firebase!
-                        let childOfRef = ref.child(snapshot.key)
-                        childOfRef.removeValue()
-                        
-                        self.favorites.favoritesItemDictionary.removeValue(forKey: id)
-                        Drop.down("Successfully removed \(self.userData._title) from Favorites!", state: .success)
-                    }
-                }
-            }) { error in print(error)}
+            // Notify the user that the item has been removed
+            Drop.down("Successfully removed \(self.userData._title) from Favorites!", state: .success)
         } else {
             // If we're here at this point, then obviously the item is not currently inside our dictionary of
             // Favorites item. So we have to add it.
-            Drop.down("Added \(self.userData._title) to Favorites!", state: .success)
             self.saveButton.setFATitleColor(color: UIColor.flatGray())
             self.saveButton.setFAIcon(icon: .FAStar, iconSize: self.iconSize, forState: .normal)
             self.saveButtonLabel.text = "Added"
             self.favorites.favoritesItemDictionary[self.userData._id] = self.userData
-            
-            // After about 5 seconds (to ensure that the statements above executes successfully, we then add
-            // this item to our favorites.
-            let when = DispatchTime.now() + 5
-            DispatchQueue.main.asyncAfter(deadline: when) {
-                let usersDB = Database.database().reference().child("users/\(currentUser.uid)/favorites")
+            Drop.down("Added \(self.userData._title) to Favorites!", state: .success)
+        }
+    
+        // After about 3 seconds (to ensure that the statements above executes successfully, we then add
+        // this item to our favorites.
+        let when = DispatchTime.now() + 3
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            let ref = Database.database().reference().child("users/\(currentUser.uid)/favorites")
+            ref.removeValue()
+            for value in self.favorites.favoritesItemDictionary {
                 let favoriteData: [String: String] = [
-                    "title": self.userData._title,
-                    "id": self.userData._id
+                    "title": value.value._title,
+                    "id": value.value._id
                 ]
-                usersDB.childByAutoId().setValue(favoriteData)
+                ref.childByAutoId().setValue(favoriteData)
             }
         }
     }

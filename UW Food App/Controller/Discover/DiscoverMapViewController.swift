@@ -84,15 +84,19 @@ class DiscoverMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // In case the user (who is already signed in) closes the app, we'll sign the user out first.
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("Error logging out")
+        }
         initializeLocationManager()
         setGoogleMapFunctionalities()
-        // If there's network connection, then we use the values that are cached!
+        // If there's NO network connection, then we use the values that are cached!
         if Reachability.isConnectedToNetwork() != true {
-            print("No internet connection")
             Drop.down("Please check your Internet connection.", state: .error)
             loadData()
         } else {
-            print("App is connected to the Internet")
             retrieveRestaurantsData()
             observeRestaurantsData()
         }

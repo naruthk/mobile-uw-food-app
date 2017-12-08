@@ -17,7 +17,7 @@
         <!--Account-->
         <scene sceneID="93z-Dd-XBr">
             <objects>
-                <viewController title="Account" id="c3E-91-mqO" customClass="AccountViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccountDetail" title="Account" useStoryboardIdentifierAsRestorationIdentifier="YES" id="c3E-91-mqO" customClass="AccountViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CQx-lh-7OL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -284,6 +284,6 @@
         <image name="User" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NLt-RY-2oO"/>
+        <segue reference="1kb-rA-i4o"/>
     </inferredMetricsTieBreakers>
 </document>

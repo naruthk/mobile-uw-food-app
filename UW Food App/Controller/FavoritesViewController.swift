@@ -35,36 +35,26 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func retrieveFavorites() {
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user == nil {
- 
-                
-            } else if user == Auth.auth().currentUser {
-                
-                self.favorites.favoritesItemDictionary.removeAll()
-                
-                let usersRef = Database.database().reference().child("Users")
-                let currentUser = usersRef.child("\(user?.uid ?? "")")
-                let favoritesItem = currentUser.child("favorites")
-                favoritesItem.observe(.childAdded, with: { (snapshot) in
-                    if let dictionary = snapshot.value as? [String: AnyObject] {
-                        let id = dictionary["restaurantID"] as! String
-                        if !self.favoriteItemsArray.contains(id) {
-                            self.favoriteItemsArray.append(id)
-                        }
-                        self.tableView.reloadData()
-                    }
-                }) { (error) in
-                    print("Error retrieving values")
-                }
-                
-                for id in self.favorites.favoritesItemDictionary.keys {
-                    self.favoriteItemsArray.append(id)
-                }
-                self.tableView.reloadData()
-                self.tableView.reloadSections([0], with: .none)
-            }
+        self.favorites.favoritesItemDictionary.removeAll()
+        self.favoriteItemsArray.removeAll()
+        
+        guard let currentUser = Auth.auth().currentUser else {
+            return
         }
+        
+        let ref = Database.database().reference().child("users/\(currentUser.uid)/favorites")
+        ref.queryOrderedByKey()
+        ref.observe(.childAdded, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: Any] {
+                let id = dictionary["id"] as! String
+                self.favorites.favoritesItemDictionary[id] = self.restaurants.restaurantsData[id]
+                self.favoriteItemsArray.append(id)
+                self.tableView.reloadData()
+            }
+        }) { (error) in print(error)}
+        
+        self.tableView.reloadData()
+        self.tableView.reloadSections([0], with: .none)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -72,6 +62,10 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if favoriteItemsArray.count == 0 {
+            tableView.separatorStyle = .none
+            tableView.backgroundView?.isHidden = false
+        }
         return favoriteItemsArray.count
     }
     
@@ -86,11 +80,6 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.category.text = restaurant._category
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TO-DO: IMPLEMENTATION NEEDED
-        
-    }
-    
+
 }
 
