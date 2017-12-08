@@ -61,6 +61,7 @@ class DiscoverMapViewController: UIViewController {
     var lastAddedMarker = GMSMarker()
     var userOriginalLocationParam = [Double]()
     var userData = Restaurant(value: "")
+    var reviewsItem : [Reviews] = []
     
     // The path to the file stores the caching values for restaurants
     var filePath: String {
@@ -81,6 +82,10 @@ class DiscoverMapViewController: UIViewController {
     
     @IBOutlet weak var googleMaps: GMSMapView!
     @IBOutlet weak var searchButton: UIButton!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.reviewsItem.removeAll()    // Clear data first
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -308,12 +313,12 @@ extension DiscoverMapViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let currentRestaurant = marker as GMSMarker
         self.populateDistanceAndDuration(currentRestaurant.userData as! Restaurant)
+        self.retrieveReviews(currentRestaurant.userData as! Restaurant)
         return false
     }
     
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         userData = marker.userData as! Restaurant
-        self.searches.searchHistories.append(userData)
         let vc = UIStoryboard(name: "Discover", bundle: nil).instantiateViewController(withIdentifier: "MasterDetail") as! MasterDetailViewController
         vc.userData = userData
         vc.hoursItem = [
@@ -335,6 +340,7 @@ extension DiscoverMapViewController: GMSMapViewDelegate {
             Information(leftText: "Debit, Credit Card", rightText: "Yes (VISA, MasterCard)"),
             Information(leftText: "Cash", rightText: "Yes")
         ]
+        vc.reviewsItem = self.reviewsItem
         let navBarOnVC: UINavigationController = UINavigationController(rootViewController: vc)
         self.present(navBarOnVC, animated: true, completion: nil)
     }
@@ -371,6 +377,25 @@ extension DiscoverMapViewController: GMSMapViewDelegate {
                 print("Error \(String(describing: response.result.error))")
             }
         }
+    }
+    
+    func retrieveReviews(_ userData: Restaurant) {
+        let reviewsDB = Database.database().reference().child("reviews/\(userData._id)")
+        reviewsDB.observe(.childAdded, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                self.populateReviews(dictionary: dictionary)
+            }
+        })
+    }
+    
+    // Populates navigation bar titles and today's operating hours
+    func populateReviews(dictionary: [String: AnyObject]) {
+        let message = dictionary["message"] as! String
+        let rating = dictionary["rating"] as! String
+        let name = dictionary["name"] as! String
+        let timestamp = dictionary["timestamp"] as! Double
+        let review = Reviews(name: name, rating: rating, message: message, timestamp: timestamp)
+        self.reviewsItem.append(review)
     }
 }
 

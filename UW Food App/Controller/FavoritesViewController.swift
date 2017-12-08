@@ -17,9 +17,11 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     var restaurants = SharedInstance.sharedInstance
     var favorites = SharedInstance.sharedInstance
     var favoriteItemsArray = [String]()
+    var reviewsItem : [Reviews] = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.reviewsItem.removeAll()    // Clear data first
         self.tableView.reloadData()
         retrieveFavorites()
     }
@@ -79,6 +81,56 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.rating.text = restaurant._average_rating
         cell.category.text = restaurant._category
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let restaurant = restaurants.restaurantsData[favoriteItemsArray[indexPath.row]] else {
+            return
+        }
+        retrieveReviews(restaurant)
+        let vc = UIStoryboard(name: "Discover", bundle: nil).instantiateViewController(withIdentifier: "MasterDetail") as! MasterDetailViewController
+        vc.userData = restaurant
+        vc.hoursItem = [
+            Information(leftText: "Sun", rightText: restaurant._hours["sun"]!),
+            Information(leftText: "Mon", rightText: restaurant._hours["mon"]!),
+            Information(leftText: "Tues", rightText: restaurant._hours["tues"]!),
+            Information(leftText: "Wed", rightText: restaurant._hours["wed"]!),
+            Information(leftText: "Thurs", rightText: restaurant._hours["thurs"]!),
+            Information(leftText: "Fri", rightText: restaurant._hours["fri"]!),
+            Information(leftText: "Sat", rightText: restaurant._hours["sat"]!)
+        ]
+        vc.locationsItem = [
+            Information(leftText: "Husky Card", rightText: "Yes"),
+            Information(leftText: "Debit, Credit Card", rightText: "Yes (VISA, MasterCard)"),
+            Information(leftText: "Cash", rightText: "Yes")
+        ]
+        vc.paymentsItem = [
+            Information(leftText: "Husky Card", rightText: "Yes"),
+            Information(leftText: "Debit, Credit Card", rightText: "Yes (VISA, MasterCard)"),
+            Information(leftText: "Cash", rightText: "Yes")
+        ]
+        vc.reviewsItem = self.reviewsItem
+        let navBarOnVC: UINavigationController = UINavigationController(rootViewController: vc)
+        self.present(navBarOnVC, animated: true, completion: nil)
+    }
+    
+    func retrieveReviews(_ userData: Restaurant) {
+        let reviewsDB = Database.database().reference().child("reviews/\(userData._id)")
+        reviewsDB.observe(.childAdded, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                self.populateReviews(dictionary: dictionary)
+            }
+        })
+    }
+    
+    // Populates navigation bar titles and today's operating hours
+    func populateReviews(dictionary: [String: AnyObject]) {
+        let message = dictionary["message"] as! String
+        let rating = dictionary["rating"] as! String
+        let name = dictionary["name"] as! String
+        let timestamp = dictionary["timestamp"] as! Double
+        let review = Reviews(name: name, rating: rating, message: message, timestamp: timestamp)
+        self.reviewsItem.append(review)
     }
 
 }

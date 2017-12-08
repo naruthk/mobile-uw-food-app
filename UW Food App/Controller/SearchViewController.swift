@@ -38,6 +38,7 @@ import UIKit
 import CoreLocation
 import GooglePlaces
 import SwiftyDrop
+import Firebase
 
 class SearchViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -50,6 +51,12 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
     var userOriginalLocationParam : [Double] = []
     let locationManager = CLLocationManager()
     let autocompleteController = GMSAutocompleteViewController()
+    
+    var reviewsItem : [Reviews] = []
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.reviewsItem.removeAll()    // Clear data first
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,6 +129,7 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
 extension SearchViewController: GMSAutocompleteResultsViewControllerDelegate {
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didAutocompleteWith place: GMSPlace) {
+        retrieveReviews(restaurants.restaurantsData[place.placeID]!)
         searchController?.isActive = false
         if let val = restaurants.restaurantsData[place.placeID] {
             let vc = UIStoryboard(name: "Discover", bundle: nil).instantiateViewController(withIdentifier: "MasterDetail") as! MasterDetailViewController
@@ -145,11 +153,30 @@ extension SearchViewController: GMSAutocompleteResultsViewControllerDelegate {
                 Information(leftText: "Debit, Credit Card", rightText: "Yes (VISA, MasterCard)"),
                 Information(leftText: "Cash", rightText: "Yes")
             ]
+            vc.reviewsItem = self.reviewsItem
             let navBarOnVC: UINavigationController = UINavigationController(rootViewController: vc)
             self.present(navBarOnVC, animated: true, completion: nil)
         } else {
             Drop.down("Cannot retrieve information for this restaurant", state: .error)
         }
+    }
+    
+    func retrieveReviews(_ userData: Restaurant) {
+        let reviewsDB = Database.database().reference().child("reviews/\(userData._id)")
+        reviewsDB.observe(.childAdded, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                self.populateReviews(dictionary: dictionary)
+            }
+        })
+    }
+    
+    func populateReviews(dictionary: [String: AnyObject]) {
+        let message = dictionary["message"] as! String
+        let rating = dictionary["rating"] as! String
+        let name = dictionary["name"] as! String
+        let timestamp = dictionary["timestamp"] as! Double
+        let review = Reviews(name: name, rating: rating, message: message, timestamp: timestamp)
+        self.reviewsItem.append(review)
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,

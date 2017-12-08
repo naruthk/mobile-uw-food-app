@@ -85,6 +85,7 @@ class MasterDetailViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.reviewsItem.removeAll()    // Clear data first
         self.tableView.reloadData()
     }
     
@@ -98,17 +99,8 @@ class MasterDetailViewController: UIViewController {
             Category(name:"Reviews", items: reviewsItem as [AnyObject])
         ]
         
-        // We need to wait a few moments before reloading table sections and table data.
-        let when = DispatchTime.now() + 2
-        DispatchQueue.main.asyncAfter(deadline: when) {
-            self.sections.remove(at: self.sections.count - 1)
-            self.sections.append(Category(name:"Reviews", items: self.reviewsItem as [AnyObject]))
-            self.tableView.reloadSections([self.sections.count-1], with: .none)
-        }
-        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(MasterDetailViewController.goBack(_:)))
         
-        retrieveReviews()
         setTableViewFunctionalities()
         populateHeader()
         populateRating()
@@ -123,27 +115,7 @@ class MasterDetailViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    // Populates all data for this particular restaurant and append them to the reviewsItem array
-    func retrieveReviews() {
-        let reviewsDB = Database.database().reference().child("reviews/\(userData._id)")
-        reviewsDB.observe(.childAdded, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                self.populateReviews(dictionary: dictionary)
-            }
-        })
-    }
 
-    // Populates navigation bar titles and today's operating hours
-    func populateReviews(dictionary: [String: AnyObject]) {
-        let message = dictionary["message"] as! String
-        let rating = dictionary["rating"] as! String
-        let name = dictionary["name"] as! String
-        let timestamp = dictionary["timestamp"] as! Double
-        let review = Reviews(name: name, rating: rating, message: message, timestamp: timestamp)
-        self.reviewsItem.append(review)
-    }
-    
     // Setup basic table functionalities
     func setTableViewFunctionalities() {
         tableView.separatorStyle = .singleLine
