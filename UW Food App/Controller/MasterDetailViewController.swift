@@ -42,13 +42,14 @@ import Font_Awesome_Swift
 import PopupDialog
 import SwiftyDrop
 
-// This struct is only for this particular only
-struct Category {
-    let name : String
-    var items : [AnyObject]
-}
 
 class MasterDetailViewController: UIViewController {
+    // This struct is only for this particular only
+    struct Category {
+        let name : String
+        var items : [AnyObject]
+    }
+
     
     // Shared with the rest of the classes
     var restaurants = SharedInstance.sharedInstance

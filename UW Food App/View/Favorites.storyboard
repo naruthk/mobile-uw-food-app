@@ -19,7 +19,7 @@
         <!--Favorites-->
         <scene sceneID="aTJ-Kx-MPg">
             <objects>
-                <viewController storyboardIdentifier="Favorites" title="Favorites" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SMr-3T-TQI" customClass="FavoritesViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoritesViewController" title="Favorites" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SMr-3T-TQI" customClass="FavoritesViewController" customModule="UW_Food_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3oD-D3-EVb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,9 +36,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District Market" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LK8-Jm-Jo5">
-                                                    <rect key="frame" x="156" y="11" width="204" height="48"/>
+                                                    <rect key="frame" x="156" y="11" width="204" height="47.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="48" id="Duy-h0-Nri"/>
                                                         <constraint firstAttribute="width" constant="204" id="uhI-Q8-G8e"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
@@ -53,7 +52,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yiS-TU-wrs" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="156" y="63" width="25" height="25"/>
+                                                    <rect key="frame" x="156" y="62.5" width="25" height="25"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="4KD-Oc-emb"/>

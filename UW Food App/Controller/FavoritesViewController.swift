@@ -91,23 +91,23 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         let vc = UIStoryboard(name: "Discover", bundle: nil).instantiateViewController(withIdentifier: "MasterDetail") as! MasterDetailViewController
         vc.userData = restaurant
         vc.hoursItem = [
-            Information(leftText: "Sun", rightText: restaurant._hours["sun"]!),
-            Information(leftText: "Mon", rightText: restaurant._hours["mon"]!),
-            Information(leftText: "Tues", rightText: restaurant._hours["tues"]!),
-            Information(leftText: "Wed", rightText: restaurant._hours["wed"]!),
-            Information(leftText: "Thurs", rightText: restaurant._hours["thurs"]!),
-            Information(leftText: "Fri", rightText: restaurant._hours["fri"]!),
-            Information(leftText: "Sat", rightText: restaurant._hours["sat"]!)
+            Information(label: "Sun", information: restaurant._hours["sun"]!),
+            Information(label: "Mon", information: restaurant._hours["mon"]!),
+            Information(label: "Tues", information: restaurant._hours["tues"]!),
+            Information(label: "Wed", information: restaurant._hours["wed"]!),
+            Information(label: "Thurs", information: restaurant._hours["thurs"]!),
+            Information(label: "Fri", information: restaurant._hours["fri"]!),
+            Information(label: "Sat", information: restaurant._hours["sat"]!)
         ]
         vc.locationsItem = [
-            Information(leftText: "Husky Card", rightText: "Yes"),
-            Information(leftText: "Debit, Credit Card", rightText: "Yes (VISA, MasterCard)"),
-            Information(leftText: "Cash", rightText: "Yes")
+            Information(label: "Husky Card", information: "Yes"),
+            Information(label: "Debit, Credit Card", information: "Yes (VISA, MasterCard)"),
+            Information(label: "Cash", information: "Yes")
         ]
         vc.paymentsItem = [
-            Information(leftText: "Husky Card", rightText: "Yes"),
-            Information(leftText: "Debit, Credit Card", rightText: "Yes (VISA, MasterCard)"),
-            Information(leftText: "Cash", rightText: "Yes")
+            Information(label: "Husky Card", information: "Yes"),
+            Information(label: "Debit, Credit Card", information: "Yes (VISA, MasterCard)"),
+            Information(label: "Cash", information: "Yes")
         ]
         vc.reviewsItem = self.reviewsItem
         let navBarOnVC: UINavigationController = UINavigationController(rootViewController: vc)

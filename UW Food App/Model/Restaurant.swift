@@ -172,5 +172,35 @@ class Restaurant: NSObject, NSCoding {
         return "Restaurant: \(_id) \(_title) \(_description) \(_building) \(_address) \(_latitude) \(_longitude) \(_category) \(_average_rating) \(_hours) \(_contact_name) \(_contact_email) \(_contact_phone) \(_contact_website) | Distance: \(_distance), Duration: \(_duration)"
     }
     
+    struct InformationCategory {
+        let name : String
+        var items : [AnyObject]
+    }
+    
+    func toInformationCategoryArray() -> [InformationCategory]{
+        let hoursItem = [
+            Information(label: "Sun", information: self._hours["sun"]!),
+            Information(label: "Mon", information: self._hours["mon"]!),
+            Information(label: "Tues", information: self._hours["tues"]!),
+            Information(label: "Wed", information: self._hours["wed"]!),
+            Information(label: "Thurs", information: self._hours["thurs"]!),
+            Information(label: "Fri", information: self._hours["fri"]!),
+            Information(label: "Sat", information: self._hours["sat"]!)
+        ]
+        let basicItem = [
+            Information(label: "Category", information: self._category),
+            Information(label: "Phone Number", information: self._contact_phone),
+            ]
+        let paymentsItem = [
+            Information(label: "Husky Card", information: "Yes"),
+            Information(label: "Debit, Credit Card", information: "Yes (VISA, MasterCard)"),
+            Information(label: "Cash", information: "Yes")
+        ]
+        return [
+            InformationCategory(name:"Hours", items: hoursItem as [AnyObject]),
+            InformationCategory(name:"Basic", items: basicItem as [AnyObject]),
+            InformationCategory(name:"Payment Services", items: paymentsItem as [AnyObject])
+        ]
+    }
 }
 

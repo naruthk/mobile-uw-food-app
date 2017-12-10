@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18265F7B1FDDAC6B002AE033 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18265F7A1FDDAC5D002AE033 /* TextFieldTableViewCell.swift */; };
 		1840B6771FD13B5F00DFE84E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1840B6561FD13B5F00DFE84E /* Assets.xcassets */; };
 		1840B6781FD13B5F00DFE84E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1840B6571FD13B5F00DFE84E /* GoogleService-Info.plist */; };
 		1840B6791FD13B5F00DFE84E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6591FD13B5F00DFE84E /* SearchViewController.swift */; };
@@ -28,6 +29,7 @@
 		1840B68D1FD13B5F00DFE84E /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1840B6731FD13B5F00DFE84E /* Account.storyboard */; };
 		1840B68E1FD13B5F00DFE84E /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1840B6741FD13B5F00DFE84E /* Discover.storyboard */; };
 		1840B68F1FD13B5F00DFE84E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6751FD13B5F00DFE84E /* AppDelegate.swift */; };
+		18C8EBAF1FDC9F2A0020CBF8 /* RestuarantSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8EBAE1FDC9F2A0020CBF8 /* RestuarantSettingsViewController.swift */; };
 		371EA9F94F3356F75E30004F /* Pods_UW_Food_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3F99C247268DC66862434 /* Pods_UW_Food_AppTests.framework */; };
 		41E23374BC1BD1DCC0D01AA4 /* Pods_UW_Food_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1018558A55F1DED32575556F /* Pods_UW_Food_AppUITests.framework */; };
 		8B1551C21FD32D3D00499297 /* SharedInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1551C11FD32D3D00499297 /* SharedInstance.swift */; };
@@ -63,6 +65,7 @@
 
 /* Begin PBXFileReference section */
 		1018558A55F1DED32575556F /* Pods_UW_Food_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UW_Food_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18265F7A1FDDAC5D002AE033 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		1840B6561FD13B5F00DFE84E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1840B6571FD13B5F00DFE84E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1840B6591FD13B5F00DFE84E /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +88,7 @@
 		1840B6741FD13B5F00DFE84E /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
 		1840B6751FD13B5F00DFE84E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1840B6761FD13B5F00DFE84E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18C8EBAE1FDC9F2A0020CBF8 /* RestuarantSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestuarantSettingsViewController.swift; sourceTree = "<group>"; };
 		3D8014B2977496BA7639BF28 /* Pods-UW Food App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Food App.release.xcconfig"; path = "Pods/Target Support Files/Pods-UW Food App/Pods-UW Food App.release.xcconfig"; sourceTree = "<group>"; };
 		4AC3F99C247268DC66862434 /* Pods_UW_Food_AppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UW_Food_AppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50B6D923DB581ADDD2159813 /* Pods-UW Food AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Food AppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UW Food AppUITests/Pods-UW Food AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 		1840B6631FD13B5F00DFE84E /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				18C8EBAE1FDC9F2A0020CBF8 /* RestuarantSettingsViewController.swift */,
 				1840B6651FD13B5F00DFE84E /* AccountViewController.swift */,
 				1840B6661FD13B5F00DFE84E /* RegisterViewController.swift */,
 				8B47E6811FD64CD900590A67 /* SignInViewController.swift */,
@@ -207,6 +212,7 @@
 		1840B66B1FD13B5F00DFE84E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18265F7A1FDDAC5D002AE033 /* TextFieldTableViewCell.swift */,
 				1840B66C1FD13B5F00DFE84E /* Search.storyboard */,
 				1840B66D1FD13B5F00DFE84E /* Favorites.storyboard */,
 				1840B66E1FD13B5F00DFE84E /* LaunchScreen.storyboard */,
@@ -609,10 +615,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18265F7B1FDDAC6B002AE033 /* TextFieldTableViewCell.swift in Sources */,
 				1840B67A1FD13B5F00DFE84E /* FavoritesViewController.swift in Sources */,
 				8B1551CD1FD4060600499297 /* CommentsCell.swift in Sources */,
 				1840B6861FD13B5F00DFE84E /* Menu.swift in Sources */,
 				1840B6841FD13B5F00DFE84E /* RegisterViewController.swift in Sources */,
+				18C8EBAF1FDC9F2A0020CBF8 /* RestuarantSettingsViewController.swift in Sources */,
 				1840B6871FD13B5F00DFE84E /* Restaurant.swift in Sources */,
 				8BA57B971FD7F9A700420A37 /* HelperFunctions.swift in Sources */,
 				1840B67F1FD13B5F00DFE84E /* DiscoverMapViewController.swift in Sources */,
@@ -798,7 +806,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = TES86W7CQQ;
+				DEVELOPMENT_TEAM = 96CLFU9L83;
 				INFOPLIST_FILE = "UW Food App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -815,7 +823,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TES86W7CQQ;
+				DEVELOPMENT_TEAM = 96CLFU9L83;
 				INFOPLIST_FILE = "UW Food App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

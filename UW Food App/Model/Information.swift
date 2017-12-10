@@ -13,8 +13,8 @@ struct Information {
     var leftText: String!
     var rightText: String!
     
-    init(leftText: String, rightText: String) {
-        self.leftText = leftText
-        self.rightText = rightText
+    init(label: String, information: String) {
+        self.leftText = label
+        self.rightText = information
     }
 }

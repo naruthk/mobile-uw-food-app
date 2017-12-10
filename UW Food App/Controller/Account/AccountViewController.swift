@@ -12,18 +12,45 @@ import SwiftyDrop
 import PopupDialog
 
 class AccountViewController: UIViewController {
-
+    
     var restaurants = SharedInstance.sharedInstance
     var favorites = SharedInstance.sharedInstance
+    var permissions = SharedInstance.sharedInstance
     let user = Auth.auth().currentUser
-
+    
+    @IBOutlet var containerView: UIView!
+    
+    private lazy var favoritesViewController: FavoritesViewController = {
+        // Load Storyboard
+        let storyboard = UIStoryboard(name: "Favorites", bundle: nil)
+        // Instantiate View Controller
+        var viewController = storyboard.instantiateViewController(withIdentifier: "FavoritesViewController") as! FavoritesViewController
+        // Add View Controller as Child View Controller
+        self.add(asChildViewController: viewController)
+        
+        return viewController
+    }()
+    
+    private lazy var restuarantSettingsViewController: RestuarantSettingsViewController = {
+        // Load Storyboard
+        let storyboard = UIStoryboard(name: "Account", bundle: Bundle.main)
+        // Instantiate View Controller
+        var viewController = storyboard.instantiateViewController(withIdentifier: "RestuarantSettingsViewController") as! RestuarantSettingsViewController
+        // Add View Controller as Child View Controller
+        self.add(asChildViewController: viewController)
+        
+        return viewController
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dismiss(animated: false) {}
         self.navigationItem.setHidesBackButton(true, animated: false)
         retrieveUserFavoriteItems()
+        retrieveAccount()
+        setAccountView()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -42,7 +69,45 @@ class AccountViewController: UIViewController {
             }
         }) { (error) in print(error)}
     }
-
+    
+    func retrieveAccount() {
+        guard let currentUser = Auth.auth().currentUser else {
+            self.permissions.accountPermissions.removeAll()
+            return
+        }
+        let ref = Database.database().reference().child("users/\(currentUser.uid)/permissions")
+        ref.queryOrderedByKey()
+        ref.observe(.childAdded, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: Any]
+            {
+                if let id = dictionary["restuarantId"] as? String,
+                    let value = dictionary["value"] as? String {
+                    self.permissions.accountPermissions[id] = value
+                    self.setAccountView()
+                }
+                
+            }
+        }) { (error) in print(error)}
+    }
+    
+    func setAccountView() {
+        if let firstObject = self.permissions.accountPermissions.first
+            , firstObject.value.contains("w"),
+            let restuarentId = self.permissions.accountPermissions.first?.key {
+            navigationItem.title = "My Restuarant"
+            tabBarItem.title = "My Restuarant"
+            restuarantSettingsViewController.restuarantId = restuarentId
+            remove(asChildViewController: favoritesViewController)
+            add(asChildViewController: restuarantSettingsViewController)
+            
+        } else {
+            navigationItem.title = "My Food"
+            tabBarItem.title = "My Food"
+            remove(asChildViewController: restuarantSettingsViewController)
+            add(asChildViewController: favoritesViewController)
+        }
+    }
+    
     @IBAction func logoutButtonPressed(_ sender: Any) {
         let title = "Confirmation"
         let message = "Are you sure you want to sign out from this account: \(user?.email ?? "")?"
@@ -53,10 +118,11 @@ class AccountViewController: UIViewController {
                 try Auth.auth().signOut()
                 Drop.down("You've signed out.", state: .success)
                 Auth.auth()
-
+                
                 // Clear
                 self.favorites.favoritesItemDictionary.removeAll()
-
+                self.permissions.accountPermissions.removeAll()
+                
                 guard (self.navigationController?.popToRootViewController(animated: true)) != nil
                     else {
                         print("No viewcontrollers to pop.")
@@ -70,5 +136,30 @@ class AccountViewController: UIViewController {
         popup.addButtons([cancelBtn, closeBtn])
         self.present(popup, animated: true, completion: nil)
     }
-
+    
+    private func add(asChildViewController viewController: UIViewController) {
+        // Add Child View Controller
+        addChildViewController(viewController)
+        
+        // Add Child View as Subview
+        view.addSubview(viewController.view)
+        
+        // Configure Child View
+        viewController.view.frame = view.bounds
+        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        // Notify Child View Controller
+        viewController.didMove(toParentViewController: self)
+    }
+    
+    private func remove(asChildViewController viewController: UIViewController) {
+        // Notify Child View Controller
+        viewController.willMove(toParentViewController: nil)
+        
+        // Remove Child View From Superview
+        viewController.view.removeFromSuperview()
+        
+        // Notify Child View Controller
+        viewController.removeFromParentViewController()
+    }
 }

@@ -88,6 +88,11 @@
 			<key>orderHint</key>
 			<integer>13</integer>
 		</dict>
+		<key>PopupDialog.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
+		</dict>
 		<key>Pulley.xcscheme</key>
 		<dict>
 			<key>isShown</key>
