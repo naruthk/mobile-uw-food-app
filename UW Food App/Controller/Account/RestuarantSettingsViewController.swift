@@ -27,35 +27,59 @@ class RestuarantSettingsViewController: UITableViewController {
             return restaurants.restaurantsData[restuarantId]
         }
     }
-
+    
+    var editedResturant:Restaurant!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+    @objc func onSave() {
+        if self.editedResturant == nil {
+            self.editedResturant = self.restuarant
+        }
+        for cell in tableView.visibleCells {
+            if let informationCell = cell as? EditInformationTableViewCell {
+                informationCell.commitInformation()
+                self.editedResturant.updateFrom(information: informationCell.information)
+            }
+        }
+        let restaurantDB = Database.database().reference().child("restaurants/\(restuarantId)")
+        restaurantDB.updateChildValues(editedResturant.structuredObjectForFireBase)
+        self.parent?.navigationItem.rightBarButtonItems?.removeAll()
     }
-    */
-
+    
 }
 
+extension RestuarantSettingsViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true
+    }
+}
 
-extension RestuarantSettingsViewController {
+extension RestuarantSettingsViewController{
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.sections.count
@@ -81,12 +105,20 @@ extension RestuarantSettingsViewController {
         let items = self.sections[indexPath.section].items
         let item = items[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell") as! TextFieldTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell") as! EditInformationTableViewCell
         let informationItem = item as! Information
-        cell.label.text = informationItem.leftText
-        cell.textField.placeholder = informationItem.rightText
+        cell.onEditingInformationDidEnd = {
+            let saveButton = UIBarButtonItem()
+            saveButton.title = "Save"
+            saveButton.style = .done
+            saveButton.action = #selector(self.onSave)
+            self.parent?.navigationItem.rightBarButtonItem = saveButton
+        }
+        cell.information = informationItem
+        cell.textField.delegate = self
         return cell
     }
+    
     
 }
 
