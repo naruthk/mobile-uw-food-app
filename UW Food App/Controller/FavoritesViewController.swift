@@ -103,9 +103,9 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             Information(leftText: "Sat", rightText: restaurant._hours["sat"]!)
         ]
         vc.locationsItem = [
-            Information(leftText: "Husky Card", rightText: "Yes"),
-            Information(leftText: "Debit, Credit Card", rightText: "Yes (VISA, MasterCard)"),
-            Information(leftText: "Cash", rightText: "Yes")
+            Information(leftText: "Building", rightText: restaurant._building),
+            Information(leftText: "Walking Distance", rightText: restaurant._distance),
+            Information(leftText: "Walking Duration", rightText: restaurant._duration)
         ]
         vc.paymentsItem = [
             Information(leftText: "Husky Card", rightText: "Yes"),

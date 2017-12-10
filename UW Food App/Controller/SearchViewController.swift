@@ -145,9 +145,9 @@ extension SearchViewController: GMSAutocompleteResultsViewControllerDelegate {
                     Information(leftText: "Sat", rightText: val._hours["sat"]!)
                 ]
                 vc.locationsItem = [
-                    Information(leftText: "Husky Card", rightText: "Yes"),
-                    Information(leftText: "Debit, Credit Card", rightText: "Yes (VISA, MasterCard)"),
-                    Information(leftText: "Cash", rightText: "Yes")
+                    Information(leftText: "Building", rightText: val._building),
+                    Information(leftText: "Walking Distance", rightText: val._distance),
+                    Information(leftText: "Walking Duration", rightText: val._duration)
                 ]
                 vc.paymentsItem = [
                     Information(leftText: "Husky Card", rightText: "Yes"),

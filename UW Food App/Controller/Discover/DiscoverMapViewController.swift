@@ -331,9 +331,9 @@ extension DiscoverMapViewController: GMSMapViewDelegate {
             Information(leftText: "Sat", rightText: userData._hours["sat"]!)
         ]
         vc.locationsItem = [
-            Information(leftText: "Husky Card", rightText: "Yes"),
-            Information(leftText: "Debit, Credit Card", rightText: "Yes (VISA, MasterCard)"),
-            Information(leftText: "Cash", rightText: "Yes")
+            Information(leftText: "Building", rightText: userData._building),
+            Information(leftText: "Walking Distance", rightText: userData._distance),
+            Information(leftText: "Walking Duration", rightText: userData._duration)
         ]
         vc.paymentsItem = [
             Information(leftText: "Husky Card", rightText: "Yes"),
