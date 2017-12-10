@@ -230,21 +230,32 @@ class MasterDetailViewController: UIViewController {
             self.favorites.favoritesItemDictionary[self.userData._id] = self.userData
             Drop.down("Added \(self.userData._title) to Favorites!", state: .success)
         }
-    
-        // After about 3 seconds (to ensure that the statements above executes successfully, we then add
-        // this item to our favorites.
-        let when = DispatchTime.now() + 3
-        DispatchQueue.main.asyncAfter(deadline: when) {
-            let ref = Database.database().reference().child("users/\(currentUser.uid)/favorites")
-            ref.removeValue()
-            for value in self.favorites.favoritesItemDictionary {
-                let favoriteData: [String: String] = [
-                    "title": value.value._title,
-                    "id": value.value._id
-                ]
-                ref.childByAutoId().setValue(favoriteData)
-            }
+        
+        // Add this item to our favorites.
+        let ref = Database.database().reference().child("users/\(currentUser.uid)/favorites")
+        ref.removeValue()
+        for value in self.favorites.favoritesItemDictionary {
+            let favoriteData: [String: String] = [
+                "title": value.value._title,
+                "id": value.value._id
+            ]
+            ref.childByAutoId().setValue(favoriteData)
         }
+    
+//        // After about 3 seconds (to ensure that the statements above executes successfully, we then add
+//        // this item to our favorites.
+//        let when = DispatchTime.now() + 3
+//        DispatchQueue.main.asyncAfter(deadline: when) {
+//            let ref = Database.database().reference().child("users/\(currentUser.uid)/favorites")
+//            ref.removeValue()
+//            for value in self.favorites.favoritesItemDictionary {
+//                let favoriteData: [String: String] = [
+//                    "title": value.value._title,
+//                    "id": value.value._id
+//                ]
+//                ref.childByAutoId().setValue(favoriteData)
+//            }
+//        }
     }
     
     func setupRatingPopup() {

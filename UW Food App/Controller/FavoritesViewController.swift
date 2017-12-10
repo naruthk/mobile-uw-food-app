@@ -73,6 +73,9 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteItemCell") as! FavoritesTableViewCell
+        if favoriteItemsArray.count == 0 {
+            return cell
+        }
         guard let restaurant = restaurants.restaurantsData[favoriteItemsArray[indexPath.row]] else {
             return cell
         }
