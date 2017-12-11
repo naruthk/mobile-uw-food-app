@@ -94,8 +94,7 @@ class AccountViewController: UIViewController {
         if let firstObject = self.permissions.accountPermissions.first
             , firstObject.value.contains("w"),
             let restuarentId = self.permissions.accountPermissions.first?.key {
-            navigationItem.title = "My Restuarant"
-            tabBarItem.title = "My Restuarant"
+            navigationItem.title = restaurants.restaurantsData[restuarentId]?._title
             restuarantSettingsViewController.restuarantId = restuarentId
             remove(asChildViewController: favoritesViewController)
             add(asChildViewController: restuarantSettingsViewController)
