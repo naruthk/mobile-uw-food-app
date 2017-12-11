@@ -82,7 +82,7 @@ extension DiscoverCardViewController: UICollectionViewDelegateFlowLayout {
 
 extension DiscoverCardViewController: PulleyDrawerViewControllerDelegate {
     func supportedDrawerPositions() -> [PulleyPosition] {
-        return [.collapsed, .open, .partiallyRevealed] // You can specify the drawer positions you support. This is the same as: [.open, .partiallyRevealed, .collapsed, .closed]
+        return [.closed] // You can specify the drawer positions you support. This is the same as: [.open, .partiallyRevealed, .collapsed, .closed]
     }
     
     
@@ -132,17 +132,17 @@ extension DiscoverCardViewController: PulleyDrawerViewControllerDelegate {
             }
         }
         
-        let discoverVC = parent as? DiscoverPulleyViewController
+//        let discoverVC = parent as? DiscoverPulleyViewController
         
         // Set maps padding
-        if let currentPadding = discoverVC?.mapViewController?.mapsPadding {
-            if discoverVC?.initialPadding == nil {
-                discoverVC?.initialPadding = currentPadding
-            }
-            discoverVC?.mapViewController.mapsPadding = UIEdgeInsets(top: currentPadding.top, left: currentPadding.left, bottom: distance - bottomSafeArea, right: currentPadding.right)
-        }
-        
-        discoverVC?.mapViewController?.view?.alpha = 1 - dimmingProgress
+//        if let currentPadding = discoverVC?.mapViewController?.mapsPadding {
+//            if discoverVC?.initialPadding == nil {
+//                discoverVC?.initialPadding = currentPadding
+//            }
+//            discoverVC?.mapViewController.mapsPadding = UIEdgeInsets(top: currentPadding.top, left: currentPadding.left, bottom: distance - bottomSafeArea, right: currentPadding.right)
+//        }
+//
+//        discoverVC?.mapViewController?.view?.alpha = 1 - dimmingProgress
     }
 }
 
