@@ -203,6 +203,8 @@ class Restaurant: NSObject, NSCoding {
         let basicItem = [
             Information(id: "_category", label: "Category", information: self._category),
             Information(id: "_contact_phone", label: "Phone Number", information: self._contact_phone),
+            Information(id: "_contact_website", label: "Website", information: self._contact_website),
+            Information(id: "_contact_email", label: "Email", information: self._contact_email)
             ]
         let paymentsItem = [
             Information(label: "Husky Card", information: "Yes"),
@@ -211,9 +213,8 @@ class Restaurant: NSObject, NSCoding {
         ]
         
         return [
-            InformationCategory(name:"Hours", items: hoursItem as [AnyObject]),
             InformationCategory(name:"Basic", items: basicItem as [AnyObject]),
-            InformationCategory(name:"Payment Services", items: paymentsItem as [AnyObject])
+            InformationCategory(name:"Hours", items: hoursItem as [AnyObject])
         ]
     }
     
@@ -237,6 +238,10 @@ class Restaurant: NSObject, NSCoding {
                 _category = information.information
             case "_contact_phone":
                 _contact_phone = information.information
+            case "_contact_website":
+                _contact_website = information.information
+            case "_contact_email":
+                _contact_email = information.information
             default:
                 print("\(information.id) not found")
             }
