@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JOk-f4-LQK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JOk-f4-LQK">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,16 +17,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JuL-bd-h9o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3095" y="-82"/>
-        </scene>
-        <!--FavoritesController-->
-        <scene sceneID="8YP-AK-tFu">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Favorites" referencedIdentifier="FavoritesController" id="9Wv-CJ-2aF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="Ywt-mp-hYc"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jKn-Hg-Z07" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3094" y="-129"/>
         </scene>
         <!--DiscoverController-->
         <scene sceneID="ufF-2R-dCL">
@@ -60,7 +50,6 @@
                     <connections>
                         <segue destination="2IX-gt-x4M" kind="relationship" relationship="viewControllers" id="kzI-Gl-vca"/>
                         <segue destination="e69-3I-cgn" kind="relationship" relationship="viewControllers" id="BGJ-dL-rHV"/>
-                        <segue destination="9Wv-CJ-2aF" kind="relationship" relationship="viewControllers" id="eha-1s-Zxp"/>
                         <segue destination="mHe-Ah-FnQ" kind="relationship" relationship="viewControllers" id="PfW-bA-iyU"/>
                     </connections>
                 </tabBarController>
