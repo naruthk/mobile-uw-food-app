@@ -72,3 +72,15 @@ class AccountViewController: UIViewController {
     }
 
 }
+
+//extension AccountViewController: UITabBarControllerDelegate {
+//
+//    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+//        if (self.navigationController == viewController) {
+//            return false
+//        }
+//        return true
+//    }
+//
+//}
+

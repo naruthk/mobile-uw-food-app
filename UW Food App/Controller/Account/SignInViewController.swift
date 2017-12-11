@@ -20,6 +20,16 @@ class SignInViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.favorites.favoritesItemDictionary.removeAll()
+        if Auth.auth().currentUser != nil {
+            do {
+                try Auth.auth().signOut()
+                return
+            } catch {
+                print(error)
+            }
+        } else {
+            self.performSegue(withIdentifier: "goToAccount", sender: self)
+        }
     }
     
     override func viewDidLoad() {
@@ -29,9 +39,12 @@ class SignInViewController: UIViewController {
         if Auth.auth().currentUser != nil {
             do {
                 try Auth.auth().signOut()
+                return
             } catch {
                 print(error)
             }
+        } else {
+            self.performSegue(withIdentifier: "goToAccount", sender: self)
         }
     }
     
