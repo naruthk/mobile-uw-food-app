@@ -73,6 +73,9 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteItemCell") as! FavoritesTableViewCell
+        if favoriteItemsArray.count == 0 {
+            return cell
+        }
         guard let restaurant = restaurants.restaurantsData[favoriteItemsArray[indexPath.row]] else {
             return cell
         }
@@ -100,9 +103,9 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             Information(label: "Sat", information: restaurant._hours["sat"]!)
         ]
         vc.locationsItem = [
-            Information(label: "Husky Card", information: "Yes"),
-            Information(label: "Debit, Credit Card", information: "Yes (VISA, MasterCard)"),
-            Information(label: "Cash", information: "Yes")
+            Information(label: "Building", information: restaurant._building),
+            Information(label: "Walking Distance", information: restaurant._distance),
+            Information(label: "Walking Duration", information: restaurant._duration)
         ]
         vc.paymentsItem = [
             Information(label: "Husky Card", information: "Yes"),

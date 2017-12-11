@@ -89,12 +89,6 @@ class DiscoverMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // In case the user (who is already signed in) closes the app, we'll sign the user out first.
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print("Error logging out")
-        }
         initializeLocationManager()
         setGoogleMapFunctionalities()
         // If there's NO network connection, then we use the values that are cached!
@@ -331,9 +325,9 @@ extension DiscoverMapViewController: GMSMapViewDelegate {
             Information(label: "Sat", information: userData._hours["sat"]!)
         ]
         vc.locationsItem = [
-            Information(label: "Husky Card", information: "Yes"),
-            Information(label: "Debit, Credit Card", information: "Yes (VISA, MasterCard)"),
-            Information(label: "Cash", information: "Yes")
+            Information(label: "Building", information: userData._building),
+            Information(label: "Walking Distance", information: userData._distance),
+            Information(label: "Walking Duration", information: userData._duration)
         ]
         vc.paymentsItem = [
             Information(label: "Husky Card", information: "Yes"),

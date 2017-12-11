@@ -94,8 +94,7 @@ class AccountViewController: UIViewController {
         if let firstObject = self.permissions.accountPermissions.first
             , firstObject.value.contains("w"),
             let restuarentId = self.permissions.accountPermissions.first?.key {
-            navigationItem.title = "My Restuarant"
-            tabBarItem.title = "My Restuarant"
+            navigationItem.title = restaurants.restaurantsData[restuarentId]?._title
             restuarantSettingsViewController.restuarantId = restuarentId
             remove(asChildViewController: favoritesViewController)
             add(asChildViewController: restuarantSettingsViewController)
@@ -114,6 +113,7 @@ class AccountViewController: UIViewController {
         let popup = PopupDialog(title: title, message: message)
         let cancelBtn = CancelButton(title: "Cancel") {}
         let closeBtn = DefaultButton(title: "Yes, log me out") {
+            
             do {
                 try Auth.auth().signOut()
                 Drop.down("You've signed out.", state: .success)
@@ -163,3 +163,15 @@ class AccountViewController: UIViewController {
         viewController.removeFromParentViewController()
     }
 }
+
+//extension AccountViewController: UITabBarControllerDelegate {
+//
+//    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+//        if (self.navigationController == viewController) {
+//            return false
+//        }
+//        return true
+//    }
+//
+//}
+

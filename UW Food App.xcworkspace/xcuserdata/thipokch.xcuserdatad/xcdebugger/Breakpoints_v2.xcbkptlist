@@ -120,7 +120,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UW Food App/Controller/Account/AccountViewController.swift"
-            timestampString = "534642382.645833"
+            timestampString = "534649604.411381"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UW Food App/Controller/Account/AccountViewController.swift"
-            timestampString = "534642382.645942"
+            timestampString = "534649604.411868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "retrieveAccount()"
             landmarkType = "7">
          </BreakpointContent>
@@ -152,27 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UW Food App/Controller/Account/AccountViewController.swift"
-            timestampString = "534642382.646021"
+            timestampString = "534649604.412222"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "setAccountView()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UW Food App/Controller/Account/AccountViewController.swift"
-            timestampString = "534642382.646096"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "retrieveAccount()"
             landmarkType = "7">
          </BreakpointContent>
@@ -184,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UW Food App/Controller/Account/AccountViewController.swift"
-            timestampString = "534642382.646165"
+            timestampString = "534649604.412561"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "retrieveAccount()"
             landmarkType = "7">
          </BreakpointContent>
@@ -200,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UW Food App/Controller/Account/AccountViewController.swift"
-            timestampString = "534642382.646232"
+            timestampString = "534649604.412889"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "retrieveAccount()"
             landmarkType = "7">
          </BreakpointContent>
@@ -216,11 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UW Food App/Controller/Account/AccountViewController.swift"
-            timestampString = "534642382.646298"
+            timestampString = "534649604.413217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "retrieveAccount()"
             landmarkType = "7">
          </BreakpointContent>
@@ -232,11 +216,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UW Food App/Controller/Account/AccountViewController.swift"
-            timestampString = "534642382.646364"
+            timestampString = "534649604.41356"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "retrieveAccount()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UW Food App/Controller/Account/AccountViewController.swift"
+            timestampString = "534649604.413937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "retrieveAccount()"
             landmarkType = "7">
          </BreakpointContent>
@@ -248,12 +248,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UW Food App/Controller/Account/AccountViewController.swift"
-            timestampString = "534642382.64643"
+            timestampString = "534649604.414287"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "setAccountView()"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "retrieveAccount()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -264,12 +264,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UW Food App/Controller/Account/AccountViewController.swift"
-            timestampString = "534642382.646491"
+            timestampString = "534649604.414599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "setAccountView()"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "retrieveAccount()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -280,7 +280,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UW Food App/Controller/Account/RestuarantSettingsViewController.swift"
-            timestampString = "534642382.646554"
+            timestampString = "534643324.681518"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
@@ -296,7 +296,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UW Food App/Controller/Account/RestuarantSettingsViewController.swift"
-            timestampString = "534642382.647169"
+            timestampString = "534643324.681893"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "57"
@@ -312,7 +312,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UW Food App/Controller/Account/RestuarantSettingsViewController.swift"
-            timestampString = "534642382.647814"
+            timestampString = "534643324.68216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -328,13 +328,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UW Food App/Controller/Account/RestuarantSettingsViewController.swift"
-            timestampString = "534642382.648238"
+            timestampString = "534643324.682403"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
             endingLineNumber = "63"
             landmarkName = "onSave()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UW Food App/Controller/Account/AccountViewController.swift"
+            timestampString = "534649604.415037"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "AccountViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

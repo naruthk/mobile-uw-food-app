@@ -129,35 +129,37 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
 extension SearchViewController: GMSAutocompleteResultsViewControllerDelegate {
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didAutocompleteWith place: GMSPlace) {
-        retrieveReviews(restaurants.restaurantsData[place.placeID]!)
-        searchController?.isActive = false
-        if let val = restaurants.restaurantsData[place.placeID] {
-            let vc = UIStoryboard(name: "Discover", bundle: nil).instantiateViewController(withIdentifier: "MasterDetail") as! MasterDetailViewController
-            vc.userData = val
-            vc.hoursItem = [
-                Information(label: "Sun", information: val._hours["sun"]!),
-                Information(label: "Mon", information: val._hours["mon"]!),
-                Information(label: "Tues", information: val._hours["tues"]!),
-                Information(label: "Wed", information: val._hours["wed"]!),
-                Information(label: "Thurs", information: val._hours["thurs"]!),
-                Information(label: "Fri", information: val._hours["fri"]!),
-                Information(label: "Sat", information: val._hours["sat"]!)
-            ]
-            vc.locationsItem = [
-                Information(label: "Husky Card", information: "Yes"),
-                Information(label: "Debit, Credit Card", information: "Yes (VISA, MasterCard)"),
-                Information(label: "Cash", information: "Yes")
-            ]
-            vc.paymentsItem = [
-                Information(label: "Husky Card", information: "Yes"),
-                Information(label: "Debit, Credit Card", information: "Yes (VISA, MasterCard)"),
-                Information(label: "Cash", information: "Yes")
-            ]
-            vc.reviewsItem = self.reviewsItem
-            let navBarOnVC: UINavigationController = UINavigationController(rootViewController: vc)
-            self.present(navBarOnVC, animated: true, completion: nil)
+        if (restaurants.restaurantsData.keys.contains(place.placeID)) {
+            retrieveReviews(restaurants.restaurantsData[place.placeID]!)
+            searchController?.isActive = false
+            if let val = restaurants.restaurantsData[place.placeID] {
+                let vc = UIStoryboard(name: "Discover", bundle: nil).instantiateViewController(withIdentifier: "MasterDetail") as! MasterDetailViewController
+                vc.userData = val
+                vc.hoursItem = [
+                    Information(label: "Sun", information: val._hours["sun"]!),
+                    Information(label: "Mon", information: val._hours["mon"]!),
+                    Information(label: "Tues", information: val._hours["tues"]!),
+                    Information(label: "Wed", information: val._hours["wed"]!),
+                    Information(label: "Thurs", information: val._hours["thurs"]!),
+                    Information(label: "Fri", information: val._hours["fri"]!),
+                    Information(label: "Sat", information: val._hours["sat"]!)
+                ]
+                vc.locationsItem = [
+                    Information(label: "Building", information: val._building),
+                    Information(label: "Walking Distance", information: val._distance),
+                    Information(label: "Walking Duration", information: val._duration)
+                ]
+                vc.paymentsItem = [
+                    Information(label: "Husky Card", information: "Yes"),
+                    Information(label: "Debit, Credit Card", information: "Yes (VISA, MasterCard)"),
+                    Information(label: "Cash", information: "Yes")
+                ]
+                vc.reviewsItem = self.reviewsItem
+                let navBarOnVC: UINavigationController = UINavigationController(rootViewController: vc)
+                self.present(navBarOnVC, animated: true, completion: nil)
+            }
         } else {
-            Drop.down("Cannot retrieve information for this restaurant", state: .error)
+            Drop.down("Cannot retrieve information for this place.", state: .error)
         }
     }
     
