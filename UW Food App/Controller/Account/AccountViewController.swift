@@ -49,6 +49,7 @@ class AccountViewController: UIViewController {
         let popup = PopupDialog(title: title, message: message)
         let cancelBtn = CancelButton(title: "Cancel") {}
         let closeBtn = DefaultButton(title: "Yes, log me out") {
+            
             do {
                 try Auth.auth().signOut()
                 Drop.down("You've signed out.", state: .success)

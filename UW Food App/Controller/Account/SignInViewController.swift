@@ -21,14 +21,14 @@ class SignInViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.favorites.favoritesItemDictionary.removeAll()
         if Auth.auth().currentUser != nil {
+            self.performSegue(withIdentifier: "goToAccount", sender: self)
+        } else {
             do {
                 try Auth.auth().signOut()
                 return
             } catch {
                 print(error)
             }
-        } else {
-            self.performSegue(withIdentifier: "goToAccount", sender: self)
         }
     }
     
@@ -37,14 +37,14 @@ class SignInViewController: UIViewController {
         self.dismiss(animated: false) {}
         
         if Auth.auth().currentUser != nil {
+            self.performSegue(withIdentifier: "goToAccount", sender: self)
+        } else {
             do {
                 try Auth.auth().signOut()
                 return
             } catch {
                 print(error)
             }
-        } else {
-            self.performSegue(withIdentifier: "goToAccount", sender: self)
         }
     }
     
