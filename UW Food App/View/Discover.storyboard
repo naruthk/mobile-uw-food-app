@@ -359,11 +359,18 @@
                         <viewLayoutGuide key="safeArea" id="GkZ-ps-5iP"/>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="AP8-TY-fkJ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Mpe-Tu-S6M">
-                            <connections>
-                                <action selector="moreActionPressed:" destination="JWO-Wk-PDE" id="ts5-Lc-oJD"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Report" id="TaE-71-ACs">
+                                <connections>
+                                    <action selector="openReportToAdminPanel:" destination="JWO-Wk-PDE" id="lMD-2x-kEi"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="action" id="Mpe-Tu-S6M">
+                                <connections>
+                                    <action selector="moreActionPressed:" destination="JWO-Wk-PDE" id="ts5-Lc-oJD"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="callButton" destination="Tly-Cd-6GH" id="D8Z-53-0cz"/>

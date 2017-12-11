@@ -41,9 +41,10 @@ import Firebase
 import Font_Awesome_Swift
 import PopupDialog
 import SwiftyDrop
+import MessageUI
 
 
-class MasterDetailViewController: UIViewController {
+class MasterDetailViewController: UIViewController, MFMailComposeViewControllerDelegate {
     // This struct is only for this particular only
     struct Category {
         let name : String
@@ -383,6 +384,29 @@ class MasterDetailViewController: UIViewController {
             Drop.down("Unable to retrieve website.", state: .warning)
         }
     }
+    
+    @IBAction func openReportToAdminPanel(_ sender: Any) {
+        
+        if !MFMailComposeViewController.canSendMail() {
+            print("Mail services are not available")
+            Drop.down("Unable to report", state: .error)
+            return
+        }
+        
+        let composeVC = MFMailComposeViewController()
+        
+        composeVC.mailComposeDelegate = self
+        composeVC.setToRecipients(["naruth1212@gmail.com"])
+        composeVC.setSubject("Reporting about \(userData._title)")
+        composeVC.setMessageBody("", isHTML: false)
+        
+        self.present(composeVC, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
 }
 
 extension MasterDetailViewController: UITableViewDelegate, UITableViewDataSource {
