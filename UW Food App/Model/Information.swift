@@ -10,11 +10,19 @@ import Foundation
 
 struct Information {
     
-    var leftText: String!
-    var rightText: String!
+    var label: String!
+    var information: String!
+    var id = ""
     
-    init(leftText: String, rightText: String) {
-        self.leftText = leftText
-        self.rightText = rightText
+    init(label: String, information: String) {
+        self.label = label
+        self.information = information
     }
+    
+    init(id:String, label: String, information: String) {
+        self.id = id
+        self.label = label
+        self.information = information
+    }
+    
 }

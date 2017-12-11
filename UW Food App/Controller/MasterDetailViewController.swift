@@ -42,13 +42,14 @@ import Font_Awesome_Swift
 import PopupDialog
 import SwiftyDrop
 
-// This struct is only for this particular only
-struct Category {
-    let name : String
-    var items : [AnyObject]
-}
 
 class MasterDetailViewController: UIViewController {
+    // This struct is only for this particular only
+    struct Category {
+        let name : String
+        var items : [AnyObject]
+    }
+
     
     // Shared with the rest of the classes
     var restaurants = SharedInstance.sharedInstance
@@ -477,9 +478,9 @@ extension MasterDetailViewController: UITableViewDelegate, UITableViewDataSource
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
         let informationItem = item as! Information
-        cell.textLabel?.text = informationItem.leftText
+        cell.textLabel?.text = informationItem.label
         cell.textLabel?.adjustsFontSizeToFitWidth = true
-        cell.detailTextLabel?.text = informationItem.rightText
+        cell.detailTextLabel?.text = informationItem.information
         return cell
     }
     

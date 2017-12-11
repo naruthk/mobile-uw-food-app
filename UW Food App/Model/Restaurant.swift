@@ -29,6 +29,8 @@ class Restaurant: NSObject, NSCoding {
         static let duration = "duration"
     }
     
+    
+    
     var _id : String = "-"
     var _title : String = "-"
     var _description : String = "-"
@@ -39,6 +41,15 @@ class Restaurant: NSObject, NSCoding {
     var _category : String = "-"
     var _average_rating : String = "-"
     var _hours : [String:String] = ["-":"-"]
+    
+    var _sunday_hour:String! { get {return _hours["sun"]} set { _hours["sun"] = newValue } }
+    var _monday_hour:String! { get {return _hours["mon"]} set { _hours["mon"] = newValue } }
+    var _tuesday_hour:String! { get {return _hours["tues"]} set { _hours["tues"] = newValue } }
+    var _wednesday_hour:String! { get {return _hours["wed"]} set { _hours["wed"] = newValue } }
+    var _thursday_hour:String! { get {return _hours["thurs"]} set { _hours["thurs"] = newValue } }
+    var _friday_hour:String! { get {return _hours["fri"]} set { _hours["fri"] = newValue } }
+    var _saturday_hour:String! { get {return _hours["sat"]} set { _hours["sat"] = newValue } }
+    
     var _contact_name : String = "-"
     var _contact_email : String = "-"
     var _contact_phone : String = "-"
@@ -172,5 +183,88 @@ class Restaurant: NSObject, NSCoding {
         return "Restaurant: \(_id) \(_title) \(_description) \(_building) \(_address) \(_latitude) \(_longitude) \(_category) \(_average_rating) \(_hours) \(_contact_name) \(_contact_email) \(_contact_phone) \(_contact_website) | Distance: \(_distance), Duration: \(_duration)"
     }
     
+    
+    
+    struct InformationCategory {
+        let name : String
+        var items : [AnyObject]
+    }
+    
+    func toInformationCategoryArray() -> [InformationCategory]{
+        let hoursItem = [
+            Information(id: "_sunday_hour", label: "Sunday", information: self._hours["sun"]!),
+            Information(id: "_monday_hour", label: "Monday", information: self._hours["mon"]!),
+            Information(id: "_tuesday_hour", label: "Tuesday", information: self._hours["tues"]!),
+            Information(id: "_wednesday_hour", label: "Wednesday", information: self._hours["wed"]!),
+            Information(id: "_thursday_hour", label: "Thursday", information: self._hours["thurs"]!),
+            Information(id: "_friday_hour", label: "Friday", information: self._hours["fri"]!),
+            Information(id: "_saturday_hour", label: "Saturday", information: self._hours["sat"]!)
+        ]
+        let basicItem = [
+            Information(id: "_category", label: "Category", information: self._category),
+            Information(id: "_contact_phone", label: "Phone Number", information: self._contact_phone),
+            ]
+        let paymentsItem = [
+            Information(label: "Husky Card", information: "Yes"),
+            Information(label: "Debit, Credit Card", information: "Yes (VISA, MasterCard)"),
+            Information(label: "Cash", information: "Yes")
+        ]
+        
+        return [
+            InformationCategory(name:"Hours", items: hoursItem as [AnyObject]),
+            InformationCategory(name:"Basic", items: basicItem as [AnyObject]),
+            InformationCategory(name:"Payment Services", items: paymentsItem as [AnyObject])
+        ]
+    }
+    
+    func updateFrom(information:Information) {
+        print("\(information.label) : \(information.information)")
+        if information.id != "" {
+            switch information.id {
+            case "_sunday_hour":
+                _sunday_hour = information.information
+            case "_monday_hour":
+                _monday_hour = information.information
+            case "_tuesday_hour":
+                _tuesday_hour = information.information
+            case "_wednesday_hour":
+                _wednesday_hour = information.information
+            case "_thursday_hour":
+                _thursday_hour = information.information
+            case "_friday_hour":
+                _friday_hour = information.information
+            case "_category":
+                _category = information.information
+            case "_contact_phone":
+                _contact_phone = information.information
+            default:
+                print("\(information.id) not found")
+            }
+        }
+        
+    }
+    
+    var structuredObjectForFireBase: [String:Any] {
+        get {
+            return [
+                "id": self._id,
+                "title": self._title,
+                "description": self._description,
+                "address": self._address,
+                "building": self._building,
+                "category": self._category,
+                "average_rating": self._average_rating,
+                "latitude": self._latitude,
+                "longitude": self._longitude,
+                "contactInformation": [
+                    "name": self._contact_name,
+                    "email" : self._contact_email,
+                    "phone" : self._contact_phone,
+                    "website" : self._contact_website
+                ],
+                "hours": self._hours,
+            ]
+        }
+    }
 }
 
