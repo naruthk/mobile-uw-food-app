@@ -1,152 +1,1068 @@
-{
+{    
   "restaurants" : {
-    "3" : {
-      "address" : "1315 NE Campus Pkwy, Seattle, WA 98105",
-      "average_rating" : "4.0",
-      "building" : "Alder Hall",
-      "category" : "Espresso",
-      "contactInformation" : {
-        "email" : "bowerh@uw.edu",
-        "name" : "Heidi Antush",
-        "phone" : "206-221-7796",
-        "website" : "https://www.hfs.washington.edu/districtmarket/"
+      "3" : {
+          "address" : "1315 NE Campus Pkwy, Seattle, WA 98105",
+          "average_rating" : "4.0",
+          "building" : "Alder Hall",
+          "category" : "Espresso",
+          "contactInformation" : {
+              "email" : "bowerh@uw.edu",
+              "name" : "Heidi Antush",
+              "phone" : "206-221-7796",
+              "website" : "https://www.hfs.washington.edu/districtmarket/"
+          },
+          "description" : "District Market is a neighborhood market with fresh produce, meats and seafood, groceries, breads and baked goods, a full-service deli with chef-prepared side dishes, salads and entrées, and a rotating menu of hot foods ready to take home and eat. District Market also includes Husky Grind, a full café with espresso and desserts, and both indoor seating and a convenient walk-up window for street access.",
+          "hours" : {
+              "fri" : "7 am - 12 am",
+              "mon" : "7 am - 12 am",
+              "sat" : "9 am - 12 am",
+              "sun" : "9 am - 12 am",
+              "thurs" : "7 am - 12 am",
+              "tues" : "7 am - 12 am",
+              "wed" : "7 am - 12 am"
+          },
+          "id" : "3",
+          "latitude" : "47.655855",
+          "longitude" : "-122.313793",
+          "title" : "District Market"
       },
-      "description" : "District Market is a neighborhood market with fresh produce, meats and seafood, groceries, breads and baked goods, a full-service deli with chef-prepared side dishes, salads and entrées, and a rotating menu of hot foods ready to take home and eat. District Market also includes Husky Grind, a full café with espresso and desserts, and both indoor seating and a convenient walk-up window for street access.",
-      "hours" : {
-        "fri" : "7 am - 12 am",
-        "mon" : "7 am - 12 am",
-        "sat" : "9 am - 12 am",
-        "sun" : "9 am - 12 am",
-        "thurs" : "7 am - 12 am",
-        "tues" : "7 am - 12 am",
-        "wed" : "7 am - 12 am"
+      "ChIJ8SgXBJMUkFQRQM4LYe2jMSQ" : {
+          "address" : "Intramural Activities Building, Seattle, WA 98195",
+          "average_rating" : "4.0",
+          "building" : "IMA",
+          "category" : "Espresso",
+          "contactInformation" : {
+              "email" : "torinm@uw.edu",
+              "name" : "Torin Munro",
+              "phone" : "206-221-4598",
+              "website" : "https://www.hfs.washington.edu/dining/Default.aspx?id=336"
+          },
+          "description" : "Dawg Bites, a smoothie bar located inside the Intramural Activities Building (IMA) on Montlake Boulevard, is a great place to get refreshed after a workout. Choose from a large selection of fresh grab-and-go salads and sandwiches, cold drinks, espresso, and of course, Freshëns blended fruit smoothies.",
+          "hours" : {
+              "fri" : "7 am - 10 pm",
+              "mon" : "7 am - 10 pm",
+              "sat" : "9 am - 8 pm",
+              "sun" : "11 am - 7 pm",
+              "thurs" : "7 am - 10 pm",
+              "tues" : "7 am - 10 pm",
+              "wed" : "7 am - 10 pm"
+          },
+          "id" : "ChIJ8SgXBJMUkFQRQM4LYe2jMSQ",
+          "latitude" : "47.653491",
+          "longitude" : "-122.301684",
+          "title" : "Dawg Bites"
       },
-      "id" : "3",
-      "latitude" : "47.655855",
-      "longitude" : "-122.313793",
-      "title" : "District Market"
-    },
-    "ChIJ8SgXBJMUkFQRQM4LYe2jMSQ" : {
-      "address" : "Intramural Activities Building, Seattle, WA 98195",
-      "average_rating" : "4.0",
-      "building" : "IMA",
-      "category" : "Espresso",
-      "contactInformation" : {
-        "email" : "torinm@uw.edu",
-        "name" : "Torin Munro",
-        "phone" : "206-221-4598",
-        "website" : "https://www.hfs.washington.edu/dining/Default.aspx?id=336"
+      "ChIJIQv9efIUkFQRUtMgUxr7kl4" : {
+          "address" : "Physics-Astronomy Building, Seattle, WA 98195",
+          "average_rating" : "3.6",
+          "building" : "Physics-Astronomy Building",
+          "category" : "Espresso",
+          "contactInformation" : {
+              "email" : "-",
+              "name" : "-",
+              "phone" : "-",
+              "website" : "-"
+          },
+          "description" : "-",
+          "hours" : {
+              "fri" : "7 am - 10 pm",
+              "mon" : "7 am - 10 pm",
+              "sat" : "9 am - 8 pm",
+              "sun" : "11 am - 7 pm",
+              "thurs" : "7 am - 10 pm",
+              "tues" : "7 am - 10 pm",
+              "wed" : "7 am - 10 pm"
+          },
+          "id" : "ChIJIQv9efIUkFQRUtMgUxr7kl4",
+          "latitude" : "47.653261",
+          "longitude" : "-122.311701",
+          "title" : "H-Bar"
       },
-      "description" : "Dawg Bites, a smoothie bar located inside the Intramural Activities Building (IMA) on Montlake Boulevard, is a great place to get refreshed after a workout. Choose from a large selection of fresh grab-and-go salads and sandwiches, cold drinks, espresso, and of course, Freshëns blended fruit smoothies.",
-      "hours" : {
-        "fri" : "7 am - 10 pm",
-        "mon" : "7 am - 10 pm",
-        "sat" : "9 am - 8 pm",
-        "sun" : "11 am - 7 pm",
-        "thurs" : "7 am - 10 pm",
-        "tues" : "7 am - 10 pm",
-        "wed" : "7 am - 10 pm"
+      "ChIJTwA1fPEUkFQRnLQr5-aUP0Q" : {
+          "address" : "3925 Adams Ln NE, Seattle, WA 98105",
+          "average_rating" : "4.0",
+          "building" : "Mercer Court",
+          "category" : "Espresso",
+          "contactInformation" : {
+              "email" : "-",
+              "name" : "Joseph Maurey",
+              "phone" : "206-616-5168",
+              "website" : "https://www.hfs.washington.edu/huskygrind/"
+          },
+          "description" : "Husky Grind is about more than providing a quality cup of coffee. We develop our flavor profiles by small-batch roasting on campus, and the rest of our beans are prepared locally by Seven Coffee Roasters. Origin cards let you know exactly where our beans come from including the country, farm, exporter and certifications. Single-origin practices follow the traditions of specialty brewers, letting you experience the character and subtleties in a particular region's crop. So drop in and warm up at your friendly neighborhood Husky Grind. Husky Grind also partners with design and agricultural programs on campus for coffee-related special events and seminars. You'll find Husky Grind coffee at Husky Grind Café in Mercer Court as well as District Market in Alder Hall and Parnassus in the Art Building.",
+          "hours" : {
+              "fri" : "7 am - 10 pm",
+              "mon" : "7 am - 10 pm",
+              "sat" : "9 am - 10 pm",
+              "sun" : "9 am - 10 pm",
+              "thurs" : "7 am - 10 pm",
+              "tues" : "7 am - 10 pm",
+              "wed" : "7 am - 10 pm"
+          },
+          "id" : "ChIJTwA1fPEUkFQRnLQr5-aUP0Q",
+          "latitude" : "47.654726",
+          "longitude" : "-122.317157",
+          "title" : "Husky Grind (Mercer Court)"
       },
-      "id" : "ChIJ8SgXBJMUkFQRQM4LYe2jMSQ",
-      "latitude" : "47.653491",
-      "longitude" : "-122.301684",
-      "title" : "Dawg Bites"
-    },
-    "ChIJIQv9efIUkFQRUtMgUxr7kl4" : {
-      "address" : "Physics-Astronomy Building, Seattle, WA 98195",
-      "average_rating" : "3.6",
-      "building" : "Physics-Astronomy Building",
-      "category" : "Espresso",
-      "contactInformation" : {
-        "email" : "-",
-        "name" : "-",
-        "phone" : "-",
-        "website" : "-"
+      "ChIJeZZzzo0UkFQR3aS6q4aQb88" : {
+          "address" : "McMahon Hall (MCM), Seattle, WA 98105, USA",
+          "average_rating" : "3.6",
+          "building" : "McMahon Hall",
+          "category" : "Espresso",
+          "contactInformation" : {
+              "email" : "jmehl11@uw.edu",
+              "name" : "John Mehl",
+              "phone" : "206-616-8026",
+              "website" : "https://www.hfs.washington.edu/mcm8/"
+          },
+          "description" : "Joe Haus proudly brews Starbucks coffee and offers a wide assortment of grab-and-go pastries, bagels and homemade treats. We also bake our own banana bread and cookies in house. Other goodies come from local companies like Blazing Bagels, Alki Bakery, Essential Baking Company and Cupcake Royale. Start your day with a latte and a flaky croissant or indulge that sweet tooth with a muffin or scone.",
+          "hours" : {
+              "sun" : "8 am - 1 am",
+              "mon" : "7 am - 1 am",
+              "tues" : "7 am - 1 am",
+              "wed" : "7 am - 1 am",
+              "thurs" : "7 am - 1 am",
+              "fri" : "7 am - 9 pm",
+              "sat" : "8 am - 9 pm"
+          },
+          "id" : "ChIJeZZzzo0UkFQR3aS6q4aQb88",
+          "latitude" : "47.6581757",
+          "longitude" : "-122.30359980000003",
+          "title" : "Joe Haus"
       },
-      "description" : "-",
-      "hours" : {
-        "fri" : "7 am - 10 pm",
-        "mon" : "7 am - 10 pm",
-        "sat" : "9 am - 8 pm",
-        "sun" : "11 am - 7 pm",
-        "thurs" : "7 am - 10 pm",
-        "tues" : "7 am - 10 pm",
-        "wed" : "7 am - 10 pm"
+      "ChIJnwOTrfIUkFQR7uzFy_69AxU" : {
+          "address" : "Mary Gates Hall, Seattle, WA 98195, USA",
+          "average_rating" : "0.9",
+          "building" : "Mary Gates Hall",
+          "category" : "Espresso",
+          "contactInformation" : {
+              "email" : "uwcafe@washington.edu",
+              "name" : "Amanda Bishop",
+              "phone" : "206-543-7737",
+              "website" : "-"
+          },
+          "description" : "-",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "7:30 am - 5 pm",
+              "tues" : "7:30 am - 5 pm",
+              "wed" : "7:30 am - 5 pm",
+              "thurs" : "7:30 am - 5 pm",
+              "fri" : "7:30 am - 3 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJnwOTrfIUkFQR7uzFy_69AxU",
+          "latitude" : "47.6546367",
+          "longitude" : "-122.30748110000002",
+          "title" : "Mary Gates Hall Espresso"
       },
-      "id" : "ChIJIQv9efIUkFQRUtMgUxr7kl4",
-      "latitude" : "47.653261",
-      "longitude" : "-122.311701",
-      "title" : "H-Bar"
-    },
-    "ChIJTwA1fPEUkFQRnLQr5-aUP0Q" : {
-      "address" : "3925 Adams Ln NE, Seattle, WA 98105",
-      "average_rating" : "4.0",
-      "building" : "Mercer Court",
-      "category" : "Espresso",
-      "contactInformation" : {
-        "email" : "-",
-        "name" : "Joseph Maurey",
-        "phone" : "206-616-5168",
-        "website" : "https://www.hfs.washington.edu/huskygrind/"
+      "ChIJW52kTuwUkFQRV6mkGPoBowk" : {
+          "address" : "Magnuson Health Sciences Center T-Wing, Seattle, WA 98195, USA",
+          "average_rating" : "2.0",
+          "building" : "Magnuson Health Sciences Center T-wing",
+          "category" : "Espresso",
+          "contactInformation" : {
+              "email" : "daskew1@uw.edu",
+              "name" : "Dale Askew",
+              "phone" : "206-616-6547",
+              "website" : "-"
+          },
+          "description" : "-",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "7:30 am - 5 pm",
+              "tues" : "7:30 am - 5 pm",
+              "wed" : "7:30 am - 5 pm",
+              "thurs" : "7:30 am - 5 pm",
+              "fri" : "7:30 am - 5 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJW52kTuwUkFQRV6mkGPoBowk",
+          "latitude" : "47.6509995",
+          "longitude" : "-122.30902609999998",
+          "title" : "Overpass Espresso"
       },
-      "description" : "Husky Grind is about more than providing a quality cup of coffee. We develop our flavor profiles by small-batch roasting on campus, and the rest of our beans are prepared locally by Seven Coffee Roasters. Origin cards let you know exactly where our beans come from including the country, farm, exporter and certifications. Single-origin practices follow the traditions of specialty brewers, letting you experience the character and subtleties in a particular region's crop. So drop in and warm up at your friendly neighborhood Husky Grind. Husky Grind also partners with design and agricultural programs on campus for coffee-related special events and seminars. You'll find Husky Grind coffee at Husky Grind Café in Mercer Court as well as District Market in Alder Hall and Parnassus in the Art Building.",
-      "hours" : {
-        "fri" : "7 am - 10 pm",
-        "mon" : "7 am - 10 pm",
-        "sat" : "9 am - 10 pm",
-        "sun" : "9 am - 10 pm",
-        "thurs" : "7 am - 10 pm",
-        "tues" : "7 am - 10 pm",
-        "wed" : "7 am - 10 pm"
+      "ChIJc-HtVowUkFQR8jL7IPqPmpE" : {
+          "address" : "Art Building, 4000 15th Ave NE, Seattle, WA 98195, USA",
+          "average_rating" : "4.6",
+          "building" : "Art Building",
+          "category" : "Espresso",
+          "contactInformation" : {
+              "email" : "josepm2@uw.edu",
+              "name" : "Joseph Maurey",
+              "phone" : "206-616-5168",
+              "website" : "https://www.hfs.washington.edu/dining/parnassus/"
+          },
+          "description" : "This funky, artsy café nestled in the cozy basement of the Art Building has provided coffee and goodies to campus patrons since the 1950s. The recently revitalized outdoor courtyard combines earthy with industrial—a charming space to relax and chat.",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "7:30 am - 5:30 pm",
+              "tues" : "7:30 am - 5:30 pm",
+              "wed" : "7:30 am - 5:30 pm",
+              "thurs" : "7:30 am - 5:30 pm",
+              "fri" : "7:30 am - 4 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJc-HtVowUkFQR8jL7IPqPmpE",
+          "latitude" : "47.6582829",
+          "longitude" : "-122.3065451",
+          "title" : "Parnassus"
       },
-      "id" : "ChIJTwA1fPEUkFQRnLQr5-aUP0Q",
-      "latitude" : "47.654726",
-      "longitude" : "-122.317157",
-      "title" : "Husky Grind (Mercer Court)"
-    },
-    "uihh" : "jknjknjknijjkbkbkkjb"
+      "ChIJC6Hty4wUkFQR3wn0SaATTd8" : {
+          "address" : "4060 George Washington Lane Northeast, Seattle, WA 98195, USA",
+          "average_rating" : "3.8",
+          "building" : "Parrington Hall",
+          "category" : "Espresso",
+          "contactInformation" : {
+              "email" : "uwcafe@washington.edu",
+              "name" : "Amanda Bishop",
+              "phone" : "206-543-7737",
+              "website" : "-"
+          },
+          "description" : "-",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "8 am - 5 pm",
+              "tues" : "8 am - 5 pm",
+              "wed" : "8 am - 5 pm",
+              "thurs" : "8 am - 5 pm",
+              "fri" : "8 am - 3 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJC6Hty4wUkFQR3wn0SaATTd8",
+          "latitude" : "47.6575038",
+          "longitude" : "-122.31040480000001",
+          "title" : "Public Grounds"
+      },
+      "ChIJfe0fzZIUkFQRp9k-690xopA" : {
+          "address" : "Allen Center for Computer Science & Engineering, Seattle, WA 98195, USA",
+          "average_rating" : "4.4",
+          "building" : "Paul G. Allen Center for Computer Science & Engineering",
+          "category" : "Espresso",
+          "contactInformation" : {
+              "email" : "uwcafe@washington.edu",
+              "name" : "Amanda Bishop",
+              "phone" : "206-221-7737",
+              "website" : "-"
+          },
+          "description" : "-",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "7:30 am - 5 pm",
+              "tues" : "7:30 am - 5 pm",
+              "wed" : "7:30 am - 5 pm",
+              "thurs" : "7:30 am - 5 pm",
+              "fri" : "7:30 am - 4 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJfe0fzZIUkFQRp9k-690xopA",
+          "latitude" : "47.6533728",
+          "longitude" : "-122.30571020000002",
+          "title" : "Reboot"
+      },
+      "ChIJd4oropIUkFQRqgtOcCXdrKU" : {
+          "address" : "4001 E Stevens Way NE, Seattle, WA 98195, USA",
+          "average_rating" : "1.9",
+          "building" : "Husky Union Building",
+          "category" : "Espresso",
+          "contactInformation" : {
+              "email" : "dawng2@uw.edu",
+              "name" : "Dawn Gatta",
+              "phone" : "206-221-3617",
+              "website" : "-"
+          },
+          "description" : "-",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "7 am - 9 pm",
+              "tues" : "7 am - 9 pm",
+              "wed" : "7 am - 9 pm",
+              "thurs" : "7 am - 9 pm",
+              "fri" : "7 am - 9 pm",
+              "sat" : "8 am - 6 pm"
+          },
+          "id" : "ChIJd4oropIUkFQRqgtOcCXdrKU",
+          "latitude" : "47.655297",
+          "longitude" : "-122.30503399999998",
+          "title" : "Starbucks® Coffee"
+      },
+      "ChIJM59atfIUkFQRuY85K2cOKXk" : {
+          "address" : "4000 15th Ave NE, Seattle, WA 98105, USA",
+          "average_rating" : "3.6",
+          "building" : "Suzzallo Library",
+          "category" : "Espresso",
+          "contactInformation" : {
+              "email" : "dawng2@uw.edu",
+              "name" : "Dawn Gatta",
+              "phone" : "206-221-3617",
+              "website" : "-"
+          },
+          "description" : "-",
+          "hours" : {
+              "sun" : "1 pm - 10 pm",
+              "mon" : "7:30 am - 10 pm",
+              "tues" : "7:30 am - 10 pm",
+              "wed" : "7:30 am - 10 pm",
+              "thurs" : "7:30 am - 10 pm",
+              "fri" : "7:30 am - 6 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJM59atfIUkFQRuY85K2cOKXk",
+          "latitude" : "47.65562",
+          "longitude" : "-122.30858990000002",
+          "title" : "Starbucks® Coffee"
+      },
+      "ChIJS9fhWIsUkFQRSAIUp7o3Ijw" : {
+          "address" : "4293 Memorial Way Northeast, Seattle, WA 98195, USA",
+          "average_rating" : "1.3",
+          "building" : "William H. Gates Hall",
+          "category" : "Espresso",
+          "contactInformation" : {
+              "email" : "uwcafe@washington.edu",
+              "name" : "Amanda Bishop",
+              "phone" : "206-543-7737",
+              "website" : "-"
+          },
+          "description" : "-",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "7:30 am - 5 pm",
+              "tues" : "7:30 am - 5 pm",
+              "wed" : "7:30 am - 5 pm",
+              "thurs" : "7:30 am - 5 pm",
+              "fri" : "7:30 am - 3 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJS9fhWIsUkFQRSAIUp7o3Ijw",
+          "latitude" : "47.6593227",
+          "longitude" : "-122.3108416",
+          "title" : "The Supreme Cup"
+      },
+      "ChIJ53WL04oUkFQRxKYrT-Rd3wM" : {
+          "address" : "UW Tower, Mezzanine, Seattle, WA 98105, USA",
+          "average_rating" : "3.3",
+          "building" : "UW Tower",
+          "category" : "Espresso",
+          "contactInformation" : {
+              "email" : "uwcafe@washington.edu",
+              "name" : "Amanda Bishop",
+              "phone" : "206-543-7737",
+              "website" : "-"
+          },
+          "description" : "-",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "7 am - 4 pm",
+              "tues" : "7 am - 4 pm",
+              "wed" : "7 am - 4 pm",
+              "thurs" : "7 am - 4 pm",
+              "fri" : "7 am - 4 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJ53WL04oUkFQRxKYrT-Rd3wM",
+          "latitude" : "47.6604955",
+          "longitude" : "-122.31513339999998",
+          "title" : "Tower Café"
+      },
+      "ChIJ3d5ZB_MUkFQRp895UHels0Y" : {
+          "address" : "1315 NE Campus Pkwy, Seattle, WA 98105, USA",
+          "average_rating" : "1.3",
+          "building" : "Alder Hall",
+          "category" : "Market",
+          "contactInformation" : {
+              "email" : "bowerh@uw.edu",
+              "name" : "Heidi Antush",
+              "phone" : "206-221-7796",
+              "website" : "https://www.hfs.washington.edu/districtmarket/"
+          },
+          "description" : "District Market is a neighborhood market with fresh produce, meats and seafood, groceries, breads and baked goods, a full-service deli with chef-prepared side dishes, salads and entrées, and a rotating menu of hot foods ready to take home and eat. District Market also includes Husky Grind, a full café with espresso and desserts, and both indoor seating and a convenient walk-up window for street access.",
+          "hours" : {
+              "sun" : "7 am - 1 am",
+              "mon" : "7 am - 1 am",
+              "tues" : "7 am - 1 am",
+              "wed" : "7 am - 1 am",
+              "thurs" : "7 am - 1 am",
+              "fri" : "7 am - 1 am",
+              "sat" : "7 am - 1 am"
+          },
+          "id" : "ChIJ3d5ZB_MUkFQRp895UHels0Y",
+          "latitude" : "47.6556649",
+          "longitude" : "-122.31346889999998",
+          "title" : "District Market"
+      },
+      "ChIJnXjPn5IUkFQRI7gQWHnBMAQ" : {
+          "address" : "Etc., Seattle, WA 98105, USA",
+          "average_rating" : "4.0",
+          "building" : "Husky Union Building",
+          "category" : "Market",
+          "contactInformation" : {
+              "email" : "njm4@uw.edu",
+              "name" : "Nick Maldonado",
+              "phone" : "206-221-8344",
+              "website" : "https://www.hfs.washington.edu/markets/"
+          },
+          "description" : "Etc. is a campus market with a full espresso bar and a large selection of fresh sandwiches, salads, sushi and other freshly packaged meals for UW students, faculty and staff on the run. The market sells a variety of microwavable meals including organic, vegan and gluten-free selections, a large selection of cold bottled drinks, healthy snacks (like whole fruit, energy bars and trail mix), chips, candy, ice cream, medicine, toiletries, water bottles, mugs and miscellaneous necessities such as office supplies.",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "7 am - 9 pm",
+              "tues" : "7 am - 9 pm",
+              "wed" : "7 am - 9 pm",
+              "thurs" : "7 am - 9 pm",
+              "fri" : "7 am - 9 pm",
+              "sat" : "8 am - 9 pm"
+          },
+          "id" : "ChIJnXjPn5IUkFQRI7gQWHnBMAQ",
+          "latitude" : "47.65528560000001",
+          "longitude" : "-122.3051898",
+          "title" : "Etc."
+      },
+      "ChIJTWwCzO0UkFQR-MdtwsIbGaE" : {
+          "address" : "1959 NE Pacific St, Seattle, WA 98195, USA",
+          "average_rating" : "4.1",
+          "building" : "Magnuson Health Sciences Center E-court",
+          "category" : "Market",
+          "contactInformation" : {
+              "email" : "daskew1@uw.edu",
+              "name" : "Dale Askew",
+              "phone" : "206-616-6547",
+              "website" : "https://www.hfs.washington.edu/markets/"
+          },
+          "description" : "Etc. is a campus market with a full espresso bar and a large selection of fresh sandwiches, salads, sushi and other freshly packaged meals for UW students, faculty and staff on the run. The market sells a variety of microwavable meals including organic, vegan and gluten-free selections, a large selection of cold bottled drinks, healthy snacks (like whole fruit, energy bars and trail mix), chips, candy, ice cream, medicine, toiletries, water bottles, mugs and miscellaneous necessities such as office supplies.",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "7:30 am - 3 pm",
+              "tues" : "7:30 am - 3 pm",
+              "wed" : "7:30 am - 3 pm",
+              "thurs" : "7:30 am - 3 pm",
+              "fri" : "7:30 am - 3 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJTWwCzO0UkFQR-MdtwsIbGaE",
+          "latitude" : "47.65063159999999",
+          "longitude" : "-122.3089645",
+          "title" : "Etc."
+      },
+      "ChIJwTdsPDgVkFQRFTr87br18Bg" : {
+          "address" : "850 Republican St, Seattle, WA 98109, USA",
+          "average_rating" : "2.1",
+          "building" : "UW Medicine at South Lake Union",
+          "category" : "Market",
+          "contactInformation" : {
+              "email" : "daskew1@uw.edu",
+              "name" : "Dale Askew",
+              "phone" : "206-616-6547",
+              "website" : "https://www.hfs.washington.edu/markets/"
+          },
+          "description" : "Etc. is a campus market with a full espresso bar and a large selection of fresh sandwiches, salads, sushi and other freshly packaged meals for UW students, faculty and staff on the run. The market sells a variety of microwavable meals including organic, vegan and gluten-free selections, a large selection of cold bottled drinks, healthy snacks (like whole fruit, energy bars and trail mix), chips, candy, ice cream, medicine, toiletries, water bottles, mugs and miscellaneous necessities such as office supplies.",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "7:30 am - 3 pm",
+              "tues" : "7:30 am - 3 pm",
+              "wed" : "7:30 am - 3 pm",
+              "thurs" : "7:30 am - 3 pm",
+              "fri" : "7:30 am - 3 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJwTdsPDgVkFQRFTr87br18Bg",
+          "latitude" : "47.6237883",
+          "longitude" : "-122.34045370000001",
+          "title" : "Etc."
+      },
+      "ChIJ9_-_KfMUkFQRky8vzyJ0_m4" : {
+          "address" : "4060 George Washington Lane Northeast, Seattle, WA 98195, USA",
+          "average_rating" : "4.9",
+          "building" : "Odegaard Undergraduate Library",
+          "category" : "Market",
+          "contactInformation" : {
+              "email" : "joegohn@uw.edu",
+              "name" : "Joe Gohndrone",
+              "phone" : "206-616-8992",
+              "website" : "https://www.hfs.washington.edu/markets/"
+          },
+          "description" : "Etc. is a campus market with a full espresso bar and a large selection of fresh sandwiches, salads, sushi and other freshly packaged meals for UW students, faculty and staff on the run. The market sells a variety of microwavable meals including organic, vegan and gluten-free selections, a large selection of cold bottled drinks, healthy snacks (like whole fruit, energy bars and trail mix), chips, candy, ice cream, medicine, toiletries, water bottles, mugs and miscellaneous necessities such as office supplies.",
+          "hours" : {
+              "sun" : "8 pm - 10 pm",
+              "mon" : "7:30 am - 10 pm",
+              "tues" : "7:30 am - 10 pm",
+              "wed" : "7:30 am - 10 pm",
+              "thurs" : "7:30 am - 10 pm",
+              "fri" : "7:30 am - 3 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJ9_-_KfMUkFQRky8vzyJ0_m4",
+          "latitude" : "47.65646199999999",
+          "longitude" : "-122.31034599999998",
+          "title" : "Etc."
+      },
+      "ChIJ4VC5z40UkFQRq8_QCKoz6_I" : {
+          "address" : "The Nook, Seattle, WA 98195, USA",
+          "average_rating" : "0.4",
+          "building" : "McMahon Hall",
+          "category" : "Market",
+          "contactInformation" : {
+              "email" : "jmehl11@uw.edu",
+              "name" : "John Mehl",
+              "phone" : "206-685-6760",
+              "website" : "https://www.hfs.washington.edu/markets/"
+          },
+          "description" : "Located just outside The 8 in McMahon Hall, The Nook features all the necessities for on-campus living, from snacks and drinks to school supplies and laundry detergent.",
+          "hours" : {
+              "sun" : "9 am - 1 am",
+              "mon" : "7:30 am - 1 am",
+              "tues" : "7:30 am - 1 am",
+              "wed" : "7:30 am - 1 am",
+              "thurs" : "7:30 am - 1 am",
+              "fri" : "7:30 am - 1 am",
+              "sat" : "9 am - 1 am"
+          },
+          "id" : "ChIJ4VC5z40UkFQRq8_QCKoz6_I",
+          "latitude" : "47.6580458",
+          "longitude" : "-122.30343099999999",
+          "title" : "The Nook"
+      },
+      "ChIJIQOuz40UkFQRonxZgrcHOeE" : {
+          "address" : "McMahon Hall, Seattle, WA 98105, USA",
+          "average_rating" : "0.6",
+          "building" : "McMahon Hall",
+          "category" : "Restaurant",
+          "contactInformation" : {
+              "email" : "jmehl11@uw.edu",
+              "name" : "John Mehl",
+              "phone" : "206-616-8026",
+              "website" : "https://www.hfs.washington.edu/mcm8/"
+          },
+          "description" : "The 8 at McMahon Hall is a collection of dining destinations under one roof with cozy booths and great views of Lake Washington.",
+          "hours" : {
+              "sun" : "8:30 am - 9 pm",
+              "mon" : "7:30 am - 9 pm",
+              "tues" : "7:30 am - 9 pm",
+              "wed" : "7:30 am - 9 pm",
+              "thurs" : "7:30 am - 9 pm",
+              "fri" : "7:30 am - 9 pm",
+              "sat" : "8:30 am - 9 pm"
+          },
+          "id" : "ChIJIQOuz40UkFQRonxZgrcHOeE",
+          "latitude" : "47.65806389999999",
+          "longitude" : "-122.30349539999997",
+          "title" : "The 8"
+      },
+      "ChIJDQGW1_IUkFQRR36DQ0Av8n8" : {
+          "address" : "Ground, Odegaard Undergraduate Library, Seattle, WA 98105, USA",
+          "average_rating" : "2.1",
+          "building" : "Odegaard Undergraduate Library",
+          "category" : "Restaurant",
+          "contactInformation" : {
+              "email" : "joegohn@uw.edu",
+              "name" : "Joe Gohndrone",
+              "phone" : "206-616-8992",
+              "website" : "https://www.hfs.washington.edu/bygeorge/"
+          },
+          "description" : "Centrally located at the western entrance of Red Square, on the ground floor of Odegaard Undergraduate Library, By George proudly serves Starbucks beverages, quick breakfasts and hearty lunches.",
+          "hours" : {
+              "sun" : "8 pm - 1 am",
+              "mon" : "7:30 am - 1 am",
+              "tues" : "7:30 am - 1 am",
+              "wed" : "7:30 am - 1 am",
+              "thurs" : "7:30 am - 1 am",
+              "fri" : "7:30 am - 3 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJDQGW1_IUkFQRR36DQ0Av8n8",
+          "latitude" : "47.65645689999999",
+          "longitude" : "-122.31044500000002",
+          "title" : "By George"
+      },
+      "ChIJKxBkNzgVkFQRp70qgnUq3mM" : {
+          "address" : "UW Medicine at South Lake Union, Building C, Seattle, WA 98109, USA",
+          "average_rating" : "0.4",
+          "building" : "UW Medicine at South Lake Union",
+          "category" : "Restaurant",
+          "contactInformation" : {
+              "email" : "daskew1@uw.edu",
+              "name" : "Dale Askew",
+              "phone" : "206-616-7623",
+              "website" : "https://www.hfs.washington.edu/cafe815/"
+          },
+          "description" : "Café 815 Mercer offers a daily lunch entrée and rotating salad and sandwich specials. Our online menu is temporarily offline as we work to add new items to our offerings. We also have a wide selection of grab-and-go lunch items, pastries and snacks.",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "7:30 am - 3 pm",
+              "tues" : "7:30 am - 3 pm",
+              "wed" : "7:30 am - 3 pm",
+              "thurs" : "7:30 am - 3 pm",
+              "fri" : "7:30 am - 3 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJKxBkNzgVkFQRp70qgnUq3mM",
+          "latitude" : "47.62354440000001",
+          "longitude" : "-122.34007810000003",
+          "title" : "Café 815 Mercer"
+      },
+      "ChIJAZv7l_MUkFQRi4l8xGTifig" : {
+          "address" : "1218 NE Campus Pkwy, Seattle, WA 98105, USA",
+          "average_rating" : "3.1",
+          "building" : "Elm Hall",
+          "category" : "Restaurant",
+          "contactInformation" : {
+              "email" : "sr46@uw.edu",
+              "name" : "Susan Ritchie",
+              "phone" : "206-221-1373",
+              "website" : "https://www.hfs.washington.edu/cultivate/"
+          },
+          "description" : "Located on the street level of Elm Hall, Cultivate is a special destination for students, faculty, staff and guests who want to experience full-service dining with a nod to locally sourced fresh food and a community feel. Our menu celebrates food memories and new discoveries, and features a Pacific Northwest twist on regional comforts.",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "10:30 am - 9 pm",
+              "tues" : "10:30 am - 9 pm",
+              "wed" : "10:30 am - 9 pm",
+              "thurs" : "10:30 am - 9 pm",
+              "fri" : "10:30 am - 9 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJAZv7l_MUkFQRi4l8xGTifig",
+          "latitude" : "47.65664839999999",
+          "longitude" : "-122.31473499999998",
+          "title" : "Cultivate"
+      },
+      "ChIJc9vMHrVqkFQRVlzzsNQ37RE" : {
+          "address" : "3924 Montlake Blvd NE, Seattle, WA 98195, USA",
+          "average_rating" : "4.4",
+          "building" : "Intramural Activities Building",
+          "category" : "Restaurant",
+          "contactInformation" : {
+              "email" : "torinm@uw.edu",
+              "name" : "Torin Munro",
+              "phone" : "206-221-4598",
+              "website" : "https://www.hfs.washington.edu/freshens/"
+          },
+          "description" : "Our classic fresh blended smoothies are made with real fruit, no high fructose corn syrup, and available in dairy and nondairy options. Plus, they're fortified with 100% of vitamins A, C, D, E and 25% calcium.",
+          "hours" : {
+              "sun" : "11 am - 7 pm",
+              "mon" : "7 am - 10 pm",
+              "tues" : "7 am - 10 pm",
+              "wed" : "7 am - 10 pm",
+              "thurs" : "7 am - 10 pm",
+              "fri" : "7 am - 10 pm",
+              "sat" : "9 am - 8 pm"
+          },
+          "id" : "ChIJc9vMHrVqkFQRVlzzsNQ37RE",
+          "latitude" : "47.6535921",
+          "longitude" : "-122.30157989999998",
+          "title" : "Freshëns"
+      },
+      "ChIJU65gn5IUkFQR1aVRk8w0Thk" : {
+          "address" : "Freshëns, Seattle, WA 98105, USA",
+          "average_rating" : "4.6",
+          "building" : "Odegaard Undergraduate Library",
+          "category" : "Restaurant",
+          "contactInformation" : {
+              "email" : "joegohn@uw.edu",
+              "name" : "Joe Gohndrone",
+              "phone" : "206-616-8992",
+              "website" : "https://www.hfs.washington.edu/freshens/"
+          },
+          "description" : "Our classic fresh blended smoothies are made with real fruit, no high fructose corn syrup, and available in dairy and nondairy options. Plus, they're fortified with 100% of vitamins A, C, D, E and 25% calcium.",
+          "hours" : {
+              "sun" : "8 pm - 1 am",
+              "mon" : "7:30 am - 8 pm",
+              "tues" : "7:30 am - 8 pm",
+              "wed" : "7:30 am - 8 pm",
+              "thurs" : "7:30 am - 8 pm",
+              "fri" : "7:30 am - 3 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJU65gn5IUkFQR1aVRk8w0Thk",
+          "latitude" : "47.6564677",
+          "longitude" : "-122.3104692",
+          "title" : "Freshëns"
+      },
+      "ChIJtX_5nZIUkFQRQDPB3Acdidc" : {
+          "address" : "Husky Union Building, Seattle, WA 98195, USA",
+          "average_rating" : "4.0",
+          "building" : "Husky Union Building",
+          "category" : "Restaurant",
+          "contactInformation" : {
+              "email" : "larryc2@uw.edu",
+              "name" : "Larry Connor",
+              "phone" : "206-221-3361",
+              "website" : "https://www.hfs.washington.edu/huskyden/"
+          },
+          "description" : "Centrally located in the Husky Union Building (HUB), Husky Den is a popular breakfast and lunch destination on campus. The food court is home to eight restaurants, a market and a variety of seating venues.",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "10:30 am - 2:30 pm",
+              "tues" : "10:30 am - 2:30 pm",
+              "wed" : "10:30 am - 2:30 pm",
+              "thurs" : "10:30 am - 2:30 pm",
+              "fri" : "10:30 am - 2:30 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJtX_5nZIUkFQRQDPB3Acdidc",
+          "latitude" : "47.6553358",
+          "longitude" : "-122.305094",
+          "title" : "Husky Den"
+      },
+      "ChIJpzomt_MUkFQR-vAZ7Y9CSps" : {
+          "address" : "1201 NE Campus Pkwy, Seattle, WA 98105, USA",
+          "average_rating" : "0.5",
+          "building" : "Lander Hall",
+          "category" : "Restaurant",
+          "contactInformation" : {
+              "email" : "bensoa3@uw.edu",
+              "name" : "Andrea Benson",
+              "phone" : "206-543-6975",
+              "website" : "https://www.hfs.washington.edu/localpoint/"
+          },
+          "description" : "-",
+          "hours" : {
+              "sun" : "10 am - 8:30 pm",
+              "mon" : "7:30 am - 8:30 pm",
+              "tues" : "7:30 am - 8:30 pm",
+              "wed" : "7:30 am - 8:30 pm",
+              "thurs" : "7:30 am - 8:30 pm",
+              "fri" : "7:30 am - 8:30 pm",
+              "sat" : "10 am - 8:30 pm"
+          },
+          "id" : "ChIJpzomt_MUkFQR-vAZ7Y9CSps",
+          "latitude" : "47.6555201",
+          "longitude" : "-122.31495919999998",
+          "title" : "Local Point"
+      },
+      "ChIJyxMrhIwUkFQRqDuQ0kmVoRU" : {
+          "address" : "Paccar Hall, University District, Seattle, WA 98195, USA",
+          "average_rating" : "1.4",
+          "building" : "Paccar Hall",
+          "category" : "Restaurant",
+          "contactInformation" : {
+              "email" : "joegohn@uw.edu",
+              "name" : "Joe Gohndrone",
+              "phone" : "206-616-8992",
+              "website" : "https://www.hfs.washington.edu/orinsplace/"
+          },
+          "description" : "Orin’s Place serves breakfast, lunch and dinner and features new lunch and dinner specials every day. We also serve toasted sandwiches, soups, Starbucks coffees, pastries, cold drinks and fresh grab-and-go sandwiches and salads.",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "7 am - 8 pm",
+              "tues" : "7 am - 8 pm",
+              "wed" : "7 am - 8 pm",
+              "thurs" : "7 am - 8 pm",
+              "fri" : "7 am - 3 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJyxMrhIwUkFQRqDuQ0kmVoRU",
+          "latitude" : "47.6591406",
+          "longitude" : "-122.30859829999997",
+          "title" : "Orin's Place"
+      },
+      "ChIJ_-K9nZIUkFQRFqs5_2pByhc" : {
+          "address" : "4001 E Stevens Way NE, Seattle, WA 98105, USA",
+          "average_rating" : "4.8",
+          "building" : "Husky Union Building",
+          "category" : "Restaurant",
+          "contactInformation" : {
+              "email" : "-",
+              "name" : "-",
+              "phone" : "206-726-1717",
+              "website" : "https://www.pagliacci.com/"
+          },
+          "description" : "Pagliacci Pizza is a Seattle-based restaurant chain.",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "10:30 am - 7 pm",
+              "tues" : "10:30 am - 7 pm",
+              "wed" : "10:30 am - 7 pm",
+              "thurs" : "10:30 am - 7 pm",
+              "fri" : "10:30 am - 5 pm",
+              "sat" : "11 am - 4 pm"
+          },
+          "id" : "ChIJ_-K9nZIUkFQRFqs5_2pByhc",
+          "latitude" : "47.6553169",
+          "longitude" : "-122.30494020000003",
+          "title" : "Pagliacci Pizza"
+      },
+      "ChIJY92psPMUkFQR0PFAh859Vfg" : {
+          "address" : "Lander Hall 1245 NE Campus Parkway, Seattle, WA 98195, USA",
+          "average_rating" : "4.9",
+          "building" : "Lander Hall",
+          "category" : "Restaurant",
+          "contactInformation" : {
+              "email" : "-",
+              "name" : "-",
+              "phone" : "206-726-1717",
+              "website" : "https://www.pagliacci.com/"
+          },
+          "description" : "Pagliacci Pizza is a Seattle-based restaurant chain.",
+          "hours" : {
+              "sun" : "12 pm - 1 am",
+              "mon" : "11 am - 1 am",
+              "tues" : "11 am - 1 am",
+              "wed" : "11 am - 1 am",
+              "thurs" : "11 am - 1 am",
+              "fri" : "11 am - 12 am",
+              "sat" : "12 pm - 12 am"
+          },
+          "id" : "ChIJY92psPMUkFQR0PFAh859Vfg",
+          "latitude" : "47.655826",
+          "longitude" : "-122.3148976",
+          "title" : "Pagliacci Pizza"
+      },
+      "ChIJfX6ny40UkFQRMrt6v70WNh8" : {
+          "address" : "McMahon Hall, 4100 Whitman Ct, Seattle, WA 98195, USA",
+          "average_rating" : "2.6",
+          "building" : "McMahon Hall",
+          "category" : "Restaurant",
+          "contactInformation" : {
+              "email" : "-",
+              "name" : "-",
+              "phone" : "206-726-1717",
+              "website" : "https://www.pagliacci.com/"
+          },
+          "description" : "Pagliacci Pizza is a Seattle-based restaurant chain.",
+          "hours" : {
+              "sun" : "12 pm - 1 am",
+              "mon" : "11 am - 1 am",
+              "tues" : "11 am - 1 am",
+              "wed" : "11 am - 1 am",
+              "thurs" : "11 am - 1 am",
+              "fri" : "11 am - 12 am",
+              "sat" : "12 pm - 12 am"
+          },
+          "id" : "ChIJfX6ny40UkFQRMrt6v70WNh8",
+          "latitude" : "47.6581757",
+          "longitude" : "-122.30359980000003",
+          "title" : "Pagliacci Pizza"
+      },
+      "ChIJ83oWzO0UkFQRr6sdL7FlrLU" : {
+          "address" : "1959 NE Pacific St, Seattle, WA 98105, USA",
+          "average_rating" : "0.9",
+          "building" : "Magnuson Health Sciences Center I-court",
+          "category" : "Restaurant",
+          "contactInformation" : {
+              "email" : "daskew1@uw.edu",
+              "name" : "Dale Askew",
+              "phone" : "206-616-7623",
+              "website" : "https://www.hfs.washington.edu/rotunda/"
+          },
+          "description" : "The Rotunda serves breakfast and lunch daily, featuring a rotating menu of regional and international entrées, pasta bar, soup station, salad bar and weekly sandwich specials. You'll also find plenty of fresh grab-and-go sandwiches and salads, pastries, snacks and espresso. The Rotunda also offers casual catering services.",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "7:30 am - 6 pm",
+              "tues" : "7:30 am - 6 pm",
+              "wed" : "7:30 am - 6 pm",
+              "thurs" : "7:30 am - 6 pm",
+              "fri" : "7:30 am - 6 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJ83oWzO0UkFQRr6sdL7FlrLU",
+          "latitude" : "47.6511327",
+          "longitude" : "-122.31058889999997",
+          "title" : "The Rotunda"
+      },
+      "ChIJcUxTZI0UkFQRRlIzAv2TF8k" : {
+          "address" : "4001 E Stevens Way NE, Seattle, WA 98195, USA",
+          "average_rating" : "1.1",
+          "building" : "Husky Union Building",
+          "category" : "Restaurant",
+          "contactInformation" : {
+              "email" : "daskew1@uw.edu",
+              "name" : "Dale Askew",
+              "phone" : "206-221-3361",
+              "website" : "https://www.hfs.washington.edu/dining/Default.aspx?id=333"
+          },
+          "description" : "Whatever you're in the mood for, SUBWAY has a wide variety of subs, salads and sides to choose from. And every one of our subs is made fresh in front of you, exactly the way you want it!",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "7:30 am - 7 pm",
+              "tues" : "7:30 am - 7 pm",
+              "wed" : "7:30 am - 7 pm",
+              "thurs" : "7:30 am - 7 pm",
+              "fri" : "7:30 am - 5 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJcUxTZI0UkFQRRlIzAv2TF8k",
+          "latitude" : "47.65538929999999",
+          "longitude" : "-122.30508450000002",
+          "title" : "SUBWAY"
+      },
+      "ChIJhybsC-4UkFQRcLWGF1Q9MJo" : {
+          "address" : "William H. Foege Hall, 3720 15th Ave NE, Seattle, WA 98195, USA",
+          "average_rating" : "4.1",
+          "building" : "William H. Foege Building",
+          "category" : "Restaurant",
+          "contactInformation" : {
+              "email" : "daskew1@uw.edu",
+              "name" : "Dale Askew",
+              "phone" : "206-616-7623",
+              "website" : "https://www.hfs.washington.edu/vistacafe/"
+          },
+          "description" : "Each week features a rotating selection of hot soups and sandwich and salad specials. Every day you can also count on a fresh kale salad and classic sandwiches like our turkey club with bacon, lettuce and housemade lemon aioli or our French dip with Swiss, caramelized onions and horseradish spread. We also serve daily morning treats like our breakfast egg and cheese sandwich or Snoqualmie oatmeal with your choice of toppings such as walnuts, cranberries and brown sugar.",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "7:30 am - 3 pm",
+              "tues" : "7:30 am - 3 pm",
+              "wed" : "7:30 am - 3 pm",
+              "thurs" : "7:30 am - 3 pm",
+              "fri" : "7:30 am - 3 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJhybsC-4UkFQRcLWGF1Q9MJo",
+          "latitude" : "47.6516428",
+          "longitude" : "-122.31341689999999",
+          "title" : "Vista Café"
+      },
+      "ChIJX-kexfIUkFQRJqB1Xze-Zzo" : {
+          "address" : "4040 George Washington Lane Northeast, Seattle, WA 98195, USA",
+          "average_rating" : "3.3",
+          "building" : "Red Square",
+          "category" : "Street Food",
+          "contactInformation" : {
+              "email" : "joegohn@uw.edu",
+              "name" : "Joe Gohndrone",
+              "phone" : "206-685-1850",
+              "website" : "https://www.hfs.washington.edu/UWStreetFood/"
+          },
+          "description" : "Serving up a tasty breakfast and island-style plate lunches with street foods like SPAM musubi, Kalua pig sliders, vegan kalbi tofu, fried rice, Korean lacquered barbecued chicken and mac salad. Breakfast favorites include the Loco Moto and the breakfast fried rice with SPAM.",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "7:30 am - 3 pm",
+              "tues" : "7:30 am - 3 pm",
+              "wed" : "7:30 am - 3 pm",
+              "thurs" : "7:30 am - 3 pm",
+              "fri" : "7:30 am - 3 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJX-kexfIUkFQRJqB1Xze-Zzo",
+          "latitude" : "47.6555666",
+          "longitude" : "-122.31014970000001",
+          "title" : "Motosurf"
+      },
+      "ChIJe973w_IUkFQRVlh7Q-BzBtI" : {
+          "address" : "Red Square, Seattle, WA 98195, USA",
+          "average_rating" : "4.6",
+          "building" : "Red Square",
+          "category" : "Street Food",
+          "contactInformation" : {
+              "email" : "joegohn@uw.edu",
+              "name" : "Joe Gohndrone",
+              "phone" : "206-685-1850",
+              "website" : "https://www.hfs.washington.edu/UWStreetFood/"
+          },
+          "description" : "Enjoy signature street food treats like our Nacho Dawg, which features chili, nacho cheese, Fritos and jalapeno, or try our new Seattle Dawg with cream cheese and caramelized onions. We also serve Andouille chicken sausage and vegan Field Roast. Top your dawg with your choice of sauerkraut, pickled jalapeno, onion and relish.",
+          "hours" : {
+              "sun" : "Closed",
+              "mon" : "10:30 am - 3 pm",
+              "tues" : "10:30 am - 3 pm",
+              "wed" : "10:30 am - 3 pm",
+              "thurs" : "10:30 am - 3 pm",
+              "fri" : "10:30 am - 3 pm",
+              "sat" : "Closed"
+          },
+          "id" : "ChIJe973w_IUkFQRVlh7Q-BzBtI",
+          "latitude" : "47.6557342",
+          "longitude" : "-122.31015530000002",
+          "title" : "Hot Dawgs"
+      }
   },
   "reviews" : {
-    "3" : {
+      "3" : {
       "e8fw9eg798ewg59duduffd-3" : {
-        "message" : "It's an okay place in my opinion.",
-        "rating" : "3.5",
-        "sender" : "a@b.com",
-        "timestamp" : 1459361875686
+          "message" : "It's an okay place in my opinion.",
+          "rating" : "3.5",
+          "name": "Smith58b4",
+          "sender" : "a@b.com",
+          "timestamp" : 1459361875686
       },
       "e8fw9eg798ewg89uduffd-k" : {
-        "message" : "One of the best places out there to eat on campus.",
-        "rating" : "4.5",
-        "sender" : "csms@gmail.com",
-        "timestamp" : 1459361875666
+          "message" : "One of the best places out there to eat on campus.",
+          "name": "Samantha Wells",
+          "rating" : "4.5",
+          "sender" : "csms@gmail.com",
+          "timestamp" : 1459361875666
       }
-    },
-    "ChIJ8SgXBJMUkFQRQM4LYe2jMSQ" : {
+      },
+      "ChIJ8SgXBJMUkFQRQM4LYe2jMSQ" : {
       "rgiejg9er0g90erig0ejgjd-k" : {
-        "message" : "Not bad to be honest.",
-        "rating" : "4.0",
-        "sender" : "johnsmicken@gmail.com",
-        "timestamp" : 1459361875666
+          "message" : "Not bad to be honest.",
+          "name": "Samantha Wells",
+          "rating" : "4.0",
+          "sender" : "johnsmicken@gmail.com",
+          "timestamp" : 1459361875666
       },
       "total_rating" : "4.0"
-    },
-    "ChIJIQv9efIUkFQRUtMgUxr7kl4" : {
+      },
+      "ChIJIQv9efIUkFQRUtMgUxr7kl4" : {
       "rgiejg9er0g90ettg0ejgjd98" : {
-        "message" : "The staffs are very rude.",
-        "rating" : "3.6",
-        "sender" : "canesmith@live.com",
-        "timestamp" : 1459361305601
+          "message" : "The staffs are very rude.",
+          "name": "Superman",
+          "rating" : "3.6",
+          "sender" : "canesmith@live.com",
+          "timestamp" : 1459361305601
       },
       "total_rating" : "3.6"
-    },
-    "ChIJTwA1fPEUkFQRnLQr5-aUP0Q" : {
+      },
+      "ChIJTwA1fPEUkFQRnLQr5-aUP0Q" : {
       "rgiejg9er0g90ettg0ejgjd98" : {
-        "message" : "Not bad to be honest.",
-        "rating" : "4.0",
-        "sender" : "johnsmicken@gmail.com",
-        "timestamp" : 1459361875666
+          "message" : "Not bad to be honest.",
+          "name": "Superman",
+          "rating" : "4.0",
+          "sender" : "johnsmicken@gmail.com",
+          "timestamp" : 1459361875666
       },
       "total_rating" : "4.0"
+      }
+  },
+  "users": {
+    "3247n8oQjvcheYvhMzEcdoxbqmB2": {
+      "favorites": {
+        "-L089NYLbENQxhXUyz_d": {
+          "id": "ChIJIQv9efIUkFQRUtMgUxr7kl4",
+          "title": "H-Bar"
+        }
+      }
+    },
+    "64WVVLMBjcOIWQtJRrtDcYE7G2U2": {
+      "favorites": {
+        "-L-yHu607V6FDL5B9253": {
+          "id": "ChIJIQv9efIUkFQRUtMgUxr7kl4",
+          "title": "H-Bar"
+        }
+      },
+      "permissions": [
+        {
+          "restuarantId": "3",
+          "value": "w"
+        }
+      ]
+    },
+    "KqAOLODnXcMXknFK1cc36C2dvmx2": {
+      "favorites": {
+        "-L06w8tc4qF67zxXqE9v": {
+          "id": "ChIJIQv9efIUkFQRUtMgUxr7kl4",
+          "title": "H-Bar"
+        }
+      }
+    },
+    "SEiVPEQ89uPhsAp5Vex5TYJvq4a2": {
+      "favorites": {
+        "-L02Zn2IiRWXGUCc3mF8": {
+          "id": "423",
+          "title": "Test"
+        },
+        "-L02Zn2J4dC2BXoBq1Ri": {
+          "id": "ChIJTwA1fPEUkFQRnLQr5-aUP0Q",
+          "title": "Husky Grind (Mercer Court)"
+        },
+        "-L02Zn2J4dC2BXoBq1Rj": {
+          "id": "ChIJIQv9efIUkFQRUtMgUxr7kl4",
+          "title": "H-Bar"
+        }
+      },
+      "permissions": [
+        {
+          "restuarantId": "423",
+          "value": "rwx"
+        }
+      ]
     }
   }
 }

@@ -11,7 +11,6 @@ import Firebase
 
 class RestuarantSettingsViewController: UITableViewController {
     
-    
     var restaurants = SharedInstance.sharedInstance
     
     var sections:[Restaurant.InformationCategory] = [Restaurant.InformationCategory(name: "", items: [])]
