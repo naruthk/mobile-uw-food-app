@@ -1,4 +1,4 @@
-# UW Food App
+# UW Food App 🍑🍍
 
 An application that lets students and faculties at the University of Washington view all the dining options on campus.
 
@@ -27,7 +27,7 @@ The current project is under development.
 
 ----
 
-## About The Project
+## About The Project 🍑🍍
 
 ### Our Inspiration
 
@@ -48,7 +48,7 @@ While OneBusAway allows us to find bus routes and wait times at each bus stop, w
 
 ----
 
-## Development
+## Development 🍑🍍
 
 ### Chat
 
@@ -110,7 +110,7 @@ For various images and icons through the app, we're obtaining them from
 
 ----
 
-## Documentation
+## Documentation 🍑🍍
 
 ### Obtaining Place ID
 
@@ -124,10 +124,10 @@ The `PlaceID` is what is stored as the value for the key `restaurantID`.
 
 ## Contact
 
-Submit a pull request / send an email to [contact@naruthk.com](mailto:contact@naruthk.com) for any issues.
+Submit a pull request / send an email to [nkongurai@gmail.com](mailto:nkongurai@gmail.com) for any issues.
 
 ----
 
 ## License
 
-2017 MIT License. UW Food App. Developed by [Naruth Kongurai](http://www.naruthk.com), Demi Tu, and Thipok Cholsaipant.
+2017 MIT License. UW Food App. Developed by [Naruth Kongurai](http://www.naruth.com), Demi Tu, and Thipok Cholsaipant.
