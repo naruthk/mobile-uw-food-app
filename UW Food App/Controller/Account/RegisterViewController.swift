@@ -55,7 +55,7 @@ class RegisterViewController: UIViewController {
                 print(error ?? "")
                 Drop.down("Unable to register. Please try again.", state: .error)
             } else if let user = user {
-                let changeRequest = user.createProfileChangeRequest()
+                let changeRequest = user.user.createProfileChangeRequest()
                 changeRequest.displayName = self.displayNameTextField.text
                 changeRequest.commitChanges(completion: { error in
                     if let error = error {
@@ -63,7 +63,7 @@ class RegisterViewController: UIViewController {
                     } else {
                         let title = "Registration Successful!"
                         let message = "Thanks for signing up an account with us. You can now leave reviews for any restaurants."
-                        let popup = PopupDialog(title: title, message: message, gestureDismissal: false)
+                        let popup = PopupDialog(title: title, message: message, tapGestureDismissal: false)
                         let close = CancelButton(title: "Close") {
                             self.emailTextField.clearsOnBeginEditing = true
                             self.passwordTextField.clearsOnBeginEditing = true

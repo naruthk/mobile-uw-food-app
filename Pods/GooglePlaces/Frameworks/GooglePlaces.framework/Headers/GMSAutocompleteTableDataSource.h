@@ -1,8 +1,8 @@
 //
 //  GMSAutocompleteTableDataSource.h
-//  Google Places API for iOS
+//  Google Places SDK for iOS
 //
-//  Copyright 2016 Google Inc.
+//  Copyright 2016 Google LLC
 //
 //  Usage of this SDK is subject to the Google Maps/Google Earth APIs Terms of
 //  Service: https://developers.google.com/maps/terms
@@ -10,19 +10,16 @@
 
 #import <UIKit/UIKit.h>
 
-#if __has_feature(modules)
-@import GoogleMapsBase;
-#else
-#import <GoogleMapsBase/GoogleMapsBase.h>
-#endif
 #import "GMSAutocompleteBoundsMode.h"
 #import "GMSAutocompleteFilter.h"
 #import "GMSAutocompletePrediction.h"
 #import "GMSPlace.h"
-
-NS_ASSUME_NONNULL_BEGIN;
+#import "GMSPlaceFieldMask.h"
 
 @class GMSAutocompleteTableDataSource;
+@class GMSCoordinateBounds;
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  * Protocol used by |GMSAutocompleteTableDataSource|, to communicate the user's interaction with the
@@ -117,14 +114,18 @@ NS_ASSUME_NONNULL_BEGIN;
  * Bounds used to bias or restrict the autocomplete results depending on the value of
  * |autocompleteBoundsMode| (can be nil).
  */
-@property(nonatomic, strong, nullable) GMSCoordinateBounds *autocompleteBounds;
+@property(nonatomic, strong, nullable) GMSCoordinateBounds *autocompleteBounds __deprecated_msg(
+    "autocompleteBounds property is deprecated in favor of GMSAutocompleteFilter.locationBias or "
+    "GMSAutocompleteFilter.locationRestriction");
 
 /**
  * How to treat the |autocompleteBounds| property. Defaults to |kGMSAutocompleteBoundsModeBias|.
  *
  * Has no effect if |autocompleteBounds| is nil.
  */
-@property(nonatomic, assign) GMSAutocompleteBoundsMode autocompleteBoundsMode;
+@property(nonatomic, assign) GMSAutocompleteBoundsMode autocompleteBoundsMode __deprecated_msg(
+    "autocompleteBoundsMode property is deprecated in favor of GMSAutocompleteFilter.locationBias "
+    "or GMSAutocompleteFilter.locationRestriction");
 
 /** Filter to apply to autocomplete suggestions (can be nil). */
 @property(nonatomic, strong, nullable) GMSAutocompleteFilter *autocompleteFilter;
@@ -147,6 +148,12 @@ NS_ASSUME_NONNULL_BEGIN;
 /** The tint color applied to controls in the Autocomplete view. */
 @property(nonatomic, strong, nullable) UIColor *tintColor;
 
+/**
+ * The |GMSPlaceField| for specifying explicit place details to be requested. Default returns
+ * all avilable fields.
+ */
+@property(nonatomic, assign) GMSPlaceField placeFields;
+
 /** Designated initializer */
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 
@@ -162,6 +169,24 @@ NS_ASSUME_NONNULL_BEGIN;
  */
 - (void)sourceTextHasChanged:(nullable NSString *)text;
 
+/**
+ * Clear all predictions.
+ *
+ *  NOTE: This will call the two delegate methods below:
+ *
+ *  - |didUpdateAutocompletePredictionsForResultsController:|
+ *  - |didRequestAutocompletePredictionsForResultsController:|
+ *
+ *  The implementation of this method is guaranteed to call these synchronously and in-order.
+ */
+- (void)clearResults;
+
+/**
+ * Sets up the autocomplete bounds using the NE and SW corner locations.
+ */
+- (void)setAutocompleteBoundsUsingNorthEastCorner:(CLLocationCoordinate2D)NorthEastCorner
+                                  SouthWestCorner:(CLLocationCoordinate2D)SouthWestCorner;
+
 @end
 
-NS_ASSUME_NONNULL_END;
+NS_ASSUME_NONNULL_END

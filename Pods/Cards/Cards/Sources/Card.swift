@@ -79,7 +79,7 @@ import UIKit
      */
     @IBInspectable public var contentInset: CGFloat = 6 {
         didSet {
-            insets = LayoutHelper(rect: originalFrame).X(contentInset)
+            insets = LayoutHelper(rect: frame).X(contentInset)
         }
     }
     /**
@@ -96,9 +96,18 @@ import UIKit
      from                   -> Your current ViewController (self)
      */
     public func shouldPresent( _ contentViewController: UIViewController?, from superVC: UIViewController?, fullscreen: Bool = false) {
-        if let content = contentViewController {
+        if detailVC.children.count > 0{
+            let viewControllers:[UIViewController] = detailVC.children
+            for viewContoller in viewControllers{
+                viewContoller.willMove(toParent: nil)
+                viewContoller.view.removeFromSuperview()
+                viewContoller.removeFromParent()
+            }
+        }
+        detailVC.isViewAdded = false
+        if let content = contentViewController{
             self.superVC = superVC
-            detailVC.addChildViewController(content)
+            detailVC.addChild(content)
             detailVC.detailView = content.view
             detailVC.card = self
             detailVC.delegate = self.delegate
@@ -115,17 +124,21 @@ import UIKit
         }
     }
     /**
+     If the card should print debug logs.
+     */
+    public var isDebug: Bool = false
+    /**
      Delegate for the card. Should extend your VC with CardDelegate.
      */
     public var delegate: CardDelegate?
     
     //Private Vars
     fileprivate var tap = UITapGestureRecognizer()
-    fileprivate var detailVC = DetailViewController()
-    var superVC: UIViewController?
+    var detailVC = DetailViewController()
+    weak var superVC: UIViewController?
     var originalFrame = CGRect.zero
-    var backgroundIV = UIImageView()
-    var insets = CGFloat()
+    public var backgroundIV = UIImageView()
+    public var insets = CGFloat()
     var isPresenting = false
     
     //MARK: - View Life Cycle
@@ -140,7 +153,8 @@ import UIKit
         initialize()
     }
     
-    func initialize() {
+    open func initialize() {
+        log("CARD: Initializing Card")
         
         // Tap gesture init
         self.addGestureRecognizer(tap)
@@ -162,7 +176,6 @@ import UIKit
     
     override open func draw(_ rect: CGRect) {
         super.draw(rect)
-        originalFrame = rect
         
         self.layer.shadowOpacity = shadowOpacity
         self.layer.shadowColor = shadowColor.cgColor
@@ -180,29 +193,39 @@ import UIKit
         contentInset = 6
     }
     
+    /**
+     Opens the card if detail view is set.
+     */
+    open func open(){
+        if let superview = self.superview {
+            originalFrame = superview.convert(self.frame, to: nil)
+            log("CARD: open() called, setting original frame to ---> \(originalFrame)" )
+        }
+        shrinkAnimated()
+        self.cardTapped()
+    }
     
     //MARK: - Layout
     
-    func layout(animating: Bool = true){ }
+    open func layout(animating: Bool = true){ }
     
     
     //MARK: - Actions
     
     @objc func cardTapped() {
         self.delegate?.cardDidTapInside?(card: self)
+        resetAnimated()
         
         if let vc = superVC {
+            log("CARD: Card tapped, Presenting DetailViewController")
             vc.present(self.detailVC, animated: true, completion: nil)
-        } else {
-            
-            resetAnimated()
         }
     }
 
     
     //MARK: - Animations
     
-    private func pushBackAnimated() {
+    private func shrinkAnimated() {
         
         UIView.animate(withDuration: 0.2, animations: { self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95) })
     }
@@ -253,17 +276,30 @@ extension Card: UIGestureRecognizerDelegate {
         cardTapped()
     }
     
+    open override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        resetAnimated()
+    }
+    
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         if let superview = self.superview {
             originalFrame = superview.convert(self.frame, to: nil)
+            log("CARD: Card's touch began, setting original frame to ---> \(originalFrame)" )
         }
-        pushBackAnimated()
+        shrinkAnimated()
     }
 }
 
 
 	//MARK: - Helpers
+
+extension Card {
+    
+    public func log(_ message: String){
+        if self.isDebug { print(message) }
+    }
+    
+}
 
 extension UILabel {
     
@@ -272,7 +308,7 @@ extension UILabel {
         let attributedString = NSMutableAttributedString(string: self.text!)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = height
-        attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
         self.attributedText = attributedString
     }
     

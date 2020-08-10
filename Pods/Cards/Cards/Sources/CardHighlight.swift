@@ -67,9 +67,11 @@ import UIKit
     }
     /**
      Text for the card's button.
+     Set to [nil] or "" to hide the button.
      */
-    @IBInspectable public var buttonText: String = "view" {
+    @IBInspectable public var buttonText: String? = "view" {
         didSet{
+            self.actionBtn.isHidden = (buttonText == nil || buttonText!.isEmpty)
             self.setNeedsDisplay()
         }
     }
@@ -96,10 +98,10 @@ import UIKit
         initialize()
     }
     
-    override  func initialize() {
+    override open func initialize() {
         super.initialize()
         
-        actionBtn.addTarget(self, action: #selector(buttonTapped), for: UIControlEvents.touchUpInside)
+        actionBtn.addTarget(self, action: #selector(buttonTapped), for: UIControl.Event.touchUpInside)
         
         backgroundIV.addSubview(iconIV)
         backgroundIV.addSubview(titleLbl)
@@ -131,7 +133,7 @@ import UIKit
         titleLbl.minimumScaleFactor = 0.1
         titleLbl.lineBreakMode = .byTruncatingTail
         titleLbl.numberOfLines = 3
-        backgroundIV.bringSubview(toFront: titleLbl)
+        backgroundIV.bringSubviewToFront(titleLbl)
         
         itemTitleLbl.textColor = textColor
         itemTitleLbl.text = itemTitle
@@ -153,16 +155,18 @@ import UIKit
         actionBtn.backgroundColor = UIColor.clear
         actionBtn.layer.backgroundColor = lightColor.cgColor
         actionBtn.clipsToBounds = true
-        let btnTitle = NSAttributedString(string: buttonText.uppercased(), attributes: [ NSAttributedStringKey.font : UIFont.systemFont(ofSize: 16, weight: .black), NSAttributedStringKey.foregroundColor : self.tintColor])
-        actionBtn.setAttributedTitle(btnTitle, for: .normal)
+        if self.buttonText != nil {
+            let btnTitle = NSAttributedString(string: buttonText!.uppercased(), attributes: [ NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16, weight: .black), NSAttributedString.Key.foregroundColor : self.tintColor ?? UIColor.black])
+            actionBtn.setAttributedTitle(btnTitle, for: .normal)
+            btnWidth = CGFloat((buttonText!.count + 2) * 10)
+        }
         
-        btnWidth = CGFloat((buttonText.count + 2) * 10)
         
         layout()
         
     }
     
-    override func layout(animating: Bool = true) {
+    override open func layout(animating: Bool = true) {
         super.layout(animating: animating)
         
         let gimme = LayoutHelper(rect: backgroundIV.frame)
@@ -173,7 +177,7 @@ import UIKit
                               height: gimme.Y(25))
         
         titleLbl.frame.origin = CGPoint(x: insets, y: gimme.Y(5, from: iconIV))
-        titleLbl.frame.size.width = (originalFrame.width * 0.65) + ((backgroundIV.bounds.width - originalFrame.width)/3)
+        titleLbl.frame.size.width = (frame.width * 0.65) + ((backgroundIV.bounds.width - frame.width)/3)
         titleLbl.frame.size.height = gimme.Y(35)
         
         itemSubtitleLbl.sizeToFit()

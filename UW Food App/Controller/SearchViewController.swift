@@ -37,6 +37,7 @@
 import UIKit
 import CoreLocation
 import GooglePlaces
+import GoogleMaps
 import SwiftyDrop
 import Firebase
 
@@ -54,12 +55,17 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
     
     var reviewsItem : [Reviews] = []
     
+    @IBOutlet var image:UIImageView!
+    
+    
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.reviewsItem.removeAll()    // Clear data first
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         initializeLocationManager()
         setMapFilter()
         searchController?.searchBar.placeholder = "Restaurants"
@@ -129,10 +135,10 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate {
 extension SearchViewController: GMSAutocompleteResultsViewControllerDelegate {
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didAutocompleteWith place: GMSPlace) {
-        if (restaurants.restaurantsData.keys.contains(place.placeID)) {
-            retrieveReviews(restaurants.restaurantsData[place.placeID]!)
+        if (restaurants.restaurantsData.keys.contains(place.placeID!)) {
+            retrieveReviews(restaurants.restaurantsData[place.placeID!]!)
             searchController?.isActive = false
-            if let val = restaurants.restaurantsData[place.placeID] {
+            if let val = restaurants.restaurantsData[place.placeID!] {
                 let vc = UIStoryboard(name: "Discover", bundle: nil).instantiateViewController(withIdentifier: "MasterDetail") as! MasterDetailViewController
                 vc.userData = val
                 vc.hoursItem = [

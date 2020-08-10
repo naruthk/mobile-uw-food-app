@@ -40,7 +40,6 @@ import SwiftyDrop
 import ChameleonFramework
 import GoogleMaps
 import GooglePlaces
-import Font_Awesome_Swift
 import Firebase
 import Alamofire
 import SwiftyJSON
@@ -70,18 +69,19 @@ class DiscoverMapViewController: UIViewController {
         return (url!.appendingPathComponent("Data").path)
     }
     
+    
+    
     // For Pulley Card effects to work
-    var mapsPadding:UIEdgeInsets {
-        get {
-            return googleMaps.padding
-        }
-        set(newPadding) {
-            googleMaps.padding = newPadding
-        }
-    }
+//    var mapsPadding:UIEdgeInsets {
+//        get {
+//            return googleMaps.padding
+//        }
+//        set(newPadding) {
+//            googleMaps.padding = newPadding
+//        }
+//    }
     
     @IBOutlet weak var googleMaps: GMSMapView!
-    @IBOutlet weak var searchButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         self.reviewsItem.removeAll()    // Clear data first
@@ -100,6 +100,7 @@ class DiscoverMapViewController: UIViewController {
             observeRestaurantsData()
         }
     }
+    
 
     // Retrieves restaurants data from Firebase (doesn't need the user to be logged in)
     // This method is called only once (when the app first loads)
@@ -280,15 +281,15 @@ extension DiscoverMapViewController: GMSMapViewDelegate {
         self.googleMaps.camera = camera
         self.googleMaps.delegate = self
         self.googleMaps?.isMyLocationEnabled = true
-        self.googleMaps.settings.myLocationButton = true
-        self.googleMaps.settings.compassButton = true
+        self.googleMaps.settings.myLocationButton = false
+        self.googleMaps.settings.compassButton = false
         self.googleMaps.settings.zoomGestures = true
     }
     
     func createAMarker(userData: Restaurant, latitude: Double, longitude: Double, title: String, snippet: String) {
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        marker.icon = UIImage(named: "Markers")
+        marker.icon = UIImage(fluent: .location24Filled)
         marker.title = title
         marker.snippet = snippet
         marker.userData = userData as Any
@@ -353,22 +354,22 @@ extension DiscoverMapViewController: GMSMapViewDelegate {
             "destinations" : "\(destination_latitude),\(destination_longitude)",
             "mode" : "walking",
             "key": googleMapDistanceMatrixAPIKey]
-        Alamofire.request(googleMapDistanceURL, method: .get, parameters: parameters).responseJSON { response in
-            if response.result.isSuccess {
-                let result : JSON = JSON(response.result.value!)
-                for currentElement in result["rows"][0]["elements"].arrayValue {
-                    let status = currentElement["status"].string
-                    if (status == "OK") {
-                        let distance = "\(currentElement["distance"]["text"].string ?? "")"
-                        let duration = "\(currentElement["duration"]["text"].string ?? "")"
-                        let currentRestaurant = self.restaurants.restaurantsData[id]
-                        currentRestaurant?._distance = distance
-                        currentRestaurant?._duration = duration
-                        self.restaurants.restaurantsData[id] = currentRestaurant
+        AF.request(googleMapDistanceURL, method: .get, parameters: parameters).responseJSON { response in switch response.result {
+        case .success(_):
+                    let result : JSON = JSON(response.value!)
+                    for currentElement in result["rows"][0]["elements"].arrayValue {
+                        let status = currentElement["status"].string
+                        if (status == "OK") {
+                            let distance = "\(currentElement["distance"]["text"].string ?? "")"
+                            let duration = "\(currentElement["duration"]["text"].string ?? "")"
+                            let currentRestaurant = self.restaurants.restaurantsData[id]
+                            currentRestaurant?._distance = distance
+                            currentRestaurant?._duration = duration
+                            self.restaurants.restaurantsData[id] = currentRestaurant
+                        }
                     }
-                }
-            } else {
-                print("Error \(String(describing: response.result.error))")
+        case .failure(_):
+                    print("Error \(String(describing: response.error))")
             }
         }
     }

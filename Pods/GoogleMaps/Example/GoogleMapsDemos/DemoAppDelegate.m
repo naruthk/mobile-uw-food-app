@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Google Inc. All rights reserved.
+ * Copyright 2016 Google LLC. All rights reserved.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
@@ -13,15 +13,11 @@
  * permissions and limitations under the License.
  */
 
-#if !defined(__has_feature) || !__has_feature(objc_arc)
-#error "This file requires ARC support."
-#endif
-
 #import "GoogleMapsDemos/DemoAppDelegate.h"
 
-#import <GoogleMaps/GoogleMaps.h>
 #import "GoogleMapsDemos/MasterViewController.h"
 #import "GoogleMapsDemos/SDKDemoAPIKey.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 @implementation DemoAppDelegate {
   id _services;
@@ -31,7 +27,7 @@
 
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  NSLog(@"Build version: %d", __apple_build_version__);
+  NSLog(@"Build version: %s", __VERSION__);
 
   if (kAPIKey.length == 0) {
     // Blow up if APIKey has not yet been set.

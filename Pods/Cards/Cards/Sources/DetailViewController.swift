@@ -12,19 +12,36 @@ internal class DetailViewController: UIViewController {
     var blurView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight ))
     var detailView: UIView?
     var scrollView = UIScrollView()
-    var originalFrame = CGRect.zero
     var snap = UIView()
     var card: Card!
-    var delegate: CardDelegate?
-    var isFullscreen = false
+    weak var delegate: CardDelegate?
+    var isFullscreen = false {
+        didSet { scrollViewOriginalYPosition = isFullscreen ? 0 : 40 }
+    }
     
     fileprivate var xButton = XButton()
+    fileprivate var scrollPosition = CGFloat()
+    fileprivate var scrollViewOriginalYPosition = CGFloat()
+    
+    override var prefersStatusBarHidden: Bool {
+        if isFullscreen { return true }
+        else { return false }
+    }
+    var isViewAdded = false
     
     //MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        card.log("DetailVC: Loaded")
+        self.setupView()
+    }
+    
+    func setupView() {
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+        }
+        
         self.snap = UIScreen.main.snapshotView(afterScreenUpdates: true)
         self.view.addSubview(blurView)
         self.view.addSubview(scrollView)
@@ -50,18 +67,21 @@ internal class DetailViewController: UIViewController {
         blurView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissVC)))
         xButton.isUserInteractionEnabled = true
         view.isUserInteractionEnabled = true
-        
+        isViewAdded = true
     }
-    
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isViewAdded == false {
+            self.setupView()
+        }
         scrollView.addSubview(card.backgroundIV)
         self.delegate?.cardWillShowDetailView?(card: self.card)
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        
-        originalFrame = scrollView.frame
+        super.viewDidAppear(animated)
+        //originalFrame = scrollView.frame
         
         if isFullscreen {
             view.addSubview(xButton)
@@ -79,17 +99,15 @@ internal class DetailViewController: UIViewController {
              
             scrollView.contentSize = CGSize(width: scrollView.bounds.width, height: detail.frame.maxY)
             
-            
             xButton.frame = CGRect (x: scrollView.frame.maxX - 20 - 40,
                                     y: scrollView.frame.minY + 20,
                                     width: 40,
                                     height: 40)
-            
-           
 
         }
         
         self.delegate?.cardDidShowDetailView?(card: self.card)
+        self.scrollView.contentOffset.y = 0 // Jie - Sometimes backgroundIV is pushed down. This make sure it is pinned to top of scrollView
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -97,30 +115,41 @@ internal class DetailViewController: UIViewController {
         detailView?.alpha = 0
         snap.removeFromSuperview()
         xButton.removeFromSuperview()
+        super.viewWillDisappear(animated)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         self.delegate?.cardDidCloseDetailView?(card: self.card)
+        super.viewDidDisappear(animated)
     }
     
     
     //MARK: - Layout & Animations for the content ( rect = Scrollview + card + detail )
     
     func layout(_ rect: CGRect, isPresenting: Bool, isAnimating: Bool = true, transform: CGAffineTransform = CGAffineTransform.identity){
+        self.card.log("DetailVC>> Will layout to: ---> \(rect)")
         
+        // Layout for dismiss
         guard isPresenting else {
             
             scrollView.frame = rect.applying(transform)
+            scrollView.layer.cornerRadius = card.cardRadius
             card.backgroundIV.frame = scrollView.bounds
             card.layout(animating: isAnimating)
             return
         }
         
+        // Layout for present in fullscreen
         if isFullscreen {
-            scrollView.frame = view.frame
             
+            scrollView.layer.cornerRadius = 0
+            scrollView.frame = view.bounds
+            scrollView.frame.origin.y = 0
+            self.card.backgroundIV.layer.cornerRadius = 0
+            
+        // Layout for present in non-fullscreen
         } else {
-            scrollView.frame.size = CGSize(width: LayoutHelper.XScreen(85), height: LayoutHelper.YScreen(100) - 20)
+            scrollView.frame.size = CGSize(width: LayoutHelper.XScreen(90), height: LayoutHelper.YScreen(100) - 20)
             scrollView.center = blurView.center
             scrollView.frame.origin.y = 40
         }
@@ -129,9 +158,9 @@ internal class DetailViewController: UIViewController {
         
         card.backgroundIV.frame.origin = scrollView.bounds.origin
         card.backgroundIV.frame.size = CGSize( width: scrollView.bounds.width,
-                                            height: card.backgroundIV.bounds.height)
+                                               height: card.backgroundIV.bounds.height)
         card.layout(animating: isAnimating)
-    
+        
     }
     
     
@@ -151,41 +180,55 @@ extension DetailViewController: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         let y = scrollView.contentOffset.y
-        let origin = originalFrame.origin.y
-        let currentOrigin = originalFrame.origin.y
+        let offset = scrollView.frame.origin.y - scrollViewOriginalYPosition
         
-        xButton.alpha = y - (card.backgroundIV.bounds.height * 0.6)
-        
-        if (y<0  || currentOrigin > origin) {
+        // Behavior when scroll view is pulled down
+        if (y<0) {
             scrollView.frame.origin.y -= y/2
-            
             scrollView.contentOffset.y = 0
+        
+          // Behavior when scroll view is pulled down and then up
+        } else if ( offset > 0) {
+          
+            scrollView.contentOffset.y = 0
+            scrollView.frame.origin.y -= y/2
         }
         
-        //card.delegate?.cardDetailIsScrolling?(card: card)
+        card.delegate?.cardDetailIsScrolling?(card: card)
     }
     
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        let origin = originalFrame.origin.y
-        let currentOrigin = scrollView.frame.origin.y
+        let offset = scrollView.frame.origin.y - scrollViewOriginalYPosition
+        
+        // Pull down speed calculations
         let max = 4.0
         let min = 2.0
         var speed = Double(-velocity.y)
-        
         if speed > max { speed = max }
         if speed < min { speed = min }
-        
-        //self.bounceIntensity = CGFloat(speed-1)
         speed = (max/speed*min)/10
         
-        guard (currentOrigin - origin) < 60 else { dismiss(animated: true, completion: nil); return }
-        UIView.animate(withDuration: speed) { scrollView.frame.origin.y = self.originalFrame.origin.y }
+        guard offset < 60 else { dismissVC(); return }
+        guard offset > 0 else { return }
+        
+        // Come back after pull animation
+        UIView.animate(withDuration: speed, animations: {
+            scrollView.frame.origin.y = self.scrollViewOriginalYPosition
+            self.scrollView.contentOffset.y = 0
+        })
     }
     
-    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
-        UIView.animate(withDuration: 0.1) { scrollView.frame.origin.y = self.originalFrame.origin.y }
+        let offset = scrollView.frame.origin.y - scrollViewOriginalYPosition
+        guard offset > 0 else { return }
+        
+        // Come back after pull animation
+        UIView.animate(withDuration: 0.1, animations: {
+            scrollView.frame.origin.y = self.scrollViewOriginalYPosition
+            self.scrollView.contentOffset.y = 0
+        })
     }
     
 }

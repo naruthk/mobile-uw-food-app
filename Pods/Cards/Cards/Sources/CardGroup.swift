@@ -38,7 +38,7 @@ import UIKit
     /**
      Style for the blur effect.
      */
-    @IBInspectable public var blurEffect: UIBlurEffectStyle = .extraLight {
+    @IBInspectable public var blurEffect: UIBlurEffect.Style = .extraLight {
         didSet{
             blurV.effect = UIBlurEffect(style: blurEffect)
         }
@@ -61,7 +61,7 @@ import UIKit
         initialize()
     }
     
-    override func initialize() {
+    override open func initialize() {
         super.initialize()
         
         vibrancyV = UIVisualEffectView(effect: UIVibrancyEffect(blurEffect: UIBlurEffect(style: blurEffect)))
@@ -99,7 +99,7 @@ import UIKit
         layout()
     }
     
-    override func layout(animating: Bool = true) {
+    override open func layout(animating: Bool = true) {
         super.layout(animating: animating)
         
         let gimme = LayoutHelper(rect: backgroundIV.bounds)

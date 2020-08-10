@@ -12,10 +12,12 @@ public protocol DropStatable {
     var blurEffect: UIBlurEffect? { get }
     var font: UIFont? { get }
     var textColor: UIColor? { get }
+    var textAlignment: NSTextAlignment? { get }
 }
 
 public enum DropState: DropStatable {
-    case `default`, info, success, warning, error, color(UIColor), blur(UIBlurEffectStyle)
+    
+    case `default`, info, success, warning, error, color(UIColor), blur(UIBlurEffect.Style)
     
     public var backgroundColor: UIColor? {
         switch self {
@@ -47,6 +49,13 @@ public enum DropState: DropStatable {
         default: return nil
         }
     }
+    
+    public var textAlignment: NSTextAlignment? {
+        switch self {
+        default:
+            return .center
+        }
+    }
 }
 
 public typealias DropAction = () -> Void
@@ -73,7 +82,7 @@ public final class Drop: UIView {
         self.duration = duration
         
         scheduleUpTimer(duration)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidEnterBackground(_:)), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
     override init(frame: CGRect) {
@@ -259,7 +268,7 @@ extension Drop {
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
         statusLabel.numberOfLines = 0
         statusLabel.font = state.font ?? UIFont.systemFont(ofSize: 17.0)
-        statusLabel.textAlignment = .center
+        statusLabel.textAlignment = state.textAlignment ?? .center
         statusLabel.text = status
         statusLabel.textColor = state.textColor ?? .white
         labelParentView.addSubview(statusLabel)
@@ -271,7 +280,7 @@ extension Drop {
             ]
         )
         self.statusLabel = statusLabel
-        NotificationCenter.default.addObserver(self, selector: #selector(Drop.deviceOrientationDidChange(_:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(Drop.deviceOrientationDidChange(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
         
         self.layoutIfNeeded()
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.up(_:))))

@@ -38,10 +38,10 @@ import UIKit
 import ChameleonFramework
 import Cosmos
 import Firebase
-import Font_Awesome_Swift
 import PopupDialog
 import SwiftyDrop
 import MessageUI
+import FluentIcons
 
 
 class MasterDetailViewController: UIViewController, MFMailComposeViewControllerDelegate {
@@ -101,7 +101,7 @@ class MasterDetailViewController: UIViewController, MFMailComposeViewControllerD
             Category(name:"Reviews", items: reviewsItem as [AnyObject])
         ]
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(MasterDetailViewController.goBack(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(MasterDetailViewController.goBack(_:)))
         
         setTableViewFunctionalities()
         populateHeader()
@@ -123,7 +123,7 @@ class MasterDetailViewController: UIViewController, MFMailComposeViewControllerD
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = UIColor.flatWhite()
         tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
     }
     
     func populateHeader() {
@@ -167,14 +167,14 @@ class MasterDetailViewController: UIViewController, MFMailComposeViewControllerD
     // Populates calls, maps, website, more information buttons
     func populateButtons() {
         setFavoriteIcon()
-        callButton.setFAIcon(icon: .FAPhone, iconSize: iconSize, forState: .normal)
-        mapsButton.setFAIcon(icon: .FAMapMarker, iconSize: iconSize, forState: .normal)
-        websiteButton.setFAIcon(icon: .FALink, iconSize: iconSize, forState: .normal)
-        moreInfoButton.setFAIcon(icon: .FAInfoCircle, iconSize: iconSize, forState: .normal)
+        callButton.setImage(UIImage(fluent: .phoneMobile24Regular), for: .normal)
+        
+        mapsButton.setImage(UIImage(fluent: .map24Regular), for: .normal)
+        websiteButton.setImage(UIImage(fluent: .link24Regular), for: .normal)
+        moreInfoButton.setImage(UIImage(fluent: .info24Regular), for: .normal)
         
         guard let color = UIColor.flatGrayColorDark() else { return }
         saveButton.tintColor = color
-        saveButton.setFATitleColor(color: color)
         callButton.tintColor = color
         mapsButton.tintColor = color
         websiteButton.tintColor = color
@@ -190,12 +190,12 @@ class MasterDetailViewController: UIViewController, MFMailComposeViewControllerD
     func setFavoriteIcon() {
         guard let color = UIColor.flatGray() else { return }
         if self.favorites.favoritesItemDictionary.keys.contains(userData._id) {
-            self.saveButton.setFATitleColor(color: UIColor.red)
-            self.saveButton.setFAIcon(icon: .FAStar, iconSize: self.iconSize, forState: .normal)
+            self.saveButton.tintColor = UIColor.red
+            self.saveButton.setImage(UIImage(fluent: .star24Regular), for: .normal)
             self.saveButtonLabel.text = "Added"
         } else {
-            self.saveButton.setFATitleColor(color: color)
-            self.saveButton.setFAIcon(icon: .FAStarO, iconSize: self.iconSize, forState: .normal)
+            self.saveButton.tintColor = color
+            self.saveButton.setImage(UIImage(fluent: .starNone24Regular), for: .normal)
             self.saveButtonLabel.text = "Add"
         }}
     
@@ -218,16 +218,17 @@ class MasterDetailViewController: UIViewController, MFMailComposeViewControllerD
         if self.favorites.favoritesItemDictionary.keys.contains(userData._id) {
             self.favorites.favoritesItemDictionary.removeValue(forKey: userData._id)
             // Resetting icon's properties to its default state
-            self.saveButton.setFATitleColor(color: UIColor.flatGray())
-            self.saveButton.setFAIcon(icon: .FAStarO, iconSize: self.iconSize, forState: .normal)
+            let icon = UIImage(fluent: .starNone24Regular)
+            self.saveButton.setImage(icon, for: .normal)
             self.saveButtonLabel.text = "Add"
             // Notify the user that the item has been removed
             Drop.down("Successfully removed \(self.userData._title) from Favorites!", state: .success)
         } else {
             // If we're here at this point, then obviously the item is not currently inside our dictionary of
             // Favorites item. So we have to add it.
-            self.saveButton.setFATitleColor(color: UIColor.flatGray())
-            self.saveButton.setFAIcon(icon: .FAStar, iconSize: self.iconSize, forState: .normal)
+            
+            let icon = UIImage(fluent: .star24Regular)
+            self.saveButton.setImage(icon, for: .normal)
             self.saveButtonLabel.text = "Added"
             self.favorites.favoritesItemDictionary[self.userData._id] = self.userData
             Drop.down("Added \(self.userData._title) to Favorites!", state: .success)
@@ -278,7 +279,7 @@ class MasterDetailViewController: UIViewController, MFMailComposeViewControllerD
                 self.present(popup, animated: true, completion: nil)
             } else if user == Auth.auth().currentUser {
                 let ratingVC = RatingViewController(nibName: "RatingViewController", bundle: nil)
-                let popup = PopupDialog(viewController: ratingVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true)
+                let popup = PopupDialog(viewController: ratingVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, tapGestureDismissal: true)
                 let cancelBtn = CancelButton(title: "Cancel", height: 60) {}
                 let ratedBtn = DefaultButton(title: "Rate", height: 60) {
                     Drop.down("Thanks for rating the \(self.userData._title)", state: .success)
@@ -359,10 +360,10 @@ class MasterDetailViewController: UIViewController, MFMailComposeViewControllerD
                 Drop.down(errorMessage, state: .warning)
                 return
             }
-            let leaveAppAlert = UIAlertController(title: "Leaving the application", message: "Are you sure you want to do so?", preferredStyle: UIAlertControllerStyle.alert)
+            let leaveAppAlert = UIAlertController(title: "Leaving the application", message: "Are you sure you want to do so?", preferredStyle: UIAlertController.Style.alert)
             leaveAppAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in return }))
             leaveAppAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             }))
             self.present(leaveAppAlert, animated: true, completion: nil)
         } else {
@@ -374,7 +375,7 @@ class MasterDetailViewController: UIViewController, MFMailComposeViewControllerD
         let website = userData._contact_website
         if !website.isEmpty && website != "-" {
             let url = URL(string: website)
-            let leaveAppAlert = UIAlertController(title: "Leaving the application", message: "Are you sure you want to do so?", preferredStyle: UIAlertControllerStyle.alert)
+            let leaveAppAlert = UIAlertController(title: "Leaving the application", message: "Are you sure you want to do so?", preferredStyle: UIAlertController.Style.alert)
             leaveAppAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in return }))
             leaveAppAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
                 UIApplication.shared.open(url!)
@@ -511,3 +512,8 @@ extension MasterDetailViewController: UITableViewDelegate, UITableViewDataSource
 }
 
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+}

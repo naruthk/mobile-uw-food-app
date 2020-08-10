@@ -1,5 +1,5 @@
 //
-//  DiscoverViewController.swift
+//  DiscoverPulleyViewController.swift
 //  UW Food App
 //
 //  Created by Thipok Cholsaipant on 11/28/17.
@@ -8,19 +8,18 @@
 
 import UIKit
 import Pulley
-import Font_Awesome_Swift
 import GoogleMaps
+import FluentIcons
 
 class DiscoverPulleyViewController: PulleyViewController {
     
     @IBOutlet var mapView: UIView!
-    @IBOutlet var cardView: UICollectionView!
-    @IBOutlet weak var dateLabelAsUIBarButtonItem: UIButton!
-    @IBOutlet weak var searchButton: UIButton!
-    @IBOutlet weak var myLocationButton: UIButton!
+//    @IBOutlet var cardView: UICollectionView!
+//    @IBOutlet weak var accountButton: UIButton!
+    @IBOutlet weak var accountView: UIView!
     
     var mapViewController: DiscoverMapViewController!
-    var cardViewController: DiscoverCardViewController!
+    var cardViewController: DrawerViewController!
     
     var initialPadding:UIEdgeInsets!
     var userData:Restaurant! {
@@ -31,49 +30,40 @@ class DiscoverPulleyViewController: PulleyViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         super.primaryContentContainerView = mapView
-        super.drawerContentContainerView = cardView
+//        super.drawerContentContainerView = cardView
         super.drawerCornerRadius = 0
         super.backgroundDimmingColor = .clear
         super.backgroundDimmingOpacity = CGFloat(0)
         super.drawerBackgroundVisualEffectView = nil
-        mapViewController = childViewControllers.first as? DiscoverMapViewController
-        cardViewController = childViewControllers.last as? DiscoverCardViewController
-        
+        mapViewController = children.first as? DiscoverMapViewController
+        cardViewController = children.last as? DrawerViewController
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getTodayDate()
-        setSearchButton()
-        setMyLocationButton()
+//        setAccountButton()
+//        setFloatingNav()
     }
+    
+    func setFloatingNav() {
+//        view.bringSubviewToFront(accountButton)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    private func setSearchButton() {
-        searchButton.setFAIcon(icon: .FASearch, iconSize: 25, forState: .normal)
-        searchButton.setFATitleColor(color: UIColor.flatGray())
+    private func setAccountButton() {
+        let icon = UIImage(fluent: .person24Filled)
+//        accountButton.setImage(icon, for: .normal)
+//        accountButton.layer.shadowOpacity = 0.25;
+//        accountButton.layer.shadowRadius = 12;
+
     }
-    
-    private func setMyLocationButton() {
-        myLocationButton.setFAIcon(icon: .FALocationArrow, iconSize: 25, forState: .normal)
-        myLocationButton.setFATitleColor(color: UIColor.flatGray())
-    }
-    
-    func getTodayDate() {
-        let currentDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE, MMMM d"
-        let convertedDate = dateFormatter.string(from: currentDate)
-        dateLabelAsUIBarButtonItem.setTitle(convertedDate, for: .normal)
-        dateLabelAsUIBarButtonItem.tintColor = UIColor.darkGray
-    }
-    
-    @IBAction func searchButtonClicked(_ sender: Any) {
-        self.tabBarController?.selectedIndex = 1;   // Search tab is the index #1
-    }
+//    @IBAction func accountButtonClicked(_ sender: Any) {
+//        print("accountButtonClicked")
+//    }
     
     @IBAction func goToMyLocation(_ sender: Any) {
         if let location = mapViewController.locationManager.location {

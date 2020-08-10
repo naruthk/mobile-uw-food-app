@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Google Inc. All rights reserved.
+ * Copyright 2016 Google LLC. All rights reserved.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
@@ -13,15 +13,12 @@
  * permissions and limitations under the License.
  */
 
-#if !defined(__has_feature) || !__has_feature(objc_arc)
-#error "This file requires ARC support."
-#endif
-
 #import "GoogleMapsDemos/MasterViewController.h"
 
-#import <GoogleMaps/GoogleMaps.h>
 #import "GoogleMapsDemos/DemoAppDelegate.h"
 #import "GoogleMapsDemos/Samples/Samples.h"
+#import <GoogleMaps/GoogleMaps.h>
+
 
 @implementation MasterViewController {
   NSArray *_demos;
@@ -50,7 +47,7 @@
   }
 
   self.title = NSLocalizedString(@"Maps SDK Demos", @"Maps SDK Demos");
-  self.title = [NSString stringWithFormat:@"%@: %@", self.title, [GMSServices SDKVersion]];
+  self.title = [NSString stringWithFormat:@"%@: %@", self.title, [GMSServices SDKLongVersion]];
 
   self.tableView.autoresizingMask =
       UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
